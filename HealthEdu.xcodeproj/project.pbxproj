@@ -14,6 +14,10 @@
 		040190421D85476800F8E6DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 040190401D85476800F8E6DA /* LaunchScreen.storyboard */; };
 		0401904D1D85476800F8E6DA /* HealthEduTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0401904C1D85476800F8E6DA /* HealthEduTests.swift */; };
 		040190581D85476800F8E6DA /* HealthEduUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040190571D85476800F8E6DA /* HealthEduUITests.swift */; };
+		040190A21D8596D600F8E6DA /* DivisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040190A11D8596D600F8E6DA /* DivisionViewController.swift */; };
+		040190A81D85A3E900F8E6DA /* article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040190A71D85A3E900F8E6DA /* article.swift */; };
+		040190AA1D85A41600F8E6DA /* ArticleClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040190A91D85A41600F8E6DA /* ArticleClass.swift */; };
+		040190AC1D85A58600F8E6DA /* DevisionOnlyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040190AB1D85A58600F8E6DA /* DevisionOnlyVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		040190531D85476800F8E6DA /* HealthEduUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthEduUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		040190571D85476800F8E6DA /* HealthEduUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthEduUITests.swift; sourceTree = "<group>"; };
 		040190591D85476800F8E6DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		040190A11D8596D600F8E6DA /* DivisionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DivisionViewController.swift; path = ../DivisionViewController.swift; sourceTree = "<group>"; };
+		040190A71D85A3E900F8E6DA /* article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = article.swift; sourceTree = "<group>"; };
+		040190A91D85A41600F8E6DA /* ArticleClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArticleClass.swift; path = ../ArticleClass.swift; sourceTree = "<group>"; };
+		040190AB1D85A58600F8E6DA /* DevisionOnlyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevisionOnlyVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,9 +105,13 @@
 		040190361D85476800F8E6DA /* HealthEdu */ = {
 			isa = PBXGroup;
 			children = (
+				040190A91D85A41600F8E6DA /* ArticleClass.swift */,
+				040190A11D8596D600F8E6DA /* DivisionViewController.swift */,
 				040190371D85476800F8E6DA /* AppDelegate.swift */,
 				040190391D85476800F8E6DA /* ViewController.swift */,
+				040190A71D85A3E900F8E6DA /* article.swift */,
 				0401903B1D85476800F8E6DA /* Main.storyboard */,
+				040190AB1D85A58600F8E6DA /* DevisionOnlyVC.swift */,
 				0401903E1D85476800F8E6DA /* Assets.xcassets */,
 				040190401D85476800F8E6DA /* LaunchScreen.storyboard */,
 				040190431D85476800F8E6DA /* Info.plist */,
@@ -193,6 +205,7 @@
 				TargetAttributes = {
 					040190331D85476800F8E6DA = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = GPHKBKQ59T;
 					};
 					040190471D85476800F8E6DA = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -257,6 +270,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0401903A1D85476800F8E6DA /* ViewController.swift in Sources */,
+				040190A21D8596D600F8E6DA /* DivisionViewController.swift in Sources */,
+				040190AA1D85A41600F8E6DA /* ArticleClass.swift in Sources */,
+				040190AC1D85A58600F8E6DA /* DevisionOnlyVC.swift in Sources */,
+				040190A81D85A3E900F8E6DA /* article.swift in Sources */,
 				040190381D85476800F8E6DA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,10 +418,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = HealthEdu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = NCKU.HealthEdu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -412,10 +432,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = HealthEdu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = NCKU.HealthEdu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -484,6 +507,7 @@
 				0401905E1D85476800F8E6DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0401905F1D85476900F8E6DA /* Build configuration list for PBXNativeTarget "HealthEduTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +516,7 @@
 				040190611D85476900F8E6DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		040190621D85476900F8E6DA /* Build configuration list for PBXNativeTarget "HealthEduUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +525,7 @@
 				040190641D85476900F8E6DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
