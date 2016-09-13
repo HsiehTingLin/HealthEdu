@@ -10,21 +10,43 @@ import UIKit
 
 class DevisionOnlyVC: UITableViewController {
     
-    var refreshControl: UIRefreshControl?
+    var articleArray:[article] = [article]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let article1 = article(title: "標題測試一", photo: "Diagnosis.jpg", author: "林協霆yeeee", body: "長長的內文長長的內文長長的內文長長的內文")
+        let article2 = article(title: "標題測試二", photo:  "Diagnosis.jpg", author: "林協霆yeeee", body: "長長的內文長長的內文長長的內文長長的內文")
+        let article3 = article(title: "標題測試三", photo: "adult-stem-cell-cloning-670-1.jpg", author: "林協霆yeeee", body: "長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文")
+        articleArray.append(article1)
+        articleArray.append(article2)
+        articleArray.append(article3)
+        
+        
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 0
+        return 1
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return
+        return articleArray.count
+    }
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("articleCell", forIndexPath: indexPath) as! myArticleCell
+        
+        
+        var articleItem = articleArray[indexPath.row]
+        cell.myPhoto.image = UIImage(named: articleItem.photo)
+        cell.title.text = articleItem.title
+        cell.author.text = articleItem.author
+        cell.body.text = articleItem.body
+        
+        return cell
     }
 
 }
