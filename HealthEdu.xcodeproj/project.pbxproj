@@ -20,6 +20,7 @@
 		04E4C7831D86C39C00C570D7 /* myArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4C7821D86C39C00C570D7 /* myArticleCell.swift */; };
 		04E4C7CB1D86DECD00C570D7 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4C7CA1D86DECD00C570D7 /* ArticleViewController.swift */; };
 		04E4C7CD1D86DFC300C570D7 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4C7CC1D86DFC300C570D7 /* SearchTableViewController.swift */; };
+		239AA0FC1D89438C00C05DF4 /* nicholas_test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239AA0FB1D89438C00C05DF4 /* nicholas_test.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		04E4C7821D86C39C00C570D7 /* myArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myArticleCell.swift; sourceTree = "<group>"; };
 		04E4C7CA1D86DECD00C570D7 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		04E4C7CC1D86DFC300C570D7 /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		239AA0FB1D89438C00C05DF4 /* nicholas_test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nicholas_test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				0401903E1D85476800F8E6DA /* Assets.xcassets */,
 				040190401D85476800F8E6DA /* LaunchScreen.storyboard */,
 				040190431D85476800F8E6DA /* Info.plist */,
+				239AA0FB1D89438C00C05DF4 /* nicholas_test.swift */,
 			);
 			path = HealthEdu;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				040190AC1D85A58600F8E6DA /* DevisionOnlyVC.swift in Sources */,
 				040190381D85476800F8E6DA /* AppDelegate.swift in Sources */,
 				04E4C7CD1D86DFC300C570D7 /* SearchTableViewController.swift in Sources */,
+				239AA0FC1D89438C00C05DF4 /* nicholas_test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
