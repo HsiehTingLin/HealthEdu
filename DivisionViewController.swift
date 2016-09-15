@@ -8,10 +8,49 @@
 
 import UIKit
 
-class DivisionViewController: UIViewController, UITableViewDataSource{
+class DivisionViewController: UIViewController {
     
-    let InternalMedicine = ["一般內科","胃腸肝膽內科","感染科","胸腔內科","血液腫瘤科"]
-    let Surgical = ["一般外科","心臟血管外科","胸腔外科","胸腔外科"]
+    // 宣告 divisions，負責裝載 DivisionStruct 的 Array
+    var divisions = [DivisionStruct]()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // 讀取 divisions 資料
+        self.loadDivisionsStaticData()
+        for a in divisions{
+            print(a.division)
+        }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    // func 負責載入靜態 json 檔案，取得 divisions 分科資料
+    func loadDivisionsStaticData() -> Void
+    {
+        if let path = NSBundle.mainBundle().pathForResource("Divisions", ofType: "json")
+        {
+            if let jsonData = NSData(contentsOfFile: path)
+            {
+                if let jsonArray = Parse.parseJSONdata(jsonData){
+                    
+                    // 以下把每一個 array 原本item 抓出來，轉換成 DivisionStruct的樣子
+                    for jsonItem in jsonArray {
+
+                        let newJsonItem = DivisionStruct(id: jsonItem["id"] as! String?, division: jsonItem["division"]  as! String?, description: jsonItem["description"]  as! String?)
+                        self.divisions.append(newJsonItem)
+
+                    }
+                }
+            }
+        }
+    }
+
+    
+    /*
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
@@ -52,28 +91,9 @@ class DivisionViewController: UIViewController, UITableViewDataSource{
         }
     }
     
-    
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
     */
+
+
+
 
 }
