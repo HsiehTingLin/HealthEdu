@@ -10,7 +10,10 @@ import UIKit
 
 class SearchTableViewController: UITableViewController, UISearchBarDelegate {
     
-    let searchItem = ["糖尿病", "高血壓", "慢性病"]
+    let searchItem = ["apple", "book", "cat"]
+    let searchBar = UISearchBar.self
+    var filterArray = [String]()
+    var showSearhResult = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +35,23 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    // Function for adding search
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        filterArray = searchItem.filter({ (names: String) -> Bool in
+            return names.lowercaseString.rangeOfString(searchText.lowercaseString) != nil
+        })
+        if searchText != ""
+        {
+            showSearhResult = true
+            self.tableView.reloadData()
+        } else {
+            showSearhResult = false
+            self.tableView.reloadData()
+        }
+    }
+    
+    
+    // END Function for adding search
 
     // MARK: - Table view data source
 
@@ -42,17 +62,34 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return searchItem.count
+        if showSearhResult {
+            return filterArray.count
+        } else {
+            return searchItem.count
+        }
+        
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("searchCell", forIndexPath: indexPath)
-        cell.textLabel?.text = searchItem[indexPath.row]
-    
-
+        if showSearhResult {
+            cell.textLabel?.text = filterArray[indexPath.row]
+        } else {
+            cell.textLabel?.text = searchItem[indexPath.row]
+        }
+        
         return cell
     }
+    override func scrollViewWillBeginDragging(scrollView: UIScrollView) {   self.view.endEditing(true)
+    }
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        showSearhResult = true
+        searchBar.endEditing(true)
+        self.tableView.reloadData()
+        
+    }
+ 
 
 
     /*
