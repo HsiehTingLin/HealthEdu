@@ -63,7 +63,7 @@ class DevisionOnlyVC: UITableViewController {
             
         // 這個func的作用:先把 articleArray中，被選中的資料，指定為 articleSelected這個變數(class是article )，然後將來自"ArticleViewController"的變數指定為articleDetail這個var(class 是ArticleViewController)，接著把articleSelected的每個變數都指定為articleDetail的各個對應的變數，類型都是String 
             
-            // git version check
+            // git version check again
             
             
         }
