@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DivisionViewController: UIViewController {
+class DivisionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
     // 宣告 divisions，負責裝載 DivisionStruct 的 Array
     
@@ -98,74 +98,45 @@ class DivisionViewController: UIViewController {
     }
 
     
-    ///////////////////////////////////////
-
-    
-    
-    let Official = ["最新消息"]
-    let InternalMedicine = ["一般內科","胃腸肝膽內科","感染科","胸腔內科","血液腫瘤科"]
-    let Surgical = ["一般外科","心臟血管外科","胸腔外科","胸腔外科"]
-    let Others = ["泌尿科","藥劑部"]
-    
+    // 這個 func 負責 section 數目
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 4
+        return domains_and_divisions_hierarchy.count
+        // domains_and_divisions_hierarchy 的子項目數目即是 section 數
     }
     
+    // 這個 func 負責每隔不同section裡面的 項目數目
+    // section 假設是n，那個這 func 會從 0 開始跑到 (n-1)
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        switch section {
-        case 0:
-            return Official.count
-        case 1:
-            return InternalMedicine.count
-        case 2:
-            return Surgical.count
-        case 3:
-            return Others.count
-        default:
-            return 0
-        }
+        return domains_and_divisions_hierarchy[section].division_data.count
+        // 每個 domains_and_divisions_hierarchy 的 子項目的 division_data 的數目
+        // 就是 每個 section 內的項目數目
         
     }
     
+    // 這個 func 負責 每個 section 內的 row 的名稱
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("division", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("division", forIndexPath: indexPath) as UITableViewCell
         
         
+        let (division_name) = domains_and_divisions_hierarchy[indexPath.section].division_data[indexPath.row]!.division
+        // indexPath.section 會代入現在跑到的 section 編號
+        // indexPath.row 會代入現在跑到的 row 編號
         
-        switch indexPath.section {
-        case 0:
-            let (divisioin_name) = Official[indexPath.row]
-            cell.textLabel?.text = divisioin_name
-        case 1:
-            let (divisioin_name) = InternalMedicine[indexPath.row]
-            cell.textLabel?.text = divisioin_name
-        case 2:
-            let (divisioin_name) = Surgical[indexPath.row]
-            cell.textLabel?.text = divisioin_name
-        case 3:
-            let (divisioin_name) = Others[indexPath.row]
-            cell.textLabel?.text = divisioin_name
-        default:
-            print()
-        }
+        
+        cell.textLabel?.text = (division_name)
+        // 將 division_name 放到 cell 上
         
         return cell
+        
     }
     
+    // 這個 func 負責 每個 section 的 name
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return "成大醫院"
-        case 1:
-            return "內科"
-        case 2:
-            return "外科"
-        case 3:
-            return "其他科別"
-        default:
-            return ""
-        }
+        
+        return domains_and_divisions_hierarchy[section].domain
+        // 每個 domains_and_divisions_hierarchy 元素的 domain 就是指該元素的名稱
+        
     }
     
 
