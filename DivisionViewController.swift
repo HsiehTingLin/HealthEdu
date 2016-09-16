@@ -142,9 +142,13 @@ class DivisionViewController: UIViewController, UITableViewDataSource, UITableVi
             let selected_division_id: String = domains_and_divisions_hierarchy[indexPath.section].division_data[indexPath.row]!.id!
             // 以上這個是真正要 pass 到 文章列表頁面的 變數
             
-            divisionDetail.selected_division_id = selected_division_id
-            // 將變數傳到下一個頁面去
+            let selected_division_name: String =  domains_and_divisions_hierarchy[indexPath.section].division_data[indexPath.row]!.division!
             
+            divisionDetail.selected_division_id = selected_division_id
+            // 將 選中的 division_id 變數傳到下一個頁面去
+            
+            divisionDetail.selected_division_name = selected_division_name
+            // 將 選中的 division 的 name 變數傳到下一個頁面去，作為顯示用
         }
     }
 

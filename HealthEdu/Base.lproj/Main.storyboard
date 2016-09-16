@@ -202,7 +202,7 @@
             </objects>
             <point key="canvasLocation" x="2837" y="1297"/>
         </scene>
-        <!--Devision OnlyVC-->
+        <!--各科部-->
         <scene sceneID="KQL-Wz-7Sx">
             <objects>
                 <tableViewController id="vIz-NY-hqr" customClass="DevisionOnlyVC" customModule="HealthEdu" customModuleProvider="target" sceneMemberID="viewController">
@@ -283,7 +283,9 @@
                             <outlet property="delegate" destination="vIz-NY-hqr" id="lac-RB-JuE"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="各科部" id="maB-Zt-fRH"/>
                     <connections>
+                        <outlet property="show_selected_division" destination="maB-Zt-fRH" id="ZFW-1b-Ch9"/>
                         <outlet property="tableView" destination="uVB-t0-5Ek" id="GWX-gm-NgN"/>
                     </connections>
                 </tableViewController>
