@@ -33,3 +33,20 @@ class DomainAndDivisionStruct {
     }
     
 }
+
+class Article {
+    
+    var title : String
+    var photo : String
+    var author : String
+    var body : String
+    
+    init (title: String, photo : String, author : String, body : String){
+        self.title = title
+        self.photo = photo
+        self.author = author
+        self.body = body
+    }
+    
+}
+

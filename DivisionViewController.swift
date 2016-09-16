@@ -132,14 +132,18 @@ class DivisionViewController: UIViewController, UITableViewDataSource, UITableVi
         
     }
     
+    
+    // 跨 view 傳遞變數
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let divisionDetail = segue.destinationViewController as! DevisionOnlyVC
         
         if let indexPath = self.tableView.indexPathForSelectedRow {
             
-            divisionDetail.test_segue = String(indexPath.row)
+            let selected_division_id: String = domains_and_divisions_hierarchy[indexPath.section].division_data[indexPath.row]!.id!
+            // 以上這個是真正要 pass 到 文章列表頁面的 變數
             
-            
+            divisionDetail.selected_division_id = selected_division_id
+            // 將變數傳到下一個頁面去
             
         }
     }
