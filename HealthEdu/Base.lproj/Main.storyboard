@@ -194,6 +194,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="分科" id="Vao-Pk-Da1"/>
+                    <connections>
+                        <outlet property="tableView" destination="hw4-wf-EVl" id="ZhJ-P7-ogn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wak-4s-dua" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

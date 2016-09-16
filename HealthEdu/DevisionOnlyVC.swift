@@ -12,12 +12,13 @@ class DevisionOnlyVC: UITableViewController {
     
     var articleArray:[article] = [article]()
     
+    var test_segue: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let article1 = article(title: "標題測試一", photo: "Diagnosis.jpg", author: "林協霆yeeee", body: "長長的內文長長的內文長長的內文長長的內文")
-        let article2 = article(title: "標題測試二", photo:  "Diagnosis.jpg", author: "林協霆yeeee", body: "長長的內文長長的內文長長的內文長長的內文")
-        let article3 = article(title: "標題測試三", photo: "adult-stem-cell-cloning-670-1.jpg", author: "林協霆yeeee", body: "長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文")
+        let article1 = article(title: self.test_segue!, photo: "Diagnosis.jpg", author: "林協霆yeeee", body: "長長的內文長長的內文長長的內文長長的內文")
+        let article2 = article(title: self.test_segue!, photo:  "Diagnosis.jpg", author: "林協霆yeeee", body: "長長的內文長長的內文長長的內文長長的內文")
+        let article3 = article(title: self.test_segue!, photo: "adult-stem-cell-cloning-670-1.jpg", author: "林協霆yeeee", body: "長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文長長的內文")
         articleArray.append(article1)
         articleArray.append(article2)
         articleArray.append(article3)

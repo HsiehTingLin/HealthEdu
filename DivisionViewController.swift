@@ -12,6 +12,7 @@ class DivisionViewController: UIViewController, UITableViewDataSource, UITableVi
     
     // 宣告 divisions，負責裝載 DivisionStruct 的 Array
     
+    @IBOutlet var tableView: UITableView!
     var domains_and_divisions_hierarchy = [DomainAndDivisionStruct]()
 
     override func viewDidLoad() {
@@ -131,6 +132,17 @@ class DivisionViewController: UIViewController, UITableViewDataSource, UITableVi
         
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let divisionDetail = segue.destinationViewController as! DevisionOnlyVC
+        
+        if let indexPath = self.tableView.indexPathForSelectedRow {
+            
+            divisionDetail.test_segue = String(indexPath.row)
+            
+            
+            
+        }
+    }
 
 
 
