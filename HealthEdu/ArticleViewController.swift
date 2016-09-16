@@ -17,6 +17,7 @@ class ArticleViewController: UIViewController {
     @IBOutlet weak var currentBody: UILabel!
     @IBOutlet weak var currentTime: UILabel!
     //上面這些是從VC連過來的outlet，因為他們屬性不同，不能直接來使用
+    @IBOutlet weak var scrollView: UIScrollView!
     
     
     var currentPhotoString = ""
@@ -35,12 +36,10 @@ class ArticleViewController: UIViewController {
         currentAuthor.text = currentAuthorString
         currentBody.text = currentBodyString
         currentTime.text = currentTimeString
+        scrollView.contentSize.height = 1000
         
-        
-        
-    
-        
-
+        // 上面這行可以調整scrollview的大小，我是覺得他應該要跟文章的長度連動 
+ 
         // Do any additional setup after loading the view.
     }
 
