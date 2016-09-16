@@ -22,15 +22,7 @@ class DivisionViewController: UIViewController, UITableViewDataSource, UITableVi
         
         // 讀取 divisions 資料，並將之填入 domains_and_division_hierarchy 大 array 中
         self.load_Divisions_StaticData()
-        print("---------")
-        for a in domains_and_divisions_hierarchy{
-            
-            print("##")
-            for b in a.division_data{
-                print(b?.division)
-            }
-            print("##")
-        }
+
     }
     
     override func didReceiveMemoryWarning() {
