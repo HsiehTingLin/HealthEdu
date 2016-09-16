@@ -12,11 +12,15 @@ class article {
     var photo : String
     var author : String
     var body : String
-    init (title: String, photo : String, author : String, body : String){
+    var time : String
+    var division : String
+    init (title: String, photo : String, author : String, body : String, time: String, division: String){
         self.title = title
         self.photo = photo
         self.author = author
         self.body = body
+        self.time = time
+        self.division = division
     }
     
 }
