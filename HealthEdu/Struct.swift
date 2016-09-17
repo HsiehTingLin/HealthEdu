@@ -1,6 +1,7 @@
 //  分科的各科別基礎 struct 資料結構
 
 import Foundation
+import UIKit
 
 class DivisionStruct {
     
@@ -37,11 +38,11 @@ class DomainAndDivisionStruct {
 class Article {
     
     var title : String
-    var photo : String
+    var photo = UIImage?()
     var author : String
     var body : String
     
-    init (title: String, photo : String, author : String, body : String){
+    init (title: String, photo : UIImage, author : String, body : String){
         self.title = title
         self.photo = photo
         self.author = author

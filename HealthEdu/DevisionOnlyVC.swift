@@ -18,6 +18,10 @@ class DevisionOnlyVC: UITableViewController {
     var selected_division_name :String?
     // 從上一個頁面 傳來 division_name，要顯示用的
     
+    var image = UIImage(named: "Diagnosis.jpg")
+    
+    var image_temp = UIImage()
+    
     @IBOutlet var show_selected_division: UINavigationItem!
     // Outlet 連結 顯示 division
     
@@ -37,27 +41,50 @@ class DevisionOnlyVC: UITableViewController {
         
         if let jsonArray = Parse.parseJSONdata(jsonData) {
             
+            
             for a_article in jsonArray {
                 
-                let photoUrl: String = "http://webpage.hosp.ncku.edu.tw/Portals/0/Issue14/5.jpg"
+                ////////////////////////////////////////////////////////////
+                /////////這裡應該要判斷是否該文章有image，若無，則採用預設/////////
+                ////////////////////////////////////////////////////////////
+                let photoUrl: String = "http://webpage.hosp.ncku.edu.tw/Portals/0/Issue14/6.jpg"
                 
+                
+                // 取得圖片
+                
+                    
+                // 現在用假圖片，到時候要用類似下面這種方式 但是還要加上判斷
                 // let photoUrl: String = "http://webpage.hosp.ncku.edu.tw"+(a_article["img_src"]!![0] as! String)
+                    
                 
-                let new_article = Article(title: a_article["title"] as! String, photo: photoUrl, author: a_article["author"] as! String , body: a_article["content"] as! String)
-                
-                self.articleArray.append(new_article)
+                Connection.GetImage(photoUrl, completionHandler: {
+                    (Imagedata) in
+                        
+                    
+                    self.image = UIImage(data: Imagedata)!
+                    // 把 data 轉換成 UIImage
 
-                print(a_article["title"])
+                    let new_article = Article(title: a_article["title"] as! String, photo: self.image!, author: a_article["author"] as! String , body: a_article["content"] as! String)
+                    
+                    self.articleArray.append(new_article)
+
+                    
+                    
+                    // 以下為把資料貼到 view 上
+                    dispatch_async(dispatch_get_main_queue(), {
+
+                        self.tableView.reloadData()
+                        
+                        // 一定要在這個 dispatch_async() 裡面change UI
+                        // Do not change UI from anything but the main thread, it is bound to make your application unstable, and crash unpredictably.
+                    })
+                    
+                })
+                
+
                 
             }
-            // 以下為把資料貼到 view 上
-            dispatch_async(dispatch_get_main_queue(), {
-            
-                self.tableView.reloadData()
-                // 一定要在這個 dispatch_async() 裡面change UI
-                // Do not change UI from anything but the main thread, it is bound to make your application unstable, and crash unpredictably.
-            })
-            
+
             
         }
         
@@ -77,7 +104,10 @@ class DevisionOnlyVC: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("articleCell", forIndexPath: indexPath) as! myArticleCell
         
-        cell.myPhoto.image = UIImage(named: self.articleArray[indexPath.row].photo)
+
+        
+        // 以下為文字 貼到 cell 上
+        cell.myPhoto.image = self.articleArray[indexPath.row].photo
         cell.title?.text = self.articleArray[indexPath.row].title
         cell.author?.text = self.articleArray[indexPath.row].author
         cell.body?.text = self.articleArray[indexPath.row].body

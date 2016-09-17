@@ -52,6 +52,36 @@ class Connection: NSObject, NSURLSessionDelegate{
         
     }
     
+    
+    // 負責去下載 Image
+    static func GetImage(requestUrl: String, completionHandler: NSData -> Void)
+    {
+        var imageData: NSData?
+        
+        let path: String = requestUrl
+        let url: NSURL = NSURL(string: path)!
+        let request = NSMutableURLRequest(URL: url)
+        let session: NSURLSession = NSURLSession.sharedSession()
+        
+        let task = session.dataTaskWithRequest(request, completionHandler: {
+            (data, response, error) in
+            
+            let httpResponse = response as? NSHTTPURLResponse
+        
+            if httpResponse?.statusCode == 200 {
+                
+                imageData = data
+                
+            }
+            
+            completionHandler(imageData!)
+            // 不能用 return 的方式回傳，因為 這是 Async 方式讀取資料
+        })
+        
+        task.resume()
+        
+    }
+    
     // HTTPS
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
         completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, NSURLCredential(forTrust: challenge.protectionSpace.serverTrust!))
