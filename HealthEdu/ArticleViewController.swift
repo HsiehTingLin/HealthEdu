@@ -10,9 +10,35 @@ import UIKit
 
 class ArticleViewController: UIViewController {
 
+    @IBOutlet var articleTitle: UILabel!
+    @IBOutlet var articleTime: UILabel!
+    @IBOutlet var articleDivision: UILabel!
+    @IBOutlet var articleAuthor: UILabel!
+    @IBOutlet var articleImage: UIImageView!
+    @IBOutlet var articleContent: UITextView!
+    
+    var articleTitleVar :String?
+    var articleTimeVar :String?
+    var articleDivisionVar :String?
+    var articleAuthorVar : String?
+    var articleImageVar :UIImage?
+    var articleContentVar :String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.articleTitle.text = articleTitleVar
+        
+        self.articleTime.text = articleTimeVar
+        
+        self.articleDivision.text = articleDivisionVar
+        
+        self.articleAuthor.text = articleAuthorVar
+        
+        self.articleImage.image = articleImageVar
+        
+        self.articleContent.text = articleContentVar
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,10 +46,6 @@ class ArticleViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func AddToBookmark()
-    {
-        print("add")
-    }
 
     /*
     // MARK: - Navigation

@@ -114,5 +114,31 @@ class DevisionOnlyVC: UITableViewController {
         
         return cell
     }
+    
+    // 跨 view 傳遞變數
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let articleVC = segue.destinationViewController as! ArticleViewController
+        
+        
+        if let indexPath = self.tableView.indexPathForSelectedRow {
+            
+
+            
+            // 以下為 傳遞變數
+            articleVC.articleTitleVar = self.articleArray[indexPath.row].title
+            
+            articleVC.articleTimeVar = "2016-01-01 (靜態)"
+            
+            articleVC.articleDivisionVar = self.selected_division_name!
+            
+            articleVC.articleAuthorVar = self.articleArray[indexPath.row].author
+            
+            articleVC.articleImageVar = self.articleArray[indexPath.row].photo!
+            
+            articleVC.articleContentVar = self.articleArray[indexPath.row].body
+            
+
+        }
+    }
 
 }
