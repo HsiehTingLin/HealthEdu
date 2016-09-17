@@ -17,7 +17,7 @@ class ArticleViewController: UIViewController {
     @IBOutlet var articleImage: UIImageView!
     @IBOutlet var articleContent: UITextView!
     
-    var articleTitleVar :String?
+    var articleTitleVar :String? = "預設標題"
     var articleTimeVar :String?
     var articleDivisionVar :String?
     var articleAuthorVar : String?

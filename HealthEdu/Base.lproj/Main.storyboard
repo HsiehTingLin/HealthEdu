@@ -23,7 +23,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2156" y="447"/>
+            <point key="canvasLocation" x="2660" y="227"/>
         </scene>
         <!--Search Table View Controller-->
         <scene sceneID="ZHo-dt-tP6">
@@ -296,7 +296,7 @@
         <!--Article View Controller-->
         <scene sceneID="wGr-PA-d6J">
             <objects>
-                <viewController id="t9C-vJ-imM" customClass="ArticleViewController" customModule="HealthEdu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ArticleViewControllerID" id="t9C-vJ-imM" customClass="ArticleViewController" customModule="HealthEdu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Aea-Iu-a7g"/>
                         <viewControllerLayoutGuide type="bottom" id="JDQ-GE-wfQ"/>

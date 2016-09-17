@@ -14,9 +14,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    var QRcodeEntry: String? = "NO"
+    
+    // func application 要這樣寫，才會有回應
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+    
+    
         // Override point for customization after application launch.
+        print("ddd")
+        self.QRcodeEntry = "YES"
+        
+        if let str: String = url.absoluteString {
+            
+            
+            if str == "nckuhhealthedu://?q"{
+                
+            }
+            /*
+            if let range = string.rangeOfString("q=") {
+                let value = string[range.endIndex ..< string.endIndex]
+                myFunction(value)
+            }*/
+        }
+        
+        let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let initialViewControlleripad : UIViewController = mainStoryboardIpad.instantiateViewControllerWithIdentifier("ArticleViewControllerID") as UIViewController
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window?.rootViewController = initialViewControlleripad
+        self.window?.makeKeyAndVisible()
+        print("ddsssd")
         return true
     }
 
