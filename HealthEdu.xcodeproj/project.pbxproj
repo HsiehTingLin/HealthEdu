@@ -17,6 +17,7 @@
 		040190A21D8596D600F8E6DA /* DivisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040190A11D8596D600F8E6DA /* DivisionViewController.swift */; };
 		040190AA1D85A41600F8E6DA /* ArticleClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040190A91D85A41600F8E6DA /* ArticleClass.swift */; };
 		040190AC1D85A58600F8E6DA /* DevisionOnlyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040190AB1D85A58600F8E6DA /* DevisionOnlyVC.swift */; };
+		049659A31D8D15EC00E05F3C /* BookmarkVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049659A21D8D15EC00E05F3C /* BookmarkVCViewController.swift */; };
 		04E4C7831D86C39C00C570D7 /* myArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4C7821D86C39C00C570D7 /* myArticleCell.swift */; };
 		04E4C7CB1D86DECD00C570D7 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4C7CA1D86DECD00C570D7 /* ArticleViewController.swift */; };
 		04E4C7CD1D86DFC300C570D7 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4C7CC1D86DFC300C570D7 /* SearchTableViewController.swift */; };
@@ -56,6 +57,7 @@
 		040190A11D8596D600F8E6DA /* DivisionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DivisionViewController.swift; path = ../DivisionViewController.swift; sourceTree = "<group>"; };
 		040190A91D85A41600F8E6DA /* ArticleClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArticleClass.swift; path = ../ArticleClass.swift; sourceTree = "<group>"; };
 		040190AB1D85A58600F8E6DA /* DevisionOnlyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevisionOnlyVC.swift; sourceTree = "<group>"; };
+		049659A21D8D15EC00E05F3C /* BookmarkVCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkVCViewController.swift; sourceTree = "<group>"; };
 		04E4C7821D86C39C00C570D7 /* myArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myArticleCell.swift; sourceTree = "<group>"; };
 		04E4C7CA1D86DECD00C570D7 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		04E4C7CC1D86DFC300C570D7 /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				040190371D85476800F8E6DA /* AppDelegate.swift */,
 				040190391D85476800F8E6DA /* ViewController.swift */,
 				0401903B1D85476800F8E6DA /* Main.storyboard */,
+				049659A21D8D15EC00E05F3C /* BookmarkVCViewController.swift */,
 				04E4C7CC1D86DFC300C570D7 /* SearchTableViewController.swift */,
 				04E4C7CA1D86DECD00C570D7 /* ArticleViewController.swift */,
 				04E4C7821D86C39C00C570D7 /* myArticleCell.swift */,
@@ -279,6 +282,7 @@
 				040190A21D8596D600F8E6DA /* DivisionViewController.swift in Sources */,
 				04E4C7CB1D86DECD00C570D7 /* ArticleViewController.swift in Sources */,
 				04E4C7831D86C39C00C570D7 /* myArticleCell.swift in Sources */,
+				049659A31D8D15EC00E05F3C /* BookmarkVCViewController.swift in Sources */,
 				040190AA1D85A41600F8E6DA /* ArticleClass.swift in Sources */,
 				040190AC1D85A58600F8E6DA /* DevisionOnlyVC.swift in Sources */,
 				040190381D85476800F8E6DA /* AppDelegate.swift in Sources */,

@@ -81,8 +81,11 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
         
         return cell
     }
-    override func scrollViewWillBeginDragging(scrollView: UIScrollView) {   self.view.endEditing(true)
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.tableView.endEditing(true)
     }
+    
+    
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         showSearhResult = true
         searchBar.endEditing(true)

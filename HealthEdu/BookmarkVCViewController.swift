@@ -1,18 +1,19 @@
 //
-//  DevisionOnlyVC.swift
+//  BookmarkVCViewController.swift
 //  HealthEdu
 //
-//  Created by Mac on 2016/9/11.
+//  Created by Mac on 2016/9/17.
 //  Copyright © 2016年 NCKU_hospital. All rights reserved.
 //
 
 import UIKit
 
-class DevisionOnlyVC: UITableViewController {
+class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+    
     
     var articleArray:[article] = [article]()
-    
-    
+
+    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         let article1 = article(title: "標題測試一", photo: "Diagnosis.jpg", author: "林協霆yeeee", body: "長長的內文長長的內文長長的內文長長的內文", time: "2016-09-13", division: "內科")
@@ -21,22 +22,23 @@ class DevisionOnlyVC: UITableViewController {
         articleArray.append(article1)
         articleArray.append(article2)
         articleArray.append(article3)
-        
-        
-        
+
+
+        // Do any additional setup after loading the view.
     }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
-    
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return articleArray.count
     }
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("articleCell", forIndexPath: indexPath) as! myArticleCell
         
         
@@ -49,28 +51,15 @@ class DevisionOnlyVC: UITableViewController {
         return cell
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let articleDetail = segue.destinationViewController as! ArticleViewController
-        if let indexPath = self.tableView.indexPathForSelectedRow {
-            let articleSelected = articleArray[indexPath.row]
-            articleDetail.currentTitleString = articleSelected.title
-            articleDetail.currentBodyString = articleSelected.body
-            articleDetail.currentAuthorString = articleSelected.author
-            articleDetail.currentDivisionString = articleSelected.division
-            articleDetail.currentPhotoString = articleSelected.photo
-            articleDetail.currentTimeString = articleSelected.time
-            
-            
-        // 這個func的作用:先把 articleArray中，被選中的資料，指定為 articleSelected這個變數(class是article )，然後將來自"ArticleViewController"的變數指定為articleDetail這個var(class 是ArticleViewController)，接著把articleSelected的每個變數都指定為articleDetail的各個對應的變數，類型都是String
-            
-            
-        }
-    }
-    
- 
-    
-    
 
-  
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
 
 }
