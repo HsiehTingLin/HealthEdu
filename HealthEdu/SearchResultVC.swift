@@ -11,7 +11,7 @@ import UIKit
 class SearchResultVC: UITableViewController {
     var articleArray:[article] = [article]()
     
-    
+    // 不知道有沒有辦法把搜尋結果的title顯示在navigation bar上，像在分科裡面做的那樣
     override func viewDidLoad() {
         super.viewDidLoad()
         
