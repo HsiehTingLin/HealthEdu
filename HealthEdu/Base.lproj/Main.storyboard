@@ -1511,6 +1511,13 @@ Cg
                         </constraints>
                     </view>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="CVR-Et-fIT">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="VfG-eP-3EI">
+                            <connections>
+                                <action selector="GenerateQRCode:" destination="t9C-vJ-imM" id="H8u-eN-GTs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="articleAuthor" destination="ke1-OS-nmc" id="dSP-Q5-aNl"/>

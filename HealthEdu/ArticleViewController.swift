@@ -28,6 +28,7 @@ class ArticleViewController: UIViewController {
         print("我是佑如！！！！！！")
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         print(appDelegate.QRcodeEntry)
+        
         super.viewDidLoad()
 
         self.articleTitle.text = articleTitleVar
@@ -49,6 +50,42 @@ class ArticleViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    @IBAction func GenerateQRCode(sender: AnyObject) {
+        
+        let alertMessage = UIAlertController(title: "請使用QR Code掃描器掃描！", message: "點擊背景以返回", preferredStyle: .Alert)
+        
+        let height:NSLayoutConstraint = NSLayoutConstraint(item: alertMessage.view, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: self.view.frame.height * 0.43)
+        
+        alertMessage.view.addConstraint(height)
+
+        let imageView = UIImageView(frame: CGRectMake(30, 90, 200, 200))
+        
+        imageView.image = UIImage(named: "Diagnosis.jpg")
+        alertMessage.view.addSubview(imageView)
+        
+        //let action = UIAlertAction(title: "返回", style: .Default, handler: nil)
+        
+        //alertMessage.addAction(action)
+        
+        self.presentViewController(alertMessage, animated: true, completion:{
+            alertMessage.view.superview?.userInteractionEnabled = true
+            alertMessage.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
+        })
+
+       
+        
+    }
+    
+    
+    func alertControllerBackgroundTapped()
+    {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+
+
+
 
     /*
     // MARK: - Navigation
