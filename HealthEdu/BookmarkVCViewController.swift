@@ -96,6 +96,40 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
         }
         return cell
     }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let articleDetail = segue.destinationViewController as! ArticleViewController
+        if let indexPath = self.tableView.indexPathForSelectedRow {
+            // 因為有兩種情況，所弄了酪switch 我覺得這堆碼有夠醜Q
+            switch (BookmarkSegControlIBO.selectedSegmentIndex) {
+            case 0:
+                let articleSelected = articleArrayHistory[indexPath.row]
+                articleDetail.currentTitleString = articleSelected.title
+                articleDetail.currentBodyString = articleSelected.body
+                articleDetail.currentAuthorString = articleSelected.author
+                articleDetail.currentDivisionString = articleSelected.division
+                articleDetail.currentPhotoString = articleSelected.photo
+                articleDetail.currentTimeString = articleSelected.time
+                break
+            case 1:
+                let articleSelected = articleArrayBookmark[indexPath.row]
+                articleDetail.currentTitleString = articleSelected.title
+                articleDetail.currentBodyString = articleSelected.body
+                articleDetail.currentAuthorString = articleSelected.author
+                articleDetail.currentDivisionString = articleSelected.division
+                articleDetail.currentPhotoString = articleSelected.photo
+                articleDetail.currentTimeString = articleSelected.time
+            default:
+                break
+            }
+    
+            
+            
+            
+            // 這個func的作用:先把 articleArray中，被選中的資料，指定為 articleSelected這個變數(class是article )，然後將來自"ArticleViewController"的變數指定為articleDetail這個var(class 是ArticleViewController)，接著把articleSelected的每個變數都指定為articleDetail的各個對應的變數，類型都是String
+            
+            
+        }
+    }
 
 
     /*
