@@ -19,6 +19,10 @@
 		040190AC1D85A58600F8E6DA /* DevisionOnlyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040190AB1D85A58600F8E6DA /* DevisionOnlyVC.swift */; };
 		049659A31D8D15EC00E05F3C /* BookmarkVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049659A21D8D15EC00E05F3C /* BookmarkVCViewController.swift */; };
 		04965A331D8E780100E05F3C /* myBookmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04965A321D8E780100E05F3C /* myBookmarkCell.swift */; };
+		04965A361D8E8D0900E05F3C /* StarMany.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04965A351D8E8D0900E05F3C /* StarMany.swift */; };
+		04965A381D8E8D3B00E05F3C /* StarSingleTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04965A371D8E8D3B00E05F3C /* StarSingleTopic.swift */; };
+		04965A3A1D8E8F9600E05F3C /* TopicClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04965A391D8E8F9600E05F3C /* TopicClass.swift */; };
+		04965A3C1D8E909200E05F3C /* myTopicsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04965A3B1D8E909200E05F3C /* myTopicsCell.swift */; };
 		04E4C7831D86C39C00C570D7 /* myArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4C7821D86C39C00C570D7 /* myArticleCell.swift */; };
 		04E4C7CB1D86DECD00C570D7 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4C7CA1D86DECD00C570D7 /* ArticleViewController.swift */; };
 		04E4C7CD1D86DFC300C570D7 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4C7CC1D86DFC300C570D7 /* SearchTableViewController.swift */; };
@@ -60,6 +64,10 @@
 		040190AB1D85A58600F8E6DA /* DevisionOnlyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevisionOnlyVC.swift; sourceTree = "<group>"; };
 		049659A21D8D15EC00E05F3C /* BookmarkVCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkVCViewController.swift; sourceTree = "<group>"; };
 		04965A321D8E780100E05F3C /* myBookmarkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myBookmarkCell.swift; sourceTree = "<group>"; };
+		04965A351D8E8D0900E05F3C /* StarMany.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarMany.swift; sourceTree = "<group>"; };
+		04965A371D8E8D3B00E05F3C /* StarSingleTopic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarSingleTopic.swift; sourceTree = "<group>"; };
+		04965A391D8E8F9600E05F3C /* TopicClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicClass.swift; sourceTree = "<group>"; };
+		04965A3B1D8E909200E05F3C /* myTopicsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myTopicsCell.swift; sourceTree = "<group>"; };
 		04E4C7821D86C39C00C570D7 /* myArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myArticleCell.swift; sourceTree = "<group>"; };
 		04E4C7CA1D86DECD00C570D7 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		04E4C7CC1D86DFC300C570D7 /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
@@ -113,11 +121,12 @@
 		040190361D85476800F8E6DA /* HealthEdu */ = {
 			isa = PBXGroup;
 			children = (
+				0401903B1D85476800F8E6DA /* Main.storyboard */,
 				04965A301D8E77BF00E05F3C /* Article */,
 				04965A2F1D8E77A600E05F3C /* Division */,
 				040190371D85476800F8E6DA /* AppDelegate.swift */,
 				040190391D85476800F8E6DA /* ViewController.swift */,
-				0401903B1D85476800F8E6DA /* Main.storyboard */,
+				04965A341D8E8C5200E05F3C /* Star */,
 				04965A2E1D8E777F00E05F3C /* Bookmark */,
 				04965A311D8E77E500E05F3C /* Search */,
 				0401903E1D85476800F8E6DA /* Assets.xcassets */,
@@ -179,6 +188,17 @@
 				04E4C7CC1D86DFC300C570D7 /* SearchTableViewController.swift */,
 			);
 			name = Search;
+			sourceTree = "<group>";
+		};
+		04965A341D8E8C5200E05F3C /* Star */ = {
+			isa = PBXGroup;
+			children = (
+				04965A351D8E8D0900E05F3C /* StarMany.swift */,
+				04965A371D8E8D3B00E05F3C /* StarSingleTopic.swift */,
+				04965A391D8E8F9600E05F3C /* TopicClass.swift */,
+				04965A3B1D8E909200E05F3C /* myTopicsCell.swift */,
+			);
+			name = Star;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,12 +335,16 @@
 			files = (
 				0401903A1D85476800F8E6DA /* ViewController.swift in Sources */,
 				04965A331D8E780100E05F3C /* myBookmarkCell.swift in Sources */,
+				04965A361D8E8D0900E05F3C /* StarMany.swift in Sources */,
+				04965A381D8E8D3B00E05F3C /* StarSingleTopic.swift in Sources */,
 				040190A21D8596D600F8E6DA /* DivisionViewController.swift in Sources */,
 				04E4C7CB1D86DECD00C570D7 /* ArticleViewController.swift in Sources */,
 				04E4C7831D86C39C00C570D7 /* myArticleCell.swift in Sources */,
 				049659A31D8D15EC00E05F3C /* BookmarkVCViewController.swift in Sources */,
 				040190AA1D85A41600F8E6DA /* ArticleClass.swift in Sources */,
+				04965A3A1D8E8F9600E05F3C /* TopicClass.swift in Sources */,
 				040190AC1D85A58600F8E6DA /* DevisionOnlyVC.swift in Sources */,
+				04965A3C1D8E909200E05F3C /* myTopicsCell.swift in Sources */,
 				040190381D85476800F8E6DA /* AppDelegate.swift in Sources */,
 				04E4C7CD1D86DFC300C570D7 /* SearchTableViewController.swift in Sources */,
 			);
