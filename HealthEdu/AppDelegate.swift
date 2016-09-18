@@ -19,33 +19,95 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // func application 要這樣寫，才會有回應
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
     
-    
-        // Override point for customization after application launch.
-        print("ddd")
-        self.QRcodeEntry = "YES"
+
+        // Project Euler #1 Solution in Swift
+        
+        let url_scheme :String = url.scheme
+        let url_query_init :String? = url.query
+        
+        if let url_query:String = url_query_init {
+            
+            let url_query_array :Array = url_query.componentsSeparatedByString("&")
+            var url_query_dictionary = [String: String]()
+            
+            for item in url_query_array {
+                var temp = item.componentsSeparatedByString("=")
+                if temp.count>1 {
+                    
+                    url_query_dictionary[temp[0]] = temp[1]
+                    
+                }else{
+                    
+                    self.showAlertAppDelegate("QR Code或連結失效",message: "請改用搜尋功能，或聯繫APP開發人員！",buttonTitle: "ok",window: self.window!)
+                }
+            }
+            
+            print(url_query_dictionary)
+            
+            if url_scheme == "nckuhhealthedu" {
+                
+                if url_query_dictionary["articleID"] != nil{
+                    
+                    if let articleIDint = Int(url_query_dictionary["articleID"]!) {
+                        print("get it:",articleIDint)
+                    }else{
+                        self.showAlertAppDelegate("QR Code或連結失效",message: "請改用搜尋功能，或聯繫APP開發人員！",buttonTitle: "ok",window: self.window!)
+                    }
+                    
+                    
+                }else{
+                    self.showAlertAppDelegate("QR Code或連結失效",message: "請改用搜尋功能，或聯繫APP開發人員！",buttonTitle: "ok",window: self.window!)
+                    
+                }
+                
+                
+            }else{
+                
+                self.showAlertAppDelegate("QR Code或連結失效",message: "請改用搜尋功能，或聯繫APP開發人員！",buttonTitle: "ok",window: self.window!)
+                
+            }
+            
+            
+            
+            
+        }else{
+            self.showAlertAppDelegate("QR Code或連結失效",message: "請改用搜尋功能，或聯繫APP開發人員！",buttonTitle: "ok",window: self.window!)
+        }
+        
+ 
         
         if let str: String = url.absoluteString {
             
-            
-            if str == "nckuhhealthedu://?q"{
+            if str == "nckuhhealthedu://article/"{
                 
+                print(url.scheme)
+                print(url.path)
+                print(url.query)
+                
+                let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let initialViewControlleripad : UIViewController = mainStoryboardIpad.instantiateViewControllerWithIdentifier("ArticleViewControllerID") as UIViewController
+                self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+                self.window?.rootViewController = initialViewControlleripad
+                self.window?.makeKeyAndVisible()
+                
+
             }
-            /*
-            if let range = string.rangeOfString("q=") {
-                let value = string[range.endIndex ..< string.endIndex]
-                myFunction(value)
-            }*/
+           
         }
         
-        let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let initialViewControlleripad : UIViewController = mainStoryboardIpad.instantiateViewControllerWithIdentifier("ArticleViewControllerID") as UIViewController
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window?.rootViewController = initialViewControlleripad
-        self.window?.makeKeyAndVisible()
-        print("ddsssd")
+
         return true
     }
 
+    func showAlertAppDelegate(title : String,message : String,buttonTitle : String,window: UIWindow){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: buttonTitle, style: UIAlertActionStyle.Default, handler: nil))
+        window.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+    }
+
+
+    
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

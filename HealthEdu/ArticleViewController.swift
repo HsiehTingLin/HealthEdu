@@ -25,6 +25,9 @@ class ArticleViewController: UIViewController {
     var articleContentVar :String?
     
     override func viewDidLoad() {
+        print("我是佑如！！！！！！")
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        print(appDelegate.QRcodeEntry)
         super.viewDidLoad()
 
         self.articleTitle.text = articleTitleVar

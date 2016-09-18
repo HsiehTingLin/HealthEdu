@@ -9,7 +9,7 @@
         <!--衛教精選-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="HealthEdu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewControllerID" id="BYZ-38-t0r" customClass="ViewController" customModule="HealthEdu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -20,10 +20,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="衛教精選" id="l9M-ga-AbE"/>
+                    <connections>
+                        <segue destination="t9C-vJ-imM" kind="show" identifier="QRCodeEntryShowArticle" id="Vnl-F1-0M5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2660" y="227"/>
+            <point key="canvasLocation" x="4928" y="1483"/>
         </scene>
         <!--Search Table View Controller-->
         <scene sceneID="ZHo-dt-tP6">
@@ -1584,4 +1587,7 @@ Cg
         <image name="Stethoscope" width="25" height="25"/>
         <image name="Surgery" width="2197" height="1463"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Vnl-F1-0M5"/>
+    </inferredMetricsTieBreakers>
 </document>
