@@ -10,6 +10,10 @@ import UIKit
 
 class myBookmarkCell: UITableViewCell {
 
+    @IBOutlet weak var BookmarkImageViewCellIBO: UIImageView!
+    @IBOutlet weak var BookmarkTitleIBO: UILabel!
+    @IBOutlet weak var BookmarkAuthorIBO: UILabel!
+    @IBOutlet weak var BookmarkBodyIBO: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
