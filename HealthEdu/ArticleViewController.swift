@@ -28,6 +28,9 @@ class ArticleViewController: UIViewController {
     var currentTimeString = ""
     //這裡先宣告一些變數，注意這裡的名字會被使用在資料來源的vc
     
+    @IBAction func qrcodeBtn(sender: AnyObject) {
+        // Qrcode 功能放在這裡
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         currentPhoto.image = UIImage(named: currentPhotoString)

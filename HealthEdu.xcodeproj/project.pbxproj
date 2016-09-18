@@ -127,14 +127,7 @@
 		040190361D85476800F8E6DA /* HealthEdu */ = {
 			isa = PBXGroup;
 			children = (
-				0401903B1D85476800F8E6DA /* Main.storyboard */,
-				04965A301D8E77BF00E05F3C /* Article */,
-				04965A2F1D8E77A600E05F3C /* Division */,
-				040190371D85476800F8E6DA /* AppDelegate.swift */,
-				040190391D85476800F8E6DA /* ViewController.swift */,
-				04965A341D8E8C5200E05F3C /* Star */,
-				04965A2E1D8E777F00E05F3C /* Bookmark */,
-				04965A311D8E77E500E05F3C /* Search */,
+				04965A451D8EC95B00E05F3C /* ViewController */,
 				0401903E1D85476800F8E6DA /* Assets.xcassets */,
 				040190401D85476800F8E6DA /* LaunchScreen.storyboard */,
 				040190431D85476800F8E6DA /* Info.plist */,
@@ -208,6 +201,21 @@
 				04965A3F1D8EB67500E05F3C /* mySingleTopicCell.swift */,
 			);
 			name = Star;
+			sourceTree = "<group>";
+		};
+		04965A451D8EC95B00E05F3C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0401903B1D85476800F8E6DA /* Main.storyboard */,
+				040190371D85476800F8E6DA /* AppDelegate.swift */,
+				040190391D85476800F8E6DA /* ViewController.swift */,
+				04965A341D8E8C5200E05F3C /* Star */,
+				04965A2F1D8E77A600E05F3C /* Division */,
+				04965A311D8E77E500E05F3C /* Search */,
+				04965A2E1D8E777F00E05F3C /* Bookmark */,
+				04965A301D8E77BF00E05F3C /* Article */,
+			);
+			name = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -338,6 +338,14 @@
                     <view key="view" contentMode="scaleToFill" id="iEg-hN-oA8">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="還不知道要放什麼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B21-WL-7I5">
+                                <rect key="frame" x="225" y="246" width="151" height="107"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="P8Z-bR-ioj"/>
@@ -671,7 +679,7 @@
             </objects>
             <point key="canvasLocation" x="3553" y="1297"/>
         </scene>
-        <!--Article View Controller-->
+        <!--Title-->
         <scene sceneID="wGr-PA-d6J">
             <objects>
                 <viewController storyboardIdentifier="ArticleViewController" id="t9C-vJ-imM" customClass="ArticleViewController" customModule="HealthEdu" customModuleProvider="target" sceneMemberID="viewController">
@@ -788,6 +796,13 @@
                             <constraint firstItem="5fH-1S-Gn9" firstAttribute="width" secondItem="CmF-bB-dbY" secondAttribute="width" id="vLz-d7-qjp"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="8Ce-VU-7jE">
+                        <barButtonItem key="rightBarButtonItem" title="QRCode" id="lkx-gB-kLY">
+                            <connections>
+                                <action selector="qrcodeBtn:" destination="t9C-vJ-imM" id="mwB-0O-95c"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="currentAuthor" destination="c1T-nT-IiH" id="Fp8-VZ-Kkq"/>
                         <outlet property="currentBody" destination="hHJ-wU-SfK" id="BY8-Ma-CNH"/>
@@ -866,6 +881,6 @@
         <image name="Surgery" width="2197" height="1463"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bfr-Oa-v8b"/>
+        <segue reference="dS7-pP-mb1"/>
     </inferredMetricsTieBreakers>
 </document>
