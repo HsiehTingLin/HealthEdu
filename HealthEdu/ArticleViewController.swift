@@ -26,7 +26,7 @@ class ArticleViewController: UIViewController {
     var currentAuthorString = ""
     var currentBodyString = ""
     var currentTimeString = ""
-    //這裡先宣告一些變變
+    //這裡先宣告一些變數，注意這裡的名字會被使用在資料來源的vc
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +36,8 @@ class ArticleViewController: UIViewController {
         currentAuthor.text = currentAuthorString
         currentBody.text = currentBodyString
         currentTime.text = currentTimeString
+        // 把outlet 裡的屬性指定為變數
+        
         scrollView.contentSize.height = 1000
         
         // 上面這行可以調整scrollview的大小，我是覺得他應該要跟文章的長度連動 

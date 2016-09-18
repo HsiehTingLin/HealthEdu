@@ -23,6 +23,7 @@
 		04965A381D8E8D3B00E05F3C /* StarSingleTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04965A371D8E8D3B00E05F3C /* StarSingleTopic.swift */; };
 		04965A3A1D8E8F9600E05F3C /* TopicClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04965A391D8E8F9600E05F3C /* TopicClass.swift */; };
 		04965A3C1D8E909200E05F3C /* myTopicsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04965A3B1D8E909200E05F3C /* myTopicsCell.swift */; };
+		04965A401D8EB67500E05F3C /* mySingleTopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04965A3F1D8EB67500E05F3C /* mySingleTopicCell.swift */; };
 		04E4C7831D86C39C00C570D7 /* myArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4C7821D86C39C00C570D7 /* myArticleCell.swift */; };
 		04E4C7CB1D86DECD00C570D7 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4C7CA1D86DECD00C570D7 /* ArticleViewController.swift */; };
 		04E4C7CD1D86DFC300C570D7 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4C7CC1D86DFC300C570D7 /* SearchTableViewController.swift */; };
@@ -68,6 +69,7 @@
 		04965A371D8E8D3B00E05F3C /* StarSingleTopic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarSingleTopic.swift; sourceTree = "<group>"; };
 		04965A391D8E8F9600E05F3C /* TopicClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicClass.swift; sourceTree = "<group>"; };
 		04965A3B1D8E909200E05F3C /* myTopicsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myTopicsCell.swift; sourceTree = "<group>"; };
+		04965A3F1D8EB67500E05F3C /* mySingleTopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = mySingleTopicCell.swift; path = ../mySingleTopicCell.swift; sourceTree = "<group>"; };
 		04E4C7821D86C39C00C570D7 /* myArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myArticleCell.swift; sourceTree = "<group>"; };
 		04E4C7CA1D86DECD00C570D7 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		04E4C7CC1D86DFC300C570D7 /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				04965A371D8E8D3B00E05F3C /* StarSingleTopic.swift */,
 				04965A391D8E8F9600E05F3C /* TopicClass.swift */,
 				04965A3B1D8E909200E05F3C /* myTopicsCell.swift */,
+				04965A3F1D8EB67500E05F3C /* mySingleTopicCell.swift */,
 			);
 			name = Star;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0401903A1D85476800F8E6DA /* ViewController.swift in Sources */,
+				04965A401D8EB67500E05F3C /* mySingleTopicCell.swift in Sources */,
 				04965A331D8E780100E05F3C /* myBookmarkCell.swift in Sources */,
 				04965A361D8E8D0900E05F3C /* StarMany.swift in Sources */,
 				04965A381D8E8D3B00E05F3C /* StarSingleTopic.swift in Sources */,

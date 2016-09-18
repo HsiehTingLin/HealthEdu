@@ -1,20 +1,20 @@
 //
-//  myTopicsCell.swift
+//  mySingleTopicCell.swift
 //  HealthEdu
 //
 //  Created by Mac on 2016/9/18.
 //  Copyright © 2016年 NCKU_hospital. All rights reserved.
-//  本文件定義在topic顯示列中的prototype cell的一些形式
+//
 
 import UIKit
 
-class myTopicsCell: UITableViewCell {
-    
-    
-    @IBOutlet weak var topicTitleIBO: UILabel!
-    @IBOutlet weak var topicPhotoIBO: UIImageView!
-    
-    
+class mySingleTopicCell: UITableViewCell {
+
+    @IBOutlet weak var singleTopicCellBody: UILabel!
+
+    @IBOutlet weak var singleTopicCellAuthor: UILabel!
+    @IBOutlet weak var singleTopicCellTitle: UILabel!
+    @IBOutlet weak var singleTopicCellPhoto: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
