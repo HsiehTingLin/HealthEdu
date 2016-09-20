@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let str: String = url.absoluteString {
             
-            if str == "nckuhhealthedustu://?articleID=22"{
+            if str == "nckuhhealthedustu://?articleID=22/"{
                 
                 //print(url.scheme)
                 //print(url.path)
