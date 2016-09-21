@@ -34,6 +34,9 @@
                                                     <rect key="frame" x="0.0" y="8" width="600" height="128"/>
                                                     <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rMR-zD-xQ1">
+                                                    <rect key="frame" x="0.0" y="8" width="600" height="128"/>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StarTitle" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aym-3t-Vig">
                                                     <rect key="frame" x="8" y="33" width="584" height="64"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
@@ -42,17 +45,22 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="rMR-zD-xQ1" firstAttribute="bottom" secondItem="X7J-YD-naZ" secondAttribute="bottom" id="0b5-Du-DOR"/>
                                                 <constraint firstItem="X7J-YD-naZ" firstAttribute="leading" secondItem="zCY-bv-aOl" secondAttribute="leading" id="4my-gm-JIT"/>
                                                 <constraint firstItem="aym-3t-Vig" firstAttribute="top" secondItem="zCY-bv-aOl" secondAttribute="topMargin" constant="25" id="B2z-SP-dap"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="X7J-YD-naZ" secondAttribute="bottom" constant="-15" id="FKP-oH-FjJ"/>
                                                 <constraint firstItem="X7J-YD-naZ" firstAttribute="top" secondItem="zCY-bv-aOl" secondAttribute="topMargin" id="OTd-Ga-Hwg"/>
                                                 <constraint firstAttribute="trailing" secondItem="X7J-YD-naZ" secondAttribute="trailing" id="Ygw-3O-PG7"/>
                                                 <constraint firstItem="aym-3t-Vig" firstAttribute="centerY" secondItem="zCY-bv-aOl" secondAttribute="centerY" id="gJ7-Im-jBU"/>
+                                                <constraint firstItem="rMR-zD-xQ1" firstAttribute="trailing" secondItem="X7J-YD-naZ" secondAttribute="trailing" id="nVX-HH-3CN"/>
+                                                <constraint firstItem="rMR-zD-xQ1" firstAttribute="leading" secondItem="X7J-YD-naZ" secondAttribute="leading" id="oXW-Es-Ct6"/>
                                                 <constraint firstItem="aym-3t-Vig" firstAttribute="leading" secondItem="zCY-bv-aOl" secondAttribute="leadingMargin" id="ozM-VB-rNe"/>
                                                 <constraint firstItem="aym-3t-Vig" firstAttribute="centerX" secondItem="X7J-YD-naZ" secondAttribute="centerX" id="qQG-M9-f3g"/>
+                                                <constraint firstItem="rMR-zD-xQ1" firstAttribute="top" secondItem="X7J-YD-naZ" secondAttribute="top" id="v9R-pQ-Ybd"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="opacity50" destination="rMR-zD-xQ1" id="t7n-DR-BYs"/>
                                             <outlet property="topicPhotoIBO" destination="X7J-YD-naZ" id="57C-fS-S4C"/>
                                             <outlet property="topicTitleIBO" destination="aym-3t-Vig" id="ZgZ-eT-ocQ"/>
                                             <segue destination="QKJ-O9-AVx" kind="show" id="bjr-Ev-Y5Q"/>

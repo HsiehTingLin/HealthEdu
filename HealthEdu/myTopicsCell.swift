@@ -15,10 +15,12 @@ class myTopicsCell: UITableViewCell {
     @IBOutlet weak var topicPhotoIBO: UIImageView!
     
     
+    @IBOutlet weak var opacity50: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
+    
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

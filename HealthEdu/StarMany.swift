@@ -15,7 +15,8 @@ class StarMany: UIViewController,UITableViewDelegate {
     // 注意，topic的class跟article不一樣，topic的class定義在 TopicClass.swift這個文件裡
     
     var topicArray:[topic] = [topic]()
-
+    
+    
     @IBOutlet weak var StarTableViewIBO: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +57,7 @@ class StarMany: UIViewController,UITableViewDelegate {
         // 雖然topic 有蠻多變數的，但在storyboard中的cell上只有topicTitle跟topicPhoto這兩個outlet
         cell.topicPhotoIBO.image = UIImage(named: topicItem.topicPhoto)
         cell.topicTitleIBO.text = topicItem.topicTitle
+        cell.opacity50.image = UIImage(named: "opacity50")
 
         
         return cell
