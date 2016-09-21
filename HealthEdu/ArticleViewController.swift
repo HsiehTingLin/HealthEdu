@@ -39,13 +39,13 @@ class ArticleViewController: UIViewController {
     @IBAction func qrcodeBtn(sender: AnyObject) {
         let alertMessage = UIAlertController(title: "請使用QR Code掃描器掃描！", message: "點擊背景以返回", preferredStyle: .Alert)
         
-        let height:NSLayoutConstraint = NSLayoutConstraint(item: alertMessage.view, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: self.view.frame.height * 0.45)
+        let height:NSLayoutConstraint = NSLayoutConstraint(item: alertMessage.view, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 320)
         
         alertMessage.view.addConstraint(height)
         
         
         
-        let imageView = UIImageView(frame: CGRectMake(35, (self.view.frame.height*0.45-200)/2+20, 200, 200))
+        let imageView = UIImageView(frame: CGRectMake(35, 90, 200, 200))
         
         imageView.image = self.GenerateQRCode(imageView)
         // 右邊產生 qrcode
