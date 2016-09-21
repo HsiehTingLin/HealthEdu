@@ -9,17 +9,6 @@
 import UIKit
 
 class ArticleViewController: UIViewController {
-
-    @IBOutlet weak var currentPhoto: UIImageView!
-    @IBOutlet weak var currentDivision: UILabel!
-    @IBOutlet weak var currentTitle: UILabel!
-    @IBOutlet weak var currentAuthor: UILabel!
-    @IBOutlet weak var currentBody: UILabel!
-    @IBOutlet weak var currentTime: UILabel!
-    //上面這些是從VC連過來的outlet，因為他們屬性不同，不能直接來使用
-    @IBOutlet weak var scrollView: UIScrollView!
-    
-    
     var currentPhotoString = ""
     var currentDivisionString = ""
     var currentTitleString = ""
@@ -28,6 +17,8 @@ class ArticleViewController: UIViewController {
     var currentTimeString = ""
     //這裡先宣告一些變數，注意這裡的名字會被使用在資料來源的vc
     
+    
+    @IBOutlet var articleFullWebView: UIWebView!
     
     // 以下為 qrcodeImage 變數
     var qrcodeImage: CIImage!
@@ -98,23 +89,50 @@ class ArticleViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentPhoto.image = UIImage(named: currentPhotoString)
+        
+        self.navigationItem.title = currentDivisionString
+        
+        let photoSeparated:Array = currentPhotoString.componentsSeparatedByString(".")
+        
+        let photoPath :String? = NSBundle.mainBundle().pathForResource(photoSeparated[0], ofType: photoSeparated[1])
+        
+        
+        let divWidth = self.view.frame.size.width*0.96
+        let divHeight = 243
+        let imgWidth = self.view.frame.size.width*0.96
+        
+        
+        var articleFullHTMLarray = [String]()
+        articleFullHTMLarray.append("<div width=\"\(divWidth)\" style=\"word-break: break-all;\"")
+  
+        
+        articleFullHTMLarray.append("<br><p><div align=\"center\" style=\"font-size:35px; font-weight:bold;\">\(self.currentTitleString)</div></p>")
+        articleFullHTMLarray.append("<p><div align=\"center\" style=\"color: gray;\">\(self.currentAuthorString)</div></p>")
+        articleFullHTMLarray.append("<div align=\"center\" style=\"width:\(divWidth)px; height:\(divHeight)px; overflow:hidden;  \">")
+        articleFullHTMLarray.append(NSString(format:"<img src=\"file://%@\" width=\"\(imgWidth)\">", photoPath!) as String)
+        articleFullHTMLarray.append("</div>")
+        articleFullHTMLarray.append("<div style='font-size: 21px'><p>\(self.currentBodyString)</p>")
+        articleFullHTMLarray.append("<p>最後更新：\(self.currentTimeString)<br></p></div>")
+        articleFullHTMLarray.append("</div>")
+        
+        
+        let articleFullHTML = articleFullHTMLarray.joinWithSeparator("")
+        self.articleFullWebView.loadHTMLString(articleFullHTML, baseURL: nil)
+        
+
+        /*currentPhoto.image = UIImage(named: currentPhotoString)
         currentDivision.text = currentDivisionString
         currentTitle.text = currentTitleString
         currentAuthor.text = currentAuthorString
         currentBody.text = currentBodyString
-        currentTime.text = currentTimeString
+        currentTime.text = currentTimeString*/
         // 把outlet 裡的屬性指定為變數
         
-        scrollView.contentSize.height = 1000
         
-        // 上面這行可以調整scrollview的大小，我是覺得他應該要跟文章的長度連動 
- 
         // Do any additional setup after loading the view.
     }
 
