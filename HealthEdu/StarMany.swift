@@ -46,6 +46,7 @@ class StarMany: UIViewController,UITableViewDelegate {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return topicArray.count
     }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // 定義要return 的 cell
         let cell = tableView.dequeueReusableCellWithIdentifier("starCellFirst", forIndexPath: indexPath) as! myTopicsCell
@@ -60,6 +61,8 @@ class StarMany: UIViewController,UITableViewDelegate {
         
         return cell
     }
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let topicOnly = segue.destinationViewController as! StarSingleTopic
         if let indexPath = self.StarTableViewIBO.indexPathForSelectedRow {
@@ -72,5 +75,11 @@ class StarMany: UIViewController,UITableViewDelegate {
             topicOnly.TopicMainPhotoString = topicSeleted.topicPhoto
         }
     }
+    
+    
+    
+    
+    
+    
 
 }

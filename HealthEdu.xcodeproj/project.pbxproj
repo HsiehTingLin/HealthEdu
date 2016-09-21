@@ -30,6 +30,7 @@
 		04E4C7CB1D86DECD00C570D7 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4C7CA1D86DECD00C570D7 /* ArticleViewController.swift */; };
 		04E4C7CD1D86DFC300C570D7 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4C7CC1D86DFC300C570D7 /* SearchTableViewController.swift */; };
 		23F02AE01D91903B00D797DE /* HealthEdu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 23F02ADE1D91903B00D797DE /* HealthEdu.xcdatamodeld */; };
+		23F02AE41D920C7300D797DE /* SearchQRCodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F02AE31D920C7300D797DE /* SearchQRCodeReaderViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		04E4C7CA1D86DECD00C570D7 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		04E4C7CC1D86DFC300C570D7 /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		23F02ADF1D91903B00D797DE /* HealthEdu.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HealthEdu.xcdatamodel; sourceTree = "<group>"; };
+		23F02AE31D920C7300D797DE /* SearchQRCodeReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchQRCodeReaderViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 				04965A431D8EC36C00E05F3C /* SearchResultCell.swift */,
 				04965A411D8EC18C00E05F3C /* SearchResultVC.swift */,
 				04E4C7CC1D86DFC300C570D7 /* SearchTableViewController.swift */,
+				23F02AE31D920C7300D797DE /* SearchQRCodeReaderViewController.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -297,7 +300,7 @@
 				TargetAttributes = {
 					040190331D85476800F8E6DA = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = GPHKBKQ59T;
+						DevelopmentTeam = LX338F2H8J;
 					};
 					040190471D85476800F8E6DA = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -365,6 +368,7 @@
 				0401903A1D85476800F8E6DA /* ViewController.swift in Sources */,
 				04965A401D8EB67500E05F3C /* mySingleTopicCell.swift in Sources */,
 				04965A331D8E780100E05F3C /* myBookmarkCell.swift in Sources */,
+				23F02AE41D920C7300D797DE /* SearchQRCodeReaderViewController.swift in Sources */,
 				04965A361D8E8D0900E05F3C /* StarMany.swift in Sources */,
 				04965A381D8E8D3B00E05F3C /* StarSingleTopic.swift in Sources */,
 				040190A21D8596D600F8E6DA /* DivisionViewController.swift in Sources */,
@@ -526,7 +530,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = HealthEdu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = NCKU.HealthEdu;
+				PRODUCT_BUNDLE_IDENTIFIER = NCKU.HealthEduStu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -540,7 +544,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = HealthEdu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = NCKU.HealthEdu;
+				PRODUCT_BUNDLE_IDENTIFIER = NCKU.HealthEduStu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

@@ -237,11 +237,17 @@
                             <outlet property="delegate" destination="bvg-X8-ue3" id="9Za-dF-u50"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="搜尋" id="BUD-yo-yq4"/>
+                    <navigationItem key="navigationItem" title="搜尋" id="BUD-yo-yq4">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="L03-Lb-P6A">
+                            <connections>
+                                <segue destination="VTp-wc-7Xt" kind="show" id="aUg-cT-zfJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IZx-ZG-8AH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1271" y="1292"/>
+            <point key="canvasLocation" x="1267" y="1613"/>
         </scene>
         <!--Search ResultVC-->
         <scene sceneID="nM6-RF-SM4">
@@ -325,7 +331,26 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3kV-E1-8wU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1271" y="2050"/>
+            <point key="canvasLocation" x="909" y="2364"/>
+        </scene>
+        <!--請將 QR Code 條碼放置在螢幕視野中...-->
+        <scene sceneID="jsK-AE-hHV">
+            <objects>
+                <viewController id="VTp-wc-7Xt" customClass="SearchQRCodeReaderViewController" customModule="HealthEdu" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SQQ-T1-HGq"/>
+                        <viewControllerLayoutGuide type="bottom" id="0WK-xp-gDj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6fL-A7-b1K">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="請將 QR Code 條碼放置在螢幕視野中..." id="dT2-CD-qFV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bYC-Mu-f6o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1604" y="1853"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="nv3-zh-tAg">
@@ -872,7 +897,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Yp-3e-NMQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="537" y="2023"/>
+            <point key="canvasLocation" x="-11" y="2050"/>
         </scene>
     </scenes>
     <resources>
@@ -881,6 +906,6 @@
         <image name="Surgery" width="2197" height="1463"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dS7-pP-mb1"/>
+        <segue reference="bfr-Oa-v8b"/>
     </inferredMetricsTieBreakers>
 </document>
