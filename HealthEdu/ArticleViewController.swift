@@ -101,9 +101,9 @@ class ArticleViewController: UIViewController {
         let photoPath :String? = NSBundle.mainBundle().pathForResource(photoSeparated[0], ofType: photoSeparated[1])
         
         
-        let divWidth = self.view.frame.size.width*0.96
+        let divWidth = self.view.frame.size.width-18
         let divHeight = 243
-        let imgWidth = self.view.frame.size.width*0.96
+        let imgWidth = self.view.frame.size.width-18
         
         
         var articleFullHTMLarray = [String]()

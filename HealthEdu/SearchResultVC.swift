@@ -38,7 +38,7 @@ class SearchResultVC: UITableViewController {
         cell.searchResultCellPhoto.image = UIImage(named: articleItem.photo)
         cell.searchResultCellTitle.text = articleItem.title
         cell.searchResultCellAuthor.text = articleItem.author
-        cell.searchResultCellBody.text = articleItem.body
+        cell.searchResultCellBody.text = articleItem.body.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
         
         // 這裡的cell 後面的屬性也要再修正
         

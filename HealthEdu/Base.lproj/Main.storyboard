@@ -136,12 +136,6 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="body" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iin-lr-sCc">
-                                                    <rect key="frame" x="119" y="49" width="473" height="38"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Surgery" translatesAutoresizingMaskIntoConstraints="NO" id="WlG-gZ-Qh5">
                                                     <rect key="frame" x="18" y="5" width="86" height="86"/>
                                                     <constraints>
@@ -149,6 +143,12 @@
                                                         <constraint firstAttribute="width" constant="86" id="TRc-sr-TKV"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="body" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iin-lr-sCc">
+                                                    <rect key="frame" x="119" y="49" width="473" height="38"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="yaf-Y5-MXj" firstAttribute="leading" secondItem="Iin-lr-sCc" secondAttribute="leading" id="3gX-XO-0xl"/>
@@ -817,6 +817,6 @@
         <image name="Surgery" width="2197" height="1463"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bfr-Oa-v8b"/>
+        <segue reference="ATp-X1-QF4"/>
     </inferredMetricsTieBreakers>
 </document>

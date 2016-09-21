@@ -37,8 +37,10 @@ class StarSingleTopic: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         TopicMainPhoto.image = UIImage(named: TopicMainPhotoString)
-        TopicMainTitle.text = TopicMainTitleString
+        TopicMainTitle.text = TopicMainTitleString.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+        
         
         topic_and_article_Array = StarSingleTopicArticle.getArticle()
         // 取得文章資料
@@ -70,7 +72,7 @@ class StarSingleTopic: UIViewController, UITableViewDataSource {
         cell.singleTopicCellPhoto.image = UIImage(named: articleItem.photo)
         cell.singleTopicCellTitle.text = articleItem.title
         cell.singleTopicCellAuthor.text = articleItem.author
-        cell.singleTopicCellBody.text = articleItem.body
+        cell.singleTopicCellBody.text = articleItem.body.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
         // cell 後面的屬性要看 mySingleTopicCell.swift這個文件
         
         return cell
@@ -88,7 +90,7 @@ class StarSingleTopic: UIViewController, UITableViewDataSource {
             
             
             articleDetail.currentTitleString = articleSelected.title
-            articleDetail.currentBodyString = articleSelected.body
+            articleDetail.currentBodyString = articleSelected.body.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
             articleDetail.currentAuthorString = articleSelected.author
             articleDetail.currentDivisionString = articleSelected.division
             articleDetail.currentPhotoString = articleSelected.photo
