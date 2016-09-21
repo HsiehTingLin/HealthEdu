@@ -29,6 +29,7 @@
 		04E4C7831D86C39C00C570D7 /* myArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4C7821D86C39C00C570D7 /* myArticleCell.swift */; };
 		04E4C7CB1D86DECD00C570D7 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4C7CA1D86DECD00C570D7 /* ArticleViewController.swift */; };
 		04E4C7CD1D86DFC300C570D7 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4C7CC1D86DFC300C570D7 /* SearchTableViewController.swift */; };
+		23AD14F81D92765E00EE20CE /* 160921 afternoon 1603.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AD14F71D92765E00EE20CE /* 160921 afternoon 1603.swift */; };
 		23F02AE01D91903B00D797DE /* HealthEdu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 23F02ADE1D91903B00D797DE /* HealthEdu.xcdatamodeld */; };
 		23F02AE41D920C7300D797DE /* SearchQRCodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F02AE31D920C7300D797DE /* SearchQRCodeReaderViewController.swift */; };
 /* End PBXBuildFile section */
@@ -79,6 +80,7 @@
 		04E4C7821D86C39C00C570D7 /* myArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myArticleCell.swift; sourceTree = "<group>"; };
 		04E4C7CA1D86DECD00C570D7 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		04E4C7CC1D86DFC300C570D7 /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		23AD14F71D92765E00EE20CE /* 160921 afternoon 1603.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "160921 afternoon 1603.swift"; sourceTree = "<group>"; };
 		23F02ADF1D91903B00D797DE /* HealthEdu.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HealthEdu.xcdatamodel; sourceTree = "<group>"; };
 		23F02AE31D920C7300D797DE /* SearchQRCodeReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchQRCodeReaderViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,7 +134,7 @@
 		040190361D85476800F8E6DA /* HealthEdu */ = {
 			isa = PBXGroup;
 			children = (
-				23F02ADD1D918CE100D797DE /* 160916 */,
+				23AD14F71D92765E00EE20CE /* 160921 afternoon 1603.swift */,
 				04965A451D8EC95B00E05F3C /* ViewController */,
 				0401903E1D85476800F8E6DA /* Assets.xcassets */,
 				040190401D85476800F8E6DA /* LaunchScreen.storyboard */,
@@ -223,13 +225,6 @@
 				04965A301D8E77BF00E05F3C /* Article */,
 			);
 			name = ViewController;
-			sourceTree = "<group>";
-		};
-		23F02ADD1D918CE100D797DE /* 160916 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = 160916;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -371,6 +366,7 @@
 				23F02AE41D920C7300D797DE /* SearchQRCodeReaderViewController.swift in Sources */,
 				04965A361D8E8D0900E05F3C /* StarMany.swift in Sources */,
 				04965A381D8E8D3B00E05F3C /* StarSingleTopic.swift in Sources */,
+				23AD14F81D92765E00EE20CE /* 160921 afternoon 1603.swift in Sources */,
 				040190A21D8596D600F8E6DA /* DivisionViewController.swift in Sources */,
 				04965A441D8EC36C00E05F3C /* SearchResultCell.swift in Sources */,
 				04E4C7CB1D86DECD00C570D7 /* ArticleViewController.swift in Sources */,

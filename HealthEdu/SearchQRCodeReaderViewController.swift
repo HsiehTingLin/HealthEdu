@@ -12,7 +12,7 @@ import AVFoundation
 class SearchQRCodeReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
     
-    @IBOutlet weak var messageLabel:UILabel!
+    //@IBOutlet weak var messageLabel:UILabel!
     
     var captureSession:AVCaptureSession?
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
