@@ -90,7 +90,7 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
             case 0:
                 let articleSelected = articleArrayHistory[indexPath.row]
                 articleDetail.currentTitleString = articleSelected.title
-                articleDetail.currentBodyString = articleSelected.body.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+                articleDetail.currentBodyString = articleSelected.body
                 articleDetail.currentAuthorString = articleSelected.author
                 articleDetail.currentDivisionString = articleSelected.division
                 articleDetail.currentPhotoString = articleSelected.photo
@@ -99,7 +99,7 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
             case 1:
                 let articleSelected = articleArrayBookmark[indexPath.row]
                 articleDetail.currentTitleString = articleSelected.title
-                articleDetail.currentBodyString = articleSelected.body.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+                articleDetail.currentBodyString = articleSelected.body
                 articleDetail.currentAuthorString = articleSelected.author
                 articleDetail.currentDivisionString = articleSelected.division
                 articleDetail.currentPhotoString = articleSelected.photo
