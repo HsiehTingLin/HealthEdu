@@ -90,7 +90,7 @@ class StarSingleTopic: UIViewController, UITableViewDataSource {
             
             
             articleDetail.currentTitleString = articleSelected.title
-            articleDetail.currentBodyString = articleSelected.body.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+            articleDetail.currentBodyString = articleSelected.body
             articleDetail.currentAuthorString = articleSelected.author
             articleDetail.currentDivisionString = articleSelected.division
             articleDetail.currentPhotoString = articleSelected.photo

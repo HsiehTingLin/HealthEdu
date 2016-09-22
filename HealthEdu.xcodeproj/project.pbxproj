@@ -46,7 +46,7 @@
 		23AD151E1D92E15A00EE20CE /* SearchResultVCArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AD151D1D92E15A00EE20CE /* SearchResultVCArticle.swift */; };
 		23AD15201D92E45200EE20CE /* articleArrayBookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AD151F1D92E45200EE20CE /* articleArrayBookmark.swift */; };
 		23AD15221D92E47F00EE20CE /* articleArrayHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AD15211D92E47F00EE20CE /* articleArrayHistory.swift */; };
-		23AD15241D93567900EE20CE /* ArticlePopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AD15231D93567900EE20CE /* ArticlePopoverViewController.swift */; };
+		23AD15241D93567900EE20CE /* NOTUSE_ArticlePopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AD15231D93567900EE20CE /* NOTUSE_ArticlePopoverViewController.swift */; };
 		23F02AE01D91903B00D797DE /* HealthEdu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 23F02ADE1D91903B00D797DE /* HealthEdu.xcdatamodeld */; };
 		23F02AE41D920C7300D797DE /* SearchQRCodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F02AE31D920C7300D797DE /* SearchQRCodeReaderViewController.swift */; };
 /* End PBXBuildFile section */
@@ -114,7 +114,7 @@
 		23AD151D1D92E15A00EE20CE /* SearchResultVCArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultVCArticle.swift; sourceTree = "<group>"; };
 		23AD151F1D92E45200EE20CE /* articleArrayBookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = articleArrayBookmark.swift; sourceTree = "<group>"; };
 		23AD15211D92E47F00EE20CE /* articleArrayHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = articleArrayHistory.swift; sourceTree = "<group>"; };
-		23AD15231D93567900EE20CE /* ArticlePopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticlePopoverViewController.swift; sourceTree = "<group>"; };
+		23AD15231D93567900EE20CE /* NOTUSE_ArticlePopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NOTUSE_ArticlePopoverViewController.swift; sourceTree = "<group>"; };
 		23F02ADF1D91903B00D797DE /* HealthEdu.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HealthEdu.xcdatamodel; sourceTree = "<group>"; };
 		23F02AE31D920C7300D797DE /* SearchQRCodeReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchQRCodeReaderViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -217,7 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				040190A91D85A41600F8E6DA /* ArticleClass.swift */,
-				23AD15231D93567900EE20CE /* ArticlePopoverViewController.swift */,
+				23AD15231D93567900EE20CE /* NOTUSE_ArticlePopoverViewController.swift */,
 				04E4C7CA1D86DECD00C570D7 /* ArticleViewController.swift */,
 				04E4C7821D86C39C00C570D7 /* myArticleCell.swift */,
 			);
@@ -454,7 +454,7 @@
 				040190AA1D85A41600F8E6DA /* ArticleClass.swift in Sources */,
 				23AD151A1D92DE6600EE20CE /* DevisionOnlyVCArticle.swift in Sources */,
 				04965A3A1D8E8F9600E05F3C /* TopicClass.swift in Sources */,
-				23AD15241D93567900EE20CE /* ArticlePopoverViewController.swift in Sources */,
+				23AD15241D93567900EE20CE /* NOTUSE_ArticlePopoverViewController.swift in Sources */,
 				040190AC1D85A58600F8E6DA /* DevisionOnlyVC.swift in Sources */,
 				23AD15201D92E45200EE20CE /* articleArrayBookmark.swift in Sources */,
 				04965A3C1D8E909200E05F3C /* myTopicsCell.swift in Sources */,
@@ -610,7 +610,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = HealthEdu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = NCKU.HealthEduStu;
+				PRODUCT_BUNDLE_IDENTIFIER = NCKU.HealthEdu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -624,7 +624,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = HealthEdu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = NCKU.HealthEduStu;
+				PRODUCT_BUNDLE_IDENTIFIER = NCKU.HealthEdu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

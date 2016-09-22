@@ -56,7 +56,98 @@ class ArticleViewController: UIViewController, UIPopoverPresentationControllerDe
     
     @IBAction func changeFontSize(sender: AnyObject) {
         
- 
+        
+        
+        let alertMessage = UIAlertController(title: "改變文字大小", message: "點擊背景以取消", preferredStyle: .Alert)
+        
+
+        let sizeSmaller = UIAlertAction(title: "小", style: .Default, handler: { (action) -> Void in
+            self.showarticleFullHTML(18)
+        })
+        
+        let sizeNormal = UIAlertAction(title: "正常", style: .Default, handler: { (action) -> Void in
+            self.showarticleFullHTML(21)
+        })
+        
+        let sizeBigger = UIAlertAction(title: "大", style: .Default, handler: { (action) -> Void in
+            self.showarticleFullHTML(24)
+        })
+        
+        let sizeBiggest = UIAlertAction(title: "最大", style: .Default, handler: { (action) -> Void in
+            self.showarticleFullHTML(29)
+        })
+        
+        alertMessage.addAction(sizeSmaller)
+        alertMessage.addAction(sizeNormal)
+        alertMessage.addAction(sizeBigger)
+        alertMessage.addAction(sizeBiggest)
+
+        
+        self.presentViewController(alertMessage, animated: true, completion:{
+            alertMessage.view.superview?.userInteractionEnabled = true
+            alertMessage.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
+        })
+        
+        
+        
+        
+        
+        
+
+    }
+    
+    func showarticleFullHTML(fontsize: Int){
+        
+        let photoSeparated:Array = currentPhotoString.componentsSeparatedByString(".")
+        
+        let photoPath :String? = NSBundle.mainBundle().pathForResource(photoSeparated[0], ofType: photoSeparated[1])
+        
+        
+        let divWidth = self.view.frame.size.width-17
+        let divHeight = 243
+        let imgWidth = self.view.frame.size.width-17
+        
+        
+        var articleFullHTMLarray = [String]()
+        articleFullHTMLarray.append("<div width=\"\(divWidth)\" style=\"word-break: break-all;\"")
+        
+        
+        articleFullHTMLarray.append("<br><p><div align=\"center\" style=\"font-size:35px; font-weight:bold;\">\(self.currentTitleString)</div></p>")
+        articleFullHTMLarray.append("<p><div align=\"center\" style=\"color: gray;\">\(self.currentAuthorString)</div></p>")
+        articleFullHTMLarray.append("<div align=\"center\" style=\"width:\(divWidth)px; height:\(divHeight)px; overflow:hidden;  \">")
+        articleFullHTMLarray.append(NSString(format:"<img src=\"file://%@\" width=\"\(imgWidth)\">", photoPath!) as String)
+        articleFullHTMLarray.append("</div>")
+        articleFullHTMLarray.append("<div style='font-size: \(fontsize)px'><p>\(self.currentBodyString)</p>")
+        articleFullHTMLarray.append("<p>最後更新：\(self.currentTimeString)<br></p></div>")
+        articleFullHTMLarray.append("</div>")
+        
+        
+        let articleFullHTML = articleFullHTMLarray.joinWithSeparator("")
+        self.articleFullWebView.loadHTMLString(articleFullHTML, baseURL: nil)
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // 以下本來是 改變文字大小的 func
+    /*
+    @IBAction func changeFontSize(sender: AnyObject) {
+        
+        
         let storyboard : UIStoryboard = UIStoryboard(
             name: "Main",
             bundle: nil)
@@ -65,7 +156,7 @@ class ArticleViewController: UIViewController, UIPopoverPresentationControllerDe
         
         ChangeFontSizePopover.modalPresentationStyle = .Popover
         
-
+        
         let popoverPresentationViewController = ChangeFontSizePopover.popoverPresentationController
         
         popoverPresentationViewController?.permittedArrowDirections = .Up
@@ -75,7 +166,7 @@ class ArticleViewController: UIViewController, UIPopoverPresentationControllerDe
         
         
         popoverPresentationViewController?.barButtonItem = sender as? UIBarButtonItem
- 
+        
         //print(sender.bounds)
         
         
@@ -88,7 +179,7 @@ class ArticleViewController: UIViewController, UIPopoverPresentationControllerDe
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle{
         return .None
-    }
+    }*/
     
     
     
@@ -136,46 +227,15 @@ class ArticleViewController: UIViewController, UIPopoverPresentationControllerDe
         
         self.navigationItem.title = currentDivisionString
         
-        let photoSeparated:Array = currentPhotoString.componentsSeparatedByString(".")
-        
-        let photoPath :String? = NSBundle.mainBundle().pathForResource(photoSeparated[0], ofType: photoSeparated[1])
-        
-        
-        let divWidth = self.view.frame.size.width-17
-        let divHeight = 243
-        let imgWidth = self.view.frame.size.width-17
+        self.showarticleFullHTML(21)
+        // 一開此頁面顯示文章，以 21 font-size顯示
         
         
-        var articleFullHTMLarray = [String]()
-        articleFullHTMLarray.append("<div width=\"\(divWidth)\" style=\"word-break: break-all;\"")
-  
-        
-        articleFullHTMLarray.append("<br><p><div align=\"center\" style=\"font-size:35px; font-weight:bold;\">\(self.currentTitleString)</div></p>")
-        articleFullHTMLarray.append("<p><div align=\"center\" style=\"color: gray;\">\(self.currentAuthorString)</div></p>")
-        articleFullHTMLarray.append("<div align=\"center\" style=\"width:\(divWidth)px; height:\(divHeight)px; overflow:hidden;  \">")
-        articleFullHTMLarray.append(NSString(format:"<img src=\"file://%@\" width=\"\(imgWidth)\">", photoPath!) as String)
-        articleFullHTMLarray.append("</div>")
-        articleFullHTMLarray.append("<div style='font-size: 21px'><p>\(self.currentBodyString)</p>")
-        articleFullHTMLarray.append("<p>最後更新：\(self.currentTimeString)<br></p></div>")
-        articleFullHTMLarray.append("</div>")
-        
-        
-        let articleFullHTML = articleFullHTMLarray.joinWithSeparator("")
-        self.articleFullWebView.loadHTMLString(articleFullHTML, baseURL: nil)
-        
-
-        /*currentPhoto.image = UIImage(named: currentPhotoString)
-        currentDivision.text = currentDivisionString
-        currentTitle.text = currentTitleString
-        currentAuthor.text = currentAuthorString
-        currentBody.text = currentBodyString
-        currentTime.text = currentTimeString*/
-        // 把outlet 裡的屬性指定為變數
-        
-        
-        // Do any additional setup after loading the view.
     }
 
+    
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

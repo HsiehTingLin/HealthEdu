@@ -380,59 +380,6 @@
             </objects>
             <point key="canvasLocation" x="537" y="2769"/>
         </scene>
-        <!--Article Popover View Controller-->
-        <scene sceneID="6LQ-kL-U6H">
-            <objects>
-                <viewController storyboardIdentifier="ArticlePopoverViewController" id="wYJ-M9-Vhs" customClass="ArticlePopoverViewController" customModule="HealthEdu" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="LHu-yw-jt3"/>
-                        <viewControllerLayoutGuide type="bottom" id="gzB-ej-Cf8"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="KaR-xp-b4C">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="NiY-ok-BOE">
-                                <rect key="frame" x="249" y="257" width="102" height="21"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YFd-YV-Y8e">
-                                        <rect key="frame" x="0.0" y="0.0" width="102" height="21"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="調整文字大小" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9QG-sw-egN">
-                                                <rect key="frame" x="0.0" y="0.0" width="102" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="BHm-Zd-QfT">
-                                <rect key="frame" x="200" y="286" width="200" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="41U-ye-idk"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="小"/>
-                                    <segment title="中"/>
-                                    <segment title="大"/>
-                                </segments>
-                            </segmentedControl>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="BHm-Zd-QfT" firstAttribute="top" secondItem="NiY-ok-BOE" secondAttribute="bottom" constant="8" symbolic="YES" id="0GG-tm-axd"/>
-                            <constraint firstItem="BHm-Zd-QfT" firstAttribute="centerX" secondItem="KaR-xp-b4C" secondAttribute="centerX" id="USX-UM-Wnw"/>
-                            <constraint firstItem="BHm-Zd-QfT" firstAttribute="centerY" secondItem="KaR-xp-b4C" secondAttribute="centerY" id="ahJ-J2-Akh"/>
-                            <constraint firstItem="NiY-ok-BOE" firstAttribute="centerX" secondItem="BHm-Zd-QfT" secondAttribute="centerX" id="mf9-Q0-Plc"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dcB-9j-c4J" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1267" y="3358"/>
-        </scene>
         <!--書籤-->
         <scene sceneID="XYv-6A-zLO">
             <objects>
