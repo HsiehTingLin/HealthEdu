@@ -47,6 +47,7 @@ class StarMany: UIViewController,UITableViewDelegate {
         // 雖然topic 有蠻多變數的，但在storyboard中的cell上只有topicTitle跟topicPhoto這兩個outlet
         cell.topicPhotoIBO.image = UIImage(named: topicItem.topicPhoto)
         cell.topicTitleIBO.text = topicItem.topicTitle
+        cell.opacityhalf.image = UIImage(named: "opacityhalf")
 
         
         return cell

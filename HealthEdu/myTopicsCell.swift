@@ -11,6 +11,7 @@ import UIKit
 class myTopicsCell: UITableViewCell {
     
     
+    @IBOutlet weak var opacityhalf: UIImageView!
     @IBOutlet weak var topicTitleIBO: UILabel!
     @IBOutlet weak var topicPhotoIBO: UIImageView!
     
