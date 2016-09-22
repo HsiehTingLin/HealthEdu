@@ -10,6 +10,10 @@ import UIKit
 
 class ArticleViewController: UIViewController {
 
+    
+    @IBOutlet weak var addToBookmark: UIBarButtonItem!
+    
+    
     @IBOutlet weak var currentPhoto: UIImageView!
     @IBOutlet weak var currentDivision: UILabel!
     @IBOutlet weak var currentTitle: UILabel!
@@ -60,6 +64,18 @@ class ArticleViewController: UIViewController {
             alertMessage.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
         })
 
+    }
+    
+    // 加到bookmark
+    var addedToBookmark = false
+    @IBAction func addToBookmarkAction(sender: UIBarButtonItem) {
+        
+        if addedToBookmark {
+            //存到bookmark
+        } else {
+            //不存到bookmark
+        }
+        
     }
     
     // 產生QR Code

@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--衛教精選-->
@@ -805,13 +806,21 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="8Ce-VU-7jE">
-                        <barButtonItem key="rightBarButtonItem" title="QRCode" id="lkx-gB-kLY">
-                            <connections>
-                                <action selector="qrcodeBtn:" destination="t9C-vJ-imM" id="mwB-0O-95c"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="QRCode" id="lkx-gB-kLY">
+                                <connections>
+                                    <action selector="qrcodeBtn:" destination="t9C-vJ-imM" id="mwB-0O-95c"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem enabled="NO" image="bookmark-path" style="plain" id="Xzm-v3-Qlc">
+                                <connections>
+                                    <action selector="addToBookmarkAction:" destination="t9C-vJ-imM" id="Djt-5O-hMq"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="addToBookmark" destination="Xzm-v3-Qlc" id="5HY-RM-Dgr"/>
                         <outlet property="currentAuthor" destination="c1T-nT-IiH" id="Fp8-VZ-Kkq"/>
                         <outlet property="currentBody" destination="hHJ-wU-SfK" id="BY8-Ma-CNH"/>
                         <outlet property="currentDivision" destination="BMc-ez-oX8" id="Fms-DF-hnr"/>
@@ -887,6 +896,7 @@
         <image name="Drug" width="2592" height="1944"/>
         <image name="Stethoscope" width="25" height="25"/>
         <image name="Surgery" width="2197" height="1463"/>
+        <image name="bookmark-path" width="14" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="dS7-pP-mb1"/>
