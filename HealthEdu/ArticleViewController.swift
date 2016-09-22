@@ -130,16 +130,7 @@ class ArticleViewController: UIViewController, UIPopoverPresentationControllerDe
         
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     
     
