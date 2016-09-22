@@ -33,6 +33,8 @@ class ArticleViewController: UIViewController {
     //這裡先宣告一些變數，注意這裡的名字會被使用在資料來源的vc
     
     
+    @IBOutlet var articleFullWebView: UIWebView!
+    
     // 以下為 qrcodeImage 變數
     var qrcodeImage: CIImage!
     
@@ -43,13 +45,13 @@ class ArticleViewController: UIViewController {
     @IBAction func qrcodeBtn(sender: AnyObject) {
         let alertMessage = UIAlertController(title: "請使用QR Code掃描器掃描！", message: "點擊背景以返回", preferredStyle: .Alert)
         
-        let height:NSLayoutConstraint = NSLayoutConstraint(item: alertMessage.view, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: self.view.frame.height * 0.45)
+        let height:NSLayoutConstraint = NSLayoutConstraint(item: alertMessage.view, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 320)
         
         alertMessage.view.addConstraint(height)
         
         
         
-        let imageView = UIImageView(frame: CGRectMake(35, (self.view.frame.height*0.45-200)/2+20, 200, 200))
+        let imageView = UIImageView(frame: CGRectMake(35, 90, 200, 200))
         
         imageView.image = self.GenerateQRCode(imageView)
         // 右邊產生 qrcode
@@ -114,26 +116,22 @@ class ArticleViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentPhoto.image = UIImage(named: currentPhotoString)
-        currentDivision.text = currentDivisionString
-        currentTitle.text = currentTitleString
-        currentAuthor.text = currentAuthorString
-        currentBody.text = currentBodyString
-        currentTime.text = currentTimeString
-        // 把outlet 裡的屬性指定為變數
         
-        scrollView.contentSize.height = 1000
+        self.navigationItem.title = currentDivisionString
         
-        // 上面這行可以調整scrollview的大小，我是覺得他應該要跟文章的長度連動 
- 
-        // Do any additional setup after loading the view.
+        self.showarticleFullHTML(21)
+        // 一開此頁面顯示文章，以 21 font-size顯示
+        
+        
     }
 
+    
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
