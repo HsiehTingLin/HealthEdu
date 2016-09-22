@@ -26,6 +26,7 @@ class ArticleViewController: UIViewController, UIPopoverPresentationControllerDe
     // 以下這個也是要傳遞過來的變數
     var articleIdforQRCode :String? = "http://myelin.tk/for_ncku_app_test/"
     
+    var fontSizeString :String?
     
     @IBAction func qrcodeBtn(sender: AnyObject) {
         let alertMessage = UIAlertController(title: "請使用QR Code掃描器掃描！", message: "點擊背景以返回", preferredStyle: .Alert)
@@ -58,23 +59,41 @@ class ArticleViewController: UIViewController, UIPopoverPresentationControllerDe
         
         
         
-        let alertMessage = UIAlertController(title: "改變文字大小", message: "點擊背景以取消", preferredStyle: .Alert)
+        let alertMessage = UIAlertController(title: "改變文字大小", message: "目前文字大小：\(self.fontSizeString!)", preferredStyle: .Alert)
         
 
         let sizeSmaller = UIAlertAction(title: "小", style: .Default, handler: { (action) -> Void in
-            self.showarticleFullHTML(18)
+            
+            
+            let script = "document.getElementById('body').style.fontSize = '19px'";
+            if let result = self.articleFullWebView.stringByEvaluatingJavaScriptFromString(script) {
+                print("result is \(result)")
+            }
+            self.fontSizeString = "小"
         })
         
         let sizeNormal = UIAlertAction(title: "正常", style: .Default, handler: { (action) -> Void in
-            self.showarticleFullHTML(21)
+            let script = "document.getElementById('body').style.fontSize = '21px'";
+            if let result = self.articleFullWebView.stringByEvaluatingJavaScriptFromString(script) {
+                print("result is \(result)")
+            }
+            self.fontSizeString = "正常"
         })
         
         let sizeBigger = UIAlertAction(title: "大", style: .Default, handler: { (action) -> Void in
-            self.showarticleFullHTML(24)
+            let script = "document.getElementById('body').style.fontSize = '24px'";
+            if let result = self.articleFullWebView.stringByEvaluatingJavaScriptFromString(script) {
+                print("result is \(result)")
+            }
+            self.fontSizeString = "大"
         })
         
         let sizeBiggest = UIAlertAction(title: "最大", style: .Default, handler: { (action) -> Void in
-            self.showarticleFullHTML(29)
+            let script = "document.getElementById('body').style.fontSize = '29px'";
+            if let result = self.articleFullWebView.stringByEvaluatingJavaScriptFromString(script) {
+                print("result is \(result)")
+            }
+            self.fontSizeString = "最大"
         })
         
         alertMessage.addAction(sizeSmaller)
@@ -83,11 +102,8 @@ class ArticleViewController: UIViewController, UIPopoverPresentationControllerDe
         alertMessage.addAction(sizeBiggest)
 
         
-        self.presentViewController(alertMessage, animated: true, completion:{
-            alertMessage.view.superview?.userInteractionEnabled = true
-            alertMessage.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
-        })
-        
+        self.presentViewController(alertMessage, animated: true, completion:nil)
+        // 若有點擊背景以返回功能，則會影響 alert 的 button 功能
         
         
         
@@ -97,6 +113,8 @@ class ArticleViewController: UIViewController, UIPopoverPresentationControllerDe
     }
     
     func showarticleFullHTML(fontsize: Int){
+        
+        print("------顯示文章 文字大小 \(fontsize)-------")
         
         let photoSeparated:Array = currentPhotoString.componentsSeparatedByString(".")
         
@@ -113,20 +131,20 @@ class ArticleViewController: UIViewController, UIPopoverPresentationControllerDe
         
         
         articleFullHTMLarray.append("<br><p><div align=\"center\" style=\"font-size:35px; font-weight:bold;\">\(self.currentTitleString)</div></p>")
-        articleFullHTMLarray.append("<p><div align=\"center\" style=\"color: gray;\">\(self.currentAuthorString)</div></p>")
+        articleFullHTMLarray.append("<p><div align=\"center\" style=\"color: gray; font-size:19px\">\(self.currentAuthorString)</div></p>")
         articleFullHTMLarray.append("<div align=\"center\" style=\"width:\(divWidth)px; height:\(divHeight)px; overflow:hidden;  \">")
         articleFullHTMLarray.append(NSString(format:"<img src=\"file://%@\" width=\"\(imgWidth)\">", photoPath!) as String)
         articleFullHTMLarray.append("</div>")
-        articleFullHTMLarray.append("<div style='font-size: \(fontsize)px'><p>\(self.currentBodyString)</p>")
+        articleFullHTMLarray.append("<div style='font-size: \(fontsize)px' id=\"body\"><p>\(self.currentBodyString)</p>")
         articleFullHTMLarray.append("<p>最後更新：\(self.currentTimeString)<br></p></div>")
         articleFullHTMLarray.append("</div>")
         
         
+        
         let articleFullHTML = articleFullHTMLarray.joinWithSeparator("")
+        
+        self.fontSizeString = "正常"
         self.articleFullWebView.loadHTMLString(articleFullHTML, baseURL: nil)
-        
-        
-        
         
     }
     

@@ -14,6 +14,7 @@ class DivisionViewController: UIViewController, UITableViewDataSource{
     // 這頁我加入了 NckuHospital 這個 section 因為我在成果報告書中有提到這一塊
     
     
+    @IBOutlet var tableView: UITableView!
     
     let NckuHospital = ["最新消息"]
     let InternalMedicine = ["胸腔內科","感染科","血液腫瘤科"]
@@ -65,6 +66,23 @@ class DivisionViewController: UIViewController, UITableViewDataSource{
     }
     
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        let devisionVC = segue.destinationViewController as! DevisionOnlyVC
+        
+        if let indexPath = self.tableView.indexPathForSelectedRow {
+            
+            devisionVC.sectionSelected = indexPath.section
+            devisionVC.rowSelected = indexPath.row             
+            // 這個func的作用:先把 articleArray中，被選中的資料，指定為 articleSelected這個變數(class是article )，然後將來自"ArticleViewController"的變數指定為articleDetail這個var(class 是ArticleViewController)，接著把articleSelected的每個變數都指定為articleDetail的各個對應的變數，類型都是String
+            
+            
+        }
+    }
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +94,9 @@ class DivisionViewController: UIViewController, UITableViewDataSource{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    
     
     
     /*

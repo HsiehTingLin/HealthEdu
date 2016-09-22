@@ -12,11 +12,14 @@ class DevisionOnlyVC: UITableViewController {
     
     var articleArray:[article] = [article]()
     
+    var sectionSelected: Int?
+    var rowSelected: Int?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.articleArray = DevisionOnlyVCArticle.getArticleArray()
+        self.articleArray = DevisionOnlyVCArticle.getArticleArray(sectionSelected!,rowSelected: rowSelected!)
         
     }
     override func didReceiveMemoryWarning() {
