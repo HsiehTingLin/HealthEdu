@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--衛教精選-->
@@ -333,7 +334,7 @@
             </objects>
             <point key="canvasLocation" x="909" y="2364"/>
         </scene>
-        <!--請將 QR Code 條碼放置在螢幕視野中...-->
+        <!--將 QR Code 置於螢幕中...-->
         <scene sceneID="jsK-AE-hHV">
             <objects>
                 <viewController id="VTp-wc-7Xt" customClass="SearchQRCodeReaderViewController" customModule="HealthEdu" customModuleProvider="target" sceneMemberID="viewController">
@@ -346,11 +347,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="請將 QR Code 條碼放置在螢幕視野中..." id="dT2-CD-qFV"/>
+                    <navigationItem key="navigationItem" title="將 QR Code 置於螢幕中..." id="dT2-CD-qFV"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYC-Mu-f6o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1604" y="1853"/>
+            <point key="canvasLocation" x="1716" y="2371"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="nv3-zh-tAg">
@@ -378,6 +379,59 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dn6-B1-XnF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="537" y="2769"/>
+        </scene>
+        <!--Article Popover View Controller-->
+        <scene sceneID="6LQ-kL-U6H">
+            <objects>
+                <viewController storyboardIdentifier="ArticlePopoverViewController" id="wYJ-M9-Vhs" customClass="ArticlePopoverViewController" customModule="HealthEdu" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LHu-yw-jt3"/>
+                        <viewControllerLayoutGuide type="bottom" id="gzB-ej-Cf8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KaR-xp-b4C">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="NiY-ok-BOE">
+                                <rect key="frame" x="249" y="257" width="102" height="21"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YFd-YV-Y8e">
+                                        <rect key="frame" x="0.0" y="0.0" width="102" height="21"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="調整文字大小" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9QG-sw-egN">
+                                                <rect key="frame" x="0.0" y="0.0" width="102" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="BHm-Zd-QfT">
+                                <rect key="frame" x="200" y="286" width="200" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="41U-ye-idk"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="小"/>
+                                    <segment title="中"/>
+                                    <segment title="大"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BHm-Zd-QfT" firstAttribute="top" secondItem="NiY-ok-BOE" secondAttribute="bottom" constant="8" symbolic="YES" id="0GG-tm-axd"/>
+                            <constraint firstItem="BHm-Zd-QfT" firstAttribute="centerX" secondItem="KaR-xp-b4C" secondAttribute="centerX" id="USX-UM-Wnw"/>
+                            <constraint firstItem="BHm-Zd-QfT" firstAttribute="centerY" secondItem="KaR-xp-b4C" secondAttribute="centerY" id="ahJ-J2-Akh"/>
+                            <constraint firstItem="NiY-ok-BOE" firstAttribute="centerX" secondItem="BHm-Zd-QfT" secondAttribute="centerX" id="mf9-Q0-Plc"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dcB-9j-c4J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1267" y="3358"/>
         </scene>
         <!--書籤-->
         <scene sceneID="XYv-6A-zLO">
@@ -739,11 +793,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8Ce-VU-7jE">
-                        <barButtonItem key="rightBarButtonItem" title="QRCode" id="lkx-gB-kLY">
-                            <connections>
-                                <action selector="qrcodeBtn:" destination="t9C-vJ-imM" id="mwB-0O-95c"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="QRCode" id="lkx-gB-kLY">
+                                <connections>
+                                    <action selector="qrcodeBtn:" destination="t9C-vJ-imM" id="mwB-0O-95c"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Aa" id="QH0-y9-PMW">
+                                <connections>
+                                    <action selector="changeFontSize:" destination="t9C-vJ-imM" id="KzU-MR-MyQ"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="articleFullWebView" destination="TX8-lx-MgN" id="JPU-dz-PVR"/>

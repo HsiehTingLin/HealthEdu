@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ArticleViewController: UIViewController {
+class ArticleViewController: UIViewController, UIPopoverPresentationControllerDelegate {
     var currentPhotoString = ""
     var currentDivisionString = ""
     var currentTitleString = ""
@@ -52,6 +52,46 @@ class ArticleViewController: UIViewController {
         })
 
     }
+    
+    
+    @IBAction func changeFontSize(sender: AnyObject) {
+        
+ 
+        let storyboard : UIStoryboard = UIStoryboard(
+            name: "Main",
+            bundle: nil)
+        
+        let ChangeFontSizePopover: ArticlePopoverViewController = storyboard.instantiateViewControllerWithIdentifier("ArticlePopoverViewController") as! ArticlePopoverViewController
+        
+        ChangeFontSizePopover.modalPresentationStyle = .Popover
+        
+
+        let popoverPresentationViewController = ChangeFontSizePopover.popoverPresentationController
+        
+        popoverPresentationViewController?.permittedArrowDirections = .Up
+        popoverPresentationViewController?.delegate = self
+        popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
+        
+        
+        
+        popoverPresentationViewController?.barButtonItem = sender as? UIBarButtonItem
+ 
+        //print(sender.bounds)
+        
+        
+        
+        ChangeFontSizePopover.preferredContentSize = CGSizeMake(230, 110)
+        
+        presentViewController(ChangeFontSizePopover, animated: true, completion: nil)
+    }
+    
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle{
+        return .None
+    }
+    
+    
+    
     
     // 產生QR Code
     func GenerateQRCode(imgview: UIImageView) -> UIImage
@@ -101,9 +141,9 @@ class ArticleViewController: UIViewController {
         let photoPath :String? = NSBundle.mainBundle().pathForResource(photoSeparated[0], ofType: photoSeparated[1])
         
         
-        let divWidth = self.view.frame.size.width-18
+        let divWidth = self.view.frame.size.width-17
         let divHeight = 243
-        let imgWidth = self.view.frame.size.width-18
+        let imgWidth = self.view.frame.size.width-17
         
         
         var articleFullHTMLarray = [String]()
