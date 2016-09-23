@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             print(url_query_dictionary)
             
-            if url_scheme == "nckuhhealthedustu" {
+            if url_scheme == "nckuhhealthedu" {
                 
                 if url_query_dictionary["articleID"] != nil{
                     
@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let str: String = url.absoluteString {
             
-            if str == "nckuhhealthedustu://?articleID=22/"{
+            if str == "nckuhhealthedu://?articleID=22/"{
                 
                 //print(url.scheme)
                 //print(url.path)

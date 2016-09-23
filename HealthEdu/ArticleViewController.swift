@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import CoreData
 
-class ArticleViewController: UIViewController, UIPopoverPresentationControllerDelegate {
+class ArticleViewController: UIViewController {
+    
+    // 變數定義區
+    var currentIdString = ""
     var currentPhotoString = ""
     var currentDivisionString = ""
     var currentTitleString = ""
@@ -28,6 +32,19 @@ class ArticleViewController: UIViewController, UIPopoverPresentationControllerDe
     
     var fontSizeString :String?
     
+    
+    
+    // 給 core data (儲存文章) 功能使用
+    let core_data = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    
+
+    
+    
+    
+    
+    
+    
+    // 產生 QR Code 按鈕 button func
     @IBAction func qrcodeBtn(sender: AnyObject) {
         let alertMessage = UIAlertController(title: "請使用QR Code掃描器掃描！", message: "點擊背景以返回", preferredStyle: .Alert)
         
@@ -54,7 +71,7 @@ class ArticleViewController: UIViewController, UIPopoverPresentationControllerDe
 
     }
     
-    
+    // 改變文字大小 button func
     @IBAction func changeFontSize(sender: AnyObject) {
         
         
@@ -105,13 +122,10 @@ class ArticleViewController: UIViewController, UIPopoverPresentationControllerDe
         self.presentViewController(alertMessage, animated: true, completion:nil)
         // 若有點擊背景以返回功能，則會影響 alert 的 button 功能
         
-        
-        
-        
-        
 
     }
     
+    // 顯示 article web view HTML
     func showarticleFullHTML(fontsize: Int){
         
         print("------顯示文章 文字大小 \(fontsize)-------")
@@ -139,8 +153,7 @@ class ArticleViewController: UIViewController, UIPopoverPresentationControllerDe
         articleFullHTMLarray.append("<p>最後更新：\(self.currentTimeString)<br></p></div>")
         articleFullHTMLarray.append("</div>")
         
-        
-        
+
         let articleFullHTML = articleFullHTMLarray.joinWithSeparator("")
         
         self.fontSizeString = "正常"
@@ -148,47 +161,54 @@ class ArticleViewController: UIViewController, UIPopoverPresentationControllerDe
         
     }
     
+    // func 新增到書籤
+    @IBAction func addToBookmark(sender: AnyObject) {
+        
+        
+        if let bookmark = NSEntityDescription.insertNewObjectForEntityForName("BookmarkEntities", inManagedObjectContext: self.core_data) as? BookmarkEntities {
+            bookmark.id = currentIdString
+            bookmark.time = currentTimeString
+            bookmark.author = currentAuthorString
+            bookmark.body = currentBodyString
+            bookmark.title = currentTitleString
+            bookmark.photo = currentPhotoString
+            bookmark.division = currentDivisionString
 
+            do {
+                
+                try self.core_data.save()
+                // 儲存
+                
+            }catch{
+                
+                fatalError("Failure to save context: \(error)")
+                // 無法儲存
+            }
+            
+        
+            
+        }
+        
+        // 以下為測試 顯示文章
+        let request = NSFetchRequest(entityName: "BookmarkEntities")
+        
+        do {
+            
+            let results = try self.core_data.executeFetchRequest(request) as! [BookmarkEntities]
+            print("------------------")
+            for result in results {
+                
+                print("ID：\(result.id) 標題: \(result.title)")
+                
+            }
+        }catch{
+            fatalError("Failed to fetch data: \(error)")
+        }
     
-    
-    
-    // 以下本來是 改變文字大小的 func
-    /*
-    @IBAction func changeFontSize(sender: AnyObject) {
         
         
-        let storyboard : UIStoryboard = UIStoryboard(
-            name: "Main",
-            bundle: nil)
-        
-        let ChangeFontSizePopover: ArticlePopoverViewController = storyboard.instantiateViewControllerWithIdentifier("ArticlePopoverViewController") as! ArticlePopoverViewController
-        
-        ChangeFontSizePopover.modalPresentationStyle = .Popover
-        
-        
-        let popoverPresentationViewController = ChangeFontSizePopover.popoverPresentationController
-        
-        popoverPresentationViewController?.permittedArrowDirections = .Up
-        popoverPresentationViewController?.delegate = self
-        popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
-        
-        
-        
-        popoverPresentationViewController?.barButtonItem = sender as? UIBarButtonItem
-        
-        //print(sender.bounds)
-        
-        
-        
-        ChangeFontSizePopover.preferredContentSize = CGSizeMake(230, 110)
-        
-        presentViewController(ChangeFontSizePopover, animated: true, completion: nil)
     }
-    
-    
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle{
-        return .None
-    }*/
+
     
     
     
@@ -234,14 +254,45 @@ class ArticleViewController: UIViewController, UIPopoverPresentationControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = currentDivisionString
+        // self.navigationItem.title = currentDivisionString
+        // 顯示標題在此
         
         self.showarticleFullHTML(21)
         // 一開此頁面顯示文章，以 21 font-size顯示
         
+        self.addToHistory()
+        
         
     }
 
+    
+    func addToHistory()
+    {
+        
+        if let history = NSEntityDescription.insertNewObjectForEntityForName("HistoryEntities", inManagedObjectContext: self.core_data) as? HistoryEntities {
+            history.id = currentIdString
+            history.time = currentTimeString
+            history.author = currentAuthorString
+            history.body = currentBodyString
+            history.title = currentTitleString
+            history.photo = currentPhotoString
+            history.division = currentDivisionString
+            
+            do {
+                
+                try self.core_data.save()
+                // 儲存
+                
+            }catch{
+                
+                fatalError("Failure to save context: \(error)")
+                // 無法儲存
+            }
+            
+            
+            
+        }
+    }
     
 
     

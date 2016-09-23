@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
-class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableViewDelegate{
     
     
     @IBOutlet weak var BookmarkSegControlIBO: UISegmentedControl!
@@ -16,17 +17,85 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
     var articleArrayBookmark:[article] = [article]()
 
     @IBOutlet weak var tableView: UITableView!
+    
+    
+    // 給 core data (讀取文章) 功能使用
+    let core_data = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    
+
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        articleArrayHistory = articleArrayHistoryData.getArticle()
-        articleArrayBookmark = articleArrayBookmarkData.getArticle()
-
+       
         // Do any additional setup after loading the view.
     }
     
     // 不同Segm換鈕切換時的結果
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        // 顯示瀏覽歷史
+        self.showHistory()
+        
+        // 顯示書籤
+        self.showBookmark()
+        
+        tableView.reloadData()
+        
+        
+    }
+
+    
+    func showBookmark(){
+        
+        /* 讀取 Bookmark core data */
+        //articleArrayBookmark = articleArrayBookmarkData.getArticle()
+        articleArrayBookmark = []
+        
+        /* 讀取 Bookmark core data */
+        let request = NSFetchRequest(entityName: "BookmarkEntities")
+        
+        do {
+            
+            let results = try self.core_data.executeFetchRequest(request) as! [BookmarkEntities]
+            
+            for result in results {
+                
+                articleArrayBookmark.append(article(id: result.id! ,title: result.title!, photoUIImage: UIImage() ,  photo: result.photo!, author: result.author!, body: result.body!, time: result.time! , division: result.division!))
+            }
+            
+        }catch{
+            fatalError("Failed to fetch data: \(error)")
+        }
+        
+    }
+    
+    func showHistory(){
+        
+        /* 讀取 History core data */
+        //articleArrayHistory = articleArrayHistoryData.getArticle()
+        articleArrayBookmark = []
+        
+        /* 讀取 History core data */
+        let request = NSFetchRequest(entityName: "HistoryEntities")
+        
+        do {
+            
+            let results = try self.core_data.executeFetchRequest(request) as! [HistoryEntities]
+            
+            for result in results {
+                
+                articleArrayHistory.append(article(id: result.id! ,title: result.title!, photoUIImage: UIImage() ,  photo: result.photo!, author: result.author!, body: result.body!, time: result.time! , division: result.division!))
+            }
+            
+        }catch{
+            fatalError("Failed to fetch data: \(error)")
+        }
+        
+    }
+    
     
 
     @IBAction func BookmarkSegControlAction(sender: AnyObject) {
@@ -82,6 +151,8 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
         }
         return cell
     }
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let articleDetail = segue.destinationViewController as! ArticleViewController
         if let indexPath = self.tableView.indexPathForSelectedRow {
@@ -89,6 +160,7 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
             switch (BookmarkSegControlIBO.selectedSegmentIndex) {
             case 0:
                 let articleSelected = articleArrayHistory[indexPath.row]
+                articleDetail.currentIdString = articleSelected.id
                 articleDetail.currentTitleString = articleSelected.title
                 articleDetail.currentBodyString = articleSelected.body
                 articleDetail.currentAuthorString = articleSelected.author
@@ -98,6 +170,7 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
                 break
             case 1:
                 let articleSelected = articleArrayBookmark[indexPath.row]
+                articleDetail.currentIdString = articleSelected.id
                 articleDetail.currentTitleString = articleSelected.title
                 articleDetail.currentBodyString = articleSelected.body
                 articleDetail.currentAuthorString = articleSelected.author

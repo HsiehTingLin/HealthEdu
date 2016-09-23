@@ -88,7 +88,7 @@ class StarSingleTopic: UIViewController, UITableViewDataSource {
             // 這是從 indexPath.row 中 找到到底是哪一篇文章被選到 傳遞到下一頁去
             // self.TopicMainIdString-1 要減一的原因是因為主題是從 1 開始算，可是電腦array 從 0
             
-            
+            articleDetail.currentIdString = articleSelected.id
             articleDetail.currentTitleString = articleSelected.title
             articleDetail.currentBodyString = articleSelected.body
             articleDetail.currentAuthorString = articleSelected.author
