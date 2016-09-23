@@ -29,6 +29,15 @@
 		04E4C7831D86C39C00C570D7 /* myArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4C7821D86C39C00C570D7 /* myArticleCell.swift */; };
 		04E4C7CB1D86DECD00C570D7 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4C7CA1D86DECD00C570D7 /* ArticleViewController.swift */; };
 		04E4C7CD1D86DFC300C570D7 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4C7CC1D86DFC300C570D7 /* SearchTableViewController.swift */; };
+		235045841D94B8BE00ADCD63 /* love.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2350457B1D94B8BE00ADCD63 /* love.jpg */; };
+		235045851D94B8BE00ADCD63 /* dou.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2350457C1D94B8BE00ADCD63 /* dou.jpg */; };
+		235045861D94B8BE00ADCD63 /* doctor.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2350457D1D94B8BE00ADCD63 /* doctor.jpg */; };
+		235045871D94B8BE00ADCD63 /* cake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2350457E1D94B8BE00ADCD63 /* cake.jpg */; };
+		235045881D94B8BE00ADCD63 /* emergency.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2350457F1D94B8BE00ADCD63 /* emergency.jpg */; };
+		235045891D94B8BE00ADCD63 /* transplant.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 235045801D94B8BE00ADCD63 /* transplant.jpg */; };
+		2350458A1D94B8BE00ADCD63 /* speak.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 235045811D94B8BE00ADCD63 /* speak.jpg */; };
+		2350458B1D94B8BE00ADCD63 /* talk.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 235045821D94B8BE00ADCD63 /* talk.jpg */; };
+		2350458C1D94B8BE00ADCD63 /* check.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 235045831D94B8BE00ADCD63 /* check.jpg */; };
 		23AD14F81D92765E00EE20CE /* 160921 afternoon 1603.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AD14F71D92765E00EE20CE /* 160921 afternoon 1603.swift */; };
 		23AD14FE1D92AFD900EE20CE /* Diagnosis.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 23AD14FD1D92AFD900EE20CE /* Diagnosis.jpg */; };
 		23AD15011D92B34600EE20CE /* bone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 23AD15001D92B34600EE20CE /* bone.jpg */; };
@@ -97,6 +106,15 @@
 		04E4C7821D86C39C00C570D7 /* myArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myArticleCell.swift; sourceTree = "<group>"; };
 		04E4C7CA1D86DECD00C570D7 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		04E4C7CC1D86DFC300C570D7 /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		2350457B1D94B8BE00ADCD63 /* love.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = love.jpg; path = ../../../Downloads/love.jpg; sourceTree = "<group>"; };
+		2350457C1D94B8BE00ADCD63 /* dou.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = dou.jpg; path = ../../../Downloads/dou.jpg; sourceTree = "<group>"; };
+		2350457D1D94B8BE00ADCD63 /* doctor.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = doctor.jpg; path = ../../../Downloads/doctor.jpg; sourceTree = "<group>"; };
+		2350457E1D94B8BE00ADCD63 /* cake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cake.jpg; path = ../../../Downloads/cake.jpg; sourceTree = "<group>"; };
+		2350457F1D94B8BE00ADCD63 /* emergency.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = emergency.jpg; path = ../../../Downloads/emergency.jpg; sourceTree = "<group>"; };
+		235045801D94B8BE00ADCD63 /* transplant.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = transplant.jpg; path = ../../../Downloads/transplant.jpg; sourceTree = "<group>"; };
+		235045811D94B8BE00ADCD63 /* speak.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = speak.jpg; path = ../../../Downloads/speak.jpg; sourceTree = "<group>"; };
+		235045821D94B8BE00ADCD63 /* talk.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = talk.jpg; path = ../../../Downloads/talk.jpg; sourceTree = "<group>"; };
+		235045831D94B8BE00ADCD63 /* check.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = check.jpg; path = ../../../Downloads/check.jpg; sourceTree = "<group>"; };
 		23AD14F71D92765E00EE20CE /* 160921 afternoon 1603.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "160921 afternoon 1603.swift"; sourceTree = "<group>"; };
 		23AD14FD1D92AFD900EE20CE /* Diagnosis.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Diagnosis.jpg; path = Assets.xcassets/Diagnosis.imageset/Diagnosis.jpg; sourceTree = "<group>"; };
 		23AD15001D92B34600EE20CE /* bone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bone.jpg; path = Assets.xcassets/bone.imageset/bone.jpg; sourceTree = "<group>"; };
@@ -267,6 +285,15 @@
 		23AD14FF1D92AFE800EE20CE /* PhotoForArticle */ = {
 			isa = PBXGroup;
 			children = (
+				2350457B1D94B8BE00ADCD63 /* love.jpg */,
+				2350457C1D94B8BE00ADCD63 /* dou.jpg */,
+				2350457D1D94B8BE00ADCD63 /* doctor.jpg */,
+				2350457E1D94B8BE00ADCD63 /* cake.jpg */,
+				2350457F1D94B8BE00ADCD63 /* emergency.jpg */,
+				235045801D94B8BE00ADCD63 /* transplant.jpg */,
+				235045811D94B8BE00ADCD63 /* speak.jpg */,
+				235045821D94B8BE00ADCD63 /* talk.jpg */,
+				235045831D94B8BE00ADCD63 /* check.jpg */,
 				23AD14FD1D92AFD900EE20CE /* Diagnosis.jpg */,
 				23AD15001D92B34600EE20CE /* bone.jpg */,
 				23AD15021D92B35D00EE20CE /* bug.jpg */,
@@ -399,17 +426,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2350458A1D94B8BE00ADCD63 /* speak.jpg in Resources */,
 				23AD15031D92B35D00EE20CE /* bug.jpg in Resources */,
+				235045881D94B8BE00ADCD63 /* emergency.jpg in Resources */,
 				23AD15131D92C54F00EE20CE /* oil.jpg in Resources */,
+				2350458C1D94B8BE00ADCD63 /* check.jpg in Resources */,
 				23AD150D1D92B38100EE20CE /* StemCell.jpg in Resources */,
 				23AD14FE1D92AFD900EE20CE /* Diagnosis.jpg in Resources */,
+				235045861D94B8BE00ADCD63 /* doctor.jpg in Resources */,
+				2350458B1D94B8BE00ADCD63 /* talk.jpg in Resources */,
 				23AD15091D92B37300EE20CE /* operation.jpg in Resources */,
+				235045891D94B8BE00ADCD63 /* transplant.jpg in Resources */,
+				235045841D94B8BE00ADCD63 /* love.jpg in Resources */,
 				23AD15111D92B38E00EE20CE /* Surgery.jpg in Resources */,
 				23AD15011D92B34600EE20CE /* bone.jpg in Resources */,
+				235045871D94B8BE00ADCD63 /* cake.jpg in Resources */,
 				040190421D85476800F8E6DA /* LaunchScreen.storyboard in Resources */,
 				23AD150F1D92B38700EE20CE /* Stethoscope.png in Resources */,
 				0401903F1D85476800F8E6DA /* Assets.xcassets in Resources */,
 				23AD15051D92B36700EE20CE /* Drug.jpg in Resources */,
+				235045851D94B8BE00ADCD63 /* dou.jpg in Resources */,
 				0401903D1D85476800F8E6DA /* Main.storyboard in Resources */,
 				23AD150B1D92B37900EE20CE /* organ119.jpg in Resources */,
 			);
