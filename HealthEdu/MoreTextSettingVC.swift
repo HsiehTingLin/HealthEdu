@@ -9,9 +9,13 @@
 import UIKit
 
 class MoreTextSettingVC: UIViewController {
+    
+    var textSize = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        textSize = ["大","中","小"]
+        
 
         // Do any additional setup after loading the view.
     }
@@ -20,6 +24,20 @@ class MoreTextSettingVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return textSize.count
+    }
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        
+        cell.textLabel?.text = textSize[indexPath.row]
+        return cell
+        
+    }
+
     
 
     /*
