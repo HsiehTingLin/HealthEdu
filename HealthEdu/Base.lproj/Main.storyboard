@@ -364,10 +364,10 @@
             </objects>
             <point key="canvasLocation" x="1716" y="2371"/>
         </scene>
-        <!--View Controller-->
+        <!--More View Controller-->
         <scene sceneID="nv3-zh-tAg">
             <objects>
-                <viewController id="tIc-1C-Lue" sceneMemberID="viewController">
+                <viewController id="tIc-1C-Lue" customClass="MoreViewController" customModule="HealthEdu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fS5-V1-upZ"/>
                         <viewControllerLayoutGuide type="bottom" id="0qz-Fc-gr9"/>
@@ -376,20 +376,196 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="還不知道要放什麼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B21-WL-7I5">
-                                <rect key="frame" x="225" y="246" width="151" height="107"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="copyright" translatesAutoresizingMaskIntoConstraints="NO" id="HOR-HL-TvZ">
+                                <rect key="frame" x="0.0" y="64" width="600" height="191"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="roR-7w-ERH">
+                                <rect key="frame" x="0.0" y="254" width="600" height="340"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="1Fs-d9-t3h">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Fs-d9-t3h" id="jQq-Iy-8Z3">
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="tIc-1C-Lue" id="Yk6-V2-e8n"/>
+                                    <outlet property="delegate" destination="tIc-1C-Lue" id="5aV-g4-CHU"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HOR-HL-TvZ" firstAttribute="leading" secondItem="iEg-hN-oA8" secondAttribute="leading" id="ERd-tc-b5J"/>
+                            <constraint firstItem="roR-7w-ERH" firstAttribute="trailing" secondItem="HOR-HL-TvZ" secondAttribute="trailing" id="FgR-3o-aZl"/>
+                            <constraint firstItem="roR-7w-ERH" firstAttribute="top" secondItem="HOR-HL-TvZ" secondAttribute="bottom" constant="-1" id="JhL-g7-e2V"/>
+                            <constraint firstItem="HOR-HL-TvZ" firstAttribute="top" secondItem="fS5-V1-upZ" secondAttribute="bottom" id="P6v-iM-hop"/>
+                            <constraint firstItem="0qz-Fc-gr9" firstAttribute="top" secondItem="HOR-HL-TvZ" secondAttribute="bottom" constant="296" id="U5q-7z-Ih9"/>
+                            <constraint firstAttribute="trailing" secondItem="HOR-HL-TvZ" secondAttribute="trailing" id="ekq-Cj-Pli"/>
+                            <constraint firstItem="roR-7w-ERH" firstAttribute="leading" secondItem="HOR-HL-TvZ" secondAttribute="leading" id="kS3-pY-Dfz"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="roR-7w-ERH" secondAttribute="bottom" constant="6" id="uRS-Td-A8c"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="P8Z-bR-ioj"/>
+                    <connections>
+                        <outlet property="moreTableView" destination="roR-7w-ERH" id="c2A-s5-GFU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dn6-B1-XnF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="263" y="2841"/>
+        </scene>
+        <!--訂閱電子報-->
+        <scene sceneID="Lzp-Ku-51K">
+            <objects>
+                <viewController storyboardIdentifier="MoreSubscribe" title="訂閱電子報" id="Ch9-48-dMZ" customClass="MoreSubscribeVC" customModule="HealthEdu" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pdd-ar-D6c"/>
+                        <viewControllerLayoutGuide type="bottom" id="yHC-Rw-iie"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dl7-vw-df2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="yourmail@domain.com" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5F1-EH-RWL">
+                                <rect key="frame" x="20" y="110" width="560" height="30"/>
+                                <color key="textColor" white="0.45357067953020136" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KOa-dn-EV5">
+                                <rect key="frame" x="285" y="163" width="30" height="30"/>
+                                <state key="normal" title="訂閱"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請輸入您的電子郵件" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2P2-VS-J3b">
+                                <rect key="frame" x="224" y="61" width="153" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2P2-VS-J3b" firstAttribute="top" secondItem="pdd-ar-D6c" secondAttribute="bottom" constant="41" id="2Ag-Pd-q2P"/>
+                            <constraint firstItem="5F1-EH-RWL" firstAttribute="leading" secondItem="dl7-vw-df2" secondAttribute="leadingMargin" id="3P7-Bi-Ao6"/>
+                            <constraint firstItem="KOa-dn-EV5" firstAttribute="top" secondItem="5F1-EH-RWL" secondAttribute="bottom" constant="23" id="Chc-1x-FRI"/>
+                            <constraint firstItem="5F1-EH-RWL" firstAttribute="centerX" secondItem="dl7-vw-df2" secondAttribute="centerX" id="O56-RT-IND"/>
+                            <constraint firstItem="KOa-dn-EV5" firstAttribute="centerX" secondItem="dl7-vw-df2" secondAttribute="centerX" id="SgP-IO-90j"/>
+                            <constraint firstItem="5F1-EH-RWL" firstAttribute="top" secondItem="2P2-VS-J3b" secondAttribute="bottom" constant="28" id="nvj-he-rlg"/>
+                            <constraint firstItem="2P2-VS-J3b" firstAttribute="centerX" secondItem="dl7-vw-df2" secondAttribute="centerX" id="sn3-Tj-Y3k"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="P8Z-bR-ioj"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Dn6-B1-XnF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P7R-fK-RIh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="537" y="2769"/>
+            <point key="canvasLocation" x="263" y="3533"/>
+        </scene>
+        <!--意見回饋-->
+        <scene sceneID="vT6-jP-vyB">
+            <objects>
+                <viewController storyboardIdentifier="MoreComment" title="意見回饋" id="ody-hn-8A3" customClass="MoreSubscribeVC" customModule="HealthEdu" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HcJ-30-A7I"/>
+                        <viewControllerLayoutGuide type="bottom" id="42N-at-0oe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9vo-lz-5b9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="請輸入您的意見" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GoN-Q3-F1Q">
+                                <rect key="frame" x="24" y="50" width="553" height="424"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="424" id="n3g-Zg-vvm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJ8-Sn-23P">
+                                <rect key="frame" x="24" y="512" width="30" height="30"/>
+                                <state key="normal" title="送出"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GoN-Q3-F1Q" firstAttribute="leading" secondItem="9vo-lz-5b9" secondAttribute="leadingMargin" constant="4" id="5Sx-V0-nYK"/>
+                            <constraint firstItem="fJ8-Sn-23P" firstAttribute="leading" secondItem="GoN-Q3-F1Q" secondAttribute="leading" id="BFP-q6-Ruc"/>
+                            <constraint firstItem="GoN-Q3-F1Q" firstAttribute="centerX" secondItem="9vo-lz-5b9" secondAttribute="centerX" id="WeD-YY-KNE"/>
+                            <constraint firstItem="fJ8-Sn-23P" firstAttribute="top" secondItem="GoN-Q3-F1Q" secondAttribute="bottom" constant="38" id="cDV-4g-AVk"/>
+                            <constraint firstItem="GoN-Q3-F1Q" firstAttribute="top" secondItem="HcJ-30-A7I" secondAttribute="bottom" constant="30" id="mYE-A1-NYB"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="944-JN-Kj1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="915" y="3533"/>
+        </scene>
+        <!--文章顯示設定-->
+        <scene sceneID="PZD-2M-CGA">
+            <objects>
+                <viewController storyboardIdentifier="MoreTextSetting" title="文章顯示設定" id="YdW-Bp-ZQv" customClass="MoreTextSettingVC" customModule="HealthEdu" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="b5Z-F9-DDU"/>
+                        <viewControllerLayoutGuide type="bottom" id="sNI-Sn-s3J"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Phf-Ou-H1w">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KvY-05-EiW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1575" y="3533"/>
+        </scene>
+        <!--關於-->
+        <scene sceneID="gzd-CW-u3G">
+            <objects>
+                <viewController storyboardIdentifier="MoreAbout" title="關於" id="7RR-Se-icF" customClass="MoreAboutVC" customModule="HealthEdu" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YTI-Nc-fyn"/>
+                        <viewControllerLayoutGuide type="bottom" id="GwV-Da-VSe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cz0-Ro-xna">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="copyright" translatesAutoresizingMaskIntoConstraints="NO" id="qcw-Qr-ifN">
+                                <rect key="frame" x="0.0" y="20" width="601" height="321"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ⓒ成大醫院whatever" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIA-BV-LkS">
+                                <rect key="frame" x="222" y="357" width="156" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="alpha 1版" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZtN-P2-2iF">
+                                <rect key="frame" x="265" y="289" width="71" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZtN-P2-2iF" firstAttribute="centerX" secondItem="qcw-Qr-ifN" secondAttribute="centerX" id="6c2-2Q-xb6"/>
+                            <constraint firstItem="qcw-Qr-ifN" firstAttribute="leading" secondItem="cz0-Ro-xna" secondAttribute="leading" id="EXt-Ej-rFa"/>
+                            <constraint firstItem="ZtN-P2-2iF" firstAttribute="centerY" secondItem="cz0-Ro-xna" secondAttribute="centerY" id="KCw-r1-od0"/>
+                            <constraint firstItem="qcw-Qr-ifN" firstAttribute="top" secondItem="YTI-Nc-fyn" secondAttribute="bottom" id="M1Z-fW-KvV"/>
+                            <constraint firstItem="GwV-Da-VSe" firstAttribute="top" secondItem="qcw-Qr-ifN" secondAttribute="bottom" constant="259" id="PS5-Ge-DIZ"/>
+                            <constraint firstItem="qcw-Qr-ifN" firstAttribute="centerX" secondItem="cz0-Ro-xna" secondAttribute="centerX" id="gMv-Ug-boG"/>
+                            <constraint firstItem="jIA-BV-LkS" firstAttribute="top" secondItem="qcw-Qr-ifN" secondAttribute="bottom" constant="16" id="wsd-Yv-sLR"/>
+                            <constraint firstItem="ZtN-P2-2iF" firstAttribute="centerX" secondItem="jIA-BV-LkS" secondAttribute="centerX" id="x6k-Pq-7TZ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sy4-oQ-7pj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2254" y="3533"/>
         </scene>
         <!--書籤-->
         <scene sceneID="XYv-6A-zLO">
@@ -834,6 +1010,7 @@
         <image name="Drug" width="2592" height="1944"/>
         <image name="Stethoscope" width="25" height="25"/>
         <image name="Surgery" width="2197" height="1463"/>
+        <image name="copyright" width="637" height="298"/>
         <image name="opacityhalf" width="600" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
