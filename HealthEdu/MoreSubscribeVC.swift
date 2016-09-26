@@ -21,6 +21,13 @@ class MoreSubscribeVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func subscribe(sender: AnyObject) {
+        
+        // 返回上一頁 programmatically
+        self.navigationController?.popViewControllerAnimated(true)
+        
+        
+    }
 
     /*
     // MARK: - Navigation

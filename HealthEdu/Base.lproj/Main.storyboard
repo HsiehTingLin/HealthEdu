@@ -411,7 +411,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dn6-B1-XnF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="263" y="2841"/>
+            <point key="canvasLocation" x="570" y="3397"/>
         </scene>
         <!--訂閱電子報-->
         <scene sceneID="Lzp-Ku-51K">
@@ -425,22 +425,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="yourmail@domain.com" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5F1-EH-RWL">
-                                <rect key="frame" x="20" y="110" width="560" height="30"/>
-                                <color key="textColor" white="0.45357067953020136" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KOa-dn-EV5">
-                                <rect key="frame" x="285" y="163" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KOa-dn-EV5">
+                                <rect key="frame" x="259" y="210" width="82" height="53"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <state key="normal" title="訂閱"/>
+                                <connections>
+                                    <action selector="subscribe:" destination="Ch9-48-dMZ" eventType="touchUpInside" id="PQl-J7-HRS"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請輸入您的電子郵件" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2P2-VS-J3b">
-                                <rect key="frame" x="224" y="61" width="153" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="請輸入您的電子郵件" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2P2-VS-J3b">
+                                <rect key="frame" x="205" y="61" width="190" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請在此輸入您的email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5F1-EH-RWL">
+                                <rect key="frame" x="77" y="141" width="446" height="30"/>
+                                <color key="textColor" white="0.45357067953020136" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -461,7 +465,7 @@
         <!--意見回饋-->
         <scene sceneID="vT6-jP-vyB">
             <objects>
-                <viewController storyboardIdentifier="MoreComment" title="意見回饋" id="ody-hn-8A3" customClass="MoreSubscribeVC" customModule="HealthEdu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MoreComment" title="意見回饋" id="ody-hn-8A3" customClass="MoreCommentVC" customModule="HealthEdu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HcJ-30-A7I"/>
                         <viewControllerLayoutGuide type="bottom" id="42N-at-0oe"/>
@@ -470,27 +474,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJ8-Sn-23P">
-                                <rect key="frame" x="24" y="512" width="30" height="30"/>
-                                <state key="normal" title="送出"/>
-                            </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="請輸入您的意見" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GoN-Q3-F1Q">
-                                <rect key="frame" x="24" y="50" width="553" height="424"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRW-q7-UTd">
+                                <rect key="frame" x="152" y="84" width="297" height="61"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="424" id="n3g-Zg-vvm"/>
+                                    <constraint firstAttribute="width" constant="297" id="P6r-TG-tpu"/>
+                                    <constraint firstAttribute="height" constant="61" id="vs4-Lp-jic"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <attributedString key="attributedText">
+                                    <fragment content="我們重視來自各位的寶貴意見">
+                                        <attributes>
+                                            <color key="NSColor" red="0.84699219465255737" green="0.40081799030303955" blue="0.3990214467048645" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="21" name="PingFangTC-Medium"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zWJ-NS-0SL">
+                                <rect key="frame" x="152" y="131" width="297" height="61"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="61" id="L2V-c5-NY2"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="297" id="bHH-iu-AS1"/>
+                                    <constraint firstAttribute="width" constant="297" id="yWc-vj-eHu"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="期盼我們一同成長">
+                                        <attributes>
+                                            <color key="NSColor" red="0.84699219465255737" green="0.40081799030303955" blue="0.3990214467048645" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="21" name="PingFangTC-Medium"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbe-aW-1uM">
+                                <rect key="frame" x="233" y="270" width="135" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="270" id="tao-df-7x2"/>
+                                </constraints>
+                                <state key="normal" title="按此寄信給開發人員"/>
+                                <connections>
+                                    <action selector="openMailapp:" destination="ody-hn-8A3" eventType="touchUpInside" id="SBp-hA-So7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="GoN-Q3-F1Q" firstAttribute="leading" secondItem="9vo-lz-5b9" secondAttribute="leadingMargin" constant="4" id="5Sx-V0-nYK"/>
-                            <constraint firstItem="fJ8-Sn-23P" firstAttribute="leading" secondItem="GoN-Q3-F1Q" secondAttribute="leading" id="BFP-q6-Ruc"/>
-                            <constraint firstItem="GoN-Q3-F1Q" firstAttribute="centerX" secondItem="9vo-lz-5b9" secondAttribute="centerX" id="WeD-YY-KNE"/>
-                            <constraint firstItem="fJ8-Sn-23P" firstAttribute="top" secondItem="GoN-Q3-F1Q" secondAttribute="bottom" constant="38" id="cDV-4g-AVk"/>
-                            <constraint firstItem="GoN-Q3-F1Q" firstAttribute="top" secondItem="HcJ-30-A7I" secondAttribute="bottom" constant="30" id="mYE-A1-NYB"/>
+                            <constraint firstItem="zWJ-NS-0SL" firstAttribute="top" secondItem="vRW-q7-UTd" secondAttribute="bottom" constant="-14" id="1Sa-Oj-b4f"/>
+                            <constraint firstItem="zWJ-NS-0SL" firstAttribute="centerX" secondItem="9vo-lz-5b9" secondAttribute="centerX" id="9Lj-GY-dzZ"/>
+                            <constraint firstItem="vRW-q7-UTd" firstAttribute="top" secondItem="HcJ-30-A7I" secondAttribute="bottom" constant="64" id="SK9-cA-OGA"/>
+                            <constraint firstItem="vRW-q7-UTd" firstAttribute="centerX" secondItem="9vo-lz-5b9" secondAttribute="centerX" id="Vy5-uI-q5c"/>
+                            <constraint firstItem="fbe-aW-1uM" firstAttribute="centerX" secondItem="9vo-lz-5b9" secondAttribute="centerX" id="fKq-5L-Ufn"/>
+                            <constraint firstItem="fbe-aW-1uM" firstAttribute="top" secondItem="zWJ-NS-0SL" secondAttribute="bottom" constant="78" id="na5-CU-gbB"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -510,22 +547,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="改變預設文字大小" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iq0-vi-yJS">
-                                <rect key="frame" x="232" y="79" width="136" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="136" id="5EU-Qx-S05"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="roQ-rc-FyO">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="roQ-rc-FyO">
                                 <rect key="frame" x="144" y="159" width="313" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="313" id="aQc-WW-JxR"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="小"/>
+                                    <segment title="小">
+                                        <size key="contentOffset" width="2" height="0.0"/>
+                                    </segment>
                                     <segment title="正常"/>
                                     <segment title="大"/>
                                     <segment title="最大"/>
@@ -534,6 +564,15 @@
                                     <action selector="changeDefaultFontSize:" destination="YdW-Bp-ZQv" eventType="valueChanged" id="9ov-79-hYR"/>
                                 </connections>
                             </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="改變預設文字大小" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iq0-vi-yJS">
+                                <rect key="frame" x="217" y="77" width="166" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="136" id="5EU-Qx-S05"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

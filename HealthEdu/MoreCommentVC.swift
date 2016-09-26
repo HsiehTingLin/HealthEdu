@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import Foundation
 
 class MoreCommentVC: UIViewController {
 
+    // MARK: 基本func 區
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,14 +25,13 @@ class MoreCommentVC: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func openMailapp(sender: AnyObject) {
+        
+        let url = NSURL(string: "mailto:nps798@gmail.com")
+        UIApplication.sharedApplication().openURL(url!)
+        
+        
     }
-    */
+    
 
 }
