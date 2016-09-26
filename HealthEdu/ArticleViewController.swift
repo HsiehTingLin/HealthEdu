@@ -211,11 +211,7 @@ class ArticleViewController: UIViewController {
             bookmark.author = currentAuthorString
             bookmark.body = currentBodyString
             bookmark.title = currentTitleString
-            
-          
-            
             bookmark.photo = currentPhotoString
-            
             bookmark.division = currentDivisionString
             
             do {
@@ -465,9 +461,10 @@ class ArticleViewController: UIViewController {
         do {
             
             let results = try self.core_data.executeFetchRequest(deleteExistRequest) as! [HistoryEntities]
-            
+            print("-------")
+            print(currentIdString)
             for result in results {
-                
+                print("刪除\(result.title)")
                 self.core_data.deleteObject(result)
                 
             }
@@ -492,6 +489,7 @@ class ArticleViewController: UIViewController {
     
     func addToHistory()
     {
+        
         
         
         if let history = NSEntityDescription.insertNewObjectForEntityForName("HistoryEntities", inManagedObjectContext: self.core_data) as? HistoryEntities {
@@ -520,7 +518,7 @@ class ArticleViewController: UIViewController {
                     }
                     
                 }
-                
+                print("biggest:\(biggest)")
                 /* 指定新增的 history 的 autoIncrement 為 biggest + 1 */
                 /* 預防 biggest 為 nil */
                 if biggest != nil {

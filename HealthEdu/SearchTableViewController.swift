@@ -10,7 +10,7 @@ import UIKit
 
 class SearchTableViewController: UITableViewController, UISearchBarDelegate {
     
-    let searchItem = ["apple", "book", "cat"]
+    let searchItem = ["[範例] 糖尿病", "[範例] 飲食控制", "[範例] 大便潛血反應"]
     let searchBar = UISearchBar.self
     var filterArray = [String]()
     var showSearhResult = false
@@ -24,7 +24,7 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
     func creatSearchBar() {
         let searchBar = UISearchBar()
         searchBar.showsCancelButton = false
-        searchBar.placeholder = "搜尋：糖尿病喔"
+        searchBar.placeholder = "搜尋：請在此輸入關鍵字"
         searchBar.delegate = self
         
         self.navigationItem.titleView = searchBar

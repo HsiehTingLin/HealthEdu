@@ -49,6 +49,8 @@ class SearchResultVC: UITableViewController {
         let articleDetail = segue.destinationViewController as! ArticleViewController
         if let indexPath = self.tableView.indexPathForSelectedRow {
             let articleSelected = articleArray[indexPath.row]
+            
+            articleDetail.currentIdString = articleSelected.id
             articleDetail.currentTitleString = articleSelected.title
             articleDetail.currentBodyString = articleSelected.body
             articleDetail.currentAuthorString = articleSelected.author

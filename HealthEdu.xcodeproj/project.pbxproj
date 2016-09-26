@@ -48,7 +48,6 @@
 		23AD150B1D92B37900EE20CE /* organ119.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 23AD150A1D92B37900EE20CE /* organ119.jpg */; };
 		23AD150D1D92B38100EE20CE /* StemCell.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 23AD150C1D92B38100EE20CE /* StemCell.jpg */; };
 		23AD150F1D92B38700EE20CE /* Stethoscope.png in Resources */ = {isa = PBXBuildFile; fileRef = 23AD150E1D92B38700EE20CE /* Stethoscope.png */; };
-		23AD15111D92B38E00EE20CE /* Surgery.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 23AD15101D92B38E00EE20CE /* Surgery.jpg */; };
 		23AD15131D92C54F00EE20CE /* oil.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 23AD15121D92C54F00EE20CE /* oil.jpg */; };
 		23AD15181D92DC4B00EE20CE /* StarManyTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AD15171D92DC4B00EE20CE /* StarManyTopic.swift */; };
 		23AD151A1D92DE6600EE20CE /* DevisionOnlyVCArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AD15191D92DE6600EE20CE /* DevisionOnlyVCArticle.swift */; };
@@ -57,6 +56,16 @@
 		23AD15201D92E45200EE20CE /* articleArrayBookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AD151F1D92E45200EE20CE /* articleArrayBookmark.swift */; };
 		23AD15221D92E47F00EE20CE /* articleArrayHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AD15211D92E47F00EE20CE /* articleArrayHistory.swift */; };
 		23AD15241D93567900EE20CE /* NOTUSE_ArticlePopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AD15231D93567900EE20CE /* NOTUSE_ArticlePopoverViewController.swift */; };
+		23BA8D481D9945FC006F1C31 /* love.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 23BA8D351D9945FC006F1C31 /* love.jpg */; };
+		23BA8D491D9945FC006F1C31 /* dou.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 23BA8D361D9945FC006F1C31 /* dou.jpg */; };
+		23BA8D4A1D9945FC006F1C31 /* doctor.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 23BA8D371D9945FC006F1C31 /* doctor.jpg */; };
+		23BA8D4B1D9945FC006F1C31 /* cake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 23BA8D381D9945FC006F1C31 /* cake.jpg */; };
+		23BA8D4C1D9945FC006F1C31 /* emergency.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 23BA8D391D9945FC006F1C31 /* emergency.jpg */; };
+		23BA8D4D1D9945FC006F1C31 /* transplant.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 23BA8D3A1D9945FC006F1C31 /* transplant.jpg */; };
+		23BA8D4E1D9945FC006F1C31 /* speak.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 23BA8D3B1D9945FC006F1C31 /* speak.jpg */; };
+		23BA8D4F1D9945FC006F1C31 /* talk.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 23BA8D3C1D9945FC006F1C31 /* talk.jpg */; };
+		23BA8D501D9945FC006F1C31 /* check.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 23BA8D3D1D9945FC006F1C31 /* check.jpg */; };
+		23BA8D581D9945FC006F1C31 /* Surgery.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 23BA8D451D9945FC006F1C31 /* Surgery.jpg */; };
 		23F02AE01D91903B00D797DE /* HealthEdu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 23F02ADE1D91903B00D797DE /* HealthEdu.xcdatamodeld */; };
 		23F02AE41D920C7300D797DE /* SearchQRCodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F02AE31D920C7300D797DE /* SearchQRCodeReaderViewController.swift */; };
 /* End PBXBuildFile section */
@@ -126,7 +135,6 @@
 		23AD150A1D92B37900EE20CE /* organ119.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = organ119.jpg; path = Assets.xcassets/organ119.imageset/organ119.jpg; sourceTree = "<group>"; };
 		23AD150C1D92B38100EE20CE /* StemCell.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = StemCell.jpg; path = Assets.xcassets/StemCell.imageset/StemCell.jpg; sourceTree = "<group>"; };
 		23AD150E1D92B38700EE20CE /* Stethoscope.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Stethoscope.png; path = Assets.xcassets/Stethoscope.imageset/Stethoscope.png; sourceTree = "<group>"; };
-		23AD15101D92B38E00EE20CE /* Surgery.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Surgery.jpg; path = Assets.xcassets/Surgery.imageset/Surgery.jpg; sourceTree = "<group>"; };
 		23AD15121D92C54F00EE20CE /* oil.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = oil.jpg; path = Assets.xcassets/oil.imageset/oil.jpg; sourceTree = "<group>"; };
 		23AD15171D92DC4B00EE20CE /* StarManyTopic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarManyTopic.swift; sourceTree = "<group>"; };
 		23AD15191D92DE6600EE20CE /* DevisionOnlyVCArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevisionOnlyVCArticle.swift; sourceTree = "<group>"; };
@@ -135,6 +143,16 @@
 		23AD151F1D92E45200EE20CE /* articleArrayBookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = articleArrayBookmark.swift; sourceTree = "<group>"; };
 		23AD15211D92E47F00EE20CE /* articleArrayHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = articleArrayHistory.swift; sourceTree = "<group>"; };
 		23AD15231D93567900EE20CE /* NOTUSE_ArticlePopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NOTUSE_ArticlePopoverViewController.swift; sourceTree = "<group>"; };
+		23BA8D351D9945FC006F1C31 /* love.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = love.jpg; path = "/Users/Yu-Ju/Documents/HealthEdu-0922/HealthEdu/../../../Downloads/love.jpg"; sourceTree = "<absolute>"; };
+		23BA8D361D9945FC006F1C31 /* dou.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = dou.jpg; path = "/Users/Yu-Ju/Documents/HealthEdu-0922/HealthEdu/../../../Downloads/dou.jpg"; sourceTree = "<absolute>"; };
+		23BA8D371D9945FC006F1C31 /* doctor.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = doctor.jpg; path = "/Users/Yu-Ju/Documents/HealthEdu-0922/HealthEdu/../../../Downloads/doctor.jpg"; sourceTree = "<absolute>"; };
+		23BA8D381D9945FC006F1C31 /* cake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cake.jpg; path = "/Users/Yu-Ju/Documents/HealthEdu-0922/HealthEdu/../../../Downloads/cake.jpg"; sourceTree = "<absolute>"; };
+		23BA8D391D9945FC006F1C31 /* emergency.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = emergency.jpg; path = "/Users/Yu-Ju/Documents/HealthEdu-0922/HealthEdu/../../../Downloads/emergency.jpg"; sourceTree = "<absolute>"; };
+		23BA8D3A1D9945FC006F1C31 /* transplant.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = transplant.jpg; path = "/Users/Yu-Ju/Documents/HealthEdu-0922/HealthEdu/../../../Downloads/transplant.jpg"; sourceTree = "<absolute>"; };
+		23BA8D3B1D9945FC006F1C31 /* speak.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = speak.jpg; path = "/Users/Yu-Ju/Documents/HealthEdu-0922/HealthEdu/../../../Downloads/speak.jpg"; sourceTree = "<absolute>"; };
+		23BA8D3C1D9945FC006F1C31 /* talk.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = talk.jpg; path = "/Users/Yu-Ju/Documents/HealthEdu-0922/HealthEdu/../../../Downloads/talk.jpg"; sourceTree = "<absolute>"; };
+		23BA8D3D1D9945FC006F1C31 /* check.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = check.jpg; path = "/Users/Yu-Ju/Documents/HealthEdu-0922/HealthEdu/../../../Downloads/check.jpg"; sourceTree = "<absolute>"; };
+		23BA8D451D9945FC006F1C31 /* Surgery.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Surgery.jpg; path = "../../../Documents/HealthEdu-0922/HealthEdu/Assets.xcassets/Surgery.imageset/Surgery.jpg"; sourceTree = "<group>"; };
 		23F02ADF1D91903B00D797DE /* HealthEdu.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HealthEdu.xcdatamodel; sourceTree = "<group>"; };
 		23F02AE31D920C7300D797DE /* SearchQRCodeReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchQRCodeReaderViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -305,16 +323,25 @@
 		23AD14FF1D92AFE800EE20CE /* PhotoForArticle */ = {
 			isa = PBXGroup;
 			children = (
-				23AD14FD1D92AFD900EE20CE /* Diagnosis.jpg */,
 				23AD15001D92B34600EE20CE /* bone.jpg */,
 				23AD15021D92B35D00EE20CE /* bug.jpg */,
-				23AD150E1D92B38700EE20CE /* Stethoscope.png */,
+				23BA8D381D9945FC006F1C31 /* cake.jpg */,
+				23BA8D3D1D9945FC006F1C31 /* check.jpg */,
+				23AD14FD1D92AFD900EE20CE /* Diagnosis.jpg */,
+				23BA8D371D9945FC006F1C31 /* doctor.jpg */,
+				23BA8D361D9945FC006F1C31 /* dou.jpg */,
+				23AD15041D92B36700EE20CE /* Drug.jpg */,
+				23BA8D391D9945FC006F1C31 /* emergency.jpg */,
+				23BA8D351D9945FC006F1C31 /* love.jpg */,
+				23AD15121D92C54F00EE20CE /* oil.jpg */,
 				23AD15081D92B37300EE20CE /* operation.jpg */,
 				23AD150A1D92B37900EE20CE /* organ119.jpg */,
-				23AD15121D92C54F00EE20CE /* oil.jpg */,
-				23AD15101D92B38E00EE20CE /* Surgery.jpg */,
+				23BA8D3B1D9945FC006F1C31 /* speak.jpg */,
 				23AD150C1D92B38100EE20CE /* StemCell.jpg */,
-				23AD15041D92B36700EE20CE /* Drug.jpg */,
+				23AD150E1D92B38700EE20CE /* Stethoscope.png */,
+				23BA8D451D9945FC006F1C31 /* Surgery.jpg */,
+				23BA8D3C1D9945FC006F1C31 /* talk.jpg */,
+				23BA8D3A1D9945FC006F1C31 /* transplant.jpg */,
 			);
 			name = PhotoForArticle;
 			sourceTree = "<group>";
@@ -437,17 +464,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23BA8D4E1D9945FC006F1C31 /* speak.jpg in Resources */,
 				23AD15031D92B35D00EE20CE /* bug.jpg in Resources */,
+				23BA8D4C1D9945FC006F1C31 /* emergency.jpg in Resources */,
 				23AD15131D92C54F00EE20CE /* oil.jpg in Resources */,
+				23BA8D501D9945FC006F1C31 /* check.jpg in Resources */,
 				23AD150D1D92B38100EE20CE /* StemCell.jpg in Resources */,
 				23AD14FE1D92AFD900EE20CE /* Diagnosis.jpg in Resources */,
+				23BA8D4A1D9945FC006F1C31 /* doctor.jpg in Resources */,
+				23BA8D4F1D9945FC006F1C31 /* talk.jpg in Resources */,
 				23AD15091D92B37300EE20CE /* operation.jpg in Resources */,
-				23AD15111D92B38E00EE20CE /* Surgery.jpg in Resources */,
+				23BA8D4D1D9945FC006F1C31 /* transplant.jpg in Resources */,
+				23BA8D481D9945FC006F1C31 /* love.jpg in Resources */,
 				23AD15011D92B34600EE20CE /* bone.jpg in Resources */,
+				23BA8D4B1D9945FC006F1C31 /* cake.jpg in Resources */,
 				040190421D85476800F8E6DA /* LaunchScreen.storyboard in Resources */,
 				23AD150F1D92B38700EE20CE /* Stethoscope.png in Resources */,
 				0401903F1D85476800F8E6DA /* Assets.xcassets in Resources */,
+				23BA8D581D9945FC006F1C31 /* Surgery.jpg in Resources */,
 				23AD15051D92B36700EE20CE /* Drug.jpg in Resources */,
+				23BA8D491D9945FC006F1C31 /* dou.jpg in Resources */,
 				0401903D1D85476800F8E6DA /* Main.storyboard in Resources */,
 				23AD150B1D92B37900EE20CE /* organ119.jpg in Resources */,
 			);
