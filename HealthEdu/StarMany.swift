@@ -12,7 +12,7 @@ import UIKit
 
 class StarMany: UIViewController,UITableViewDelegate {
     
-    // 注意，topic的class跟article不一樣，topic的class定義在 TopicClass.swift這個文件裡
+    // topic的class跟article不一樣，topic的class定義在 TopicClass.swift這個文件裡
     
     var topicArray:[topic] = [topic]()
 
