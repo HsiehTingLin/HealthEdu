@@ -34,11 +34,13 @@
 		04F509EE1D96EC4C0041A471 /* MoreCommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F509ED1D96EC4C0041A471 /* MoreCommentVC.swift */; };
 		04F509F01D96EC600041A471 /* MoreTextSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F509EF1D96EC600041A471 /* MoreTextSettingVC.swift */; };
 		04F509F21D96EC6B0041A471 /* MoreAboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F509F11D96EC6B0041A471 /* MoreAboutVC.swift */; };
+		231D0CCB1D99FD7700D9FD9B /* lab.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 231D0CCA1D99FD7700D9FD9B /* lab.jpg */; };
 		234FB3461D98F03400A2C099 /* mySettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234FB3451D98F03400A2C099 /* mySettingsCell.swift */; };
 		234FB34B1D98FC9D00A2C099 /* HistoryEntities+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234FB3471D98FC9D00A2C099 /* HistoryEntities+CoreDataProperties.swift */; };
 		234FB34C1D98FC9D00A2C099 /* HistoryEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234FB3481D98FC9D00A2C099 /* HistoryEntities.swift */; };
 		234FB34D1D98FC9D00A2C099 /* BookmarkEntities+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234FB3491D98FC9D00A2C099 /* BookmarkEntities+CoreDataProperties.swift */; };
 		234FB34E1D98FC9D00A2C099 /* BookmarkEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234FB34A1D98FC9D00A2C099 /* BookmarkEntities.swift */; };
+		2358CBE21D9A04B40079F019 /* QRcodeArticleArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2358CBE11D9A04B40079F019 /* QRcodeArticleArray.swift */; };
 		23AD14F81D92765E00EE20CE /* 要加入現有功能.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AD14F71D92765E00EE20CE /* 要加入現有功能.swift */; };
 		23AD14FE1D92AFD900EE20CE /* Diagnosis.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 23AD14FD1D92AFD900EE20CE /* Diagnosis.jpg */; };
 		23AD15011D92B34600EE20CE /* bone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 23AD15001D92B34600EE20CE /* bone.jpg */; };
@@ -120,11 +122,13 @@
 		04F509ED1D96EC4C0041A471 /* MoreCommentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreCommentVC.swift; sourceTree = "<group>"; };
 		04F509EF1D96EC600041A471 /* MoreTextSettingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreTextSettingVC.swift; sourceTree = "<group>"; };
 		04F509F11D96EC6B0041A471 /* MoreAboutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreAboutVC.swift; sourceTree = "<group>"; };
+		231D0CCA1D99FD7700D9FD9B /* lab.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = lab.jpg; path = ../../lab.jpg; sourceTree = "<group>"; };
 		234FB3451D98F03400A2C099 /* mySettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mySettingsCell.swift; sourceTree = "<group>"; };
 		234FB3471D98FC9D00A2C099 /* HistoryEntities+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HistoryEntities+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		234FB3481D98FC9D00A2C099 /* HistoryEntities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryEntities.swift; sourceTree = "<group>"; };
 		234FB3491D98FC9D00A2C099 /* BookmarkEntities+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BookmarkEntities+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		234FB34A1D98FC9D00A2C099 /* BookmarkEntities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkEntities.swift; sourceTree = "<group>"; };
+		2358CBE11D9A04B40079F019 /* QRcodeArticleArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRcodeArticleArray.swift; sourceTree = "<group>"; };
 		23AD14F71D92765E00EE20CE /* 要加入現有功能.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "要加入現有功能.swift"; sourceTree = "<group>"; };
 		23AD14FD1D92AFD900EE20CE /* Diagnosis.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Diagnosis.jpg; path = Assets.xcassets/Diagnosis.imageset/Diagnosis.jpg; sourceTree = "<group>"; };
 		23AD15001D92B34600EE20CE /* bone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bone.jpg; path = Assets.xcassets/bone.imageset/bone.jpg; sourceTree = "<group>"; };
@@ -334,6 +338,7 @@
 				23AD15081D92B37300EE20CE /* operation.jpg */,
 				23AD150A1D92B37900EE20CE /* organ119.jpg */,
 				23BA8D3B1D9945FC006F1C31 /* speak.jpg */,
+				231D0CCA1D99FD7700D9FD9B /* lab.jpg */,
 				23AD150C1D92B38100EE20CE /* StemCell.jpg */,
 				23AD150E1D92B38700EE20CE /* Stethoscope.png */,
 				23BA8D451D9945FC006F1C31 /* Surgery.jpg */,
@@ -347,11 +352,12 @@
 			isa = PBXGroup;
 			children = (
 				23AD15171D92DC4B00EE20CE /* StarManyTopic.swift */,
-				23AD15191D92DE6600EE20CE /* DevisionOnlyVCArticle.swift */,
 				23AD151B1D92E07F00EE20CE /* StarSingleTopicArticle.swift */,
+				23AD15191D92DE6600EE20CE /* DevisionOnlyVCArticle.swift */,
 				23AD151D1D92E15A00EE20CE /* SearchResultVCArticle.swift */,
 				23AD151F1D92E45200EE20CE /* articleArrayBookmark.swift */,
 				23AD15211D92E47F00EE20CE /* articleArrayHistory.swift */,
+				2358CBE11D9A04B40079F019 /* QRcodeArticleArray.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -471,6 +477,7 @@
 				23BA8D4A1D9945FC006F1C31 /* doctor.jpg in Resources */,
 				23BA8D4F1D9945FC006F1C31 /* talk.jpg in Resources */,
 				23AD15091D92B37300EE20CE /* operation.jpg in Resources */,
+				231D0CCB1D99FD7700D9FD9B /* lab.jpg in Resources */,
 				23BA8D4D1D9945FC006F1C31 /* transplant.jpg in Resources */,
 				23BA8D481D9945FC006F1C31 /* love.jpg in Resources */,
 				23AD15011D92B34600EE20CE /* bone.jpg in Resources */,
@@ -539,6 +546,7 @@
 				23AD15181D92DC4B00EE20CE /* StarManyTopic.swift in Sources */,
 				04F509F01D96EC600041A471 /* MoreTextSettingVC.swift in Sources */,
 				234FB34C1D98FC9D00A2C099 /* HistoryEntities.swift in Sources */,
+				2358CBE21D9A04B40079F019 /* QRcodeArticleArray.swift in Sources */,
 				04965A421D8EC18C00E05F3C /* SearchResultVC.swift in Sources */,
 				040190381D85476800F8E6DA /* AppDelegate.swift in Sources */,
 				04E4C7CD1D86DFC300C570D7 /* SearchTableViewController.swift in Sources */,
@@ -690,7 +698,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = HealthEdu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = NCKU.HealthEduSS;
+				PRODUCT_BUNDLE_IDENTIFIER = NCKU.HealthEduE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -704,7 +712,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = HealthEdu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = NCKU.HealthEduSS;
+				PRODUCT_BUNDLE_IDENTIFIER = NCKU.HealthEduE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

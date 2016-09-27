@@ -177,5 +177,83 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HealthEdu/ArticleViewController.swift"
+            timestampString = "496636142.944224"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "ArticleViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HealthEdu.ArticleViewController.articleIdforQRCode.getter : Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "HealthEdu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Yu-Ju/Downloads/HealthEdu-HsiehTingMacPro_0925/HealthEdu/ArticleViewController.swift"
+                  timestampString = "496636143.473576"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HealthEdu.ArticleViewController.articleIdforQRCode.setter : Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "HealthEdu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Yu-Ju/Downloads/HealthEdu-HsiehTingMacPro_0925/HealthEdu/ArticleViewController.swift"
+                  timestampString = "496636143.473777"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "172">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HealthEdu.ArticleViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.NSBundle&gt;) -&gt; HealthEdu.ArticleViewController"
+                  moduleName = "HealthEdu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Yu-Ju/Downloads/HealthEdu-HsiehTingMacPro_0925/HealthEdu/ArticleViewController.swift"
+                  timestampString = "496636143.473867"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "588">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HealthEdu.ArticleViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;HealthEdu.ArticleViewController&gt;"
+                  moduleName = "HealthEdu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Yu-Ju/Downloads/HealthEdu-HsiehTingMacPro_0925/HealthEdu/ArticleViewController.swift"
+                  timestampString = "496636143.47395"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "488">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

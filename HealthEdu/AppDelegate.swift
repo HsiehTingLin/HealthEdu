@@ -48,8 +48,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 if url_query_dictionary["articleID"] != nil{
                     
-                    if let articleIDint = Int(url_query_dictionary["articleID"]!) {
-                        print("get it:",articleIDint)
+                    // TODO: 未來若加入成大醫院網路，加入檢查文章id功能
+                    if let articleID = url_query_dictionary["articleID"] {
+                        
+                        self.gotoArticle(articleID)
+                        
                     }else{
                         self.showAlertAppDelegate("QR Code或連結失效",message: "請改用搜尋功能，或聯繫APP開發人員！",buttonTitle: "ok",window: self.window!)
                     }
@@ -76,28 +79,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         
-        if let str: String = url.absoluteString {
-            
-            if str == "nckuhhealthedu://?articleID=22/"{
-                
-                //print(url.scheme)
-                //print(url.path)
-                //print(url.query)
-                
-                let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let initialViewControlleripad : UIViewController = mainStoryboardIpad.instantiateViewControllerWithIdentifier("DivisionViewController") as UIViewController
-                self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-                self.window?.rootViewController = initialViewControlleripad
-                self.window?.makeKeyAndVisible()
-                // 以上移動到 DivisionViewController
-                
-            }
-            
-        }
-        
+
         
         return true
     }
+    
+    func gotoArticle(id: String){
+        
+        let articleData = QRcodeall_article_Array.getArticle(id)
+        
+        let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let initialViewControlleripad = mainStoryboardIpad.instantiateViewControllerWithIdentifier("articleVCID") as! ArticleViewController
+
+
+        // 將資料送到 ArticleViewController
+        initialViewControlleripad.currentIdString = articleData.id
+        initialViewControlleripad.currentTitleString = articleData.title
+        initialViewControlleripad.currentBodyString = articleData.body
+        initialViewControlleripad.currentAuthorString = articleData.author
+        initialViewControlleripad.currentDivisionString = articleData.division
+        initialViewControlleripad.currentPhotoString = articleData.photo
+        initialViewControlleripad.currentTimeString = articleData.time
+        
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window?.rootViewController = initialViewControlleripad
+        self.window?.makeKeyAndVisible()
+        
+        
+    }
+    
     
     func showAlertAppDelegate(title : String,message : String,buttonTitle : String,window: UIWindow){
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)

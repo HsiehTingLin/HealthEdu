@@ -11,7 +11,7 @@ import CoreData
 
 class ArticleViewController: UIViewController {
     
-    // 變數定義區
+    // MARK: 變數定義區
     var currentIdString = ""
     var currentPhotoString = ""
     var currentDivisionString = ""
@@ -20,21 +20,19 @@ class ArticleViewController: UIViewController {
     var currentBodyString = ""
     var currentTimeString = ""
     var currentPhotoUIImage = UIImage()
-    //這裡先宣告一些變數，注意這裡的名字會被使用在資料來源的vc
-    
-    
+
+    // 顯示文章的 web view
     @IBOutlet var articleFullWebView: UIWebView!
     
     // 以下為 qrcodeImage 變數
     var qrcodeImage: CIImage!
     
     // 以下這個也是要傳遞過來的變數
-    var articleIdforQRCode :String? = "http://myelin.tk/for_ncku_app_test/"
+    var URLArrayforQRCode = [String]()
     
+    // 儲存fontSize
     var fontSizeString :String?
-    
-    
-    
+
     // 給 core data (儲存文章) 功能使用
     let core_data = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
@@ -42,10 +40,49 @@ class ArticleViewController: UIViewController {
     
     
     
+    // MARK:- 基本func區
+    
+    /**
+     沒有用到
+     */
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+    }
+    
+    /**
+     每碰到一次這個頁面，就執行一次
+     - 顯示bar button
+     - 顯示article
+     - History刪除（過去相同文章）與儲存（儲存新文章）
+     - returns: 沒有
+     */
+    override func viewWillAppear(animated: Bool) {
+        
+        
+        self.showBarButtonItem()
+        
+        
+        
+        // self.navigationItem.title = currentDivisionString
+        // 顯示標題在此
+        
+        self.showarticleFullHTML(self.getDefaultFontSize())
+        // 一開此頁面顯示文章，以 21 font-size顯示
+        
+        self.deleteHistoryExist()
+        
+        self.addToHistory()
+        
+        
+    }
     
     
-    
-    // 產生 QR Code 按鈕 button func
+    /**
+        產生 QR Code 按鈕 button func
+        - returns: 沒有
+     */
     func qrcodeBtn(sender: AnyObject) {
         let alertMessage = UIAlertController(title: "請使用QR Code掃描器掃描！", message: "點擊背景以返回", preferredStyle: .Alert)
         
@@ -242,15 +279,21 @@ class ArticleViewController: UIViewController {
     
     
     
-    // 產生QR Code
+    // MARK: 產生QR Code圖片
     func GenerateQRCode(imgview: UIImageView) -> UIImage
     {
+        // 先把 此篇文章的id的url產生起來
+        self.URLArrayforQRCode.append("http://myelin.tk/for_ncku_app_test/index.php?articleID=")
+        self.URLArrayforQRCode.append(self.currentIdString)
+
+        let realURLStringforQRCode = URLArrayforQRCode.joinWithSeparator("")
         
-        if self.articleIdforQRCode == "" {
+        // 預防機制
+        if realURLStringforQRCode == "" {
             return UIImage()
         }
         
-        let data = self.articleIdforQRCode!.dataUsingEncoding(NSISOLatin1StringEncoding, allowLossyConversion: false)
+        let data = realURLStringforQRCode.dataUsingEncoding(NSISOLatin1StringEncoding, allowLossyConversion: false)
         // data 為要送去製造 QR Code 的 String
         
         let filter = CIFilter(name: "CIQRCodeGenerator")
@@ -280,31 +323,7 @@ class ArticleViewController: UIViewController {
     
     
     
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        
-       
-        self.showBarButtonItem()
-        
-        
-        
-        // self.navigationItem.title = currentDivisionString
-        // 顯示標題在此
-        
-        self.showarticleFullHTML(self.getDefaultFontSize())
-        // 一開此頁面顯示文章，以 21 font-size顯示
-        
-        self.deleteHistoryExist()
-        
-        self.addToHistory()
-        
-        
-    }
+
     
 
     func getDefaultFontSizeString() -> String {

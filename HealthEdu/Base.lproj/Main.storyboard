@@ -482,23 +482,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRW-q7-UTd">
-                                <rect key="frame" x="152" y="84" width="297" height="61"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="297" id="P6r-TG-tpu"/>
-                                    <constraint firstAttribute="height" constant="61" id="vs4-Lp-jic"/>
-                                </constraints>
-                                <attributedString key="attributedText">
-                                    <fragment content="我們重視來自各位的寶貴意見">
-                                        <attributes>
-                                            <color key="NSColor" red="0.84699219465255737" green="0.40081799030303955" blue="0.3990214467048645" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="21" name="PingFangTC-Medium"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zWJ-NS-0SL">
                                 <rect key="frame" x="152" y="131" width="297" height="61"/>
                                 <constraints>
@@ -509,7 +492,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="期盼我們一同成長">
                                         <attributes>
-                                            <color key="NSColor" red="0.84699219465255737" green="0.40081799030303955" blue="0.3990214467048645" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="NSColor" red="0.024045754224061966" green="0.0038432937581092119" blue="0.0036894457880407572" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <font key="NSFont" size="21" name="PingFangTC-Medium"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -529,6 +512,23 @@
                                     <action selector="openMailapp:" destination="ody-hn-8A3" eventType="touchUpInside" id="SBp-hA-So7"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRW-q7-UTd">
+                                <rect key="frame" x="152" y="84" width="297" height="61"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="297" id="P6r-TG-tpu"/>
+                                    <constraint firstAttribute="height" constant="61" id="vs4-Lp-jic"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="我們重視來自各位的寶貴意見">
+                                        <attributes>
+                                            <color key="NSColor" red="0.047895453870296478" green="0.011622702702879906" blue="0.01134040579199791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="22" name="PingFangTC-Medium"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -975,7 +975,7 @@
         <!--Article View Controller-->
         <scene sceneID="wGr-PA-d6J">
             <objects>
-                <viewController storyboardIdentifier="ArticleViewController" id="t9C-vJ-imM" customClass="ArticleViewController" customModule="HealthEdu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="articleVCID" id="t9C-vJ-imM" customClass="ArticleViewController" customModule="HealthEdu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Aea-Iu-a7g"/>
                         <viewControllerLayoutGuide type="bottom" id="JDQ-GE-wfQ"/>

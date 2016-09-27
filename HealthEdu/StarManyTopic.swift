@@ -1,15 +1,17 @@
 //
-//  StarManyTopic.swift
+//  SearchResultVCArticle.swift
+//  靜態精選主題
+//
 //  HealthEdu
 //
-//  Created by Yu-Ju Lin on 2016/9/21.
-//  Copyright © 2016年 NCKU_hospital. All rights reserved.
+//  Created by Yu-Ju Lin, Hsieh-Ting Lin.
+//  Copyright © 2016年 衛教成大. All rights reserved.
 //
 
 import Foundation
 
 class StarManyTopic {
-    
+
     static func getTopicArray() -> [topic] {
         
         var topicArray = [topic]()
@@ -20,10 +22,12 @@ class StarManyTopic {
         
         let topic3 = topic(topicId: 3, topicTitle: "你知道你的「家庭醫師」是誰嗎？", topicPhoto: "organ119.jpg" , topicTime: "2016-09-13")
         
+        let topic4 = topic(topicId: 4, topicTitle: "醫師，我的大便有血！", topicPhoto: "lab.jpg" , topicTime: "2016-09-13")
         
         topicArray.append(topic1)
         topicArray.append(topic2)
         topicArray.append(topic3)
+        topicArray.append(topic4)
         
         return topicArray
         
