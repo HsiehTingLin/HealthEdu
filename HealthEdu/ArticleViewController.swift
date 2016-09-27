@@ -1,5 +1,7 @@
 //
 //  ArticleViewController.swift
+//  ViewControlller for showing one Article Content Detail
+//
 //  HealthEdu
 //
 //  Created by Mac on 2016/9/12.
@@ -11,79 +13,245 @@ import CoreData
 
 class ArticleViewController: UIViewController {
     
-    // MARK: 變數定義區
+    // MARK:- Variable Declaration
     var currentIdString = ""
+    
     var currentPhotoString = ""
+    
     var currentDivisionString = ""
+    
     var currentTitleString = ""
+    
     var currentAuthorString = ""
+    
     var currentBodyString = ""
+    
     var currentTimeString = ""
+    
+    // for now just leave it empty
     var currentPhotoUIImage = UIImage()
 
-    // 顯示文章的 web view
+    // WebView for article Full text
     @IBOutlet var articleFullWebView: UIWebView!
     
-    // 以下為 qrcodeImage 變數
+    // qrcodeImage
     var qrcodeImage: CIImage!
     
-    // 以下這個也是要傳遞過來的變數
+    // URLArray for storing redirecting qrcode url
     var URLArrayforQRCode = [String]()
     
-    // 儲存fontSize
+    // storing fontSize
     var fontSizeString :String?
 
-    // 給 core data (儲存文章) 功能使用
+    // for core data
     let core_data = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     
+
+    // MARK:- Basic Func
     
-    
-    
-    // MARK:- 基本func區
-    
-    /**
-     沒有用到
-     */
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
     }
     
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
     /**
-     每碰到一次這個頁面，就執行一次
-     - 顯示bar button
-     - 顯示article
-     - History刪除（過去相同文章）與儲存（儲存新文章）
-     - returns: 沒有
+     execute once whenever user view this ViewController
+     - show navigation Bar button item
+     - show article full html in web view
+     - delete History of same article 
+     - add new history record to core data
+     
+     - returns: nothing
      */
     override func viewWillAppear(animated: Bool) {
         
-        
+        // show bar button item (qrcode, change font size, AddTobookmark)
         self.showBarButtonItem()
         
-        
-        
-        // self.navigationItem.title = currentDivisionString
-        // 顯示標題在此
-        
+        // show article Full in web view (get defaults font size)
         self.showarticleFullHTML(self.getDefaultFontSize())
-        // 一開此頁面顯示文章，以 21 font-size顯示
         
+        // delete same history
         self.deleteHistoryExist()
         
+        // add new record to HistoryEntities
         self.addToHistory()
         
         
     }
     
+    /**
+     show bar button item here
+     
+     - returns: nothing
+     */
+    
+    func showBarButtonItem()
+    {
+        /*如果該文章已經被儲存在 core data 中，則顯示填滿的 書籤 icon*/
+        let fetchRequest = NSFetchRequest(entityName: "BookmarkEntities")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", currentIdString)
+        
+        do {
+            
+            let fetchResults = try self.core_data.executeFetchRequest(fetchRequest) as? [BookmarkEntities]
+            // 找尋
+            
+            var button1 = UIBarButtonItem()
+            
+            if fetchResults!.count > 0 {
+                
+                button1 = UIBarButtonItem(image: UIImage(named: "bookmark_black"), landscapeImagePhone: nil, style: .Done, target: self, action: #selector(self.deleteFromBookmark))
+                
+            }else{
+                
+                button1 = UIBarButtonItem(image: UIImage(named: "bookmark_white"), landscapeImagePhone: nil, style: .Done, target: self, action: #selector(self.addToBookmark(_:)))
+                
+            }
+            
+            
+            var width =  button1.width
+            width = -10
+            button1.width = width
+            
+            
+            
+            let button2 = UIBarButtonItem(image: UIImage(named: "font_size"), landscapeImagePhone: nil, style: .Done, target: self, action: #selector(self.changeFontSize(_:)))
+            
+            let button3 = UIBarButtonItem(image: UIImage(named: "qrcode"), landscapeImagePhone: nil, style: .Done, target: self, action: #selector(self.qrcodeBtn(_:)))
+            
+            
+            self.navigationItem.setRightBarButtonItems([button1,button2,button3], animated: false)
+            
+            
+            
+            
+        }catch{
+            
+            fatalError("CANT FIND: \(error)")
+            // 無法找尋
+        }
+    }
+
+    
+    
+    
+    
+    
+    // MARK:- Show HTML
+    
     
     /**
-        產生 QR Code 按鈕 button func
+        show full article HTML
+        - paraemeter fontsize: size of font
+        - returns: nothgin
+     
+     */
+    func showarticleFullHTML(fontsize: Int){
+        
+        
+        let photoSeparated:Array = currentPhotoString.componentsSeparatedByString(".")
+        
+        let photoPath :String? = NSBundle.mainBundle().pathForResource(photoSeparated[0], ofType: photoSeparated[1])
+        
+        
+        let divWidth = self.view.frame.size.width-17
+        let divHeight = 243
+        let imgWidth = self.view.frame.size.width-17
+        
+        
+        var articleFullHTMLarray = [String]()
+        articleFullHTMLarray.append("<div width=\"\(divWidth)\" style=\"word-break: break-all;\"")
+        
+        
+        articleFullHTMLarray.append("<br><p><div align=\"center\" style=\"font-size:35px; font-weight:bold;\">\(self.currentTitleString)</div></p>")
+        articleFullHTMLarray.append("<p><div align=\"center\" style=\"color: gray; font-size:19px\">\(self.currentAuthorString)</div></p>")
+        articleFullHTMLarray.append("<div align=\"center\" style=\"width:\(divWidth)px; height:\(divHeight)px; overflow:hidden;  \">")
+        articleFullHTMLarray.append(NSString(format:"<img src=\"file://%@\" width=\"\(imgWidth)\">", photoPath!) as String)
+        articleFullHTMLarray.append("</div>")
+        articleFullHTMLarray.append("<div style='font-size: \(fontsize)px' id=\"body\"><p>\(self.currentBodyString)</p>")
+        articleFullHTMLarray.append("<p>最後更新：\(self.currentTimeString)<br></p></div>")
+        articleFullHTMLarray.append("</div>")
+        
+        
+        let articleFullHTML = articleFullHTMLarray.joinWithSeparator("")
+        
+        self.fontSizeString = "正常"
+        self.articleFullWebView.loadHTMLString(articleFullHTML, baseURL: nil)
+        
+    }
+    
+    
+    
+    // MARK: Bar Button Item Function
+    
+    /**
+     this func will generate a qrcode related to id of the article
+     - returns: UIImage()
+     */
+    func GenerateQRCode(imgview: UIImageView) -> UIImage
+    {
+        // 先把 此篇文章的id的url產生起來
+        self.URLArrayforQRCode.append("http://myelin.tk/for_ncku_app_test/index.php?articleID=")
+        self.URLArrayforQRCode.append(self.currentIdString)
+        
+        let realURLStringforQRCode = URLArrayforQRCode.joinWithSeparator("")
+        
+        // 預防機制
+        if realURLStringforQRCode == "" {
+            return UIImage()
+        }
+        
+        let data = realURLStringforQRCode.dataUsingEncoding(NSISOLatin1StringEncoding, allowLossyConversion: false)
+        // data 為要送去製造 QR Code 的 String
+        
+        let filter = CIFilter(name: "CIQRCodeGenerator")
+        
+        filter!.setValue(data, forKey: "inputMessage")
+        filter!.setValue("Q", forKey: "inputCorrectionLevel")
+        
+        self.qrcodeImage = filter!.outputImage
+        
+        let scaleX = imgview.frame.size.width / self.qrcodeImage.extent.size.width
+        let scaleY = imgview.frame.size.height / self.qrcodeImage.extent.size.height
+        // 上面這兩行 是算出目前 imgQRCode 這個 frame 的大小與 qrcodeimage
+        
+        let transformedImage = self.qrcodeImage.imageByApplyingTransform(CGAffineTransformMakeScale(scaleX, scaleY))
+        // 轉換 qrcodeimage的大小
+        
+        return UIImage(CIImage: transformedImage)
+        
+    }
+    
+    
+    /**
+     
+     function: press background and alert controller will close
+     
+     */
+    func alertControllerBackgroundTapped()
+    {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    
+    /**
+        executed when qr code generate button is clicked
         - returns: 沒有
      */
     func qrcodeBtn(sender: AnyObject) {
+        
+        // define what to show in alert controller
         let alertMessage = UIAlertController(title: "請使用QR Code掃描器掃描！", message: "點擊背景以返回", preferredStyle: .Alert)
         
         let height:NSLayoutConstraint = NSLayoutConstraint(item: alertMessage.view, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 320)
@@ -91,16 +259,12 @@ class ArticleViewController: UIViewController {
         alertMessage.view.addConstraint(height)
         
         
-        
         let imageView = UIImageView(frame: CGRectMake(35, 90, 200, 200))
         
+        // call self.GenerateQRCode to return a UIImage
         imageView.image = self.GenerateQRCode(imageView)
-        // 右邊產生 qrcode
+        
         alertMessage.view.addSubview(imageView)
-        
-        //let action = UIAlertAction(title: "返回", style: .Default, handler: nil)
-        
-        //alertMessage.addAction(action)
         
         self.presentViewController(alertMessage, animated: true, completion:{
             alertMessage.view.superview?.userInteractionEnabled = true
@@ -109,7 +273,13 @@ class ArticleViewController: UIViewController {
         
     }
     
-    // 改變文字大小 button func
+    /**
+     
+        executed when qr code generate button is clicked
+        change font size
+        and store it in NSUserDefaults
+     
+     */
     func changeFontSize(sender: AnyObject) {
         
         
@@ -160,42 +330,13 @@ class ArticleViewController: UIViewController {
         
     }
     
-    // 顯示 article web view HTML
-    func showarticleFullHTML(fontsize: Int){
-        
-        
-        let photoSeparated:Array = currentPhotoString.componentsSeparatedByString(".")
-        
-        let photoPath :String? = NSBundle.mainBundle().pathForResource(photoSeparated[0], ofType: photoSeparated[1])
-        
-        
-        let divWidth = self.view.frame.size.width-17
-        let divHeight = 243
-        let imgWidth = self.view.frame.size.width-17
-        
-        
-        var articleFullHTMLarray = [String]()
-        articleFullHTMLarray.append("<div width=\"\(divWidth)\" style=\"word-break: break-all;\"")
-        
-        
-        articleFullHTMLarray.append("<br><p><div align=\"center\" style=\"font-size:35px; font-weight:bold;\">\(self.currentTitleString)</div></p>")
-        articleFullHTMLarray.append("<p><div align=\"center\" style=\"color: gray; font-size:19px\">\(self.currentAuthorString)</div></p>")
-        articleFullHTMLarray.append("<div align=\"center\" style=\"width:\(divWidth)px; height:\(divHeight)px; overflow:hidden;  \">")
-        articleFullHTMLarray.append(NSString(format:"<img src=\"file://%@\" width=\"\(imgWidth)\">", photoPath!) as String)
-        articleFullHTMLarray.append("</div>")
-        articleFullHTMLarray.append("<div style='font-size: \(fontsize)px' id=\"body\"><p>\(self.currentBodyString)</p>")
-        articleFullHTMLarray.append("<p>最後更新：\(self.currentTimeString)<br></p></div>")
-        articleFullHTMLarray.append("</div>")
-        
-        
-        let articleFullHTML = articleFullHTMLarray.joinWithSeparator("")
-        
-        self.fontSizeString = "正常"
-        self.articleFullWebView.loadHTMLString(articleFullHTML, baseURL: nil)
-        
-    }
+
     
-    // func 新增到書籤
+    /**
+     
+        add article to bookmark
+     
+     */
     func addToBookmark(sender: AnyObject) {
         
         
@@ -271,53 +412,14 @@ class ArticleViewController: UIViewController {
     
     
     
-    // MARK: 產生QR Code圖片
-    func GenerateQRCode(imgview: UIImageView) -> UIImage
-    {
-        // 先把 此篇文章的id的url產生起來
-        self.URLArrayforQRCode.append("http://myelin.tk/for_ncku_app_test/index.php?articleID=")
-        self.URLArrayforQRCode.append(self.currentIdString)
-
-        let realURLStringforQRCode = URLArrayforQRCode.joinWithSeparator("")
-        
-        // 預防機制
-        if realURLStringforQRCode == "" {
-            return UIImage()
-        }
-        
-        let data = realURLStringforQRCode.dataUsingEncoding(NSISOLatin1StringEncoding, allowLossyConversion: false)
-        // data 為要送去製造 QR Code 的 String
-        
-        let filter = CIFilter(name: "CIQRCodeGenerator")
-        
-        filter!.setValue(data, forKey: "inputMessage")
-        filter!.setValue("Q", forKey: "inputCorrectionLevel")
-        
-        self.qrcodeImage = filter!.outputImage
-        
-        let scaleX = imgview.frame.size.width / self.qrcodeImage.extent.size.width
-        let scaleY = imgview.frame.size.height / self.qrcodeImage.extent.size.height
-        // 上面這兩行 是算出目前 imgQRCode 這個 frame 的大小與 qrcodeimage
-        
-        let transformedImage = self.qrcodeImage.imageByApplyingTransform(CGAffineTransformMakeScale(scaleX, scaleY))
-        // 轉換 qrcodeimage的大小
-        
-        return UIImage(CIImage: transformedImage)
-        
-    }
-    
-    
-    // 按下背景可以返回
-    func alertControllerBackgroundTapped()
-    {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    
-    
 
     
-
+    /**
+     
+     get user default setting for article font size
+     - returns: String 小 正常 大 最大
+     
+     */
     func getDefaultFontSizeString() -> String {
         /* userDefault 初始化：儲存 預設 font size */
         let userDefault = NSUserDefaults.standardUserDefaults()
@@ -344,6 +446,14 @@ class ArticleViewController: UIViewController {
         }
     }
     
+    
+    /**
+     
+      get user default font size in Int (px)
+     
+     - returns: Int, 19,21,24,29
+     
+     */
     func getDefaultFontSize() -> Int {
         
         /* userDefault 初始化：儲存 預設 font size */
@@ -378,53 +488,11 @@ class ArticleViewController: UIViewController {
     
     
     
-    func showBarButtonItem()
-    {
-        /*如果該文章已經被儲存在 core data 中，則顯示填滿的 書籤 icon*/
-        let fetchRequest = NSFetchRequest(entityName: "BookmarkEntities")
-        fetchRequest.predicate = NSPredicate(format: "id == %@", currentIdString)
-        
-        do {
-            
-            let fetchResults = try self.core_data.executeFetchRequest(fetchRequest) as? [BookmarkEntities]
-            // 找尋
-            
-            var button1 = UIBarButtonItem()
-            
-            if fetchResults!.count > 0 {
-                
-                button1 = UIBarButtonItem(image: UIImage(named: "bookmark_black"), landscapeImagePhone: nil, style: .Done, target: self, action: #selector(self.deleteFromBookmark))
-                
-            }else{
-                
-                button1 = UIBarButtonItem(image: UIImage(named: "bookmark_white"), landscapeImagePhone: nil, style: .Done, target: self, action: #selector(self.addToBookmark(_:)))
-                
-            }
-            
-            
-            var width =  button1.width
-            width = -10
-            button1.width = width
-            
-            
-            
-            let button2 = UIBarButtonItem(image: UIImage(named: "font_size"), landscapeImagePhone: nil, style: .Done, target: self, action: #selector(self.changeFontSize(_:)))
-            
-            let button3 = UIBarButtonItem(image: UIImage(named: "qrcode"), landscapeImagePhone: nil, style: .Done, target: self, action: #selector(self.qrcodeBtn(_:)))
-            
-            
-            self.navigationItem.setRightBarButtonItems([button1,button2,button3], animated: false)
-            
-            
-            
-            
-        }catch{
-            
-            fatalError("CANT FIND: \(error)")
-            // 無法找尋
-        }
-    }
-    
+    /**
+     
+     delete article from bookmark
+     
+     */
     func deleteFromBookmark()
     {
         
@@ -462,6 +530,11 @@ class ArticleViewController: UIViewController {
         
     }
     
+    /**
+     
+     delete existing article from History
+     
+     */
     func deleteHistoryExist()
     {
         let deleteExistRequest = NSFetchRequest(entityName: "HistoryEntities")
@@ -497,6 +570,11 @@ class ArticleViewController: UIViewController {
     }
     
     
+    /**
+     
+     add article to History
+     
+     */
     func addToHistory()
     {
         
@@ -570,11 +648,7 @@ class ArticleViewController: UIViewController {
     }
     
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
     
     
     

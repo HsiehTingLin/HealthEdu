@@ -1,5 +1,7 @@
 //
 //  BookmarkVCViewController.swift
+//  ViewController for showing **History** and **Bookmark**
+//
 //  HealthEdu
 //
 //  Created by Mac on 2016/9/17.
@@ -11,51 +13,94 @@ import CoreData
 
 class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableViewDelegate{
     
+    // MARK:- Variable Declaration
     
+    // Segment Control for know user is in "History" or "Bookmark" page
     @IBOutlet weak var BookmarkSegControlIBO: UISegmentedControl!
+    
+    // for storing articles
     var articleArrayHistory:[article] = [article]()
     var articleArrayBookmark:[article] = [article]()
     
+    // table View link
     @IBOutlet weak var tableView: UITableView!
     
     
-    // 給 core data (讀取文章) 功能使用
+    // for core data (store articles)
     let core_data = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     
-    
+    // MARK:- Basic Func
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
     }
-    
-    // 不同Segm換鈕切換時的結果
-    
-    
+  
+    /**
+     Magic here: each time when user "view" this viewController
+    the following func viewWillAppear will be executed once.
+    this is all for real-time reload tableView data
+     
+     - returns: nothing
+     */
     override func viewWillAppear(animated: Bool) {
         
-        // 顯示瀏覽歷史
+        // show history articles
         self.showHistory()
         
-        // 顯示書籤
+        // show bookmark articles
         self.showBookmark()
         
         tableView.reloadData()
         
         
     }
+  
+    /**
+     Get History articles data from core data "HistoryEntities"
+     and apply them to "articleArrayHistory"
+     
+     - returns: nothing
+     */
+    func showHistory(){
+        
+        
+        articleArrayHistory = []
+        
+        // get core data
+        let request = NSFetchRequest(entityName: "HistoryEntities")
+        let idDescriptor: NSSortDescriptor = NSSortDescriptor(key: "autoIncrement", ascending: false)
+        request.sortDescriptors = [idDescriptor]
+        
+        do {
+            
+            let results = try self.core_data.executeFetchRequest(request) as! [HistoryEntities]
+            
+            for result in results {
+                
+                articleArrayHistory.append(article(id: result.id! ,title: result.title!, photoUIImage: UIImage() ,  photo: result.photo!, author: result.author!, body: result.body!, time: result.time! , division: result.division!))
+            }
+            
+        }catch{
+            fatalError("Failed to fetch data: \(error)")
+        }
+        
+        
+    }
     
-    
+    /**
+     Get Bookmark articles data from core data "BookmarkEntities",
+     and apply them to "articleArrayBookmark"
+     
+     - returns: nothing
+     */
     func showBookmark(){
         
-        /* 讀取 Bookmark core data */
-        //articleArrayBookmark = articleArrayBookmarkData.getArticle()
         articleArrayBookmark = []
         
         
-        /* 讀取 Bookmark core data */
+        // get core data
         let request = NSFetchRequest(entityName: "BookmarkEntities")
         let idDescriptor: NSSortDescriptor = NSSortDescriptor(key: "autoIncrement", ascending: false)
         request.sortDescriptors = [idDescriptor]
@@ -75,34 +120,13 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
         
     }
     
-    func showHistory(){
-        
-        /* 讀取 History core data */
-        //articleArrayHistory = articleArrayHistoryData.getArticle()
-        articleArrayHistory = []
-        
-        /* 讀取 History core data */
-        let request = NSFetchRequest(entityName: "HistoryEntities")
-        let idDescriptor: NSSortDescriptor = NSSortDescriptor(key: "autoIncrement", ascending: false)
-        request.sortDescriptors = [idDescriptor]
-        
-        do {
-            
-            let results = try self.core_data.executeFetchRequest(request) as! [HistoryEntities]
-            
-            for result in results {
-                
-                articleArrayHistory.append(article(id: result.id! ,title: result.title!, photoUIImage: UIImage() ,  photo: result.photo!, author: result.author!, body: result.body!, time: result.time! , division: result.division!))
-            }
-            
-        }catch{
-            fatalError("Failed to fetch data: \(error)")
-        }
-        
-    }
-    
-    
-    
+ 
+    /**
+     Each time when segmentControl is pressed,
+     the following func will be executed (reload the table view).
+     
+     - returns: nothing
+     */
     @IBAction func BookmarkSegControlAction(sender: AnyObject) {
         tableView.reloadData()
     }
@@ -112,19 +136,39 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    // MARK:- TableView func
+    
+    /**
+     Define How many section there are in table
+     - returns: Int, in this case just return "1".
+    */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
     
-    // 不同array被選擇時，要回傳不同row的數量
+    /**
+     Define How many rows in that one section.
+     - return: "articleArrayHistory.count" if segmentControl is History
+     - return: "articleArrayBookmark.count" if segmentControl is Bookmark
+
+     */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        // store row count
         var returnRowCount = 0
+        
         switch (BookmarkSegControlIBO.selectedSegmentIndex) {
         case 0:
+            // Segment Control is History
             returnRowCount = articleArrayHistory.count
+            
         case 1:
+            // Segment Control is Bookmark
             returnRowCount = articleArrayBookmark.count
+            
         default:
             break
         }
@@ -133,13 +177,22 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
         return returnRowCount
     }
     
-    // 不同的seg要傳回不同的cell值
+    /**
+     Define content of each cell.
+     Same as the previous func, here we "switch" to know whether user is in History or Boookmark
+     
+     - returns: cell
+     
+     */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        // define cell structure
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! myBookmarkCell
         
         switch (BookmarkSegControlIBO.selectedSegmentIndex) {
             
         case 0:
+            // User is in History
             let articleItem = articleArrayHistory[indexPath.row]
             cell.BookmarkImageViewCellIBO.image = UIImage(named: articleItem.photo)
             cell.BookmarkTitleIBO.text = articleItem.title
@@ -148,6 +201,7 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
             break
             
         case 1:
+            // User is in Bookmark
             let articleItem = articleArrayBookmark[indexPath.row]
             cell.BookmarkImageViewCellIBO.image = UIImage(named: articleItem.photo)
             cell.BookmarkTitleIBO.text = articleItem.title
@@ -160,32 +214,54 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
     }
     
     
+    /**
+     Define that cell can edit---> for "向左滑出現刪除按鈕" function
+     
+     - returns: true
+     
+     */
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
     
+    
+    
+    /**
+     Define what the app does after user click on CellEditingStle-Delete
+     - returns: nothing
+     */
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
             
             switch (BookmarkSegControlIBO.selectedSegmentIndex) {
                 
-                
-                
             case 0:
+                // delete that article from HistoryEntities
                 self.deleteFromHistory(articleArrayHistory[indexPath.row].id)
                 break
                 
             case 1:
+                // delete that article from BookmarkEntities
                 self.deleteFromBookmark(articleArrayBookmark[indexPath.row].id)
                 
             default:
                 break
             }
             
-            // handle delete (by removing the data from your array and updating the tableview)
+            
         }
     }
     
+    
+    // MARK:- Delete From Core Data func
+    
+    /**
+     Define what the app does after user click on CellEditingStle-Delete
+     - parameter idToDelete: String, give the id to be deleted
+     - returns: nothing
+     */
     func deleteFromHistory(idToDelete: String)
     {
         
@@ -228,6 +304,12 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
         
     }
     
+    
+    /**
+     Define what the app does after user click on CellEditingStle-Delete
+     - parameter idToDelete: String, give the id to be deleted
+     - returns: nothing
+     */
     func deleteFromBookmark(idToDelete: String)
     {
         
@@ -271,15 +353,26 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
     }
     
     
+    // MARK:- View Change To ArticleViewController and Pass Data
     
-    
-    
+    /**
+     define destination view , and selectively pass data to destination
+     - returns: nothing
+     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        // define destination
         let articleDetail = segue.destinationViewController as! ArticleViewController
+        
+        // get click tableView indexPath
         if let indexPath = self.tableView.indexPathForSelectedRow {
-            // 因為有兩種情況，所弄了酪switch 我覺得這堆碼有夠醜Q
+            
             switch (BookmarkSegControlIBO.selectedSegmentIndex) {
+                
+                
             case 0:
+                
+                // user choose History
                 let articleSelected = articleArrayHistory[indexPath.row]
                 articleDetail.currentIdString = articleSelected.id
                 articleDetail.currentTitleString = articleSelected.title
@@ -290,7 +383,10 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
                 articleDetail.currentPhotoUIImage = articleSelected.photoUIImage
                 articleDetail.currentTimeString = articleSelected.time
                 break
+                
             case 1:
+                
+                // user choose Bookmark
                 let articleSelected = articleArrayBookmark[indexPath.row]
                 articleDetail.currentIdString = articleSelected.id
                 articleDetail.currentTitleString = articleSelected.title
@@ -299,28 +395,18 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
                 articleDetail.currentDivisionString = articleSelected.division
                 articleDetail.currentPhotoString = articleSelected.photo
                 articleDetail.currentTimeString = articleSelected.time
+                
             default:
                 break
+                
+                
             }
             
-            
-            
-            
-            // 這個func的作用:先把 articleArray中，被選中的資料，指定為 articleSelected這個變數(class是article )，然後將來自"ArticleViewController"的變數指定為articleDetail這個var(class 是ArticleViewController)，接著把articleSelected的每個變數都指定為articleDetail的各個對應的變數，類型都是String
-            
+ 
             
         }
     }
     
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+
     
 }

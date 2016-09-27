@@ -1,5 +1,7 @@
 //
 //  ArticleClass.swift
+//  Define Class of a article
+//
 //  HealthEdu
 //
 //  Created by Mac on 2016/9/11.
@@ -11,20 +13,32 @@ import UIKit
 
 class article {
     
+    
+    // MARK:- Variable Declaration
     var id : String
-    // 新增id，String先用Int好了，因為我很懶惰，到時候要轉 int 也不難就是了
     
     var title : String
+    
     var photo : String
+    
+    // for future, photoUIImage will contain image directly download from JSON server
     var photoUIImage : UIImage
-    // 新增 photoUIImage 因為在 未來圖片是當場從網路下載，下載完成會立刻將它轉換成 UIImage
-    // 所以需要有一個變數儲存這個
     
     var author : String
+    
     var body : String
+    
     var time : String
+    
     var division : String
     
+    
+    
+    // MARK:- init() place
+    
+    /**
+     init() 定義 article class 的基本元素
+     */
     init (id: String, title: String, photoUIImage : UIImage, photo : String, author : String, body : String, time: String, division: String){
         
         self.id = id
@@ -35,6 +49,7 @@ class article {
         self.body = body
         self.time = time
         self.division = division
+        
     }
     
 }

@@ -1,5 +1,7 @@
 //
 //  SearchQRCodeReaderViewController.swift
+//  ViewController for QR Code camera
+//
 //  HealthEdu
 //
 //  Created by Yu-Ju Lin on 2016/9/21.
@@ -11,16 +13,21 @@ import AVFoundation
 
 class SearchQRCodeReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
+    // MARK:- Variable Declaration
     
-    //@IBOutlet weak var messageLabel:UILabel!
-    
+    // captureSession
     var captureSession:AVCaptureSession?
+    
+    // videoPreviewLayer
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
+    
+    // qrCodeFrameView
     var qrCodeFrameView:UIView?
     
     // Added to support different barcodes
     let supportedBarCodes = [AVMetadataObjectTypeQRCode, AVMetadataObjectTypeCode128Code, AVMetadataObjectTypeCode39Code, AVMetadataObjectTypeCode93Code, AVMetadataObjectTypeUPCECode, AVMetadataObjectTypePDF417Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeAztecCode]
     
+    // MARK:- Basic Func
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,6 +36,7 @@ class SearchQRCodeReaderViewController: UIViewController, AVCaptureMetadataOutpu
         let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         
         do {
+            
             // Get an instance of the AVCaptureDeviceInput class using the previous device object.
             let input = try AVCaptureDeviceInput(device: captureDevice)
             
@@ -56,7 +64,6 @@ class SearchQRCodeReaderViewController: UIViewController, AVCaptureMetadataOutpu
             // Start video capture
             captureSession?.startRunning()
             
-            
             // Initialize QR Code Frame to highlight the QR code
             qrCodeFrameView = UIView()
             
@@ -80,6 +87,8 @@ class SearchQRCodeReaderViewController: UIViewController, AVCaptureMetadataOutpu
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK:- Func for output
+    
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
         
         // Check if the metadataObjects array is not nil and it contains at least one object.
@@ -95,23 +104,25 @@ class SearchQRCodeReaderViewController: UIViewController, AVCaptureMetadataOutpu
         // Instead of hardcoding the AVMetadataObjectTypeQRCode, we check if the type
         // can be found in the array of supported bar codes.
         if supportedBarCodes.contains(metadataObj.type) {
-            //        if metadataObj.type == AVMetadataObjectTypeQRCode {
+            
+            // if metadataObj.type == AVMetadataObjectTypeQRCode {
             // If the found metadata is equal to the QR code metadata then update the status label's text and set the bounds
             let barCodeObject = videoPreviewLayer?.transformedMetadataObjectForMetadataObject(metadataObj)
+            
             qrCodeFrameView?.frame = barCodeObject!.bounds
             
             if metadataObj.stringValue != nil {
                 
-                
-                // 這裡！這裡！
+                // get answer of QR Code
                 let answer = metadataObj.stringValue
                 
-                // 常數 answer 是 qrcode 解析出來的字串
-                // 下面這行是把解析出來的東西丟到一個 label 也就是螢幕中底下的灰色橫幅
-                // messageLabel.text = answer
-                
-                // 下面這行是以 safari 開啟該連結，你可以裝到手機試試看會怎麼樣！
+                // answer should be a url
+                // we then use UIApplication (Safari for default) to open url
                 UIApplication.sharedApplication().openURL(NSURL(string: answer)!)
+                
+                // the url wil go to My website,
+                // and my website will redirect user back to 衛教成大 app
+                // open the scanned article
                 
             }
         }
