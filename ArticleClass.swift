@@ -4,7 +4,7 @@
 //
 //  Created by Mac on 2016/9/11.
 //  Copyright © 2016年 NCKU_hospital. All rights reserved.
-//  目前還有 division、time的 var還沒加，如果要幫每個文章加的話就要
+//  
 
 import Foundation
 import UIKit

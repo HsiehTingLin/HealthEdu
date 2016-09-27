@@ -120,37 +120,29 @@ class ArticleViewController: UIViewController {
         let sizeSmaller = UIAlertAction(title: "小", style: .Default, handler: { (action) -> Void in
             
             
-            let script = "document.getElementById('body').style.fontSize = '19px'";
-            if let result = self.articleFullWebView.stringByEvaluatingJavaScriptFromString(script) {
-                print("result is \(result)")
-            }
+            let script = "document.getElementById('body').style.fontSize = '19px'"
+            self.articleFullWebView.stringByEvaluatingJavaScriptFromString(script)
             self.fontSizeString = "小"
             MoreTextSettingVC.storeFontSizetoUserDefaults(0)
         })
         
         let sizeNormal = UIAlertAction(title: "正常", style: .Default, handler: { (action) -> Void in
-            let script = "document.getElementById('body').style.fontSize = '21px'";
-            if let result = self.articleFullWebView.stringByEvaluatingJavaScriptFromString(script) {
-                print("result is \(result)")
-            }
+            let script = "document.getElementById('body').style.fontSize = '21px'"
+            self.articleFullWebView.stringByEvaluatingJavaScriptFromString(script)
             self.fontSizeString = "正常"
             MoreTextSettingVC.storeFontSizetoUserDefaults(1)
         })
         
         let sizeBigger = UIAlertAction(title: "大", style: .Default, handler: { (action) -> Void in
-            let script = "document.getElementById('body').style.fontSize = '24px'";
-            if let result = self.articleFullWebView.stringByEvaluatingJavaScriptFromString(script) {
-                print("result is \(result)")
-            }
+            let script = "document.getElementById('body').style.fontSize = '24px'"
+            self.articleFullWebView.stringByEvaluatingJavaScriptFromString(script)
             self.fontSizeString = "大"
             MoreTextSettingVC.storeFontSizetoUserDefaults(2)
         })
         
         let sizeBiggest = UIAlertAction(title: "最大", style: .Default, handler: { (action) -> Void in
-            let script = "document.getElementById('body').style.fontSize = '29px'";
-            if let result = self.articleFullWebView.stringByEvaluatingJavaScriptFromString(script) {
-                print("result is \(result)")
-            }
+            let script = "document.getElementById('body').style.fontSize = '29px'"
+            self.articleFullWebView.stringByEvaluatingJavaScriptFromString(script)
             self.fontSizeString = "最大"
             MoreTextSettingVC.storeFontSizetoUserDefaults(3)
             
@@ -480,10 +472,9 @@ class ArticleViewController: UIViewController {
         do {
             
             let results = try self.core_data.executeFetchRequest(deleteExistRequest) as! [HistoryEntities]
-            print("-------")
-            print(currentIdString)
+         
             for result in results {
-                print("刪除\(result.title)")
+                
                 self.core_data.deleteObject(result)
                 
             }
@@ -537,7 +528,7 @@ class ArticleViewController: UIViewController {
                     }
                     
                 }
-                print("biggest:\(biggest)")
+                
                 /* 指定新增的 history 的 autoIncrement 為 biggest + 1 */
                 /* 預防 biggest 為 nil */
                 if biggest != nil {
@@ -562,7 +553,7 @@ class ArticleViewController: UIViewController {
             history.division = currentDivisionString
             
             do {
-                print("\(history.autoIncrement)\(history.title)！！新增")
+                
                 try self.core_data.save()
                 // 儲存
                 

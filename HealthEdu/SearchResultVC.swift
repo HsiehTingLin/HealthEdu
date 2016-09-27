@@ -4,7 +4,7 @@
 //
 //  Created by Mac on 2016/9/18.
 //  Copyright © 2016年 NCKU_hospital. All rights reserved.
-// 搜尋結果的 vc
+// 
 
 import UIKit
 

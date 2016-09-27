@@ -1,9 +1,11 @@
 //
 //  StarSingleTopicArticle.swift
+//  單一精選主題的文章
+//
 //  HealthEdu
 //
-//  Created by Yu-Ju Lin on 2016/9/21.
-//  Copyright © 2016年 NCKU_hospital. All rights reserved.
+//  Created by Yu-Ju Lin, Hsieh-Ting Lin.
+//  Copyright © 2016年 衛教成大. All rights reserved.
 //
 
 import Foundation
@@ -51,4 +53,8 @@ class StarSingleTopicArticle {
         return topic_and_article_Array
         
     }
+    
+    // TODO: 未來若加入成大醫院伺服器，將在此加入讀取JSON的功能
+    
+    
 }

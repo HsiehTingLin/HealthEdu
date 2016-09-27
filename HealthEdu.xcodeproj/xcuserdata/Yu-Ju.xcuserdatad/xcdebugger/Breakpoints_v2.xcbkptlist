@@ -180,7 +180,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HealthEdu/ArticleViewController.swift"
@@ -193,66 +193,82 @@
             landmarkType = "3">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "HealthEdu.ArticleViewController.articleIdforQRCode.getter : Swift.Optional&lt;Swift.String&gt;"
+                  symbolName = "HealthEdu.ArticleViewController.URLArrayforQRCode.getter : Swift.Array&lt;Swift.String&gt;"
                   moduleName = "HealthEdu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Yu-Ju/Downloads/HealthEdu-HsiehTingMacPro_0925/HealthEdu/ArticleViewController.swift"
-                  timestampString = "496636143.473576"
+                  timestampString = "496638461.864648"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "80">
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "35">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "HealthEdu.ArticleViewController.articleIdforQRCode.setter : Swift.Optional&lt;Swift.String&gt;"
+                  symbolName = "HealthEdu.ArticleViewController.URLArrayforQRCode.setter : Swift.Array&lt;Swift.String&gt;"
                   moduleName = "HealthEdu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Yu-Ju/Downloads/HealthEdu-HsiehTingMacPro_0925/HealthEdu/ArticleViewController.swift"
-                  timestampString = "496636143.473777"
+                  timestampString = "496638461.864821"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "172">
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "65">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "HealthEdu.ArticleViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.NSBundle&gt;) -&gt; HealthEdu.ArticleViewController"
                   moduleName = "HealthEdu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Yu-Ju/Downloads/HealthEdu-HsiehTingMacPro_0925/HealthEdu/ArticleViewController.swift"
-                  timestampString = "496636143.473867"
+                  timestampString = "496638461.864936"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "588">
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "567">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "HealthEdu.ArticleViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;HealthEdu.ArticleViewController&gt;"
                   moduleName = "HealthEdu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Yu-Ju/Downloads/HealthEdu-HsiehTingMacPro_0925/HealthEdu/ArticleViewController.swift"
-                  timestampString = "496636143.47395"
+                  timestampString = "496638461.865027"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "488">
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "467">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HealthEdu/ArticleViewController.swift"
+            timestampString = "496638521.752608"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "changeFontSize(_:)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

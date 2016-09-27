@@ -1,9 +1,11 @@
 //
 //  DevisionOnlyVCArticle.swift
+//  不同科別的文章
+//
 //  HealthEdu
 //
-//  Created by Yu-Ju Lin on 2016/9/21.
-//  Copyright © 2016年 NCKU_hospital. All rights reserved.
+//  Created by Yu-Ju Lin, Hsieh-Ting Lin.
+//  Copyright © 2016年 衛教成大. All rights reserved.
 //
 
 import Foundation

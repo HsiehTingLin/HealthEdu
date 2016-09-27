@@ -199,7 +199,7 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
             for result in results {
                 
                 self.core_data.deleteObject(result)
-                print(result.title)
+                
             }
             
             do {
