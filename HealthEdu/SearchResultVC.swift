@@ -2,8 +2,8 @@
 //  SearchResultVC.swift
 //  HealthEdu
 //
-//  Created by Mac on 2016/9/18.
-//  Copyright © 2016年 NCKU_hospital. All rights reserved.
+//  Created by Yu-Ju Lin, Hsieh-Ting Lin.
+//  Copyright © 2016年 衛教成大. All rights reserved.
 // 
 
 import UIKit
@@ -11,7 +11,6 @@ import UIKit
 class SearchResultVC: UITableViewController {
     var articleArray:[article] = [article]()
     
-    // 不知道有沒有辦法把搜尋結果的title顯示在navigation bar上，像在分科裡面做的那樣
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,8 +39,6 @@ class SearchResultVC: UITableViewController {
         cell.searchResultCellAuthor.text = articleItem.author
         cell.searchResultCellBody.text = articleItem.body.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
         
-        // 這裡的cell 後面的屬性也要再修正
-        
         return cell
     }
     
@@ -58,11 +55,7 @@ class SearchResultVC: UITableViewController {
             articleDetail.currentPhotoString = articleSelected.photo
             articleDetail.currentTimeString = articleSelected.time
             
-            
-            // 這個func的作用:先把 articleArray中，被選中的資料，指定為 articleSelected這個變數(class是article )，然後將來自"ArticleViewController"的變數指定為articleDetail這個var(class 是ArticleViewController)，接著把articleSelected的每個變數都指定為articleDetail的各個對應的變數，類型都是String
-            
-            
-        }
+          }
     }
 
 }
