@@ -802,11 +802,11 @@
             </objects>
             <point key="canvasLocation" x="376" y="203"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--衛教精選-->
         <scene sceneID="Hm6-ci-oqN">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OUe-co-nnC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="1E5-NJ-qbw"/>
+                    <tabBarItem key="tabBarItem" title="衛教精選" image="star" id="1E5-NJ-qbw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oEM-3J-eap">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1078,6 +1078,7 @@
         <image name="Surgery" width="2197" height="1463"/>
         <image name="copyright" width="637" height="298"/>
         <image name="opacityhalf" width="600" height="128"/>
+        <image name="star" width="28" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="rJe-gL-Cah"/>
