@@ -97,23 +97,24 @@ class ArticleViewController: UIViewController {
     
     func showBarButtonItem()
     {
-        /*如果該文章已經被儲存在 core data 中，則顯示填滿的 書籤 icon*/
+        // check if the article is in core data
         let fetchRequest = NSFetchRequest(entityName: "BookmarkEntities")
         fetchRequest.predicate = NSPredicate(format: "id == %@", currentIdString)
         
         do {
             
             let fetchResults = try self.core_data.executeFetchRequest(fetchRequest) as? [BookmarkEntities]
-            // 找尋
             
             var button1 = UIBarButtonItem()
             
             if fetchResults!.count > 0 {
                 
+                // the article already exist, show bookmark black button
                 button1 = UIBarButtonItem(image: UIImage(named: "bookmark_black"), landscapeImagePhone: nil, style: .Done, target: self, action: #selector(self.deleteFromBookmark))
                 
             }else{
                 
+                // the article does not exist, show bookmark white button
                 button1 = UIBarButtonItem(image: UIImage(named: "bookmark_white"), landscapeImagePhone: nil, style: .Done, target: self, action: #selector(self.addToBookmark(_:)))
                 
             }
@@ -138,7 +139,7 @@ class ArticleViewController: UIViewController {
         }catch{
             
             fatalError("CANT FIND: \(error)")
-            // 無法找尋
+            
         }
     }
 
@@ -200,19 +201,20 @@ class ArticleViewController: UIViewController {
      */
     func GenerateQRCode(imgview: UIImageView) -> UIImage
     {
-        // 先把 此篇文章的id的url產生起來
-        self.URLArrayforQRCode.append("http://myelin.tk/for_ncku_app_test/index.php?articleID=")
+        // generate the url for this article id
+        self.URLArrayforQRCode.append("http://medcode.in/for_ncku_app_test/index.php?articleID=")
         self.URLArrayforQRCode.append(self.currentIdString)
         
         let realURLStringforQRCode = URLArrayforQRCode.joinWithSeparator("")
         
-        // 預防機制
+        // prevent
         if realURLStringforQRCode == "" {
             return UIImage()
         }
         
+        // variable data is going to be sent to generate a QR Code image
         let data = realURLStringforQRCode.dataUsingEncoding(NSISOLatin1StringEncoding, allowLossyConversion: false)
-        // data 為要送去製造 QR Code 的 String
+        
         
         let filter = CIFilter(name: "CIQRCodeGenerator")
         
@@ -221,12 +223,14 @@ class ArticleViewController: UIViewController {
         
         self.qrcodeImage = filter!.outputImage
         
+        // calculate the scale of between size of imgQRCode.frame and qrcodeimage
         let scaleX = imgview.frame.size.width / self.qrcodeImage.extent.size.width
         let scaleY = imgview.frame.size.height / self.qrcodeImage.extent.size.height
-        // 上面這兩行 是算出目前 imgQRCode 這個 frame 的大小與 qrcodeimage
         
+        
+        // change to fit the size of  qrcodeimage
         let transformedImage = self.qrcodeImage.imageByApplyingTransform(CGAffineTransformMakeScale(scaleX, scaleY))
-        // 轉換 qrcodeimage的大小
+        
         
         return UIImage(CIImage: transformedImage)
         
@@ -342,7 +346,7 @@ class ArticleViewController: UIViewController {
         
         if let bookmark = NSEntityDescription.insertNewObjectForEntityForName("BookmarkEntities", inManagedObjectContext: self.core_data) as? BookmarkEntities {
             
-            /*取得目前最高數量*/
+            // get the biggest autoIncrement in core data now
             let countRequest = NSFetchRequest(entityName: "BookmarkEntities")
             
             do {
@@ -361,8 +365,7 @@ class ArticleViewController: UIViewController {
                     
                 }
                 
-                /* 指定新增的 history 的 autoIncrement 為 biggest + 1 */
-                /* 預防 biggest 為 nil */
+                // autoIncrement = biggest +1
                 if biggest != nil {
                     bookmark.autoIncrement = biggest! + 1
                 }else{
@@ -372,7 +375,7 @@ class ArticleViewController: UIViewController {
             }catch{
                 
                 fatalError("Failure to save context: \(error)")
-                // 無法儲存
+                // can not store
             }
             
             
@@ -387,15 +390,15 @@ class ArticleViewController: UIViewController {
             do {
                 
                 try self.core_data.save()
-                // 儲存
+                // store
                 
                 self.showBarButtonItem()
-                // 重整按鈕（bookmark 空心變成實心）
+                // reload bar button
                 
             }catch{
                 
                 fatalError("Failure to save context: \(error)")
-                // 無法儲存
+                // can not store
             }
             
             
@@ -421,9 +424,10 @@ class ArticleViewController: UIViewController {
      
      */
     func getDefaultFontSizeString() -> String {
-        /* userDefault 初始化：儲存 預設 font size */
+        
+        // userDefault basic variable object
         let userDefault = NSUserDefaults.standardUserDefaults()
-        // 初始化
+        
         
         
         if let storedFontSize = userDefault.objectForKey("fontSizeUserDefaults") {
@@ -456,9 +460,9 @@ class ArticleViewController: UIViewController {
      */
     func getDefaultFontSize() -> Int {
         
-        /* userDefault 初始化：儲存 預設 font size */
+        // userDefault basic variable object
         let userDefault = NSUserDefaults.standardUserDefaults()
-        // 初始化
+        
         
         
         if let storedFontSize = userDefault.objectForKey("fontSizeUserDefaults") {
@@ -479,7 +483,7 @@ class ArticleViewController: UIViewController {
         }else{
             
             return 21
-            // 如果該 key 不存在的話，預設以 1 回傳
+            // if key does not exist, return 21 (正常)
             
         }
         
@@ -514,7 +518,7 @@ class ArticleViewController: UIViewController {
                 try self.core_data.save()
                 
                 self.showBarButtonItem()
-                // 重整按鈕（bookmark 空心變成實心）
+                // reload show bar button
                 
             }catch{
                 
@@ -541,7 +545,7 @@ class ArticleViewController: UIViewController {
         deleteExistRequest.predicate = NSPredicate(format: "id == %@", currentIdString)
         
         
-        /* 刪除現存該文章之紀錄 */
+        // delete existing article from history
         do {
             
             let results = try self.core_data.executeFetchRequest(deleteExistRequest) as! [HistoryEntities]
@@ -559,13 +563,13 @@ class ArticleViewController: UIViewController {
             }catch{
                 
                 fatalError("Failure to save context: \(error)")
-                // 無法儲存
+                // can not store
             }
             
         }catch{
             
             fatalError("Failure to save context: \(error)")
-            // 無法儲存
+            // can not store
         }
     }
     
@@ -585,7 +589,7 @@ class ArticleViewController: UIViewController {
             
             
             
-            /*取得目前最高數量*/
+            // find the biggest autoIncrement value in core data
             let countRequest = NSFetchRequest(entityName: "HistoryEntities")
             
             do {
@@ -595,7 +599,7 @@ class ArticleViewController: UIViewController {
                 var biggest:Int? = 0
                 
                 
-                /* 找出目前 core data 中，最大的 autoIncrment，做為排序用途 */
+                // find the biggest autoIncrement value in core data
                 for a_result in fetchResults!{
                     
                     if a_result.autoIncrement != nil {
@@ -607,8 +611,7 @@ class ArticleViewController: UIViewController {
                     
                 }
                 
-                /* 指定新增的 history 的 autoIncrement 為 biggest + 1 */
-                /* 預防 biggest 為 nil */
+                // define History autoIncrement = biggest +1
                 if biggest != nil {
                     history.autoIncrement = biggest! + 1
                 }else{
@@ -619,7 +622,7 @@ class ArticleViewController: UIViewController {
             }catch{
                 
                 fatalError("Failure to save context: \(error)")
-                // 無法儲存
+                // can not store
             }
             
             history.id = currentIdString
@@ -633,12 +636,12 @@ class ArticleViewController: UIViewController {
             do {
                 
                 try self.core_data.save()
-                // 儲存
+                // store
                 
             }catch{
                 
                 fatalError("Failure to save context: \(error)")
-                // 無法儲存
+                // can not store
             }
             
             
