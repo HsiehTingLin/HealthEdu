@@ -176,7 +176,6 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
         self.tableView.reloadData()
         
     }
- 
 
 
 }

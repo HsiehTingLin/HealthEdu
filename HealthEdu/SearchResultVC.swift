@@ -4,8 +4,8 @@
 //
 //  HealthEdu
 //
-//  Created by Yu-Ju Lin, Hsieh-Ting Lin.
-//  Copyright © 2016年 衛教成大. All rights reserved.
+//  Created by Mac on 2016/9/18.
+//  Copyright © 2016年 NCKU_hospital. All rights reserved.
 // 
 
 import UIKit
