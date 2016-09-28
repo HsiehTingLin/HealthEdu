@@ -1,10 +1,11 @@
 //
 //  myTopicsCell.swift
+//  本文件定義在topic顯示列中的prototype cell的一些形式
 //  HealthEdu
 //
-//  Created by Mac on 2016/9/18.
-//  Copyright © 2016年 NCKU_hospital. All rights reserved.
-//  本文件定義在topic顯示列中的prototype cell的一些形式
+//  Created by Yu-Ju Lin, Hsieh-Ting Lin.
+//  Copyright © 2016年 衛教成大. All rights reserved.
+
 
 import UIKit
 

@@ -27,7 +27,7 @@ class DevisionOnlyVC: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
-    // MARK:- tableView 相關 func
+    // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1

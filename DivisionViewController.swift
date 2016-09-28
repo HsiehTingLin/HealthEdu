@@ -1,17 +1,16 @@
 //
 //  DivisionViewController.swift
+//  The first viewController in Class tab menu
 //  HealthEdu
 //
-//  Created by Mac on 2016/9/11.
-//  Copyright © 2016年 NCKU_hospital. All rights reserved.
+//  Created by Yu-Ju Lin, Hsieh-Ting Lin.
+//  Copyright © 2016年 衛教成大. All rights reserved.
 //
 
 import UIKit
 
 class DivisionViewController: UIViewController, UITableViewDataSource{
     
-    ////////////////////////////////////
-    // 這頁我加入了 NckuHospital 這個 section 因為我在成果報告書中有提到這一塊
     
     @IBOutlet var tableView: UITableView!
 
@@ -20,20 +19,46 @@ class DivisionViewController: UIViewController, UITableViewDataSource{
     let InternalMedicine = ["胸腔內科","感染科","血液腫瘤科"]
     let Surgical = ["一般外科","小兒外科","骨科"]
     
+    /**
+     Define how many section in table view, need modified in beta version
+     - returns: 1:Int
+     */
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+        // MARK: - Table view data source
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3
+        // MARK: important ! Change in future
     }
+    
+    /**
+     Define numberOfRowsInSection
+     - returns: count of different array. Add more condition in future
+     */
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return NckuHospital.count
         } else if section == 1 {
             return InternalMedicine.count
+            // MARK: important ! Change in future
         } else {
             return Surgical.count
         }
         
     }
+    /**
+     Define cell
+     - returns: cell
+     */
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("division", forIndexPath: indexPath) as UITableViewCell
@@ -50,11 +75,14 @@ class DivisionViewController: UIViewController, UITableViewDataSource{
             cell.textLabel?.text = divisioin_name
             
         }
-        
+         // MARK: important ! Change in future
         
         return cell
     }
-    
+    /**
+     Define the title for header in section
+     - returns: string
+     */
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
             return "成大醫院"
@@ -63,7 +91,13 @@ class DivisionViewController: UIViewController, UITableViewDataSource{
         } else {
             return "外科"
         }
+        // MARK: important ! Change in future
     }
+    
+    /**
+     Pass the data to the DevisionOnlyVC
+     - returns: string
+     */
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
@@ -73,33 +107,8 @@ class DivisionViewController: UIViewController, UITableViewDataSource{
             
             devisionVC.sectionSelected = indexPath.section
             devisionVC.rowSelected = indexPath.row
-            // 這個func的作用:先把 articleArray中，被選中的資料，指定為 articleSelected這個變數(class是article )，然後將來自"ArticleViewController"的變數指定為articleDetail這個var(class 是ArticleViewController)，接著把articleSelected的每個變數都指定為articleDetail的各個對應的變數，類型都是String
-            
             
         }
     }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
