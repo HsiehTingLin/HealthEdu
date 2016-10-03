@@ -197,7 +197,7 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
             cell.BookmarkImageViewCellIBO.image = UIImage(named: articleItem.photo)
             cell.BookmarkTitleIBO.text = articleItem.title
             cell.BookmarkAuthorIBO.text = articleItem.author
-            cell.BookmarkBodyIBO.text = articleItem.body.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+            cell.BookmarkBodyIBO.text = articleItem.body.noHTMLtag
             break
             
         case 1:
@@ -206,7 +206,7 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
             cell.BookmarkImageViewCellIBO.image = UIImage(named: articleItem.photo)
             cell.BookmarkTitleIBO.text = articleItem.title
             cell.BookmarkAuthorIBO.text = articleItem.author
-            cell.BookmarkBodyIBO.text = articleItem.body.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+            cell.BookmarkBodyIBO.text = articleItem.body.noHTMLtag
         default:
             break
         }

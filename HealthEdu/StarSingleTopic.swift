@@ -31,8 +31,7 @@ class StarSingleTopic: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         
         TopicMainPhoto.image = UIImage(named: TopicMainPhotoString)
-        TopicMainTitle.text = TopicMainTitleString.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
-        
+        TopicMainTitle.text = TopicMainTitleString
         
         topic_and_article_Array = StarSingleTopicArticle.getArticle()
         // 取得文章資料
@@ -79,7 +78,7 @@ class StarSingleTopic: UIViewController, UITableViewDataSource {
         cell.singleTopicCellPhoto.image = UIImage(named: articleItem.photo)
         cell.singleTopicCellTitle.text = articleItem.title
         cell.singleTopicCellAuthor.text = articleItem.author
-        cell.singleTopicCellBody.text = articleItem.body.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+        cell.singleTopicCellBody.text = articleItem.body.noHTMLtag
         // cell 後面的屬性要看 mySingleTopicCell.swift這個文件
         
         return cell

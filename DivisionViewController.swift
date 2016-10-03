@@ -26,6 +26,11 @@ class DivisionViewController: UIViewController, UITableViewDataSource{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        print(DomainsDivisions.getDomains())
+        
+        
+        
         // Do any additional setup after loading the view.
     }
     

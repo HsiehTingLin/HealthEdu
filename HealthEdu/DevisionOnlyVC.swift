@@ -44,7 +44,7 @@ class DevisionOnlyVC: UITableViewController {
         cell.myPhoto.image = UIImage(named: articleItem.photo)
         cell.title.text = articleItem.title
         cell.author.text = articleItem.author
-        cell.body.text = articleItem.body.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+        cell.body.text = articleItem.body.noHTMLtag
         
         return cell
     }

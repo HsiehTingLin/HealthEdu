@@ -78,7 +78,7 @@ class SearchResultVC: UITableViewController {
         
         cell.searchResultCellAuthor.text = articleItem.author
         
-        cell.searchResultCellBody.text = articleItem.body.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+        cell.searchResultCellBody.text = articleItem.body.noHTMLtag
         
         // "stringByReaplcingOccurencesOfString" is for delete html tag
         

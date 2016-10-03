@@ -17,16 +17,55 @@ class StarMany: UIViewController,UITableViewDelegate {
     // the class of "topic" is defined in file TopicClass.swift
     var topicArray:[topic] = [topic]()
 
+    
     @IBOutlet weak var StarTableViewIBO: UITableView!
     
-    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
-        //  fetch the data from the file StarManyTopic.swift when view did load
+        
         self.topicArray = StarManyTopic.getTopicArray()
+        // self.testFORConnection()
+        
+        //  fetch the data from the file StarManyTopic.swift when view did load
+        /*StarManyTopic.getTopicArray({
+            (topicArray) in
+            self.topicArray = topicArray
+            self.tableView.reloadData()
+            
+            ///self.tableView.reloadData()///
+        
+        })*/
+        
     }
+    
 
+
+    
+    func testFORConnection()
+    {
+        
+        Connection.GetJson("https://ncku.medcode.in/json", completionHandler: {
+            (jsonData) in
+            
+        
+            if let jsonArray = Parse.parseJSONdata(jsonData) {
+                
+                for a in jsonArray {
+                    print(a["title"])
+                    
+                }
+                
+            }
+        
+        
+        })
+        
+        
+        
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

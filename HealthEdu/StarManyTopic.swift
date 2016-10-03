@@ -12,6 +12,7 @@ import Foundation
 
 class StarManyTopic {
 
+    //static func getTopicArray(completionHandler: [topic] -> Void) -> [topic] {
     static func getTopicArray() -> [topic] {
         
         var topicArray = [topic]()
