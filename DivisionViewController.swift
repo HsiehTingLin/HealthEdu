@@ -11,6 +11,9 @@ import UIKit
 
 class DivisionViewController: UIViewController, UITableViewDataSource{
     
+    // MARK: - Variable Declaration
+    
+    var hierarchy = [domain?]()
     
     @IBOutlet var tableView: UITableView!
 
@@ -27,37 +30,58 @@ class DivisionViewController: UIViewController, UITableViewDataSource{
         super.viewDidLoad()
         
         
-        print(DomainsDivisions.getDomains())
+        do {
+            
+            try hierarchy = DomainsDivisions.getHierarchy()
+            
+        } catch {
+            
+            // can not build Domains Division json hierarchy
+            let alertMessage = UIAlertController(title: "APP檔案毀損", message: "請移除「衛教成大」，再重新下載、安裝！", preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: "知道了", style: .Default, handler: nil)
+
+            
+            alertMessage.addAction(okAction)
+            
+            // need add dispatch
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.presentViewController(alertMessage, animated: true, completion:nil)
+            })
+
+            
+        }
         
         
         
-        // Do any additional setup after loading the view.
+        
+    }
+    
+    func ShowgetHierarchyError() {
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-        // MARK: - Table view data source
+    
+    
+    
+    // MARK: - Table view data source
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
-        // MARK: important ! Change in future
+        return hierarchy.count
     }
     
     /**
      Define numberOfRowsInSection
+     
      - returns: count of different array. Add more condition in future
      */
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return NckuHospital.count
-        } else if section == 1 {
-            return InternalMedicine.count
-            // MARK: important ! Change in future
-        } else {
-            return Surgical.count
-        }
+        
+        return hierarchy[section]!.division_data.count
         
     }
     /**
@@ -68,18 +92,10 @@ class DivisionViewController: UIViewController, UITableViewDataSource{
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("division", forIndexPath: indexPath) as UITableViewCell
         
+
+        let division_name = hierarchy[indexPath.section]!.division_data[indexPath.row]!.division
+        cell.textLabel?.text = division_name
         
-        if indexPath.section == 0 {
-            let (divisioin_name) = NckuHospital[indexPath.row]
-            cell.textLabel?.text = divisioin_name
-        } else if indexPath.section == 1 {
-            let (divisioin_name) = InternalMedicine[indexPath.row]
-            cell.textLabel?.text = divisioin_name
-        } else {
-            let (divisioin_name) = Surgical[indexPath.row]
-            cell.textLabel?.text = divisioin_name
-            
-        }
          // MARK: important ! Change in future
         
         return cell
@@ -89,13 +105,9 @@ class DivisionViewController: UIViewController, UITableViewDataSource{
      - returns: string
      */
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return "成大醫院"
-        } else if section == 1 {
-            return "內科"
-        } else {
-            return "外科"
-        }
+
+        return hierarchy[section]!.domain
+        
         // MARK: important ! Change in future
     }
     

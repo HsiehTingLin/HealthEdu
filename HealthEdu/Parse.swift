@@ -8,9 +8,49 @@
 
 import Foundation
 
+// Custom Error
+enum ParseError: ErrorType {
+    case CanNotParseJSONfile
+}
 
-
+// Parse Main Class
 class Parse{
+    
+    static func fromJSONfile(filename: String?) throws -> NSArray {
+        
+        var jsonArray = NSArray()
+        
+        if let path = NSBundle.mainBundle().pathForResource(filename, ofType: "json")
+        {
+            if let jsonData = NSData(contentsOfFile: path)
+            {
+                if let result = Parse.parseJSONdata(jsonData){
+                    
+                    // put the result into jsonArray
+                    jsonArray = result
+
+                }else{
+                    
+                    throw ParseError.CanNotParseJSONfile
+                    
+                }
+                
+            }else{
+                
+                throw ParseError.CanNotParseJSONfile
+                
+            }
+            
+        }else{
+            throw ParseError.CanNotParseJSONfile
+        }
+ 
+        return jsonArray
+        
+    }
+    
+    
+    
     static func parseJSONdata(jsonData: NSData?) -> NSArray? {
         
         do {

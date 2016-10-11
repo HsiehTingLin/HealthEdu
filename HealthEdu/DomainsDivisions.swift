@@ -8,6 +8,11 @@
 
 import Foundation
 
+
+enum DomainsDivisionsError :ErrorType {
+    case ParseJSONFail
+}
+
 class DomainsDivisions {
     
     /**
@@ -15,43 +20,68 @@ class DomainsDivisions {
      - returns: [domains?]
      */
     
-    static func getDomains() -> [domain?] {
+    static func getHierarchy() throws -> [domain?] {
         
+        // variable for use declaration
         var domains_divisions_hierarchy = [domain?]()
         
-        if let path = NSBundle.mainBundle().pathForResource("Domains", ofType: "json")
-        {
-            if let jsonData = NSData(contentsOfFile: path)
-            {
-                if let jsonArray = Parse.parseJSONdata(jsonData){
-                    
-                    // 以下把每一個 array 原本item 抓出來，轉換成 DivisionStruct的樣子
-                    for jsonItem in jsonArray {
-                        
-                        let newJsonItem = domain(id: jsonItem["id"] as! String?, domain: jsonItem["domain"]  as! String?, division_data: [division?]() )
-                        
-                        domains_divisions_hierarchy.append(newJsonItem)
-                        
-                        
-                    }
-                    
-                    
-                }else{
-                    print("無法 parse Json 檔案，請移除重裝 APP")
-                }
-                
-            }else{
-                print("無法 parse Json 檔案，請移除重裝 APP")
-            }
+        var divisions_temp = [division?]()
+    
+        
+        // get static json file data
+        
+        var DomainsArray = NSArray()
+        
+        var DivisionsArray = NSArray()
+        
+        do {
             
-        }else{
-            print("無法 parse Json 檔案，請移除重裝 APP")
+            DomainsArray = try Parse.fromJSONfile("Domains")
+            
+            DivisionsArray = try Parse.fromJSONfile("Divisions") as! NSMutableArray
+            
+        } catch {
+
+            throw DomainsDivisionsError.ParseJSONFail
+            
         }
         
+
+        
+        
+        // 以下把每一個 array 原本item 抓出來，轉換成 DivisionStruct的樣子
+        for DomainItem in DomainsArray {
+            
+            divisions_temp = []
+            
+            for DivisionItem in DivisionsArray {
+                
+                if DivisionItem["domain"] as! String? == DomainItem["id"] as! String? {
+                    
+                    // 確認這是這個 domain 的東西 把他抓起來
+                    divisions_temp.append(division(id: DivisionItem["id"] as! String?, division: DivisionItem["division"] as! String?, domain_id:  DivisionItem["domain"] as! String? , description: DivisionItem["description"] as! String?))
+
+                    
+                }
+                
+            }
+            
+            
+            
+            
+            let newJsonItem = domain(id: DomainItem["id"] as! String?, domain: DomainItem["domain"]  as! String?, division_data: divisions_temp )
+            
+            domains_divisions_hierarchy.append(newJsonItem)
+            
+            
+        }
         
         return domains_divisions_hierarchy
         
     }
+    
+    
+    
     
     
 }
