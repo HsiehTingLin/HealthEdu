@@ -36,8 +36,10 @@ class DomainsDivisions {
         
         do {
             
+            // read Domains.json
             DomainsArray = try Parse.fromJSONfile("Domains")
             
+            // read Divisions.json
             DivisionsArray = try Parse.fromJSONfile("Divisions") as! NSMutableArray
             
         } catch {

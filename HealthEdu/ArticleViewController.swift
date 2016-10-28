@@ -14,21 +14,21 @@ import CoreData
 class ArticleViewController: UIViewController {
     
     // MARK:- Variable Declaration
-    var currentIdString = ""
+    var currentIdString: String?
     
-    var currentPhotoString = ""
+    // TODO: 這個應該要刪掉
+    var currentPhotoString: String?
     
-    var currentDivisionString = ""
+    var currentDivisionString: String?
     
-    var currentTitleString = ""
+    var currentTitleString: String?
     
-    var currentAuthorString = ""
+    var currentAuthorString: String?
     
-    var currentBodyString = ""
+    var currentBodyString: String?
     
-    var currentTimeString = ""
+    var currentTimeString: String?
     
-    // for now just leave it empty
     var currentPhotoUIImage = UIImage()
 
     // WebView for article Full text
@@ -99,7 +99,7 @@ class ArticleViewController: UIViewController {
     {
         // check if the article is in core data
         let fetchRequest = NSFetchRequest(entityName: "BookmarkEntities")
-        fetchRequest.predicate = NSPredicate(format: "id == %@", currentIdString)
+        fetchRequest.predicate = NSPredicate(format: "id == %@", currentIdString!)
         
         do {
             
@@ -160,9 +160,7 @@ class ArticleViewController: UIViewController {
     func showarticleFullHTML(fontsize: Int){
         
         
-        let photoSeparated:Array = currentPhotoString.componentsSeparatedByString(".")
-        
-        let photoPath :String? = NSBundle.mainBundle().pathForResource(photoSeparated[0], ofType: photoSeparated[1])
+
         
         
         let divWidth = self.view.frame.size.width-17
@@ -174,13 +172,19 @@ class ArticleViewController: UIViewController {
         articleFullHTMLarray.append("<div width=\"\(divWidth)\" style=\"word-break: break-all;\"")
         
         
-        articleFullHTMLarray.append("<br><p><div align=\"center\" style=\"font-size:35px; font-weight:bold;\">\(self.currentTitleString)</div></p>")
-        articleFullHTMLarray.append("<p><div align=\"center\" style=\"color: gray; font-size:19px\">\(self.currentAuthorString)</div></p>")
+        articleFullHTMLarray.append("<br><p><div align=\"center\" style=\"font-size:35px; font-weight:bold;\">\(self.currentTitleString!)</div></p>")
+        articleFullHTMLarray.append("<p><div align=\"center\" style=\"color: gray; font-size:19px\">\(self.currentAuthorString!)</div></p>")
         articleFullHTMLarray.append("<div align=\"center\" style=\"width:\(divWidth)px; height:\(divHeight)px; overflow:hidden;  \">")
-        articleFullHTMLarray.append(NSString(format:"<img src=\"file://%@\" width=\"\(imgWidth)\">", photoPath!) as String)
+        
+        // amazing: UIImageJPEGRepresentation can convert jpeg png gif
+        let imageData = NSData(data: UIImageJPEGRepresentation(self.currentPhotoUIImage,1.0)!)
+        
+        let base64Data = imageData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+
+        articleFullHTMLarray.append("<img src=\"data:image/jpg;base64,\(base64Data)\" width=\"\(imgWidth)\">")
         articleFullHTMLarray.append("</div>")
-        articleFullHTMLarray.append("<div style='font-size: \(fontsize)px' id=\"body\"><p>\(self.currentBodyString)</p>")
-        articleFullHTMLarray.append("<p>最後更新：\(self.currentTimeString)<br></p></div>")
+        articleFullHTMLarray.append("<div style='font-size: \(fontsize)px' id=\"body\"><p>\(self.currentBodyString!)</p>")
+        articleFullHTMLarray.append("<p>最後更新：\(self.currentTimeString!)<br></p></div>")
         articleFullHTMLarray.append("</div>")
         
         
@@ -203,7 +207,7 @@ class ArticleViewController: UIViewController {
     {
         // generate the url for this article id
         self.URLArrayforQRCode.append("http://medcode.in/for_ncku_app_test/index.php?articleID=")
-        self.URLArrayforQRCode.append(self.currentIdString)
+        self.URLArrayforQRCode.append(self.currentIdString!)
         
         let realURLStringforQRCode = URLArrayforQRCode.joinWithSeparator("")
         
@@ -501,7 +505,7 @@ class ArticleViewController: UIViewController {
     {
         
         let deleteRequest = NSFetchRequest(entityName: "BookmarkEntities")
-        deleteRequest.predicate = NSPredicate(format: "id == %@", currentIdString)
+        deleteRequest.predicate = NSPredicate(format: "id == %@", currentIdString!)
         
         do {
             
@@ -542,7 +546,7 @@ class ArticleViewController: UIViewController {
     func deleteHistoryExist()
     {
         let deleteExistRequest = NSFetchRequest(entityName: "HistoryEntities")
-        deleteExistRequest.predicate = NSPredicate(format: "id == %@", currentIdString)
+        deleteExistRequest.predicate = NSPredicate(format: "id == %@", currentIdString!)
         
         
         // delete existing article from history

@@ -9,18 +9,14 @@
 
 import UIKit
 
-class DivisionViewController: UIViewController, UITableViewDataSource{
+// MARK: ViewController Get Domains Divsions Hierarchy
+class DivisionViewController: UIViewController{
     
-    // MARK: - Variable Declaration
+    // MARK: Variable Declaration
     
     var hierarchy = [domain?]()
     
     @IBOutlet var tableView: UITableView!
-
-    
-    let NckuHospital = ["最新消息"]
-    let InternalMedicine = ["胸腔內科","感染科","血液腫瘤科"]
-    let Surgical = ["一般外科","小兒外科","骨科"]
     
     /**
      Define how many section in table view, need modified in beta version
@@ -57,38 +53,39 @@ class DivisionViewController: UIViewController, UITableViewDataSource{
         
     }
     
-    func ShowgetHierarchyError() {
-        
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+}
+
+
+// MARK: - UI Table View Data Source
+extension DivisionViewController: UITableViewDataSource {
     
     
-    
-    // MARK: - Table view data source
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return hierarchy.count
     }
+    
+    
+    
     
     /**
      Define numberOfRowsInSection
      
      - returns: count of different array. Add more condition in future
      */
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return hierarchy[section]!.division_data.count
         
     }
+    
+    
+    
+    
+    
     /**
      Define cell
      - returns: cell
      */
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("division", forIndexPath: indexPath) as UITableViewCell
         
@@ -96,10 +93,14 @@ class DivisionViewController: UIViewController, UITableViewDataSource{
         let division_name = hierarchy[indexPath.section]!.division_data[indexPath.row]!.division
         cell.textLabel?.text = division_name
         
-         // MARK: important ! Change in future
         
         return cell
     }
+    
+    
+    
+    
+    
     /**
      Define the title for header in section
      - returns: string
@@ -108,22 +109,28 @@ class DivisionViewController: UIViewController, UITableViewDataSource{
 
         return hierarchy[section]!.domain
         
-        // MARK: important ! Change in future
+
     }
+    
+    
+    
     
     /**
      Pass the data to the DevisionOnlyVC
      - returns: string
      */
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         let devisionVC = segue.destinationViewController as! DevisionOnlyVC
         
         if let indexPath = self.tableView.indexPathForSelectedRow {
             
-            devisionVC.sectionSelected = indexPath.section
-            devisionVC.rowSelected = indexPath.row
+            // get division specific id from hierarchy array
+            let specificId: String? = hierarchy[indexPath.section]!.division_data[indexPath.row]!.id!
+            
+            // and pass the division specific id to DevisionOnlyVC
+            devisionVC.divisionIdSelected = specificId
+            
             
         }
     }

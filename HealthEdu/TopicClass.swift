@@ -8,20 +8,23 @@
 
 
 import Foundation
+import UIKit
 
 class topic {
     
-    var topicId : Int
-    var topicTitle : String
-    var topicPhoto : String
-    var topicTime : String
+    var topicId: String?
+    var topicTitle: String?
+    var topicPhoto: String?
+    var topicPhotoUIImage: UIImage?
+    var topicTime: String?
     
     
-    init (topicId: Int, topicTitle: String, topicPhoto : String, topicTime: String){
+    init (topicId: String?, topicTitle: String?, topicPhoto: String?, topicPhotoUIImage: UIImage?, topicTime: String?){
         
         self.topicId = topicId
         self.topicTitle = topicTitle
         self.topicPhoto = topicPhoto
+        self.topicPhotoUIImage = topicPhotoUIImage
         self.topicTime = topicTime
         
     }

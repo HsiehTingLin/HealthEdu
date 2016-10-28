@@ -72,22 +72,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HealthEdu/StarSingleTopic.swift"
-            timestampString = "496982850.986858"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "prepareForSegue(_:sender:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "HealthEdu/MoreTextSettingVC.swift"
             timestampString = "496568929.98835"
             startingColumnNumber = "9223372036854775807"
@@ -105,11 +89,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DivisionViewController.swift"
-            timestampString = "497286458.070155"
+            timestampString = "498012600.029493"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
             landmarkName = "DivisionViewController"
             landmarkType = "3">
             <Locations>
@@ -292,7 +276,7 @@
                   moduleName = "HealthEdu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Yu-Ju/Documents/HealthEdu_All/HealthEdu-apply-NSURLSession/HealthEdu/Parse.swift"
-                  timestampString = "497888667.312332"
+                  timestampString = "499276455.326082"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -307,11 +291,11 @@
                   moduleName = "HealthEdu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Yu-Ju/Documents/HealthEdu_All/HealthEdu-apply-NSURLSession/HealthEdu/Parse.swift"
-                  timestampString = "497888667.3125"
+                  timestampString = "499276455.326172"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "16"
-                  endingLineNumber = "16"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
                   offsetFromSymbolStart = "8">
                </Location>
             </Locations>
@@ -324,12 +308,202 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DivisionViewController.swift"
-            timestampString = "497888896.828622"
+            timestampString = "498012600.029493"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "DivisionViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HealthEdu/StarMany.swift"
+            timestampString = "499277714.39087"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
+            landmarkName = "prepareForSegue(_:sender:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HealthEdu/StarMany.swift"
+            timestampString = "499277714.39087"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
+            landmarkName = "prepareForSegue(_:sender:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HealthEdu/StarSingleTopic.swift"
+            timestampString = "499277649.686183"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HealthEdu/ListArticle.swift"
+            timestampString = "499248247.354423"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "byDivisionId(_:excludeIds:completionHandler:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HealthEdu/ListArticle.swift"
+            timestampString = "499264117.66572"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "byStarTopic(_:completionHandler:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HealthEdu/ArticleViewController.swift"
+            timestampString = "499274887.475662"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "ArticleViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HealthEdu.ArticleViewController.currentPhotoUIImage.getter : __ObjC.UIImage"
+                  moduleName = "HealthEdu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Yu-Ju/Documents/HealthEdu_All/HealthEdu-apply-NSURLSession/HealthEdu/ArticleViewController.swift"
+                  timestampString = "499274887.497398"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "35">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HealthEdu.ArticleViewController.currentPhotoUIImage.setter : __ObjC.UIImage"
+                  moduleName = "HealthEdu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Yu-Ju/Documents/HealthEdu_All/HealthEdu-apply-NSURLSession/HealthEdu/ArticleViewController.swift"
+                  timestampString = "499274887.4976"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "65">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HealthEdu.ArticleViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.NSBundle&gt;) -&gt; HealthEdu.ArticleViewController"
+                  moduleName = "HealthEdu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Yu-Ju/Documents/HealthEdu_All/HealthEdu-apply-NSURLSession/HealthEdu/ArticleViewController.swift"
+                  timestampString = "499274887.497688"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "490">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HealthEdu.ArticleViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;HealthEdu.ArticleViewController&gt;"
+                  moduleName = "HealthEdu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Yu-Ju/Documents/HealthEdu_All/HealthEdu-apply-NSURLSession/HealthEdu/ArticleViewController.swift"
+                  timestampString = "499274887.49777"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "393">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HealthEdu/ArticleViewController.swift"
+            timestampString = "499274946.265868"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "showBarButtonItem()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HealthEdu/ArticleViewController.swift"
+            timestampString = "499277649.686183"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "508"
+            endingLineNumber = "508"
+            landmarkName = "deleteFromBookmark()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

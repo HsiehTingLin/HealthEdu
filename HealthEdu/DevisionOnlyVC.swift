@@ -10,22 +10,43 @@ import UIKit
 
 class DevisionOnlyVC: UITableViewController {
     
-    // MARK:- 變數宣告
+    // MARK:- Variable Declaration
     
-    var articleArray:[article] = [article]()
-    var sectionSelected: Int?
-    var rowSelected: Int?
+    var articleArray = [article]()
+
+    // contain division specific id selected from DevisionOnlyVC
+    var divisionIdSelected: String?
     
-    // MARK:- 基本func
+    var excludeIdsArray = [String]()
+    
+    // MARK:- Basic Func
     override func viewDidLoad() {
+
         super.viewDidLoad()
-        
-        self.articleArray = DevisionOnlyVCArticle.getArticleArray(sectionSelected!,rowSelected: rowSelected!)
+        print("Division Id Selected：\(divisionIdSelected)")
+    
+
         
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+
+
+    // 這裡的參數要從底下的 tableView WillAppear?? 什麼的去累積相加有哪些文章id是不要的
+    func getArticle(){
+
+
+        self.excludeIdsArray = []
+        
+        ListArticle.byDivisionId(divisionIdSelected!, excludeIds: self.excludeIdsArray, completionHandler: {
+    
+            (articleArray) in
+            
+                self.articleArray = articleArray
+        
+        })
+            
+
     }
+
     
     // MARK: - Table view data source
     
@@ -33,9 +54,12 @@ class DevisionOnlyVC: UITableViewController {
         return 1
     }
     
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return articleArray.count
     }
+    
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("articleCell", forIndexPath: indexPath) as! myArticleCell
         

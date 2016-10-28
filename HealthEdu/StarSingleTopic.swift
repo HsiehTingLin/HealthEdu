@@ -8,99 +8,213 @@
 
 import UIKit
 
-class StarSingleTopic: UIViewController, UITableViewDataSource {
+class StarSingleTopic: UIViewController {
 
-    // the fix part at top
+    // topic photo
     @IBOutlet weak var TopicMainPhoto: UIImageView!
+    
+    // topic title
     @IBOutlet weak var TopicMainTitle: UILabel!
 
-    // 這裡新增這個 TopciMainIdString 為了接受來自 StarMany 的資訊告訴我是哪一個topic selected
-    var TopicMainIdString = Int()
-    var TopicMainPhotoString = ""
-    var TopicMainTitleString = ""
-    
-    // The variable in Table view
-    
+    // the whole table view
     @IBOutlet weak var ArticleInTopicTableView: UITableView!
     
-    // 這個 topic_and_article_Array 負責裝所有topic 加上 article
-    var topic_and_article_Array = [[article]]()
-    // TableView的變數們~End
+    
+    // contain topic's id pass from StarMany.swift
+    var TopicMainIdString: String?
+    
+    // contain topic's Photo pass from StarMany.swift
+    var TopicMainPhotoFromMany = UIImage()
+    
+    // TODO: 可以刪除這個了！
+    var TopicMainPhotoString: String?
+    
+    // contian topic's Title pass from StarMany.swift
+    var TopicMainTitleString: String?
+    
+    // init activityindicator
+    var activityIndicator = UIActivityIndicatorView()
+    
+    // contain whole article belong to specific topic
+    var articleArray: [article] = []
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        TopicMainPhoto.image = UIImage(named: TopicMainPhotoString)
-        TopicMainTitle.text = TopicMainTitleString
+        // set UI - topic's photo
+        self.TopicMainPhoto.image = TopicMainPhotoFromMany
         
-        topic_and_article_Array = StarSingleTopicArticle.getArticle()
-        // 取得文章資料
+        // set UI - topic's Title
+        self.TopicMainTitle.text = TopicMainTitleString
+        
+              
+        
+        
+        // build activityIndicator as WhiteLarge(change to blue later)
+        self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+        
+        // change activityIndicator color to blue (default iOS blue)
+        self.activityIndicator.color = UIColor.init(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
+        
+        // init activityIndicator Animating
+        self.activityIndicator.startAnimating()
+        
+        
+        // not to display UITableView separator style
+        self.ArticleInTopicTableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        
+        // set activityIndicator as StarTableViewIDB's backgrousView
+        self.ArticleInTopicTableView.backgroundView = self.activityIndicator
+        
+        
+        
+        
+        
+        
+        ListArticle.byStarTopic(TopicMainIdString!, completionHandler: {
+            (topicArticleArray) in
+            
+            
+            
+            
+            // change UI inside main queue
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                // no matter how long it takes to download data from Server
+                // the activityIndicator will animating from 3 seconds
+                let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+                dispatch_after(time, dispatch_get_main_queue()) {
+                    
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.hidden = true
+                    
+                    // refer self.topicArray to starTopicArray (Array from Server)
+                    self.articleArray = topicArticleArray
+                    
+                    // show the line separator again
+                    self.ArticleInTopicTableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+                    
+                    // reload StarTableViewIBO in animating style
+                    UIView.transitionWithView(self.ArticleInTopicTableView, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.ArticleInTopicTableView.reloadData()}, completion: nil)
+                    
+                }
+                
+
+                
+                
+            })
+        
+        
+        })
+        
 
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
+}
+
+
+    // MARK: - Table view data source
+
+extension StarSingleTopic: UITableViewDataSource, UITableViewDelegate {
     
-        // MARK: - Table view data source
+    
     
     /**
-     Define how many section in table view
-     - returns: 1:Int
+        Define how many section in table view
+        - returns: 1:Int
      */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
+    
+    
+    
     /**
-     Define numberOfRowsInSection
-     - returns: count of topic_and_article_Array
+     
+        Define numberOfRowsInSection
+        - returns: count of topic_and_article_Array
+     
      */
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return self.topic_and_article_Array[self.TopicMainIdString-1].count
+        return self.articleArray.count
     }
     
+    
+    
+    
     /**
-     Define the cell.
-     The cell Identifier in Storyboard is called articleCellinTopic
-     - returns: cell
+        Define the cell.
+        The cell Identifier in Storyboard is called articleCellinTopic
+     
+        - returns: cell
      */
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        
         // define the cell in file mySingleTopicCell.swift,and  the cell ID is called "articleCellinTopic" in Storyboard
         let cell = tableView.dequeueReusableCellWithIdentifier("articleCellinTopic", forIndexPath: indexPath) as! mySingleTopicCell
         
-        let articleItem = topic_and_article_Array[self.TopicMainIdString-1][indexPath.row]
-        // 這是告訴標題每個 cell 要顯示什麼
-        // self.TopicMainIdString-1 要減一的原因是因為主題是從 1 開始算，可是電腦array 從 0
+        // get the specific articleItem
+        let articleItem = self.articleArray[indexPath.row]
+
+        // get image download from Net
+        // also, edit the original Array data's photoUIImage
+        cell.singleTopicCellPhoto.imageFromServerURL(cell.singleTopicCellPhoto, urlString: articleItem.photo, completionHandler: {
+            (imageFromNet) in
+            
+            // here insert image From Net to topicArray.topicPhotoUIImage
+            self.articleArray[indexPath.row].photoUIImage = imageFromNet
+            
+        })
         
-        cell.singleTopicCellPhoto.image = UIImage(named: articleItem.photo)
+        // Title
         cell.singleTopicCellTitle.text = articleItem.title
+        
+        // Author
         cell.singleTopicCellAuthor.text = articleItem.author
+        
+        // CellBody without HTML tag
         cell.singleTopicCellBody.text = articleItem.body.noHTMLtag
-        // cell 後面的屬性要看 mySingleTopicCell.swift這個文件
+        
         
         return cell
     }
+    
+    
+    
     /**
-     Prepare for segue. When users tap one topic in this viewController, we must prepare the selected data and pass them to next viewcontroller
-     - returns: no return just link the file
+     
+        Prepare for segue. When users tap one topic in this viewController, we must prepare the selected data and pass them to next viewcontroller
+        - returns: no return just link the file
+     
      */
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        // prepare to pass data
         let articleDetail = segue.destinationViewController as! ArticleViewController
+        
+        
         if let indexPath = ArticleInTopicTableView.indexPathForSelectedRow {
-            let articleSelected = topic_and_article_Array[self.TopicMainIdString-1][indexPath.row]
-            // 這是從 indexPath.row 中 找到到底是哪一篇文章被選到 傳遞到下一頁去
-            // self.TopicMainIdString-1 要減一的原因是因為主題是從 1 開始算，可是電腦array 從 0
+            
+            // get data according to indexPath.row
+            let articleSelected = self.articleArray[indexPath.row]
+
+            print(articleSelected)
             
             articleDetail.currentIdString = articleSelected.id
             articleDetail.currentTitleString = articleSelected.title
             articleDetail.currentBodyString = articleSelected.body
             articleDetail.currentAuthorString = articleSelected.author
             articleDetail.currentDivisionString = articleSelected.division
-            articleDetail.currentPhotoString = articleSelected.photo
+            print(articleSelected.photoUIImage)
+            articleDetail.currentPhotoUIImage = articleSelected.photoUIImage
             articleDetail.currentTimeString = articleSelected.time
             
         }
