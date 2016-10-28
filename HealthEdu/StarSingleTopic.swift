@@ -162,7 +162,7 @@ extension StarSingleTopic: UITableViewDataSource, UITableViewDelegate {
         
         // get the specific articleItem
         let articleItem = self.articleArray[indexPath.row]
-
+        print("ceel again")
         // get image download from Net
         // also, edit the original Array data's photoUIImage
         cell.singleTopicCellPhoto.imageFromServerURL(cell.singleTopicCellPhoto, urlString: articleItem.photo, completionHandler: {

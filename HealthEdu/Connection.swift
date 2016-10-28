@@ -24,7 +24,8 @@ class Connection: NSObject, NSURLSessionDelegate{
         
         request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
         
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+            (data, response, error) in
             
             // be sure that ther is no error
             // TODO: 需要做 throw exception!! 跳出視窗

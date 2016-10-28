@@ -19,8 +19,8 @@ class DivisionViewController: UIViewController{
     @IBOutlet var tableView: UITableView!
     
     /**
-     Define how many section in table view, need modified in beta version
-     - returns: 1:Int
+        Define how many section in table view, need modified in beta version
+        - returns: 1:Int
      */
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +56,7 @@ class DivisionViewController: UIViewController{
 }
 
 
-// MARK: - UI Table View Data Source
+    // MARK: - UI Table View Data Source
 extension DivisionViewController: UITableViewDataSource {
     
     
@@ -68,9 +68,8 @@ extension DivisionViewController: UITableViewDataSource {
     
     
     /**
-     Define numberOfRowsInSection
-     
-     - returns: count of different array. Add more condition in future
+        Define numberOfRowsInSection
+        - returns: count of different array. Add more condition in future
      */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -83,8 +82,8 @@ extension DivisionViewController: UITableViewDataSource {
     
     
     /**
-     Define cell
-     - returns: cell
+        Define cell
+        - returns: cell
      */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("division", forIndexPath: indexPath) as UITableViewCell
@@ -102,8 +101,8 @@ extension DivisionViewController: UITableViewDataSource {
     
     
     /**
-     Define the title for header in section
-     - returns: string
+        Define the title for header in section
+        - returns: string
      */
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 
@@ -116,8 +115,8 @@ extension DivisionViewController: UITableViewDataSource {
     
     
     /**
-     Pass the data to the DevisionOnlyVC
-     - returns: string
+        Pass the data to the DevisionOnlyVC
+        - returns: string
      */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
@@ -125,8 +124,10 @@ extension DivisionViewController: UITableViewDataSource {
         
         if let indexPath = self.tableView.indexPathForSelectedRow {
             
+            
             // get division specific id from hierarchy array
             let specificId: String? = hierarchy[indexPath.section]!.division_data[indexPath.row]!.id!
+            
             
             // and pass the division specific id to DevisionOnlyVC
             devisionVC.divisionIdSelected = specificId

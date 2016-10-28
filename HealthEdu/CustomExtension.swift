@@ -11,14 +11,15 @@ import UIKit
 
 extension String{
     
-    var noHTMLtag: String { return  self.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil) }
+    var noHTMLtag: String { print("dd"); return  self.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil) }
     
     
 }
 
- extension UIImageView {
+
+extension UIImageView {
     public func imageFromServerURL(view: UIImageView, urlString: String, completionHandler: UIImage -> Void) {
-        
+            print("2")
             if(urlString == ""){
             
                 // when there is no provided photo url

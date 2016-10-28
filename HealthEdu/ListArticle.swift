@@ -19,13 +19,36 @@ class ListArticle{
         - returns: no resturn
         - completionHandler(Array<article> -> Void) return article array here
      */
-    static func byDivisionId(divisionId: String, excludeIds: Array<String>, completionHandler: Array<article> -> Void){
+    static func byDivisionId(divisionId: String, excludeIds: [String], completionHandler: [article] -> Void){
         
-        // TODO: excludeIds 在此轉成字串
+        var excludeArray: [String]
         
+        // joing all articles id which will be excluded
+        // joinedExcludeIds will not be null
+        if excludeIds != [] {
+            
+            // be sure that excludeIds is not []
+            excludeArray = excludeIds
+            
+            
+        
+        }else{
+            
+            // if excludeIds is accidentally [], apply ["0"] to it for now
+            excludeArray = ["0"]
+ 
+            
+        }
+        
+    
+       
+        let joinedExcludeIds: String = excludeArray.joinWithSeparator("_")
+        
+        // generate string to post
+        let strToPost = "divisionId=\(divisionId)&excludeIds=\(joinedExcludeIds)"
         
         // pass rowSelected to Connection Post
-        Connection.postRequest("http://ncku.medcode.in/json/listByDivisionId", postString: "", completionHandler: {
+        Connection.postRequest("https://ncku.medcode.in/json/listByDivisionId", postString: strToPost, completionHandler: {
             (data) in
             
             
@@ -35,7 +58,15 @@ class ListArticle{
                 
                 for a_article in jsonArray {
     
-                    let new_article = article(id: a_article["id"] as! String, title: a_article["title"] as! String, photoUIImage: UIImage(), photo: a_article["photo"] as! String, author: a_article["author"] as! String, body: a_article["content"] as! String, time: a_article["update_time"] as! String, division: a_article["division"] as! String)
+                    let new_article = article(
+                        id: a_article["id"] as! String,
+                        title: a_article["title"] as! String,
+                        photoUIImage: UIImage(),
+                        photo: a_article["photo"] as! String,
+                        author: a_article["author"] as! String,
+                        body: a_article["content"] as! String,
+                        time: a_article["update_time"] as! String,
+                        division: a_article["division"] as! String)
 
                     articleArray.append(new_article)
 
@@ -65,7 +96,7 @@ class ListArticle{
      */
     static func byStarTopic(starTopicId: String, completionHandler: Array<article> -> Void){
         
-        let strToPost = "StarTopicId=\(starTopicId)"
+        let strToPost = "starTopicId=\(starTopicId)"
         
         
         

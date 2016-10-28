@@ -60,7 +60,13 @@ class Parse{
             return jsonArray
             
         } catch let error as NSError {
+            
+            // TODO: 未來這裡要加入 伺服器錯誤 這種警語
+            // 若 php 有錯誤使得 json 沒有正確顯示就會這樣！
             print("error processing json data: \(error.localizedDescription)")
+            
+            
+            
         }
         
         return nil

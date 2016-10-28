@@ -272,11 +272,26 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
+                  symbolName = "HealthEdu.Parse.__deallocating_deinit"
+                  moduleName = "HealthEdu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Yu-Ju/Documents/HealthEdu_All/HealthEdu-apply-NSURLSession/HealthEdu/Parse.swift"
+                  timestampString = "499359063.971503"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
                   symbolName = "HealthEdu.Parse.deinit"
                   moduleName = "HealthEdu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Yu-Ju/Documents/HealthEdu_All/HealthEdu-apply-NSURLSession/HealthEdu/Parse.swift"
-                  timestampString = "499276455.326082"
+                  timestampString = "499359063.971656"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -291,7 +306,7 @@
                   moduleName = "HealthEdu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Yu-Ju/Documents/HealthEdu_All/HealthEdu-apply-NSURLSession/HealthEdu/Parse.swift"
-                  timestampString = "499276455.326172"
+                  timestampString = "499359063.971758"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "17"
@@ -308,11 +323,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DivisionViewController.swift"
-            timestampString = "498012600.029493"
+            timestampString = "499326717.430977"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "DivisionViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -372,11 +387,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HealthEdu/ListArticle.swift"
-            timestampString = "499248247.354423"
+            timestampString = "499359111.205268"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "byDivisionId(_:excludeIds:completionHandler:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -388,11 +403,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HealthEdu/ListArticle.swift"
-            timestampString = "499264117.66572"
+            timestampString = "499359111.205268"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "byStarTopic(_:completionHandler:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -504,6 +519,22 @@
             startingLineNumber = "508"
             endingLineNumber = "508"
             landmarkName = "deleteFromBookmark()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HealthEdu/ListArticle.swift"
+            timestampString = "499359111.205268"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "byDivisionId(_:excludeIds:completionHandler:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -265,8 +265,8 @@
 		04965A2F1D8E77A600E05F3C /* Division */ = {
 			isa = PBXGroup;
 			children = (
-				040190AB1D85A58600F8E6DA /* DevisionOnlyVC.swift */,
 				040190A11D8596D600F8E6DA /* DivisionViewController.swift */,
+				040190AB1D85A58600F8E6DA /* DevisionOnlyVC.swift */,
 				231D7AD71DA2B74700CCAAB7 /* DomainClass.swift */,
 				231D7AD91DA2B75300CCAAB7 /* DivisionClass.swift */,
 			);
@@ -342,10 +342,10 @@
 			children = (
 				236597D31D9E3ED2007F257C /* Domains.json */,
 				236597D51D9E3EEB007F257C /* Divisions.json */,
-				231D7AD51DA2B63100CCAAB7 /* DomainsDivisions.swift */,
 				236597CF1D9E3E5E007F257C /* Connection.swift */,
 				236597D11D9E3E75007F257C /* Parse.swift */,
 				236597D71D9F5A6F007F257C /* CustomExtension.swift */,
+				231D7AD51DA2B63100CCAAB7 /* DomainsDivisions.swift */,
 				234D13791DBFA6B600ADCBC8 /* ListArticle.swift */,
 				234D137B1DC1E49E00ADCBC8 /* ListStar.swift */,
 			);
