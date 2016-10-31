@@ -65,6 +65,17 @@ extension DivisionViewController: UITableViewDataSource {
     }
     
     
+    /**
+     Define the title for header in section
+     - returns: string
+     */
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        return hierarchy[section]!.domain
+        
+        
+    }
+    
     
     
     /**
@@ -78,6 +89,8 @@ extension DivisionViewController: UITableViewDataSource {
     }
     
     
+    
+
     
     
     
@@ -100,19 +113,10 @@ extension DivisionViewController: UITableViewDataSource {
     
     
     
-    /**
-        Define the title for header in section
-        - returns: string
-     */
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 
-        return hierarchy[section]!.domain
-        
-
-    }
     
     
-    
+    // TODO: 以後要在 json 仔入那邊確認每個 division data 的格式！
     
     /**
         Pass the data to the DevisionOnlyVC
@@ -125,12 +129,11 @@ extension DivisionViewController: UITableViewDataSource {
         if let indexPath = self.tableView.indexPathForSelectedRow {
             
             
-            // get division specific id from hierarchy array
-            let specificId: String? = hierarchy[indexPath.section]!.division_data[indexPath.row]!.id!
+            // pass the division specific id to DevisionOnlyVC
+            devisionVC.divisionIdSelected = hierarchy[indexPath.section]!.division_data[indexPath.row]!.id
             
-            
-            // and pass the division specific id to DevisionOnlyVC
-            devisionVC.divisionIdSelected = specificId
+            // pass the division name to DevisionOnlyVC for navigation show
+            devisionVC.divisionTitleSelectedForNavigationShow = hierarchy[indexPath.section]!.division_data[indexPath.row]!.division
             
             
         }

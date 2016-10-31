@@ -160,6 +160,10 @@ extension StarSingleTopic: UITableViewDataSource, UITableViewDelegate {
         // define the cell in file mySingleTopicCell.swift,and  the cell ID is called "articleCellinTopic" in Storyboard
         let cell = tableView.dequeueReusableCellWithIdentifier("articleCellinTopic", forIndexPath: indexPath) as! mySingleTopicCell
         
+        // set each row's image the DefaultPhotoForArticle
+        // prevent repeat image because of dequeueReusableCellWithIdentifire()
+        cell.singleTopicCellPhoto.image = nil
+        
         // get the specific articleItem
         let articleItem = self.articleArray[indexPath.row]
         print("ceel again")
@@ -213,7 +217,6 @@ extension StarSingleTopic: UITableViewDataSource, UITableViewDelegate {
             articleDetail.currentBodyString = articleSelected.body
             articleDetail.currentAuthorString = articleSelected.author
             articleDetail.currentDivisionString = articleSelected.division
-            print(articleSelected.photoUIImage)
             articleDetail.currentPhotoUIImage = articleSelected.photoUIImage
             articleDetail.currentTimeString = articleSelected.time
             

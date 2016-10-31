@@ -79,7 +79,7 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
             
             for result in results {
                 
-                articleArrayHistory.append(article(id: result.id! ,title: result.title!, photoUIImage: UIImage() ,  photo: result.photo!, author: result.author!, body: result.body!, time: result.time! , division: result.division!))
+                articleArrayHistory.append(article(id: result.id! ,title: result.title!, photoUIImage: UIImage(data: result.photoUIImage!)! ,  photo: String(), author: result.author!, body: result.body!, time: result.time! , division: result.division!))
             }
             
         }catch{
@@ -111,7 +111,7 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
             
             for result in results {
                 
-                articleArrayBookmark.append(article(id: result.id! ,title: result.title!, photoUIImage: UIImage() ,  photo: result.photo!, author: result.author!, body: result.body!, time: result.time! , division: result.division!))
+                articleArrayBookmark.append(article(id: result.id! ,title: result.title!, photoUIImage: UIImage(data: result.photoUIImage!)! ,  photo: String(), author: result.author!, body: result.body!, time: result.time! , division: result.division!))
             }
             
         }catch{
@@ -194,7 +194,7 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
         case 0:
             // User is in History
             let articleItem = articleArrayHistory[indexPath.row]
-            cell.BookmarkImageViewCellIBO.image = UIImage(named: articleItem.photo)
+            cell.BookmarkImageViewCellIBO.image = articleItem.photoUIImage
             cell.BookmarkTitleIBO.text = articleItem.title
             cell.BookmarkAuthorIBO.text = articleItem.author
             cell.BookmarkBodyIBO.text = articleItem.body.noHTMLtag
@@ -203,7 +203,7 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
         case 1:
             // User is in Bookmark
             let articleItem = articleArrayBookmark[indexPath.row]
-            cell.BookmarkImageViewCellIBO.image = UIImage(named: articleItem.photo)
+            cell.BookmarkImageViewCellIBO.image = articleItem.photoUIImage
             cell.BookmarkTitleIBO.text = articleItem.title
             cell.BookmarkAuthorIBO.text = articleItem.author
             cell.BookmarkBodyIBO.text = articleItem.body.noHTMLtag
@@ -379,7 +379,6 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
                 articleDetail.currentBodyString = articleSelected.body
                 articleDetail.currentAuthorString = articleSelected.author
                 articleDetail.currentDivisionString = articleSelected.division
-                articleDetail.currentPhotoString = articleSelected.photo
                 articleDetail.currentPhotoUIImage = articleSelected.photoUIImage
                 articleDetail.currentTimeString = articleSelected.time
                 break
@@ -393,7 +392,7 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
                 articleDetail.currentBodyString = articleSelected.body
                 articleDetail.currentAuthorString = articleSelected.author
                 articleDetail.currentDivisionString = articleSelected.division
-                articleDetail.currentPhotoString = articleSelected.photo
+                articleDetail.currentPhotoUIImage = articleSelected.photoUIImage
                 articleDetail.currentTimeString = articleSelected.time
                 
             default:

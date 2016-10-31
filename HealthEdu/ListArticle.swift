@@ -19,7 +19,7 @@ class ListArticle{
         - returns: no resturn
         - completionHandler(Array<article> -> Void) return article array here
      */
-    static func byDivisionId(divisionId: String, excludeIds: [String], completionHandler: [article] -> Void){
+    static func byDivisionId(divisionId: String, limitCount: Int, excludeIds: [String], completionHandler: [article] -> Void){
         
         var excludeArray: [String]
         
@@ -30,22 +30,17 @@ class ListArticle{
             // be sure that excludeIds is not []
             excludeArray = excludeIds
             
-            
-        
         }else{
             
             // if excludeIds is accidentally [], apply ["0"] to it for now
             excludeArray = ["0"]
- 
             
         }
-        
-    
-       
+
         let joinedExcludeIds: String = excludeArray.joinWithSeparator("_")
         
         // generate string to post
-        let strToPost = "divisionId=\(divisionId)&excludeIds=\(joinedExcludeIds)"
+        let strToPost = "divisionId=\(divisionId)&limitCount=\(limitCount)&excludeIds=\(joinedExcludeIds)"
         
         // pass rowSelected to Connection Post
         Connection.postRequest("https://ncku.medcode.in/json/listByDivisionId", postString: strToPost, completionHandler: {
@@ -132,59 +127,55 @@ class ListArticle{
         
     }
     
-    
-    /*
-    func OperateJson_And_AddToarticleArray(jsonData: NSData)
-    {
+    /**
+     this func is used by showing articles belong to specific division id
+     
+     - returns: no resturn
+     - completionHandler(Array<article> -> Void) return article array here
+     */
+    static func bySearchText(searchText: String, completionHandler: [article] -> Void){
         
-        if let jsonArray = Parse.parseJSONdata(jsonData) {
+        let strToPost = "searchText=\(searchText)"
+        
+
+        // pass rowSelected to Connection Post
+        Connection.postRequest("https://ncku.medcode.in/json/listBySearchText", postString: strToPost, completionHandler: {
+            (data) in
             
             
-            for a_article in jsonArray {
+            if let jsonArray = Parse.parseJSONdata(data) {
                 
-                ////////////////////////////////////////////////////////////
-                /////////這裡應該要判斷是否該文章有image，若無，則採用預設/////////
-                ////////////////////////////////////////////////////////////
-                let photoUrl: String = "http://webpage.hosp.ncku.edu.tw/Portals/0/Issue14/6.jpg"
+                var articleArray: [article] = []
                 
-                
-                // 取得圖片
-                
-                
-                // 現在用假圖片，到時候要用類似下面這種方式 但是還要加上判斷
-                // let photoUrl: String = "http://webpage.hosp.ncku.edu.tw"+(a_article["img_src"]!![0] as! String)
-                
-                
-                Connection.GetImage(photoUrl, completionHandler: {
-                    (Imagedata) in
+                for a_article in jsonArray {
+                    
+                    let new_article = article(
+                        id: a_article["id"] as! String,
+                        title: a_article["title"] as! String,
+                        photoUIImage: UIImage(),
+                        photo: a_article["photo"] as! String,
+                        author: a_article["author"] as! String,
+                        body: a_article["content"] as! String,
+                        time: a_article["update_time"] as! String,
+                        division: a_article["division"] as! String)
+                    
+                    articleArray.append(new_article)
                     
                     
-                    self.image = UIImage(data: Imagedata)!
-                    // 把 data 轉換成 UIImage
-                    
-                    let new_article = Article(title: a_article["title"] as! String, photo: self.image!, author: a_article["author"] as! String , body: a_article["content"] as! String)
-                    
-                    self.articleArray.append(new_article)
-                    
-                    
-                    
-                    // 以下為把資料貼到 view 上
-                    dispatch_async(dispatch_get_main_queue(), {
-                        
-                        self.tableView.reloadData()
-                        
-                        // 一定要在這個 dispatch_async() 裡面change UI
-                        // Do not change UI from anything but the main thread, it is bound to make your application unstable, and crash unpredictably.
-                    })
-                    
-                })
+                }
                 
-                
+                completionHandler(articleArray)
                 
             }
             
             
-        }
+            
+            
+        })
         
-    }*/
-}
+        
+        
+    }
+
+    
+ }

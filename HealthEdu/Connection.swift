@@ -31,7 +31,8 @@ class Connection: NSObject, NSURLSessionDelegate{
             // TODO: 需要做 throw exception!! 跳出視窗
             guard error == nil && data != nil else {
                 // check for fundamental networking error
-                print("error=\(error)")
+                // when disconnected, show error here
+                print("class Connection error=\(error)")
                 return
                 
             }

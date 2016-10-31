@@ -31,10 +31,21 @@ class StarMany: UIViewController {
     // init activityindicator
     var activityIndicator = UIActivityIndicatorView()
     
+    // afterDownload
+    var afterDownload: Bool = false
+    
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        
+        
+        print(Reachability.checkInternet())
+        
+        
+        Reachability.checkInternetAndShowAlert(self)
+
         
         // 測試用 當 abc 為 true 時，會實現 Qrcode 開啟本機畫面直接轉畫面的功能
         self.abc = false
@@ -83,6 +94,9 @@ class StarMany: UIViewController {
                         // refer self.topicArray to starTopicArray (Array from Server)
                         self.topicArray = starTopicArray
                         
+                        // set self.afterDownload for show info if there is no result
+                        self.afterDownload = true
+                        
                         // show the line separator again
                         self.StarTableViewIBO.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
                         
@@ -121,7 +135,39 @@ extension StarMany: UITableViewDataSource, UITableViewDelegate {
      
      */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        
+        if self.topicArray.count > 0 {
+            
+            return 1
+            
+        }else if self.topicArray.count == 0 && self.afterDownload {
+            // TODO: 把這裡的提示 「目前沒有衛教文章」 套用到各個不同頁面
+            
+            let noDataLabel: UILabel     = UILabel()
+            noDataLabel.backgroundColor = UIColor.grayColor()
+            noDataLabel.text             = "目前沒有衛教文章，敬請期待發布。"
+            
+            noDataLabel.textColor        = UIColor.blackColor()
+            noDataLabel.textAlignment    = .Center
+            self.StarTableViewIBO.separatorStyle = .None
+            
+            // dispathc to main to animating show no result background view
+            dispatch_async(dispatch_get_main_queue(), {
+                self.StarTableViewIBO.backgroundView = noDataLabel
+            })
+    
+            
+            
+            
+            
+            
+        }
+        
+        
+        return 0
+        
+
+        
     }
 
 
@@ -137,15 +183,20 @@ extension StarMany: UITableViewDataSource, UITableViewDelegate {
 
 
     /**
-            Define the cell.
-            The cell Identifier in Storyboard is called starcellFirst
-            - returns: cell
+        Define the cell.
+        The cell Identifier in Storyboard is called starcellFirst
+     
+        - returns: cell
      */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         // creat the variable cell, the detail of the cell is define in file myTopicCell.swift
         let cell = tableView.dequeueReusableCellWithIdentifier("starCellFirst", forIndexPath: indexPath) as! myTopicsCell
 
+        // set each row's image to nil
+        // prevent repeat image because of dequeueReusableCellWithIdentifire()
+        cell.topicPhotoIBO.image = nil
+        
         
         // fetch data from each row of the topicArray and let it be topicItem
         let topicItem = topicArray[indexPath.row]

@@ -15,13 +15,13 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
     // MARK:- Variable Declaration
     
     // Offline Data for now. Recommended Keywords
-    let searchItem = ["[範例] 糖尿病", "[範例] 飲食控制", "[範例] 大便潛血反應"]
+    let searchItem = ["糖尿病", "飲食控制", "大便潛血"]
     
     // Variable for containing searchBar
     let searchBar = UISearchBar.self
     
-    // FilterArray for filter keywords
-    var filterArray = [String]()
+    // contain text to search when button return clicked
+    var searchTextTemp: String?
     
     // for marking whether user type in something to search or not
     var showSearhResult = false
@@ -32,19 +32,10 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
         
         super.viewDidLoad()
         
-        // create search bar func
-        creatSearchBar()
 
-  
-    }
-    
-    /**
-     for creating search bar in navigationItem title view
-     - parameter nothing
-     - returns: nothing
-    */
-    func creatSearchBar() {
         
+        
+        // create search bar func
         let searchBar = UISearchBar()
         searchBar.showsCancelButton = false
         
@@ -55,127 +46,139 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
         // put search bar on
         self.navigationItem.titleView = searchBar
         
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
+  
+  
     }
     
+    
+
+
+    // MARK:- Specific funcs for search functionality
+    func hideKeyboard(){
+        self.view.endEditing(true)
+    }
+    
+    // TODO: 如何 dismiss keyboard
     
     /**
-     func for detecting searchBar action, and doing some other thing
-    */
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        press on keyboard's "return" button trigger this func
+        then it dismiss keyboard, temporarily store searchText, and preform segue
+     
+        - returns: nothing
+     */
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         
-        // filterArray for contain keywords related to searchText in real time
-        filterArray = searchItem.filter({ (names: String) -> Bool in
-            return names.lowercaseString.rangeOfString(searchText.lowercaseString) != nil
-        })
+        // dismiss keyboard
+        searchBar.endEditing(true)
         
-        if searchText != ""
-        {
-            // user do type in some text to search
-            showSearhResult = true
-            self.tableView.reloadData()
+        // 檢查不能是空直
+        let whitespaceSet = NSCharacterSet.whitespaceCharacterSet()
+        if searchBar.text!.stringByTrimmingCharactersInSet(whitespaceSet) != "" {
             
-        } else {
+            // string contains non-whitespace characters
             
-            // user do not type anything
-            showSearhResult = false
-            self.tableView.reloadData()
+            // temporary store searchBar text to searchTextTemp
+            self.searchTextTemp = searchBar.text
+            
+            // perform segue change vc
+            self.performSegueWithIdentifier("searchTextSendSegue", sender: nil)
+
             
         }
+        
+        
+        
+        
     }
 
+    
+    
 
     // MARK: - Table view data source
 
     /**
-     Define how many section are there
-     - returns: Int , section number, in this case just one
+        Define how many section are there
+        - returns: Int , section number, in this case just one
     */
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
 
-    /**
-     Define how rows in each section
-     In this case, only one section. So, no need to use variable section
-     - returns: Int , row number
-     */
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        // determine whether user type in some text or not
-        if showSearhResult {
-            
-            // user do type in some text to search -> show filterArray
-            return filterArray.count
-            
-        } else {
-            
-            // user do not type anything -> show original searchItem array
-            return searchItem.count
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "♨ 熱門關鍵字"
+        }else{
+            return "📈 最新趨勢"
         }
-        
-        
         
     }
     
+    
     /**
-     Define content of each row
-     In this case, only one section. So, no need to use variable section
-     - returns: UITableViewCell , row number
+        Define how rows in each section
+        In this case, only one section. So, no need to use variable section
+     
+        - returns: Int , row number
+     */
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+            
+        // user do not type anything -> show original searchItem array
+        return searchItem.count
+
+        
+    }
+    
+    
+    
+    // TODO: 應作出網路趨勢統整
+    /**
+        Define content of each row
+        In this case, only one section. So, no need to use variable section
+     
+        - returns: UITableViewCell , row number
      */
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         // Define identifier searchCell
         let cell = tableView.dequeueReusableCellWithIdentifier("searchCell", forIndexPath: indexPath)
         
+
+        // user do not type anything -> show original searchItem array
+        cell.textLabel?.text = searchItem[indexPath.row]
         
-        // determine whether user type in some text or not
-        if showSearhResult {
-            
-            // user do type in some text to search -> show filterArray
-            cell.textLabel?.text = filterArray[indexPath.row]
-            
-            
-        } else {
-            
-            // user do not type anything -> show original searchItem array
-            cell.textLabel?.text = searchItem[indexPath.row]
-            
-        }
+        
         
         return cell
     }
     
-    // MARK:- Specific funcs for search functionality
     
-    /**
-     touch on screen trigger this
-     then execute tableview endEditing to dismiss the keyboard
-     
-     - returns: nothing
-     */
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        self.tableView.endEditing(true)
-    }
     
-    /**
-     press on keyboard's "return" button trigger this func
-     then it dismiss keyboard and  reload tableView data
-     
-     - returns: nothing
-     */
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        showSearhResult = true
-        searchBar.endEditing(true)
-        self.tableView.reloadData()
+        // check if segue is trigger from click on tableView
+        // YES for execute this if clause, extract text to search from array
+        // NO for skip it
+        if let indexPath = self.tableView.indexPathForSelectedRow {
+            
+            self.searchTextTemp = self.searchItem[indexPath.row]
+            
+        }
+        
+        // set SearchResultVC
+        let searchResultVC = segue.destinationViewController as! SearchResultVC
+        
+        // pass data to SearchResultVC
+        searchResultVC.searchText = self.searchTextTemp
+        
+        
         
     }
+    
+    
 
 
 }

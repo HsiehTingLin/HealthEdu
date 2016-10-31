@@ -159,14 +159,16 @@ class ArticleViewController: UIViewController {
      */
     func showarticleFullHTML(fontsize: Int){
         
-        
 
-        
-        
         let divWidth = self.view.frame.size.width-17
-        let divHeight = 243
+        let divHeight = 280
         let imgWidth = self.view.frame.size.width-17
         
+        
+        // amazing: UIImageJPEGRepresentation can convert jpeg png gif
+        let imageData = NSData(data: UIImageJPEGRepresentation(self.currentPhotoUIImage,1.0)!)
+        
+        let base64Data = imageData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
         
         var articleFullHTMLarray = [String]()
         articleFullHTMLarray.append("<div width=\"\(divWidth)\" style=\"word-break: break-all;\"")
@@ -174,16 +176,12 @@ class ArticleViewController: UIViewController {
         
         articleFullHTMLarray.append("<br><p><div align=\"center\" style=\"font-size:35px; font-weight:bold;\">\(self.currentTitleString!)</div></p>")
         articleFullHTMLarray.append("<p><div align=\"center\" style=\"color: gray; font-size:19px\">\(self.currentAuthorString!)</div></p>")
-        articleFullHTMLarray.append("<div align=\"center\" style=\"width:\(divWidth)px; height:\(divHeight)px; overflow:hidden;  \">")
         
-        // amazing: UIImageJPEGRepresentation can convert jpeg png gif
-        let imageData = NSData(data: UIImageJPEGRepresentation(self.currentPhotoUIImage,1.0)!)
         
-        let base64Data = imageData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
-
         articleFullHTMLarray.append("<img src=\"data:image/jpg;base64,\(base64Data)\" width=\"\(imgWidth)\">")
-        articleFullHTMLarray.append("</div>")
-        articleFullHTMLarray.append("<div style='font-size: \(fontsize)px' id=\"body\"><p>\(self.currentBodyString!)</p>")
+        
+
+        articleFullHTMLarray.append("<div style='font-size: \(fontsize)px; padding-left: 3%; padding-right: 3%; text-indent: 5%;' id=\"body\"><p>\(self.currentBodyString!)</p>")
         articleFullHTMLarray.append("<p>最後更新：\(self.currentTimeString!)<br></p></div>")
         articleFullHTMLarray.append("</div>")
         
@@ -192,12 +190,13 @@ class ArticleViewController: UIViewController {
         
         self.fontSizeString = "正常"
         self.articleFullWebView.loadHTMLString(articleFullHTML, baseURL: nil)
-        
+        self.articleFullWebView.backgroundColor = UIColor.whiteColor()
+               
     }
     
     
     
-    // MARK: Bar Button Item Function
+    // MARK:- Bar Button Item Function
     
     /**
      this func will generate a qrcode related to id of the article
@@ -338,89 +337,8 @@ class ArticleViewController: UIViewController {
         
     }
     
-
     
-    /**
-     
-        add article to bookmark
-     
-     */
-    func addToBookmark(sender: AnyObject) {
-        
-        
-        if let bookmark = NSEntityDescription.insertNewObjectForEntityForName("BookmarkEntities", inManagedObjectContext: self.core_data) as? BookmarkEntities {
-            
-            // get the biggest autoIncrement in core data now
-            let countRequest = NSFetchRequest(entityName: "BookmarkEntities")
-            
-            do {
-                
-                let fetchResults = try self.core_data.executeFetchRequest(countRequest) as? [BookmarkEntities]
-                
-                var biggest:Int? = 0
-                
-                for a_result in fetchResults!{
-                    
-                    if a_result.autoIncrement != nil {
-                        if Int(a_result.autoIncrement!) > biggest {
-                            biggest = Int(a_result.autoIncrement!)
-                        }
-                    }
-                    
-                }
-                
-                // autoIncrement = biggest +1
-                if biggest != nil {
-                    bookmark.autoIncrement = biggest! + 1
-                }else{
-                    bookmark.autoIncrement = 0
-                }
-                
-            }catch{
-                
-                fatalError("Failure to save context: \(error)")
-                // can not store
-            }
-            
-            
-            bookmark.id = currentIdString
-            bookmark.time = currentTimeString
-            bookmark.author = currentAuthorString
-            bookmark.body = currentBodyString
-            bookmark.title = currentTitleString
-            bookmark.photo = currentPhotoString
-            bookmark.division = currentDivisionString
-            
-            do {
-                
-                try self.core_data.save()
-                // store
-                
-                self.showBarButtonItem()
-                // reload bar button
-                
-            }catch{
-                
-                fatalError("Failure to save context: \(error)")
-                // can not store
-            }
-            
-            
-            
-        }
-        
-        
-        
-        
-        
-    }
-    
-    
-    
-    
-    
-
-    
+    // MARK:- user Default
     /**
      
      get user default setting for article font size
@@ -448,7 +366,7 @@ class ArticleViewController: UIViewController {
             default:
                 return "正常"
             }
-        
+            
         }else{
             return "正常"
         }
@@ -457,7 +375,7 @@ class ArticleViewController: UIViewController {
     
     /**
      
-      get user default font size in Int (px)
+     get user default font size in Int (px)
      
      - returns: Int, 19,21,24,29
      
@@ -493,12 +411,113 @@ class ArticleViewController: UIViewController {
         
         
     }
-    
-    
-    
+
+    // MARK:- Add To Core Data
     /**
      
-     delete article from bookmark
+        add article to bookmark
+     
+     */
+    func addToBookmark(sender: AnyObject) {
+        
+        // get the biggest autoIncrement in core data now
+        let countRequest = NSFetchRequest(entityName: "BookmarkEntities")
+        
+        // count for current stored bookmark articles
+        let fetchResults = core_data.countForFetchRequest(countRequest, error: nil)
+        
+        // if >= 20 articles now, stop storing process
+        if(fetchResults >= 20){
+            
+            //  means bookmarks store reach the limit 20
+            let alertMessage = UIAlertController(title: "已達收藏文章上限(20篇)", message: "請前往書籤-收藏頁面刪除文章！", preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: "知道了", style: .Default, handler: nil)
+            
+            
+            alertMessage.addAction(okAction)
+            
+            // need add dispatch
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.presentViewController(alertMessage, animated: true, completion:nil)
+            })
+            
+        }else{
+            
+
+            if let bookmark = NSEntityDescription.insertNewObjectForEntityForName("BookmarkEntities", inManagedObjectContext: self.core_data) as? BookmarkEntities {
+                
+
+                do {
+                    
+                    let fetchResults = try self.core_data.executeFetchRequest(countRequest) as? [BookmarkEntities]
+                    
+                    var biggest:Int? = 0
+                    
+                    for a_result in fetchResults!{
+                        
+                        if a_result.autoIncrement != nil {
+                            if Int(a_result.autoIncrement!) > biggest {
+                                biggest = Int(a_result.autoIncrement!)
+                            }
+                        }
+                        
+                    }
+                    
+                    // autoIncrement = biggest +1
+                    if biggest != nil {
+                        bookmark.autoIncrement = biggest! + 1
+                    }else{
+                        bookmark.autoIncrement = 0
+                    }
+                    
+                }catch{
+                    
+                    fatalError("Failure to save context: \(error)")
+                    // can not store
+                }
+                
+                
+                bookmark.id = currentIdString
+                bookmark.time = currentTimeString
+                bookmark.author = currentAuthorString
+                bookmark.body = currentBodyString
+                bookmark.title = currentTitleString
+                bookmark.photoUIImage = NSData(data: UIImageJPEGRepresentation(self.currentPhotoUIImage,1.0)!)
+                bookmark.division = currentDivisionString
+                
+                do {
+                    
+                    try self.core_data.save()
+                    // store
+                    
+                    self.showBarButtonItem()
+                    // reload bar button
+                    
+                }catch{
+                    
+                    fatalError("Failure to save context: \(error)")
+                    // can not store
+                }
+                
+                
+                
+            }
+        
+        
+        }
+        
+        
+        
+    }
+    
+    
+    
+    
+
+    /**
+     
+        delete article from bookmark
      
      */
     func deleteFromBookmark()
@@ -540,7 +559,7 @@ class ArticleViewController: UIViewController {
     
     /**
      
-     delete existing article from History
+        delete existing article from History
      
      */
     func deleteHistoryExist()
@@ -600,20 +619,85 @@ class ArticleViewController: UIViewController {
                 
                 let fetchResults = try self.core_data.executeFetchRequest(countRequest) as? [HistoryEntities]
                 
-                var biggest:Int? = 0
+                let countResults = try self.core_data.countForFetchRequest(countRequest, error: nil)
                 
+       
                 
-                // find the biggest autoIncrement value in core data
+                // declara smallest(for delete old history) and biggest(for add a new article)
+                print(Int.max)
+                var smallest: Int? = Int.max
+                var biggest: Int? = 0
+                
+                // find the smallest autoIncrement value in core data
                 for a_result in fetchResults!{
-                    
                     if a_result.autoIncrement != nil {
-                        if Int(a_result.autoIncrement!) > biggest {
-                            biggest = Int(a_result.autoIncrement!)
+                        
+                        // there seem to be a nil entity in Core Data
+                        // use let title = a_result.title to avoid that nil entity
+                        // or it will interfere the smallest number we calculate here
+                        if a_result.title != nil {
+                            
+                            if Int(a_result.autoIncrement!) < smallest {
+                                
+                                smallest = Int(a_result.autoIncrement!)
+                                
+                            }
+                            
+                            if Int(a_result.autoIncrement!) > biggest {
+                                biggest = Int(a_result.autoIncrement!)
+                                
+                            }
                             
                         }
+                        
+
+                        
+
                     }
                     
                 }
+                
+                
+                // check if count results is over 20
+                // when over, delete the smallest autoIncrement article
+                // count 21 for autual 20 articles
+                if(countResults >= 21){
+                    
+                    let deleteExistRequest = NSFetchRequest(entityName: "HistoryEntities")
+                    deleteExistRequest.predicate = NSPredicate(format: "autoIncrement == %i", smallest!)
+                    
+                    
+                    // delete existing article from history
+                    do {
+                        
+                        let results = try self.core_data.executeFetchRequest(deleteExistRequest) as! [HistoryEntities]
+                        
+                        for result in results {
+                            
+                            self.core_data.deleteObject(result)
+                            
+                        }
+                        
+                        do {
+                            
+                            try self.core_data.save()
+                            
+                        }catch{
+                            
+                            fatalError("Failure to save context: \(error)")
+                            // can not store
+                        }
+                        
+                    }catch{
+                        
+                        fatalError("Failure to save context: \(error)")
+                        // can not store
+                    }
+                    
+                    
+                }
+                
+                
                 
                 // define History autoIncrement = biggest +1
                 if biggest != nil {
@@ -634,7 +718,7 @@ class ArticleViewController: UIViewController {
             history.author = currentAuthorString
             history.body = currentBodyString
             history.title = currentTitleString
-            history.photo = currentPhotoString
+            history.photoUIImage = NSData(data: UIImageJPEGRepresentation(self.currentPhotoUIImage,1.0)!)
             history.division = currentDivisionString
             
             do {

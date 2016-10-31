@@ -224,20 +224,20 @@
         <scene sceneID="ZHo-dt-tP6">
             <objects>
                 <tableViewController id="bvg-X8-ue3" customClass="SearchTableViewController" customModule="HealthEdu" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="rqe-ff-k7T">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="rqe-ff-k7T">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchCell" id="3JT-eT-JvY">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3JT-eT-JvY" id="4sX-FO-ngu">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="KUN-am-oo5" kind="show" id="yKu-XD-420"/>
+                                    <segue destination="KUN-am-oo5" kind="show" identifier="searchTextSendSegue" id="yKu-XD-420"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -687,7 +687,7 @@
                                 </connections>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="113" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gNK-ro-9oW">
-                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                                <rect key="frame" x="0.0" y="108" width="600" height="443"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="96" id="mXJ-4M-SUR" customClass="myBookmarkCell" customModule="HealthEdu" customModuleProvider="target">
@@ -767,7 +767,7 @@
                             <constraint firstItem="TSd-4E-maj" firstAttribute="top" secondItem="Wyw-mk-zQg" secondAttribute="bottom" id="K9s-7f-PtZ"/>
                             <constraint firstAttribute="trailing" secondItem="TSd-4E-maj" secondAttribute="trailing" id="SRu-Ga-25M"/>
                             <constraint firstItem="gNK-ro-9oW" firstAttribute="leading" secondItem="TSd-4E-maj" secondAttribute="leading" id="TAk-Db-ww9"/>
-                            <constraint firstAttribute="bottom" secondItem="gNK-ro-9oW" secondAttribute="bottom" id="Ts1-kG-hwb"/>
+                            <constraint firstAttribute="bottom" secondItem="gNK-ro-9oW" secondAttribute="bottom" constant="49" id="Ts1-kG-hwb"/>
                             <constraint firstItem="gNK-ro-9oW" firstAttribute="trailing" secondItem="TSd-4E-maj" secondAttribute="trailing" id="cMH-g0-rOT"/>
                             <constraint firstItem="gNK-ro-9oW" firstAttribute="top" secondItem="TSd-4E-maj" secondAttribute="bottom" id="dEk-ey-wv1"/>
                         </constraints>
@@ -908,7 +908,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Body" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="giE-8X-hK7">
-                                            <rect key="frame" x="120" y="45" width="467" height="46"/>
+                                            <rect key="frame" x="120" y="42" width="467" height="46"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.56078431370000004" green="0.5568627451" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -916,6 +916,7 @@
                                         <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultPhotoForArticle" translatesAutoresizingMaskIntoConstraints="NO" id="4dh-or-8hl">
                                             <rect key="frame" x="21" y="5" width="86" height="86"/>
                                             <constraints>
+                                                <constraint firstAttribute="height" constant="86" id="eBn-8j-4dQ"/>
                                                 <constraint firstAttribute="width" constant="86" id="imc-xY-YlZ"/>
                                             </constraints>
                                         </imageView>
@@ -941,14 +942,13 @@
                                     <constraints>
                                         <constraint firstItem="s48-fy-XQE" firstAttribute="leading" secondItem="Fjc-4m-qk9" secondAttribute="leading" id="4xn-bs-pm6"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Fjc-4m-qk9" secondAttribute="trailing" constant="5" id="8vo-xz-fvb"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="giE-8X-hK7" secondAttribute="bottom" constant="-4" id="JYx-Cv-nOH"/>
-                                        <constraint firstItem="giE-8X-hK7" firstAttribute="top" secondItem="Fjc-4m-qk9" secondAttribute="bottom" constant="19" id="K2D-kc-50w"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="giE-8X-hK7" secondAttribute="bottom" constant="-1" id="JYx-Cv-nOH"/>
                                         <constraint firstItem="Fjc-4m-qk9" firstAttribute="top" secondItem="tti-r8-jL4" secondAttribute="top" constant="5" id="Nof-mc-e7Y"/>
                                         <constraint firstItem="Fjc-4m-qk9" firstAttribute="trailing" secondItem="giE-8X-hK7" secondAttribute="trailing" id="ONe-gw-IZK"/>
                                         <constraint firstItem="s48-fy-XQE" firstAttribute="leading" secondItem="4dh-or-8hl" secondAttribute="trailing" constant="13" id="RJF-VH-7Pw"/>
                                         <constraint firstItem="s48-fy-XQE" firstAttribute="trailing" secondItem="Fjc-4m-qk9" secondAttribute="trailing" id="V2Y-4S-N95"/>
+                                        <constraint firstItem="giE-8X-hK7" firstAttribute="top" secondItem="Fjc-4m-qk9" secondAttribute="bottom" constant="16" id="XMP-9P-bHS"/>
                                         <constraint firstItem="4dh-or-8hl" firstAttribute="leading" secondItem="tti-r8-jL4" secondAttribute="leadingMargin" constant="13" id="ZHT-2R-hfJ"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="4dh-or-8hl" secondAttribute="bottom" constant="-4" id="gXX-vL-fGx"/>
                                         <constraint firstItem="Fjc-4m-qk9" firstAttribute="leading" secondItem="giE-8X-hK7" secondAttribute="leading" id="keM-rn-iEy"/>
                                         <constraint firstItem="s48-fy-XQE" firstAttribute="top" secondItem="Fjc-4m-qk9" secondAttribute="bottom" constant="-3" id="mlg-Oh-HEW"/>
                                         <constraint firstItem="4dh-or-8hl" firstAttribute="top" secondItem="Fjc-4m-qk9" secondAttribute="top" id="yBN-Zi-ghM"/>
@@ -1085,6 +1085,6 @@
         <image name="star" width="28" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dS7-pP-mb1"/>
+        <segue reference="rJe-gL-Cah"/>
     </inferredMetricsTieBreakers>
 </document>

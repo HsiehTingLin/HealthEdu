@@ -37,13 +37,10 @@
 		231D7AD61DA2B63100CCAAB7 /* DomainsDivisions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231D7AD51DA2B63100CCAAB7 /* DomainsDivisions.swift */; };
 		231D7AD81DA2B74700CCAAB7 /* DomainClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231D7AD71DA2B74700CCAAB7 /* DomainClass.swift */; };
 		231D7ADA1DA2B75300CCAAB7 /* DivisionClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231D7AD91DA2B75300CCAAB7 /* DivisionClass.swift */; };
+		233B408B1DC719D800954235 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233B408A1DC719D800954235 /* Reachability.swift */; };
 		234D137A1DBFA6B600ADCBC8 /* ListArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234D13791DBFA6B600ADCBC8 /* ListArticle.swift */; };
 		234D137C1DC1E49E00ADCBC8 /* ListStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234D137B1DC1E49E00ADCBC8 /* ListStar.swift */; };
 		234FB3461D98F03400A2C099 /* mySettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234FB3451D98F03400A2C099 /* mySettingsCell.swift */; };
-		234FB34B1D98FC9D00A2C099 /* HistoryEntities+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234FB3471D98FC9D00A2C099 /* HistoryEntities+CoreDataProperties.swift */; };
-		234FB34C1D98FC9D00A2C099 /* HistoryEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234FB3481D98FC9D00A2C099 /* HistoryEntities.swift */; };
-		234FB34D1D98FC9D00A2C099 /* BookmarkEntities+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234FB3491D98FC9D00A2C099 /* BookmarkEntities+CoreDataProperties.swift */; };
-		234FB34E1D98FC9D00A2C099 /* BookmarkEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234FB34A1D98FC9D00A2C099 /* BookmarkEntities.swift */; };
 		2358CBE21D9A04B40079F019 /* QRcodeArticleArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2358CBE11D9A04B40079F019 /* QRcodeArticleArray.swift */; };
 		2358CBEA1D9A22A20079F019 /* cake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2358CBE91D9A22A20079F019 /* cake.jpg */; };
 		2358CBEC1D9A22BF0079F019 /* lab.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2358CBEB1D9A22BF0079F019 /* lab.jpg */; };
@@ -56,6 +53,10 @@
 		2358CBFA1D9A23250079F019 /* talk.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2358CBF91D9A23250079F019 /* talk.jpg */; };
 		2358CBFC1D9A232C0079F019 /* transplant.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2358CBFB1D9A232C0079F019 /* transplant.jpg */; };
 		2358CBFE1D9A247E0079F019 /* Surgery.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2358CBFD1D9A247E0079F019 /* Surgery.jpg */; };
+		235FC4401DC792E9009E3699 /* HistoryEntities+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235FC43C1DC792E9009E3699 /* HistoryEntities+CoreDataProperties.swift */; };
+		235FC4411DC792E9009E3699 /* HistoryEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235FC43D1DC792E9009E3699 /* HistoryEntities.swift */; };
+		235FC4421DC792E9009E3699 /* BookmarkEntities+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235FC43E1DC792E9009E3699 /* BookmarkEntities+CoreDataProperties.swift */; };
+		235FC4431DC792E9009E3699 /* BookmarkEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235FC43F1DC792E9009E3699 /* BookmarkEntities.swift */; };
 		236597D01D9E3E5E007F257C /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236597CF1D9E3E5E007F257C /* Connection.swift */; };
 		236597D21D9E3E75007F257C /* Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236597D11D9E3E75007F257C /* Parse.swift */; };
 		236597D41D9E3ED2007F257C /* Domains.json in Resources */ = {isa = PBXBuildFile; fileRef = 236597D31D9E3ED2007F257C /* Domains.json */; };
@@ -132,13 +133,10 @@
 		231D7AD51DA2B63100CCAAB7 /* DomainsDivisions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainsDivisions.swift; sourceTree = "<group>"; };
 		231D7AD71DA2B74700CCAAB7 /* DomainClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainClass.swift; sourceTree = "<group>"; };
 		231D7AD91DA2B75300CCAAB7 /* DivisionClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DivisionClass.swift; sourceTree = "<group>"; };
+		233B408A1DC719D800954235 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		234D13791DBFA6B600ADCBC8 /* ListArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListArticle.swift; sourceTree = "<group>"; };
 		234D137B1DC1E49E00ADCBC8 /* ListStar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListStar.swift; sourceTree = "<group>"; };
 		234FB3451D98F03400A2C099 /* mySettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mySettingsCell.swift; sourceTree = "<group>"; };
-		234FB3471D98FC9D00A2C099 /* HistoryEntities+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HistoryEntities+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		234FB3481D98FC9D00A2C099 /* HistoryEntities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryEntities.swift; sourceTree = "<group>"; };
-		234FB3491D98FC9D00A2C099 /* BookmarkEntities+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BookmarkEntities+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		234FB34A1D98FC9D00A2C099 /* BookmarkEntities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkEntities.swift; sourceTree = "<group>"; };
 		2358CBE11D9A04B40079F019 /* QRcodeArticleArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRcodeArticleArray.swift; sourceTree = "<group>"; };
 		2358CBE91D9A22A20079F019 /* cake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cake.jpg; path = Assets.xcassets/cake.imageset/cake.jpg; sourceTree = "<group>"; };
 		2358CBEB1D9A22BF0079F019 /* lab.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = lab.jpg; path = Assets.xcassets/lab.imageset/lab.jpg; sourceTree = "<group>"; };
@@ -151,6 +149,10 @@
 		2358CBF91D9A23250079F019 /* talk.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = talk.jpg; path = Assets.xcassets/talk.imageset/talk.jpg; sourceTree = "<group>"; };
 		2358CBFB1D9A232C0079F019 /* transplant.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = transplant.jpg; path = Assets.xcassets/transplant.imageset/transplant.jpg; sourceTree = "<group>"; };
 		2358CBFD1D9A247E0079F019 /* Surgery.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Surgery.jpg; path = Assets.xcassets/Surgery.imageset/Surgery.jpg; sourceTree = "<group>"; };
+		235FC43C1DC792E9009E3699 /* HistoryEntities+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HistoryEntities+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		235FC43D1DC792E9009E3699 /* HistoryEntities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryEntities.swift; sourceTree = "<group>"; };
+		235FC43E1DC792E9009E3699 /* BookmarkEntities+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BookmarkEntities+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		235FC43F1DC792E9009E3699 /* BookmarkEntities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkEntities.swift; sourceTree = "<group>"; };
 		236597CF1D9E3E5E007F257C /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		236597D11D9E3E75007F257C /* Parse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parse.swift; sourceTree = "<group>"; };
 		236597D31D9E3ED2007F257C /* Domains.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Domains.json; sourceTree = "<group>"; };
@@ -201,10 +203,10 @@
 		0401902B1D85476800F8E6DA = {
 			isa = PBXGroup;
 			children = (
-				234FB3471D98FC9D00A2C099 /* HistoryEntities+CoreDataProperties.swift */,
-				234FB3481D98FC9D00A2C099 /* HistoryEntities.swift */,
-				234FB3491D98FC9D00A2C099 /* BookmarkEntities+CoreDataProperties.swift */,
-				234FB34A1D98FC9D00A2C099 /* BookmarkEntities.swift */,
+				235FC43C1DC792E9009E3699 /* HistoryEntities+CoreDataProperties.swift */,
+				235FC43D1DC792E9009E3699 /* HistoryEntities.swift */,
+				235FC43E1DC792E9009E3699 /* BookmarkEntities+CoreDataProperties.swift */,
+				235FC43F1DC792E9009E3699 /* BookmarkEntities.swift */,
 				23F02ADE1D91903B00D797DE /* HealthEdu.xcdatamodeld */,
 				040190361D85476800F8E6DA /* HealthEdu */,
 				0401904B1D85476800F8E6DA /* HealthEduTests */,
@@ -286,10 +288,10 @@
 		04965A311D8E77E500E05F3C /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				04965A431D8EC36C00E05F3C /* SearchResultCell.swift */,
-				04965A411D8EC18C00E05F3C /* SearchResultVC.swift */,
 				04E4C7CC1D86DFC300C570D7 /* SearchTableViewController.swift */,
+				04965A411D8EC18C00E05F3C /* SearchResultVC.swift */,
 				23F02AE31D920C7300D797DE /* SearchQRCodeReaderViewController.swift */,
+				04965A431D8EC36C00E05F3C /* SearchResultCell.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -348,6 +350,7 @@
 				231D7AD51DA2B63100CCAAB7 /* DomainsDivisions.swift */,
 				234D13791DBFA6B600ADCBC8 /* ListArticle.swift */,
 				234D137B1DC1E49E00ADCBC8 /* ListStar.swift */,
+				233B408A1DC719D800954235 /* Reachability.swift */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -549,42 +552,43 @@
 				23F02AE01D91903B00D797DE /* HealthEdu.xcdatamodeld in Sources */,
 				0401903A1D85476800F8E6DA /* ViewController.swift in Sources */,
 				04965A401D8EB67500E05F3C /* mySingleTopicCell.swift in Sources */,
+				233B408B1DC719D800954235 /* Reachability.swift in Sources */,
 				23AD151C1D92E07F00EE20CE /* StarSingleTopicArticle.swift in Sources */,
 				04965A331D8E780100E05F3C /* myBookmarkCell.swift in Sources */,
 				23F02AE41D920C7300D797DE /* SearchQRCodeReaderViewController.swift in Sources */,
+				235FC4421DC792E9009E3699 /* BookmarkEntities+CoreDataProperties.swift in Sources */,
 				04965A361D8E8D0900E05F3C /* StarMany.swift in Sources */,
 				231D7AD81DA2B74700CCAAB7 /* DomainClass.swift in Sources */,
 				04965A381D8E8D3B00E05F3C /* StarSingleTopic.swift in Sources */,
 				040190A21D8596D600F8E6DA /* DivisionViewController.swift in Sources */,
 				04965A441D8EC36C00E05F3C /* SearchResultCell.swift in Sources */,
+				235FC4401DC792E9009E3699 /* HistoryEntities+CoreDataProperties.swift in Sources */,
 				04E4C7CB1D86DECD00C570D7 /* ArticleViewController.swift in Sources */,
 				04E4C7831D86C39C00C570D7 /* myArticleCell.swift in Sources */,
 				049659A31D8D15EC00E05F3C /* BookmarkVCViewController.swift in Sources */,
 				040190AA1D85A41600F8E6DA /* ArticleClass.swift in Sources */,
 				04F509EC1D96EC310041A471 /* MoreSubscribeVC.swift in Sources */,
 				236597D81D9F5A6F007F257C /* CustomExtension.swift in Sources */,
-				234FB34E1D98FC9D00A2C099 /* BookmarkEntities.swift in Sources */,
 				23AD151A1D92DE6600EE20CE /* DevisionOnlyVCArticle.swift in Sources */,
 				04965A3A1D8E8F9600E05F3C /* TopicClass.swift in Sources */,
 				04F509F21D96EC6B0041A471 /* MoreAboutVC.swift in Sources */,
 				231D7ADA1DA2B75300CCAAB7 /* DivisionClass.swift in Sources */,
 				234D137C1DC1E49E00ADCBC8 /* ListStar.swift in Sources */,
-				234FB34B1D98FC9D00A2C099 /* HistoryEntities+CoreDataProperties.swift in Sources */,
 				040190AC1D85A58600F8E6DA /* DevisionOnlyVC.swift in Sources */,
 				04F509EE1D96EC4C0041A471 /* MoreCommentVC.swift in Sources */,
 				231D7AD61DA2B63100CCAAB7 /* DomainsDivisions.swift in Sources */,
 				234FB3461D98F03400A2C099 /* mySettingsCell.swift in Sources */,
 				234D137A1DBFA6B600ADCBC8 /* ListArticle.swift in Sources */,
-				234FB34D1D98FC9D00A2C099 /* BookmarkEntities+CoreDataProperties.swift in Sources */,
 				236597D21D9E3E75007F257C /* Parse.swift in Sources */,
+				235FC4431DC792E9009E3699 /* BookmarkEntities.swift in Sources */,
 				04F509E91D96E8880041A471 /* MoreViewController.swift in Sources */,
 				04965A3C1D8E909200E05F3C /* myTopicsCell.swift in Sources */,
 				236597D01D9E3E5E007F257C /* Connection.swift in Sources */,
 				23AD15181D92DC4B00EE20CE /* StarManyTopic.swift in Sources */,
 				04F509F01D96EC600041A471 /* MoreTextSettingVC.swift in Sources */,
-				234FB34C1D98FC9D00A2C099 /* HistoryEntities.swift in Sources */,
 				2358CBE21D9A04B40079F019 /* QRcodeArticleArray.swift in Sources */,
 				04965A421D8EC18C00E05F3C /* SearchResultVC.swift in Sources */,
+				235FC4411DC792E9009E3699 /* HistoryEntities.swift in Sources */,
 				040190381D85476800F8E6DA /* AppDelegate.swift in Sources */,
 				04E4C7CD1D86DFC300C570D7 /* SearchTableViewController.swift in Sources */,
 			);
