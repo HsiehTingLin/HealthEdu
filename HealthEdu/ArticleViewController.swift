@@ -161,7 +161,7 @@ class ArticleViewController: UIViewController {
         
 
         let divWidth = self.view.frame.size.width-17
-        let divHeight = 280
+        
         let imgWidth = self.view.frame.size.width-17
         
         
@@ -619,7 +619,7 @@ class ArticleViewController: UIViewController {
                 
                 let fetchResults = try self.core_data.executeFetchRequest(countRequest) as? [HistoryEntities]
                 
-                let countResults = try self.core_data.countForFetchRequest(countRequest, error: nil)
+                let countResults = self.core_data.countForFetchRequest(countRequest, error: nil)
                 
        
                 

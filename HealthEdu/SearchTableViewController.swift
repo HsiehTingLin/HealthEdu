@@ -32,8 +32,17 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
         
         super.viewDidLoad()
         
-
+        // create search bar and add gesture
+        self.createSearchBar()
         
+    }
+    
+    
+
+
+    // MARK:- Specific funcs for search functionality
+
+    func createSearchBar(){
         
         // create search bar func
         let searchBar = UISearchBar()
@@ -46,27 +55,40 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
         // put search bar on
         self.navigationItem.titleView = searchBar
         
-  
-  
+        // createtap Gesture Recognizer
+        // trigger hideKeyboard
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SearchTableViewController.hideKeyboard))
+        
+        // without this line, the table behind keyboard cannot be clicked
+        tap.cancelsTouchesInView = false
+        
+        // add gesture to view
+        self.view.addGestureRecognizer(tap)
+        
     }
     
-    
-
-
-    // MARK:- Specific funcs for search functionality
-    func hideKeyboard(){
-        self.view.endEditing(true)
-    }
-    
-    // TODO: 如何 dismiss keyboard
     
     /**
-        press on keyboard's "return" button trigger this func
-        then it dismiss keyboard, temporarily store searchText, and preform segue
+     hide keyboard func
      
-        - returns: nothing
+     - returns: nothing
+     */
+    func hideKeyboard(){
+        
+        self.navigationItem.titleView!.endEditing(true)
+        
+    }
+    
+
+    
+    /**
+     press on keyboard's "return" button trigger this func
+     then it dismiss keyboard, temporarily store searchText, and preform segue
+     
+     - returns: nothing
      */
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        
         
         // dismiss keyboard
         searchBar.endEditing(true)
@@ -90,6 +112,7 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
         
         
     }
+
 
     
     
@@ -117,10 +140,10 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
     
     
     /**
-        Define how rows in each section
-        In this case, only one section. So, no need to use variable section
+     Define how rows in each section
+     In this case, only one section. So, no need to use variable section
      
-        - returns: Int , row number
+     - returns: Int , row number
      */
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

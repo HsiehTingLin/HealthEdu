@@ -78,7 +78,7 @@ extension UIImageView {
                             
                             view,
                             
-                            duration: 3.0,
+                            duration: 1.5,
                             
                             options: .TransitionCrossDissolve,
                             
