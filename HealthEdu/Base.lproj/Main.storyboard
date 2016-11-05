@@ -228,6 +228,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="X2L-9Z-tOz">
+                            <rect key="frame" x="0.0" y="175.5" width="600" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchCell" id="3JT-eT-JvY">
                                 <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
@@ -253,6 +257,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchHotTrendTextActivityIndicator" destination="X2L-9Z-tOz" id="WYn-w1-wLb"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IZx-ZG-8AH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -776,6 +783,7 @@
                     <connections>
                         <outlet property="BookmarkSegControlIBO" destination="OIU-gF-zYW" id="ZgW-fc-inL"/>
                         <outlet property="tableView" destination="gNK-ro-9oW" id="fVZ-UX-RMx"/>
+                        <outlet property="toolBarSeg" destination="TSd-4E-maj" id="8tM-bq-zAH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rSC-Nu-Egu" userLabel="First Responder" sceneMemberID="firstResponder"/>

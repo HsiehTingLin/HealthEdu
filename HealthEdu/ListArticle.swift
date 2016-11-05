@@ -14,10 +14,10 @@ import UIKit
 class ListArticle{
     
     /**
-        this func is used by showing articles belong to specific division id
+     this func is used by showing articles belong to specific division id
      
-        - returns: no resturn
-        - completionHandler(Array<article> -> Void) return article array here
+     - returns: no resturn
+     - completionHandler(Array<article> -> Void) return article array here
      */
     static func byDivisionId(divisionId: String, limitCount: Int, excludeIds: [String], completionHandler: [article] -> Void){
         
@@ -54,14 +54,14 @@ class ListArticle{
                 for a_article in jsonArray {
     
                     let new_article = article(
-                        id: a_article["id"] as! String,
-                        title: a_article["title"] as! String,
-                        photoUIImage: UIImage(),
-                        photo: a_article["photo"] as! String,
-                        author: a_article["author"] as! String,
-                        body: a_article["content"] as! String,
-                        time: a_article["update_time"] as! String,
-                        division: a_article["division"] as! String)
+                        id: a_article["id"] as? String,
+                        title: a_article["title"] as? String,
+                        photoUIImage: nil,
+                        photo: a_article["photo"] as? String,
+                        author: a_article["author"] as? String,
+                        body: a_article["content"] as? String,
+                        time: a_article["update_time"] as? String,
+                        division: a_article["division"] as? String)
 
                     articleArray.append(new_article)
 
@@ -107,7 +107,15 @@ class ListArticle{
                 
                 for a_article in jsonArray {
                     
-                    let new_article = article(id: a_article["id"] as! String, title: a_article["title"] as! String, photoUIImage: UIImage(), photo: a_article["photo"] as! String, author: a_article["author"] as! String, body: a_article["content"] as! String, time: a_article["update_time"] as! String, division: a_article["division"] as! String)
+                    let new_article = article(
+                        id: a_article["id"] as? String,
+                        title: a_article["title"] as? String,
+                        photoUIImage: nil,
+                        photo: a_article["photo"] as? String,
+                        author: a_article["author"] as? String,
+                        body: a_article["content"] as? String,
+                        time: a_article["update_time"] as? String,
+                        division: a_article["division"] as? String)
                     
                     articleArray.append(new_article)
                     
@@ -150,14 +158,14 @@ class ListArticle{
                 for a_article in jsonArray {
                     
                     let new_article = article(
-                        id: a_article["id"] as! String,
-                        title: a_article["title"] as! String,
+                        id: a_article["id"] as? String,
+                        title: a_article["title"] as? String,
                         photoUIImage: UIImage(),
-                        photo: a_article["photo"] as! String,
-                        author: a_article["author"] as! String,
-                        body: a_article["content"] as! String,
-                        time: a_article["update_time"] as! String,
-                        division: a_article["division"] as! String)
+                        photo: a_article["photo"] as? String,
+                        author: a_article["author"] as? String,
+                        body: a_article["content"] as? String,
+                        time: a_article["update_time"] as? String,
+                        division: a_article["division"] as? String)
                     
                     articleArray.append(new_article)
                     

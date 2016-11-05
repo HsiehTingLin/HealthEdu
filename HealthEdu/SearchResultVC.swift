@@ -24,8 +24,16 @@ class SearchResultVC: UITableViewController {
     // activity indicator for loading search result from server
     var activityIndicator = UIActivityIndicatorView()
     
+    // afterDownload
+    var afterDownload: Bool = false
     
     // MARK:- Basic Func
+    override func viewWillAppear(animated: Bool) {
+        // check if user is connected to interent
+        // show alert if not
+        Reachability.checkInternetAndShowAlert(self)
+    }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -70,6 +78,9 @@ class SearchResultVC: UITableViewController {
                     // refer self.topicArray to starTopicArray (Array from Server)
                     self.articleArray = articleArray
                     
+                    // set self.afterDownload for show info if there is no result
+                    self.afterDownload = true
+                    
                     // show the line separator again
                     self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
                     
@@ -102,11 +113,23 @@ class SearchResultVC: UITableViewController {
     
     
     /**
-        Define How many section in this table view
-        - return: Int for number of section
-    */
+     Define How many section in this table view
+     - return: Int for number of section
+     */
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        if self.articleArray.count > 0 {
+            
+            return 1
+            
+        }else if self.articleArray.count == 0 && self.afterDownload {
+            // TODO: 把這裡的提示 「目前沒有衛教文章」 套用到各個不同頁面
+            
+            self.tableView.showNoRowInfo("找不到你所搜尋的結果。")
+            
+        }
+        
+        
+        return 0
     }
     
     
@@ -145,10 +168,10 @@ class SearchResultVC: UITableViewController {
         // get article detail according to variable "indexPath.row"
         let articleItem = articleArray[indexPath.row]
         
-        if articleItem.photoUIImage.size.width == 0.0 {
+        if articleItem.photoUIImage == nil {
             
             // prove that photoUIImage has not been downloaded t
-            cell.searchResultCellPhoto.imageFromServerURL(cell.searchResultCellPhoto, urlString: articleItem.photo, completionHandler: {
+            cell.searchResultCellPhoto.imageFromServerURL(cell.searchResultCellPhoto, urlString: articleItem.photo!, completionHandler: {
                 (imageFromNet) in
                 
                 // here insert image From Net to topicArray.topicPhotoUIImage
@@ -168,7 +191,7 @@ class SearchResultVC: UITableViewController {
         
         cell.searchResultCellAuthor.text = articleItem.author
         
-        cell.searchResultCellBody.text = articleItem.body.noHTMLtag
+        cell.searchResultCellBody.text = articleItem.body!.noHTMLtag
     
     
         
@@ -195,7 +218,19 @@ class SearchResultVC: UITableViewController {
             articleDetail.currentBodyString = articleSelected.body
             articleDetail.currentAuthorString = articleSelected.author
             articleDetail.currentDivisionString = articleSelected.division
-            articleDetail.currentPhotoUIImage = articleSelected.photoUIImage
+            if(articleSelected.photoUIImage == nil){
+                // indicate that this article does have image
+                // but its size is so large that it has not been completely downloaded yet.
+                let whiteUIImage = UIImage.imageWithColor(UIColor.whiteColor())
+                articleDetail.currentPhotoUIImage = whiteUIImage
+                
+            }else{
+                // indicate 2 situation
+                // 1) this article has image, and image has been successfully downloaded
+                // 2) this article doesn't has image, so we use a local one as its image
+                // In both above situationm articleSelected.photoUIImage IS NOT nil
+                articleDetail.currentPhotoUIImage = articleSelected.photoUIImage
+            }
             articleDetail.currentTimeString = articleSelected.time
             
             

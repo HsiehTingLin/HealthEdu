@@ -18,9 +18,17 @@ class DivisionViewController: UIViewController{
     
     @IBOutlet var tableView: UITableView!
     
+    override func viewWillAppear(animated: Bool) {
+        // check if user is connected to interent
+        // show alert if not
+        Reachability.checkInternetAndShowAlert(self)
+    }
+    
+    
+    
     /**
-        Define how many section in table view, need modified in beta version
-        - returns: 1:Int
+     Define how many section in table view, need modified in beta version
+     - returns: 1:Int
      */
     override func viewDidLoad() {
         super.viewDidLoad()

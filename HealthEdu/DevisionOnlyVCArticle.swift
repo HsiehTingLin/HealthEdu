@@ -20,7 +20,7 @@ class DevisionOnlyVCArticle{
         //ConnectionpostRequest
         
 
-        var articleArray = [article]()
+        let articleArray = [article]()
         
         // 一個文章一個文章 append
         //articleArray.append(article39)

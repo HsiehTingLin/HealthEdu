@@ -15,22 +15,22 @@ class article {
     
     
     // MARK:- Variable Declaration
-    var id : String
+    var id: String?
     
-    var title : String
+    var title: String?
     
-    var photo : String
+    var photo: String?
     
     // for future, photoUIImage will contain image directly download from JSON server
-    var photoUIImage : UIImage
+    var photoUIImage: UIImage?
     
-    var author : String
+    var author: String?
     
-    var body : String
+    var body: String?
     
-    var time : String
+    var time: String?
     
-    var division : String
+    var division : String?
     
     
     
@@ -39,7 +39,7 @@ class article {
     /**
      init() 定義 article class 的基本元素
      */
-    init (id: String, title: String, photoUIImage : UIImage, photo : String, author : String, body : String, time: String, division: String){
+    init (id: String?, title: String?, photoUIImage: UIImage?, photo: String?, author : String?, body : String?, time: String?, division: String?){
         
         self.id = id
         self.title = title

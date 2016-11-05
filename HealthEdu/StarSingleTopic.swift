@@ -39,7 +39,11 @@ class StarSingleTopic: UIViewController {
     var articleArray: [article] = []
     
     
-    
+    override func viewWillAppear(animated: Bool) {
+        // check if user is connected to interent
+        // show alert if not
+        Reachability.checkInternetAndShowAlert(self)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -166,16 +170,26 @@ extension StarSingleTopic: UITableViewDataSource, UITableViewDelegate {
         
         // get the specific articleItem
         let articleItem = self.articleArray[indexPath.row]
-        print("ceel again")
-        // get image download from Net
-        // also, edit the original Array data's photoUIImage
-        cell.singleTopicCellPhoto.imageFromServerURL(cell.singleTopicCellPhoto, urlString: articleItem.photo, completionHandler: {
-            (imageFromNet) in
+        
+        
+        
+        if articleItem.photoUIImage == nil {
+            // prove that photoUIImage has not been downloaded t
+            cell.singleTopicCellPhoto.imageFromServerURL(cell.singleTopicCellPhoto, urlString: articleItem.photo!, completionHandler: {
+                (imageFromNet) in
+                
+                // here insert image From Net to topicArray.topicPhotoUIImage
+                self.articleArray[indexPath.row].photoUIImage = imageFromNet
+                
+            })
             
-            // here insert image From Net to topicArray.topicPhotoUIImage
-            self.articleArray[indexPath.row].photoUIImage = imageFromNet
-            
-        })
+        }else{
+            cell.singleTopicCellPhoto.image = self.articleArray[indexPath.row].photoUIImage
+        }
+        
+        
+        
+
         
         // Title
         cell.singleTopicCellTitle.text = articleItem.title
@@ -184,7 +198,7 @@ extension StarSingleTopic: UITableViewDataSource, UITableViewDelegate {
         cell.singleTopicCellAuthor.text = articleItem.author
         
         // CellBody without HTML tag
-        cell.singleTopicCellBody.text = articleItem.body.noHTMLtag
+        cell.singleTopicCellBody.text = articleItem.body!.noHTMLtag
         
         
         return cell
@@ -194,8 +208,8 @@ extension StarSingleTopic: UITableViewDataSource, UITableViewDelegate {
     
     /**
      
-        Prepare for segue. When users tap one topic in this viewController, we must prepare the selected data and pass them to next viewcontroller
-        - returns: no return just link the file
+     Prepare for segue. When users tap one topic in this viewController, we must prepare the selected data and pass them to next viewcontroller
+     - returns: no return just link the file
      
      */
     
@@ -210,14 +224,25 @@ extension StarSingleTopic: UITableViewDataSource, UITableViewDelegate {
             // get data according to indexPath.row
             let articleSelected = self.articleArray[indexPath.row]
 
-            print(articleSelected)
             
             articleDetail.currentIdString = articleSelected.id
             articleDetail.currentTitleString = articleSelected.title
             articleDetail.currentBodyString = articleSelected.body
             articleDetail.currentAuthorString = articleSelected.author
             articleDetail.currentDivisionString = articleSelected.division
-            articleDetail.currentPhotoUIImage = articleSelected.photoUIImage
+            if(articleSelected.photoUIImage == nil){
+                // indicate that this article does have image
+                // but its size is so large that it has not been completely downloaded yet.
+                let whiteUIImage = UIImage.imageWithColor(UIColor.whiteColor())
+                articleDetail.currentPhotoUIImage = whiteUIImage
+                
+            }else{
+                // indicate 2 situation
+                // 1) this article has image, and image has been successfully downloaded
+                // 2) this article doesn't has image, so we use a local one as its image
+                // In both above situationm articleSelected.photoUIImage IS NOT nil
+                articleDetail.currentPhotoUIImage = articleSelected.photoUIImage
+            }
             articleDetail.currentTimeString = articleSelected.time
             
         }

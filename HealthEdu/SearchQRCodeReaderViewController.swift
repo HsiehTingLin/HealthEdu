@@ -28,6 +28,12 @@ class SearchQRCodeReaderViewController: UIViewController, AVCaptureMetadataOutpu
     let supportedBarCodes = [AVMetadataObjectTypeQRCode, AVMetadataObjectTypeCode128Code, AVMetadataObjectTypeCode39Code, AVMetadataObjectTypeCode93Code, AVMetadataObjectTypeUPCECode, AVMetadataObjectTypePDF417Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeAztecCode]
     
     // MARK:- Basic Func
+    override func viewWillAppear(animated: Bool) {
+        // check if user is connected to interent
+        // show alert if not
+        Reachability.checkInternetAndShowAlert(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

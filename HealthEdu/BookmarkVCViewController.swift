@@ -18,6 +18,9 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
     // Segment Control for know user is in "History" or "Bookmark" page
     @IBOutlet weak var BookmarkSegControlIBO: UISegmentedControl!
     
+    // refer to tool bar seg
+    @IBOutlet var toolBarSeg: UIToolbar!
+    
     // for storing articles
     var articleArrayHistory:[article] = [article]()
     var articleArrayBookmark:[article] = [article]()
@@ -36,7 +39,7 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
         super.viewDidLoad()
         
     }
-  
+
     /**
      Magic here: each time when user "view" this viewController
     the following func viewWillAppear will be executed once.
@@ -45,7 +48,8 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
      - returns: nothing
      */
     override func viewWillAppear(animated: Bool) {
-        
+
+
         // show history articles
         self.showHistory()
         
@@ -88,6 +92,8 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
         
         
     }
+    
+    
     
     /**
      Get Bookmark articles data from core data "BookmarkEntities",
@@ -145,7 +151,50 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
      - returns: Int, in this case just return "1".
     */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        
+        switch (BookmarkSegControlIBO.selectedSegmentIndex) {
+        case 0:
+            
+            
+            if self.articleArrayHistory.count == 0 {
+                
+                self.toolBarSeg.barTintColor = UIColor.init(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+                self.view.backgroundColor = UIColor.init(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+                self.tableView.showNoRowInfo("目前您沒有紀錄文章。")
+                
+            }else{
+                self.toolBarSeg.barTintColor = UIColor.whiteColor()
+                // if there is article
+                // set bg view to nil, or the bg view will no be set again
+                self.tableView.backgroundView = nil
+            }
+            return 1
+            
+        case 1:
+            
+            
+            if self.articleArrayBookmark.count == 0 {
+                
+                self.toolBarSeg.barTintColor = UIColor.init(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+                self.view.backgroundColor = UIColor.init(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+                self.tableView.showNoRowInfo("目前您沒有收藏文章。")
+                
+            }else{
+                self.toolBarSeg.barTintColor = UIColor.whiteColor()
+                // if there is article
+                // set bg view to nil, or the bg view will no be set again
+                self.tableView.backgroundView = nil
+            }
+            
+            return 1
+        default:
+            break
+        }
+        
+
+        return 0
+        
+        
     }
     
     
@@ -197,7 +246,7 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
             cell.BookmarkImageViewCellIBO.image = articleItem.photoUIImage
             cell.BookmarkTitleIBO.text = articleItem.title
             cell.BookmarkAuthorIBO.text = articleItem.author
-            cell.BookmarkBodyIBO.text = articleItem.body.noHTMLtag
+            cell.BookmarkBodyIBO.text = articleItem.body!.noHTMLtag
             break
             
         case 1:
@@ -206,7 +255,7 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
             cell.BookmarkImageViewCellIBO.image = articleItem.photoUIImage
             cell.BookmarkTitleIBO.text = articleItem.title
             cell.BookmarkAuthorIBO.text = articleItem.author
-            cell.BookmarkBodyIBO.text = articleItem.body.noHTMLtag
+            cell.BookmarkBodyIBO.text = articleItem.body!.noHTMLtag
         default:
             break
         }
@@ -239,12 +288,12 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
                 
             case 0:
                 // delete that article from HistoryEntities
-                self.deleteFromHistory(articleArrayHistory[indexPath.row].id)
+                self.deleteFromHistory(articleArrayHistory[indexPath.row].id!)
                 break
                 
             case 1:
                 // delete that article from BookmarkEntities
-                self.deleteFromBookmark(articleArrayBookmark[indexPath.row].id)
+                self.deleteFromBookmark(articleArrayBookmark[indexPath.row].id!)
                 
             default:
                 break

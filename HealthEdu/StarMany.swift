@@ -34,18 +34,18 @@ class StarMany: UIViewController {
     // afterDownload
     var afterDownload: Bool = false
     
-    
+    override func viewWillAppear(animated: Bool) {
+        // check if user is connected to interent
+        // show alert if not
+        Reachability.checkInternetAndShowAlert(self)
+        
+        // TODO: 若沒連上網，重新再開時，要怎麼直接下載
+        
+    }
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        
-        
-        print(Reachability.checkInternet())
-        
-        
-        Reachability.checkInternetAndShowAlert(self)
-
         
         // 測試用 當 abc 為 true 時，會實現 Qrcode 開啟本機畫面直接轉畫面的功能
         self.abc = false
@@ -118,6 +118,12 @@ class StarMany: UIViewController {
         
     }
     
+    // TODO: 新增 push local notification 功能
+    /*func setupNotificationSettings() {
+        // Specify the notification types.
+        var notificationTypes: UIUserNotificationType(forTypes: [.Alert])
+    }*/
+    
 
     
 }
@@ -130,8 +136,8 @@ extension StarMany: UITableViewDataSource, UITableViewDelegate {
 
     /**
      
-        Define how many section in table view
-        - returns: 1:Int
+     Define how many section in table view
+     - returns: 1:Int
      
      */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -143,23 +149,7 @@ extension StarMany: UITableViewDataSource, UITableViewDelegate {
         }else if self.topicArray.count == 0 && self.afterDownload {
             // TODO: 把這裡的提示 「目前沒有衛教文章」 套用到各個不同頁面
             
-            let noDataLabel: UILabel     = UILabel()
-            noDataLabel.backgroundColor = UIColor.grayColor()
-            noDataLabel.text             = "目前沒有衛教文章，敬請期待發布。"
-            
-            noDataLabel.textColor        = UIColor.blackColor()
-            noDataLabel.textAlignment    = .Center
-            self.StarTableViewIBO.separatorStyle = .None
-            
-            // dispathc to main to animating show no result background view
-            dispatch_async(dispatch_get_main_queue(), {
-                self.StarTableViewIBO.backgroundView = noDataLabel
-            })
-    
-            
-            
-            
-            
+            self.StarTableViewIBO.showNoRowInfo("目前沒有精選衛教主題，敬請期待發布。")
             
         }
         
@@ -173,10 +163,9 @@ extension StarMany: UITableViewDataSource, UITableViewDelegate {
 
 
     /**
-        Define numberOfRowsInSection
-        - returns: count of topicArray
+     Define numberOfRowsInSection
+     - returns: count of topicArray
      */
-
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return topicArray.count
     }

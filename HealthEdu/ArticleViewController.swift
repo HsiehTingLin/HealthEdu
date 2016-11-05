@@ -29,7 +29,7 @@ class ArticleViewController: UIViewController {
     
     var currentTimeString: String?
     
-    var currentPhotoUIImage = UIImage()
+    var currentPhotoUIImage: UIImage?
 
     // WebView for article Full text
     @IBOutlet var articleFullWebView: UIWebView!
@@ -49,7 +49,6 @@ class ArticleViewController: UIViewController {
     
 
     // MARK:- Basic Func
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -57,12 +56,7 @@ class ArticleViewController: UIViewController {
     }
     
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
+
     /**
      execute once whenever user view this ViewController
      - show navigation Bar button item
@@ -73,6 +67,10 @@ class ArticleViewController: UIViewController {
      - returns: nothing
      */
     override func viewWillAppear(animated: Bool) {
+        
+        // check if user is connected to interent
+        // show alert if not
+        Reachability.checkInternetAndShowAlert(self)
         
         // show bar button item (qrcode, change font size, AddTobookmark)
         self.showBarButtonItem()
@@ -164,23 +162,37 @@ class ArticleViewController: UIViewController {
         
         let imgWidth = self.view.frame.size.width-17
         
-        
-        // amazing: UIImageJPEGRepresentation can convert jpeg png gif
-        let imageData = NSData(data: UIImageJPEGRepresentation(self.currentPhotoUIImage,1.0)!)
-        
-        let base64Data = imageData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
-        
         var articleFullHTMLarray = [String]()
+    
+        
         articleFullHTMLarray.append("<div width=\"\(divWidth)\" style=\"word-break: break-all;\"")
         
         
         articleFullHTMLarray.append("<br><p><div align=\"center\" style=\"font-size:35px; font-weight:bold;\">\(self.currentTitleString!)</div></p>")
+        
         articleFullHTMLarray.append("<p><div align=\"center\" style=\"color: gray; font-size:19px\">\(self.currentAuthorString!)</div></p>")
-        
-        
-        articleFullHTMLarray.append("<img src=\"data:image/jpg;base64,\(base64Data)\" width=\"\(imgWidth)\">")
-        
 
+        // 1) if article has no image
+        // 2) if article image is too large too downloaded completely at this point
+        // don't show image
+        if(UIImageJPEGRepresentation(self.currentPhotoUIImage!,1.0) != UIImageJPEGRepresentation(UIImage.imageWithColor(UIColor.whiteColor()),1.0)!){
+            // if currentPhotoUIImage not equal to default color image for not download complete image
+            
+            if(!(self.currentPhotoUIImage?.isEqual(UIImage(named: "DefaultPhotoForArticle")))!){
+                // if currentPhotoUIImage not equal to default photo for article (article has no image)
+                
+                // amazing: UIImageJPEGRepresentation can convert jpeg png gif
+                let imageData = NSData(data: UIImageJPEGRepresentation(self.currentPhotoUIImage!,1.0)!)
+                
+                let base64Data = imageData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+                
+                articleFullHTMLarray.append("<img src=\"data:image/jpg;base64,\(base64Data)\" width=\"\(imgWidth)\">")
+
+        
+            }
+        }
+        
+        
         articleFullHTMLarray.append("<div style='font-size: \(fontsize)px; padding-left: 3%; padding-right: 3%; text-indent: 5%;' id=\"body\"><p>\(self.currentBodyString!)</p>")
         articleFullHTMLarray.append("<p>最後更新：\(self.currentTimeString!)<br></p></div>")
         articleFullHTMLarray.append("</div>")
@@ -483,7 +495,7 @@ class ArticleViewController: UIViewController {
                 bookmark.author = currentAuthorString
                 bookmark.body = currentBodyString
                 bookmark.title = currentTitleString
-                bookmark.photoUIImage = NSData(data: UIImageJPEGRepresentation(self.currentPhotoUIImage,1.0)!)
+                bookmark.photoUIImage = NSData(data: UIImageJPEGRepresentation(self.currentPhotoUIImage!,1.0)!)
                 bookmark.division = currentDivisionString
                 
                 do {
@@ -718,7 +730,7 @@ class ArticleViewController: UIViewController {
             history.author = currentAuthorString
             history.body = currentBodyString
             history.title = currentTitleString
-            history.photoUIImage = NSData(data: UIImageJPEGRepresentation(self.currentPhotoUIImage,1.0)!)
+            history.photoUIImage = NSData(data: UIImageJPEGRepresentation(self.currentPhotoUIImage!,1.0)!)
             history.division = currentDivisionString
             
             do {

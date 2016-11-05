@@ -36,7 +36,7 @@ extension UIImageView {
                         
                         view,
                         
-                        duration: 3.0,
+                        duration: 2.0,
                         
                         options: .TransitionCrossDissolve,
                         
@@ -78,7 +78,7 @@ extension UIImageView {
                             
                             view,
                             
-                            duration: 1.5,
+                            duration: 2.0,
                             
                             options: .TransitionCrossDissolve,
                             
@@ -101,4 +101,55 @@ extension UIImageView {
             
             }
         }
+}
+
+
+
+
+extension UITableView {
+    
+    public func showNoRowInfo(infoText: String){
+
+        
+        let bgView: UIView = UIView()
+        bgView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
+        
+        let noDataLabel: UILabel = UILabel()
+        
+        
+        noDataLabel.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
+        noDataLabel.backgroundColor = UIColor.init(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+        
+        noDataLabel.text = infoText
+        noDataLabel.font = UIFont.systemFontOfSize(CGFloat(20))
+        noDataLabel.textColor = UIColor.grayColor()
+        noDataLabel.textAlignment = .Center
+        self.separatorStyle = .None
+        
+        bgView.addSubview(noDataLabel)
+        
+        // dispathc to main to animating show no result background view
+        dispatch_async(dispatch_get_main_queue(), {
+            self.backgroundView = bgView
+        })
+    }
+    
+    
+}
+
+
+extension UIImage {
+    class func imageWithColor(color: UIColor) -> UIImage {
+        let rect = CGRectMake(0.0, 0.0, 1.0, 1.0)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        
+        CGContextSetFillColorWithColor(context, color.CGColor)
+        CGContextFillRect(context, rect)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
 }

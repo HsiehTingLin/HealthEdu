@@ -15,7 +15,10 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
     // MARK:- Variable Declaration
     
     // Offline Data for now. Recommended Keywords
-    let searchItem = ["糖尿病", "飲食控制", "大便潛血"]
+    var hotSearchItem: [String] = []
+    
+    // trend search item
+    var trendSearchItem: [String] = []
     
     // Variable for containing searchBar
     let searchBar = UISearchBar.self
@@ -26,11 +29,64 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
     // for marking whether user type in something to search or not
     var showSearhResult = false
 
+    // section title for hot
+    var sectionTitleForHot: String = ""
+    
+    // section title for hot
+    var sectionTitleForTrend: String = ""
+    
+    @IBOutlet var searchHotTrendTextActivityIndicator: UIActivityIndicatorView!
 
+    
+    
     // MARK:- Basic Func
+    override func viewWillAppear(animated: Bool) {
+        // check if user is connected to interent
+        // show alert if not
+        Reachability.checkInternetAndShowAlert(self)
+    }
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        
+        // change activityIndicator color to blue (default iOS blue)
+        self.searchHotTrendTextActivityIndicator.color = UIColor.init(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
+        
+        // init activityIndicator Animating
+        self.searchHotTrendTextActivityIndicator.startAnimating()
+        
+        
+        // not to display UITableView separator style
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        
+        
+        ListSearchDefaultText.hotANDtrend({
+            (hotArray, trendArray) in
+            
+            self.hotSearchItem = hotArray
+            self.trendSearchItem = trendArray
+            
+            // change UI inside main queue
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                // stop activity indicator animating
+                self.searchHotTrendTextActivityIndicator.stopAnimating()
+                self.searchHotTrendTextActivityIndicator.hidden = true
+                
+                self.sectionTitleForHot = "📈 最新趨勢"
+                self.sectionTitleForTrend = "♨ 熱門關鍵字"
+
+                
+                // show the line separator again
+                self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+                
+                UIView.transitionWithView(self.tableView, duration: 1.0, options: .TransitionCrossDissolve , animations: {self.tableView.reloadData()}, completion: nil)
+            })
+            
+        })
         
         // create search bar and add gesture
         self.createSearchBar()
@@ -130,10 +186,13 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
 
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        
+        
         if section == 0 {
-            return "♨ 熱門關鍵字"
+            return self.sectionTitleForHot
         }else{
-            return "📈 最新趨勢"
+            return self.sectionTitleForTrend
         }
         
     }
@@ -147,30 +206,45 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
      */
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        // differential section row
+        if section == 0 {
+            return hotSearchItem.count
+        }else{
+            return trendSearchItem.count
+        }
             
-        // user do not type anything -> show original searchItem array
-        return searchItem.count
+
 
         
     }
     
-    
-    
-    // TODO: 應作出網路趨勢統整
+
     /**
-        Define content of each row
-        In this case, only one section. So, no need to use variable section
+     Define content of each row
+     In this case, only one section. So, no need to use variable section
      
-        - returns: UITableViewCell , row number
+     - returns: UITableViewCell , row number
      */
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         // Define identifier searchCell
         let cell = tableView.dequeueReusableCellWithIdentifier("searchCell", forIndexPath: indexPath)
         
+        // differential section row
+        if indexPath.section == 0 {
+            
+            // user do not type anything -> show original hotSearchItem array
+            cell.textLabel?.text = hotSearchItem[indexPath.row]
+            
+        }else{
+            
+            // user do not type anything -> show original trendSearchItem array
+            cell.textLabel?.text = trendSearchItem[indexPath.row]
+            
+        }
+        
 
-        // user do not type anything -> show original searchItem array
-        cell.textLabel?.text = searchItem[indexPath.row]
+
         
         
         
@@ -187,10 +261,21 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
         // NO for skip it
         if let indexPath = self.tableView.indexPathForSelectedRow {
             
-            self.searchTextTemp = self.searchItem[indexPath.row]
+            // differential section row
+            if indexPath.section == 0 {
+                
+                self.searchTextTemp = hotSearchItem[indexPath.row]
+                
+            }else{
+                
+                self.searchTextTemp = trendSearchItem[indexPath.row]
+                
+            }
+            
             
         }
         
+    
         // set SearchResultVC
         let searchResultVC = segue.destinationViewController as! SearchResultVC
         
