@@ -153,3 +153,16 @@ extension UIImage {
         return image
     }
 }
+
+
+extension UITableView {
+    
+    public func deselectSelectedRow(animated animated: Bool)
+    {
+        if let indexPathForSelectedRow = self.indexPathForSelectedRow
+        {
+            self.deselectRowAtIndexPath(indexPathForSelectedRow, animated: animated)
+        }
+    }
+    
+}

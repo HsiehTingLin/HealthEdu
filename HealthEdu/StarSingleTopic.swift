@@ -43,6 +43,9 @@ class StarSingleTopic: UIViewController {
         // check if user is connected to interent
         // show alert if not
         Reachability.checkInternetAndShowAlert(self)
+        
+        // custom extension of UITableView to deselect selected row
+        self.ArticleInTopicTableView.deselectSelectedRow(animated: true)
     }
     
     override func viewDidLoad() {
@@ -69,6 +72,10 @@ class StarSingleTopic: UIViewController {
         
         // not to display UITableView separator style
         self.ArticleInTopicTableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        
+        
+        // remove separate line for empty cell
+        self.ArticleInTopicTableView.tableFooterView = UIView()
         
         // set activityIndicator as StarTableViewIDB's backgrousView
         self.ArticleInTopicTableView.backgroundView = self.activityIndicator

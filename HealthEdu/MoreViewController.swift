@@ -15,26 +15,41 @@ class MoreViewController: UIViewController,UITableViewDelegate {
     var moreOptions = [String]()
     var viewControllerStoryboardIdentity = [String]()
     
+    
+    override func viewWillAppear(animated: Bool) {
+        // custom extension of UITableView to deselect selected row
+        self.moreTableView.deselectSelectedRow(animated: true)
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         moreOptions = ["訂閱電子報","意見回饋","文章顯示設定","關於"]
+        
         viewControllerStoryboardIdentity = ["MoreSubscribe","MoreComment","MoreTextSetting","MoreAbout"]
 
-        // Do any additional setup after loading the view.
+        
+        // remove separate line for empty cell
+        self.moreTableView.tableFooterView = UIView()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
+    
+    
+    
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
+    
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return moreOptions.count
     }
+    
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
         
@@ -49,16 +64,6 @@ class MoreViewController: UIViewController,UITableViewDelegate {
         self.navigationController?.pushViewController(viewController!, animated: true)
     }
     
-  
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

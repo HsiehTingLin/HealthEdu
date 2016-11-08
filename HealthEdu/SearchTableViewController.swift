@@ -44,6 +44,9 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
         // check if user is connected to interent
         // show alert if not
         Reachability.checkInternetAndShowAlert(self)
+        
+        // custom extension of UITableView to deselect selected row
+        self.tableView.deselectSelectedRow(animated: true)
     }
     
     
@@ -62,6 +65,9 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
         // not to display UITableView separator style
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
+        
+        // remove separate line for empty cell
+        self.tableView.tableFooterView = UIView()
         
         ListSearchDefaultText.hotANDtrend({
             (hotArray, trendArray) in
@@ -256,31 +262,35 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        // check if segue is trigger from click on tableView
-        // YES for execute this if clause, extract text to search from array
-        // NO for skip it
-        if let indexPath = self.tableView.indexPathForSelectedRow {
-            
-            // differential section row
-            if indexPath.section == 0 {
+        // assure identifier to be searchTextSendSegue
+        if(segue.identifier == "searchTextSendSegue"){
+            // check if segue is trigger from click on tableView
+            // YES for execute this if clause, extract text to search from array
+            // NO for skip it
+            if let indexPath = self.tableView.indexPathForSelectedRow {
                 
-                self.searchTextTemp = hotSearchItem[indexPath.row]
+                // differential section row
+                if indexPath.section == 0 {
+                    
+                    self.searchTextTemp = hotSearchItem[indexPath.row]
+                    
+                }else{
+                    
+                    self.searchTextTemp = trendSearchItem[indexPath.row]
+                    
+                }
                 
-            }else{
-                
-                self.searchTextTemp = trendSearchItem[indexPath.row]
                 
             }
             
             
+            // set SearchResultVC
+            let searchResultVC = segue.destinationViewController as! SearchResultVC
+            
+            // pass data to SearchResultVC
+            searchResultVC.searchText = self.searchTextTemp
         }
-        
-    
-        // set SearchResultVC
-        let searchResultVC = segue.destinationViewController as! SearchResultVC
-        
-        // pass data to SearchResultVC
-        searchResultVC.searchText = self.searchTextTemp
+
         
         
         

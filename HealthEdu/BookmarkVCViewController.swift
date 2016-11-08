@@ -38,6 +38,8 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
         
         super.viewDidLoad()
         
+        // remove separate line for empty cell
+        self.tableView.tableFooterView = UIView()
     }
 
     /**
@@ -56,8 +58,10 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
         // show bookmark articles
         self.showBookmark()
         
-        tableView.reloadData()
+        self.tableView.reloadData()
         
+        // custom extension of UITableView to deselect selected row
+        self.tableView.deselectSelectedRow(animated: true)
         
     }
   
@@ -134,14 +138,12 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
      - returns: nothing
      */
     @IBAction func BookmarkSegControlAction(sender: AnyObject) {
-        tableView.reloadData()
+        
+        self.tableView.reloadData()
+        
+
     }
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     
     // MARK:- TableView func
@@ -158,11 +160,17 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
             
             if self.articleArrayHistory.count == 0 {
                 
+                // no separate line
+                self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+                
                 self.toolBarSeg.barTintColor = UIColor.init(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0, alpha: 1.0)
                 self.view.backgroundColor = UIColor.init(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0, alpha: 1.0)
                 self.tableView.showNoRowInfo("目前您沒有紀錄文章。")
                 
             }else{
+                // single separate line
+                self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+                
                 self.toolBarSeg.barTintColor = UIColor.whiteColor()
                 // if there is article
                 // set bg view to nil, or the bg view will no be set again
@@ -175,11 +183,18 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
             
             if self.articleArrayBookmark.count == 0 {
                 
+                // no separate line
+                self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+                
                 self.toolBarSeg.barTintColor = UIColor.init(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0, alpha: 1.0)
                 self.view.backgroundColor = UIColor.init(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0, alpha: 1.0)
                 self.tableView.showNoRowInfo("目前您沒有收藏文章。")
                 
             }else{
+                
+                // single separate line
+                self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+                
                 self.toolBarSeg.barTintColor = UIColor.whiteColor()
                 // if there is article
                 // set bg view to nil, or the bg view will no be set again

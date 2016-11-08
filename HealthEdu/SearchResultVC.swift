@@ -32,6 +32,10 @@ class SearchResultVC: UITableViewController {
         // check if user is connected to interent
         // show alert if not
         Reachability.checkInternetAndShowAlert(self)
+        
+        // custom extension of UITableView to deselect selected row
+        self.tableView.deselectSelectedRow(animated: true)
+        
     }
     
     override func viewDidLoad() {
@@ -53,6 +57,10 @@ class SearchResultVC: UITableViewController {
         
         // not to display UITableView separator style
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        
+        
+        // remove separate line for empty cell
+        self.tableView.tableFooterView = UIView()
         
         // set activityIndicator as StarTableViewIDB's backgrousView
         self.tableView.backgroundView = self.activityIndicator
@@ -104,9 +112,6 @@ class SearchResultVC: UITableViewController {
 
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     
     // MARK:- Func for table view
@@ -167,9 +172,9 @@ class SearchResultVC: UITableViewController {
         
         // get article detail according to variable "indexPath.row"
         let articleItem = articleArray[indexPath.row]
-        
+        print(articleItem.photoUIImage)
         if articleItem.photoUIImage == nil {
-            
+            print("do download image")
             // prove that photoUIImage has not been downloaded t
             cell.searchResultCellPhoto.imageFromServerURL(cell.searchResultCellPhoto, urlString: articleItem.photo!, completionHandler: {
                 (imageFromNet) in
@@ -198,6 +203,7 @@ class SearchResultVC: UITableViewController {
         return cell
     }
     
+
     
     // MARK:- For change view to ArticleViewController (show each article in detail)
     

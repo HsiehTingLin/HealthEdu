@@ -160,7 +160,7 @@ class ListArticle{
                     let new_article = article(
                         id: a_article["id"] as? String,
                         title: a_article["title"] as? String,
-                        photoUIImage: UIImage(),
+                        photoUIImage: nil,
                         photo: a_article["photo"] as? String,
                         author: a_article["author"] as? String,
                         body: a_article["content"] as? String,

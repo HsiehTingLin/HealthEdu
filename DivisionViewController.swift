@@ -19,9 +19,16 @@ class DivisionViewController: UIViewController{
     @IBOutlet var tableView: UITableView!
     
     override func viewWillAppear(animated: Bool) {
+        
         // check if user is connected to interent
         // show alert if not
         Reachability.checkInternetAndShowAlert(self)
+        
+        // custom extension of UITableView to deselect selected row
+        self.tableView.deselectSelectedRow(animated: true)
+
+        // remove separate line for empty cell
+        self.tableView.tableFooterView = UIView()
     }
     
     

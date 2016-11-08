@@ -39,6 +39,9 @@ class StarMany: UIViewController {
         // show alert if not
         Reachability.checkInternetAndShowAlert(self)
         
+        // custom extension of UITableView to deselect selected row
+        self.StarTableViewIBO.deselectSelectedRow(animated: true)
+        
         // TODO: 若沒連上網，重新再開時，要怎麼直接下載
         
     }
@@ -65,7 +68,9 @@ class StarMany: UIViewController {
         // init activityIndicator Animating
         self.activityIndicator.startAnimating()
         
-
+        // remove separate line for empty cell
+        self.StarTableViewIBO.tableFooterView = UIView()
+        
         // not to display UITableView separator style
         self.StarTableViewIBO.separatorStyle = UITableViewCellSeparatorStyle.None
         

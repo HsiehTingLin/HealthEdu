@@ -49,6 +49,10 @@ class DevisionOnlyVC: UITableViewController {
         // check if user is connected to interent
         // show alert if not
         Reachability.checkInternetAndShowAlert(self)
+        
+
+        // custom extension of UITableView to deselect selected row
+        self.tableView.deselectSelectedRow(animated: true)
     }
     
     // MARK:- Basic Func
@@ -80,6 +84,9 @@ class DevisionOnlyVC: UITableViewController {
         
         // not to display UITableView separator style
         self.DivisionOnlyVCTableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        
+        // remove separate line for empty cell
+        self.DivisionOnlyVCTableView.tableFooterView = UIView()
         
         // set activityIndicator as StarTableViewIDB's backgrousView
         self.DivisionOnlyVCTableView.backgroundView = self.activityIndicator
@@ -128,6 +135,7 @@ class DevisionOnlyVC: UITableViewController {
                     // show the line separator again
                     self.DivisionOnlyVCTableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
                     
+
                     // reload StarTableViewIBO in animating style
                     UIView.transitionWithView(self.DivisionOnlyVCTableView, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.DivisionOnlyVCTableView.reloadData()}, completion: nil)
                     
@@ -186,7 +194,7 @@ class DevisionOnlyVC: UITableViewController {
         
         let articleItem = articleArray[indexPath.row]
         
-        
+        print(articleItem.photoUIImage)
         if articleItem.photoUIImage == nil {
             // prove that photoUIImage has not been downloaded t
             cell.myPhoto.imageFromServerURL(cell.myPhoto, urlString: articleItem.photo!, completionHandler: {
