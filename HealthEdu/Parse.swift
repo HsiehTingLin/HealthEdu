@@ -73,4 +73,32 @@ class Parse{
         
     }
     
+    /**
+     used to parse dictionary json data
+     
+     - returns: jsonArray (the single article data)
+     
+     */
+    static func parseJSONdataDict(jsonData: NSData?) -> NSDictionary? {
+        
+        do {
+            let jsonDict = try NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary
+            // 暫時先把東西轉換成 array 以後應該是要用 Dictionary
+            
+            return jsonDict
+            
+        } catch let error as NSError {
+            
+            // TODO: 未來這裡要加入 伺服器錯誤 這種警語
+            // 若 php 有錯誤使得 json 沒有正確顯示就會這樣！
+            print("error processing json data: \(error.localizedDescription)")
+            
+            
+            
+        }
+        
+        return nil
+        
+    }
+    
 }

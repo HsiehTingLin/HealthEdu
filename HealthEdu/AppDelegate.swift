@@ -23,8 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Project Euler #1 Solution in Swift
         
-        let url_scheme :String = url.scheme
-        let url_query_init :String? = url.query
+        let url_scheme: String = url.scheme
+        let url_query_init: String? = url.query
         
         if let url_query:String = url_query_init {
             
@@ -50,9 +50,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if url_query_dictionary["articleID"] != nil{
                     
                     // TODO: 未來若加入成大醫院網路，加入檢查文章id功能
+                    // 希望在 tabbar controller 那邊檢查就好
                     if let articleID = url_query_dictionary["articleID"] {
                         
-                        self.gotoArticle(articleID)
+                        //StarMany.abc = true
+                        //print(StarMany.abc)
+                        // goto Article showing page
+                        self.gotoTabbarController(articleID)
+                        
                         
                     }else{
                         self.showAlertAppDelegate("QR Code或連結失效",message: "請改用搜尋功能，或聯繫APP開發人員！",buttonTitle: "ok",window: self.window!)
@@ -85,26 +90,94 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func gotoArticle(id: String){
+    func gotoTabbarController(id: String){
         
-        let articleData = QRcodeall_article_Array.getArticle(id)
-        
-        let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let initialViewControlleripad = mainStoryboardIpad.instantiateViewControllerWithIdentifier("articleVCID") as! ArticleViewController
-
-
-        // 將資料送到 ArticleViewController
-        initialViewControlleripad.currentIdString = articleData.id
-        initialViewControlleripad.currentTitleString = articleData.title
-        initialViewControlleripad.currentBodyString = articleData.body
-        initialViewControlleripad.currentAuthorString = articleData.author
-        initialViewControlleripad.currentDivisionString = articleData.division
-        initialViewControlleripad.currentPhotoString = articleData.photo
-        initialViewControlleripad.currentTimeString = articleData.time
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window?.rootViewController = initialViewControlleripad
-        self.window?.makeKeyAndVisible()
+        
+        let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let initialViewControlleripad = mainStoryboardIpad.instantiateViewControllerWithIdentifier("TabbarForHandlingQrcode") as! TabbarForHandlingQrcode
+        
+        // set default tab bar to 2 (Search Section)
+        initialViewControlleripad.selectedIndex = 2
+        
+        SearchTableViewController.idFromQrcode = id
+        
+        self.window!.rootViewController = initialViewControlleripad
+        
+        self.window!.backgroundColor = UIColor.whiteColor()
+        
+        self.window!.makeKeyAndVisible()
+        
+        
+    }
+    
+    
+    func gotoArticle(id: String){
+        
+        
+        var articleData: article?
+        
+        ShowArticleForQrcode.byArticleId(id, completionHandler:{
+            (singleArticle) in
+            
+            articleData = singleArticle
+        
+            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            
+            
+            let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            let initialViewControlleripad = mainStoryboardIpad.instantiateViewControllerWithIdentifier("TabbarForHandlingQrcode") as! TabbarForHandlingQrcode
+            
+            //let rootViewController = self.window?.rootViewController as? UINavigationController
+            
+            // 將資料送到 ArticleViewController
+            /*
+            initialViewControlleripad.currentIdString = articleData!.id
+            initialViewControlleripad.currentTitleString = articleData!.title
+            initialViewControlleripad.currentBodyString = articleData!.body
+            initialViewControlleripad.currentAuthorString = articleData!.author
+            initialViewControlleripad.currentDivisionString = articleData!.division
+            initialViewControlleripad.currentPhotoString = articleData!.photo
+            initialViewControlleripad.currentTimeString = articleData!.time
+            */
+            
+            self.window!.rootViewController = initialViewControlleripad
+            
+            self.window!.backgroundColor = UIColor.whiteColor()
+            
+            self.window!.makeKeyAndVisible()
+            
+            
+            
+            //let uinvc = UINavigationController.init(rootViewController: initialViewControlleripad)
+            
+            
+            //let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            
+            //rootViewController?.pushViewController(initialViewControlleripad, animated: true)
+            //self.window!.makeKeyAndVisible()
+            /*
+            self.navigationController.pushViewController(self.storyboar‌​d?.instantiateViewCo‌​ntrollerWithIdentifi‌​er("") as! UIViewController, animated: true)
+            
+            var navController = UINavigationController()
+            var articleVC: ArticleViewController = ArticleViewController()
+            navController.pushViewController(articleVC, animated: false)
+            
+            //self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            
+            self.window!.rootViewController = navVCforArticleVC
+            
+            self.window!.backgroundColor = UIColor.whiteColor()
+            
+            self.window!.makeKeyAndVisible()*/
+            
+        })
+        
+
         
         
     }

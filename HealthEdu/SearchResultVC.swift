@@ -192,7 +192,7 @@ class SearchResultVC: UITableViewController {
         
         
         
-        cell.searchResultCellTitle.text = articleItem.title
+        cell.searchResultCellTitle.text = articleItem.title!.noHTMLtag
         
         cell.searchResultCellAuthor.text = articleItem.author
         

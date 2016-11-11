@@ -209,7 +209,7 @@ class DevisionOnlyVC: UITableViewController {
             cell.myPhoto.image = self.articleArray[indexPath.row].photoUIImage
         }
 
-        cell.title.text = articleItem.title
+        cell.title.text = articleItem.title!.noHTMLtag
         cell.author.text = articleItem.author
         cell.body.text = articleItem.body!.noHTMLtag
         

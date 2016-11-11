@@ -46,7 +46,6 @@ class ArticleViewController: UIViewController {
     // for core data
     let core_data = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
-    
 
     // MARK:- Basic Func
     override func viewDidLoad() {
@@ -67,10 +66,7 @@ class ArticleViewController: UIViewController {
      - returns: nothing
      */
     override func viewWillAppear(animated: Bool) {
-        
-        // check if user is connected to interent
-        // show alert if not
-        Reachability.checkInternetAndShowAlert(self)
+
         
         // show bar button item (qrcode, change font size, AddTobookmark)
         self.showBarButtonItem()
@@ -150,9 +146,9 @@ class ArticleViewController: UIViewController {
     
     
     /**
-        show full article HTML
-        - paraemeter fontsize: size of font
-        - returns: nothgin
+     show full article HTML
+     - parameter fontsize: size of font
+     - returns: nothing
      
      */
     func showarticleFullHTML(fontsize: Int){
@@ -165,7 +161,7 @@ class ArticleViewController: UIViewController {
         var articleFullHTMLarray = [String]()
     
         
-        articleFullHTMLarray.append("<div width=\"\(divWidth)\" style=\"word-break: break-all;\"")
+        articleFullHTMLarray.append("<div width=\"\(divWidth)\"style=\"word-break: break-all;\"")
         
         
         articleFullHTMLarray.append("<br><p><div align=\"center\" style=\"font-size:35px; font-weight:bold;\">\(self.currentTitleString!)</div></p>")
@@ -177,7 +173,12 @@ class ArticleViewController: UIViewController {
         // don't show image
         if(UIImageJPEGRepresentation(self.currentPhotoUIImage!,1.0) != UIImageJPEGRepresentation(UIImage.imageWithColor(UIColor.whiteColor()),1.0)!){
             // if currentPhotoUIImage not equal to default color image for not download complete image
+            print(currentPhotoUIImage)
+            print(UIImage(named: "DefaultPhotoForArticle"))
+            print(self.currentPhotoUIImage?.isEqual(UIImage(named: "DefaultPhotoForArticle")))
             
+            // TODO: 儲存到 bookmark 後，image 雖然看起來一樣但是圖片會改變
+            // 所以不能用 isEqual
             if(!(self.currentPhotoUIImage?.isEqual(UIImage(named: "DefaultPhotoForArticle")))!){
                 // if currentPhotoUIImage not equal to default photo for article (article has no image)
                 
@@ -193,8 +194,10 @@ class ArticleViewController: UIViewController {
         }
         
         
-        articleFullHTMLarray.append("<div style='font-size: \(fontsize)px; padding-left: 3%; padding-right: 3%; text-indent: 5%;' id=\"body\"><p>\(self.currentBodyString!)</p>")
+        articleFullHTMLarray.append("<div style='font-size: \(fontsize)px; padding-left: 3%; padding-right: 3%; text-indent: 5%;' id=\"body\"><p> \(self.currentBodyString!)</p>")
+        
         articleFullHTMLarray.append("<p>最後更新：\(self.currentTimeString!)<br></p></div>")
+        
         articleFullHTMLarray.append("</div>")
         
         
@@ -203,6 +206,14 @@ class ArticleViewController: UIViewController {
         self.fontSizeString = "正常"
         self.articleFullWebView.loadHTMLString(articleFullHTML, baseURL: nil)
         self.articleFullWebView.backgroundColor = UIColor.whiteColor()
+        
+        // check if author is (可縮放), if true, set webview to be zoomable
+        // it's a trick
+        if (self.currentAuthorString == "(可縮放)") {
+            // set webview to be zoom
+            self.articleFullWebView.scalesPageToFit = true
+        }
+
                
     }
     
@@ -212,20 +223,16 @@ class ArticleViewController: UIViewController {
     
     /**
      this func will generate a qrcode related to id of the article
-     - returns: UIImage()
+     - returns: QRCode UIImage of article id
      */
     func GenerateQRCode(imgview: UIImageView) -> UIImage
     {
-        // generate the url for this article id
+        // generate the url array for this article id
         self.URLArrayforQRCode.append("http://medcode.in/for_ncku_app_test/index.php?articleID=")
         self.URLArrayforQRCode.append(self.currentIdString!)
-        
-        let realURLStringforQRCode = URLArrayforQRCode.joinWithSeparator("")
-        
-        // prevent
-        if realURLStringforQRCode == "" {
-            return UIImage()
-        }
+
+        // combine all url array to a string
+        let realURLStringforQRCode = self.URLArrayforQRCode.joinWithSeparator("")
         
         // variable data is going to be sent to generate a QR Code image
         let data = realURLStringforQRCode.dataUsingEncoding(NSISOLatin1StringEncoding, allowLossyConversion: false)
@@ -253,9 +260,8 @@ class ArticleViewController: UIViewController {
     
     
     /**
-     
-     function: press background and alert controller will close
-     
+     press background and alert controller will close
+     - returns: nothing
      */
     func alertControllerBackgroundTapped()
     {
@@ -265,8 +271,8 @@ class ArticleViewController: UIViewController {
     
     
     /**
-        executed when qr code generate button is clicked
-        - returns: 沒有
+     executed when qr code generate button is clicked
+     - returns: nothing
      */
     func qrcodeBtn(sender: AnyObject) {
         
@@ -294,9 +300,9 @@ class ArticleViewController: UIViewController {
     
     /**
      
-        executed when qr code generate button is clicked
-        change font size
-        and store it in NSUserDefaults
+     executed when qr code generate button is clicked
+     change font size
+     and store it in NSUserDefaults
      
      */
     func changeFontSize(sender: AnyObject) {

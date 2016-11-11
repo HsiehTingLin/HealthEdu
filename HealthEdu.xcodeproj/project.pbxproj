@@ -39,6 +39,7 @@
 		231D7ADA1DA2B75300CCAAB7 /* DivisionClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231D7AD91DA2B75300CCAAB7 /* DivisionClass.swift */; };
 		233B408B1DC719D800954235 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233B408A1DC719D800954235 /* Reachability.swift */; };
 		233E18231DC97EBB007E38DC /* ListSearchDefaultText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233E18221DC97EBB007E38DC /* ListSearchDefaultText.swift */; };
+		234386B01DD57F58004017B4 /* TabbarForHandlingQrcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234386AF1DD57F58004017B4 /* TabbarForHandlingQrcode.swift */; };
 		234D137A1DBFA6B600ADCBC8 /* ListArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234D13791DBFA6B600ADCBC8 /* ListArticle.swift */; };
 		234D137C1DC1E49E00ADCBC8 /* ListStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234D137B1DC1E49E00ADCBC8 /* ListStar.swift */; };
 		234FB3461D98F03400A2C099 /* mySettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234FB3451D98F03400A2C099 /* mySettingsCell.swift */; };
@@ -76,6 +77,7 @@
 		23AD151A1D92DE6600EE20CE /* DevisionOnlyVCArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AD15191D92DE6600EE20CE /* DevisionOnlyVCArticle.swift */; };
 		23AD151C1D92E07F00EE20CE /* StarSingleTopicArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AD151B1D92E07F00EE20CE /* StarSingleTopicArticle.swift */; };
 		23AD151E1D92E15A00EE20CE /* SearchResultVCArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AD151D1D92E15A00EE20CE /* SearchResultVCArticle.swift */; };
+		23CB5D601DD37F3E00985055 /* ShowArticleForQrcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CB5D5F1DD37F3E00985055 /* ShowArticleForQrcode.swift */; };
 		23F02AE01D91903B00D797DE /* HealthEdu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 23F02ADE1D91903B00D797DE /* HealthEdu.xcdatamodeld */; };
 		23F02AE41D920C7300D797DE /* SearchQRCodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F02AE31D920C7300D797DE /* SearchQRCodeReaderViewController.swift */; };
 /* End PBXBuildFile section */
@@ -136,6 +138,7 @@
 		231D7AD91DA2B75300CCAAB7 /* DivisionClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DivisionClass.swift; sourceTree = "<group>"; };
 		233B408A1DC719D800954235 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		233E18221DC97EBB007E38DC /* ListSearchDefaultText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListSearchDefaultText.swift; sourceTree = "<group>"; };
+		234386AF1DD57F58004017B4 /* TabbarForHandlingQrcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarForHandlingQrcode.swift; sourceTree = "<group>"; };
 		234D13791DBFA6B600ADCBC8 /* ListArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListArticle.swift; sourceTree = "<group>"; };
 		234D137B1DC1E49E00ADCBC8 /* ListStar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListStar.swift; sourceTree = "<group>"; };
 		234FB3451D98F03400A2C099 /* mySettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mySettingsCell.swift; sourceTree = "<group>"; };
@@ -173,6 +176,7 @@
 		23AD15191D92DE6600EE20CE /* DevisionOnlyVCArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevisionOnlyVCArticle.swift; sourceTree = "<group>"; };
 		23AD151B1D92E07F00EE20CE /* StarSingleTopicArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarSingleTopicArticle.swift; sourceTree = "<group>"; };
 		23AD151D1D92E15A00EE20CE /* SearchResultVCArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultVCArticle.swift; sourceTree = "<group>"; };
+		23CB5D5F1DD37F3E00985055 /* ShowArticleForQrcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowArticleForQrcode.swift; path = ../ShowArticleForQrcode.swift; sourceTree = "<group>"; };
 		23F02ADF1D91903B00D797DE /* HealthEdu.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HealthEdu.xcdatamodel; sourceTree = "<group>"; };
 		23F02AE31D920C7300D797DE /* SearchQRCodeReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchQRCodeReaderViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -280,8 +284,8 @@
 		04965A301D8E77BF00E05F3C /* Article */ = {
 			isa = PBXGroup;
 			children = (
-				040190A91D85A41600F8E6DA /* ArticleClass.swift */,
 				04E4C7CA1D86DECD00C570D7 /* ArticleViewController.swift */,
+				040190A91D85A41600F8E6DA /* ArticleClass.swift */,
 				04E4C7821D86C39C00C570D7 /* myArticleCell.swift */,
 			);
 			name = Article;
@@ -317,13 +321,13 @@
 				040190371D85476800F8E6DA /* AppDelegate.swift */,
 				040190391D85476800F8E6DA /* ViewController.swift */,
 				236597CE1D9E3E13007F257C /* Library */,
-				23AD15161D92DC3300EE20CE /* Data(notUse) */,
-				04F509EA1D96E88C0041A471 /* More */,
-				04965A2F1D8E77A600E05F3C /* Division */,
+				04965A301D8E77BF00E05F3C /* Article */,
 				04965A341D8E8C5200E05F3C /* Star */,
+				04965A2F1D8E77A600E05F3C /* Division */,
 				04965A311D8E77E500E05F3C /* Search */,
 				04965A2E1D8E777F00E05F3C /* Bookmark */,
-				04965A301D8E77BF00E05F3C /* Article */,
+				04F509EA1D96E88C0041A471 /* More */,
+				23AD15161D92DC3300EE20CE /* Data(notUse) */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -350,10 +354,12 @@
 				236597D11D9E3E75007F257C /* Parse.swift */,
 				236597D71D9F5A6F007F257C /* CustomExtension.swift */,
 				231D7AD51DA2B63100CCAAB7 /* DomainsDivisions.swift */,
+				233B408A1DC719D800954235 /* Reachability.swift */,
 				234D13791DBFA6B600ADCBC8 /* ListArticle.swift */,
 				234D137B1DC1E49E00ADCBC8 /* ListStar.swift */,
+				23CB5D5F1DD37F3E00985055 /* ShowArticleForQrcode.swift */,
 				233E18221DC97EBB007E38DC /* ListSearchDefaultText.swift */,
-				233B408A1DC719D800954235 /* Reachability.swift */,
+				234386AF1DD57F58004017B4 /* TabbarForHandlingQrcode.swift */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -555,6 +561,7 @@
 				23F02AE01D91903B00D797DE /* HealthEdu.xcdatamodeld in Sources */,
 				0401903A1D85476800F8E6DA /* ViewController.swift in Sources */,
 				04965A401D8EB67500E05F3C /* mySingleTopicCell.swift in Sources */,
+				234386B01DD57F58004017B4 /* TabbarForHandlingQrcode.swift in Sources */,
 				233B408B1DC719D800954235 /* Reachability.swift in Sources */,
 				23AD151C1D92E07F00EE20CE /* StarSingleTopicArticle.swift in Sources */,
 				04965A331D8E780100E05F3C /* myBookmarkCell.swift in Sources */,
@@ -578,6 +585,7 @@
 				04F509F21D96EC6B0041A471 /* MoreAboutVC.swift in Sources */,
 				231D7ADA1DA2B75300CCAAB7 /* DivisionClass.swift in Sources */,
 				234D137C1DC1E49E00ADCBC8 /* ListStar.swift in Sources */,
+				23CB5D601DD37F3E00985055 /* ShowArticleForQrcode.swift in Sources */,
 				040190AC1D85A58600F8E6DA /* DevisionOnlyVC.swift in Sources */,
 				04F509EE1D96EC4C0041A471 /* MoreCommentVC.swift in Sources */,
 				231D7AD61DA2B63100CCAAB7 /* DomainsDivisions.swift in Sources */,

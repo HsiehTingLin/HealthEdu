@@ -38,8 +38,7 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
         
         super.viewDidLoad()
         
-        // remove separate line for empty cell
-        self.tableView.tableFooterView = UIView()
+
     }
 
     /**
@@ -62,6 +61,9 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
         
         // custom extension of UITableView to deselect selected row
         self.tableView.deselectSelectedRow(animated: true)
+        
+        // remove separate line for empty cell
+        self.tableView.tableFooterView = UIView()
         
     }
   
@@ -259,7 +261,7 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
             // User is in History
             let articleItem = articleArrayHistory[indexPath.row]
             cell.BookmarkImageViewCellIBO.image = articleItem.photoUIImage
-            cell.BookmarkTitleIBO.text = articleItem.title
+            cell.BookmarkTitleIBO.text = articleItem.title!.noHTMLtag
             cell.BookmarkAuthorIBO.text = articleItem.author
             cell.BookmarkBodyIBO.text = articleItem.body!.noHTMLtag
             break
@@ -268,7 +270,7 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
             // User is in Bookmark
             let articleItem = articleArrayBookmark[indexPath.row]
             cell.BookmarkImageViewCellIBO.image = articleItem.photoUIImage
-            cell.BookmarkTitleIBO.text = articleItem.title
+            cell.BookmarkTitleIBO.text = articleItem.title!.noHTMLtag
             cell.BookmarkAuthorIBO.text = articleItem.author
             cell.BookmarkBodyIBO.text = articleItem.body!.noHTMLtag
         default:
@@ -443,7 +445,19 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
                 articleDetail.currentBodyString = articleSelected.body
                 articleDetail.currentAuthorString = articleSelected.author
                 articleDetail.currentDivisionString = articleSelected.division
-                articleDetail.currentPhotoUIImage = articleSelected.photoUIImage
+                if(articleSelected.photoUIImage == nil){
+                    // indicate that this article does have image
+                    // but its size is so large that it has not been completely downloaded yet.
+                    let whiteUIImage = UIImage.imageWithColor(UIColor.whiteColor())
+                    articleDetail.currentPhotoUIImage = whiteUIImage
+                    
+                }else{
+                    // indicate 2 situation
+                    // 1) this article has image, and image has been successfully downloaded
+                    // 2) this article doesn't has image, so we use a local one as its image
+                    // In both above situationm articleSelected.photoUIImage IS NOT nil
+                    articleDetail.currentPhotoUIImage = articleSelected.photoUIImage
+                }
                 articleDetail.currentTimeString = articleSelected.time
                 break
                 
@@ -456,7 +470,19 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
                 articleDetail.currentBodyString = articleSelected.body
                 articleDetail.currentAuthorString = articleSelected.author
                 articleDetail.currentDivisionString = articleSelected.division
-                articleDetail.currentPhotoUIImage = articleSelected.photoUIImage
+                if(articleSelected.photoUIImage == nil){
+                    // indicate that this article does have image
+                    // but its size is so large that it has not been completely downloaded yet.
+                    let whiteUIImage = UIImage.imageWithColor(UIColor.whiteColor())
+                    articleDetail.currentPhotoUIImage = whiteUIImage
+                    
+                }else{
+                    // indicate 2 situation
+                    // 1) this article has image, and image has been successfully downloaded
+                    // 2) this article doesn't has image, so we use a local one as its image
+                    // In both above situationm articleSelected.photoUIImage IS NOT nil
+                    articleDetail.currentPhotoUIImage = articleSelected.photoUIImage
+                }
                 articleDetail.currentTimeString = articleSelected.time
                 
             default:

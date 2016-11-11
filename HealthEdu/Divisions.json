@@ -244,5 +244,17 @@
  "division": "營養部",
  "domain": "4",
  "description": ""
+ },
+ {
+ "id": "42",
+ "division": "樓層平面圖",
+ "domain": "1",
+ "description": "地圖"
+ },
+ {
+ "id": "43",
+ "division": "分機查詢",
+ "domain": "1",
+ "description": "分機"
  }
 ]

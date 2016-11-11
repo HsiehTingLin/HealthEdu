@@ -14,13 +14,11 @@ class StarMany: UIViewController {
     
 
     // 測試用 abc 跟 Qrcode啟動轉址有關
-    var abc: Bool?
+    static var abc: Bool? = false
     var imm = UIImage()
     // 測試用以上
     
-    
-    
-    
+
     // MARK:- Variable Declaration
     // the class of "topic" is defined in file TopicClass.swift
     var topicArray: [topic] = []
@@ -42,6 +40,14 @@ class StarMany: UIViewController {
         // custom extension of UITableView to deselect selected row
         self.StarTableViewIBO.deselectSelectedRow(animated: true)
         
+        // TODO: 現階段可以實現存在 navigation bar 而轉向文章顯示頁面
+        // TODO: 但問題是 從網址端轉過來之後，沒有code會被執行
+        print("starMany 輸出：\(StarMany.abc)")
+        if(StarMany.abc == true){
+            self.performSegueWithIdentifier("QrcodeDirectShowArticleSegue", sender: nil)
+        }
+        // 測試用以上
+        
         // TODO: 若沒連上網，重新再開時，要怎麼直接下載
         
     }
@@ -50,12 +56,7 @@ class StarMany: UIViewController {
         super.viewDidLoad()
         
         
-        // 測試用 當 abc 為 true 時，會實現 Qrcode 開啟本機畫面直接轉畫面的功能
-        self.abc = false
-        if(self.abc == true){
-            self.performSegueWithIdentifier("QrcodeDirectShowArticleSegue", sender: nil)
-        }
-        // 測試用以上
+
         
         
         
@@ -234,6 +235,16 @@ extension StarMany: UITableViewDataSource, UITableViewDelegate {
         if(segue.identifier == "QrcodeDirectShowArticleSegue"){
             // User launch app from qrcode scan
             print("go to qrcode")
+            // TODO: 若啟動APP是在別的頁面 這樣有辦法從QRCode啟動有辦法導向頁面嗎
+            let articleDetail = segue.destinationViewController as! ArticleViewController
+            articleDetail.currentIdString = "33"
+            articleDetail.currentTitleString = "測試標題"
+            articleDetail.currentBodyString = "測試內文"
+            articleDetail.currentAuthorString = "測試人員"
+            articleDetail.currentDivisionString = "測試部門"
+            articleDetail.currentPhotoUIImage = UIImage(named: "emergency")
+           
+            articleDetail.currentTimeString = "XXXX-XX-XX"
             
         }else{
             

@@ -199,7 +199,7 @@ extension StarSingleTopic: UITableViewDataSource, UITableViewDelegate {
 
         
         // Title
-        cell.singleTopicCellTitle.text = articleItem.title
+        cell.singleTopicCellTitle.text = articleItem.title!.noHTMLtag
         
         // Author
         cell.singleTopicCellAuthor.text = articleItem.author

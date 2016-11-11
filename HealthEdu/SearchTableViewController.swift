@@ -35,6 +35,12 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
     // section title for hot
     var sectionTitleForTrend: String = ""
     
+    // id contain article id from AppDelegate.swift (qrcode)
+    static var idFromQrcode: String?
+    
+    // contain article download from ShowArticleForQrcode
+    var articleData: article?
+    
     @IBOutlet var searchHotTrendTextActivityIndicator: UIActivityIndicatorView!
 
     
@@ -47,6 +53,34 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
         
         // custom extension of UITableView to deselect selected row
         self.tableView.deselectSelectedRow(animated: true)
+        
+        
+        if(SearchTableViewController.idFromQrcode != nil){
+            
+            ShowArticleForQrcode.byArticleId(SearchTableViewController.idFromQrcode!, completionHandler:{
+                (singleArticle) in
+                
+                self.articleData = singleArticle
+                
+                SearchTableViewController.idFromQrcode = nil
+                
+                
+                // change UI inside main queue
+                dispatch_async(dispatch_get_main_queue(), {
+                // perform segue change vc
+                    self.performSegueWithIdentifier("qrcodeArticleShowSegue", sender: self)
+                })
+                
+                
+                
+            })
+            
+            
+        }else{
+            print("idFromQrcode is nil")
+        }
+        
+        
     }
     
     
@@ -289,6 +323,26 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
             
             // pass data to SearchResultVC
             searchResultVC.searchText = self.searchTextTemp
+            
+            
+        }else{
+            
+            // segue is from qrcode launch
+            
+            // set SearchResultVC
+            let articleVC = segue.destinationViewController as! ArticleViewController
+            
+            // pass data to articleVC
+            // TODO: 重要！取消 photoUIImage 然後這裡再下載文章時，顯示loading~
+            articleVC.currentIdString = self.articleData!.id
+            articleVC.currentTitleString = self.articleData!.title
+            articleVC.currentBodyString = self.articleData!.body
+            articleVC.currentAuthorString = self.articleData!.author
+            articleVC.currentDivisionString = self.articleData!.division
+            articleVC.currentPhotoUIImage = self.articleData!.photoUIImage
+            articleVC.currentTimeString = self.articleData!.time
+
+            
         }
 
         
