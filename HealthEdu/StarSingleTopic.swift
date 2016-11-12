@@ -243,11 +243,14 @@ extension StarSingleTopic: UITableViewDataSource, UITableViewDelegate {
                 let whiteUIImage = UIImage.imageWithColor(UIColor.whiteColor())
                 articleDetail.currentPhotoUIImage = whiteUIImage
                 
+            }else if((articleSelected.photoUIImage?.isEqual(UIImage(named: "DefaultPhotoForArticle"))) == true){
+                // indicate this article doesn't has image, so we use local DefaultPhotoForArticle as its image
+                // set imageIsDefault to true (for not displaying image and store true to core data)
+                articleDetail.imageIsDefault = true
+                articleDetail.currentPhotoUIImage = articleSelected.photoUIImage
             }else{
-                // indicate 2 situation
-                // 1) this article has image, and image has been successfully downloaded
-                // 2) this article doesn't has image, so we use a local one as its image
-                // In both above situationm articleSelected.photoUIImage IS NOT nil
+                // indicate this article has image, and image has been successfully downloaded
+                articleDetail.imageIsDefault = false
                 articleDetail.currentPhotoUIImage = articleSelected.photoUIImage
             }
             articleDetail.currentTimeString = articleSelected.time

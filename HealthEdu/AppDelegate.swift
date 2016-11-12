@@ -113,75 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    
-    func gotoArticle(id: String){
         
-        
-        var articleData: article?
-        
-        ShowArticleForQrcode.byArticleId(id, completionHandler:{
-            (singleArticle) in
-            
-            articleData = singleArticle
-        
-            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-            
-            
-            let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            
-            let initialViewControlleripad = mainStoryboardIpad.instantiateViewControllerWithIdentifier("TabbarForHandlingQrcode") as! TabbarForHandlingQrcode
-            
-            //let rootViewController = self.window?.rootViewController as? UINavigationController
-            
-            // 將資料送到 ArticleViewController
-            /*
-            initialViewControlleripad.currentIdString = articleData!.id
-            initialViewControlleripad.currentTitleString = articleData!.title
-            initialViewControlleripad.currentBodyString = articleData!.body
-            initialViewControlleripad.currentAuthorString = articleData!.author
-            initialViewControlleripad.currentDivisionString = articleData!.division
-            initialViewControlleripad.currentPhotoString = articleData!.photo
-            initialViewControlleripad.currentTimeString = articleData!.time
-            */
-            
-            self.window!.rootViewController = initialViewControlleripad
-            
-            self.window!.backgroundColor = UIColor.whiteColor()
-            
-            self.window!.makeKeyAndVisible()
-            
-            
-            
-            //let uinvc = UINavigationController.init(rootViewController: initialViewControlleripad)
-            
-            
-            //let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            
-            
-            //rootViewController?.pushViewController(initialViewControlleripad, animated: true)
-            //self.window!.makeKeyAndVisible()
-            /*
-            self.navigationController.pushViewController(self.storyboar‌​d?.instantiateViewCo‌​ntrollerWithIdentifi‌​er("") as! UIViewController, animated: true)
-            
-            var navController = UINavigationController()
-            var articleVC: ArticleViewController = ArticleViewController()
-            navController.pushViewController(articleVC, animated: false)
-            
-            //self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-            
-            self.window!.rootViewController = navVCforArticleVC
-            
-            self.window!.backgroundColor = UIColor.whiteColor()
-            
-            self.window!.makeKeyAndVisible()*/
-            
-        })
-        
-
-        
-        
-    }
-    
     
     func showAlertAppDelegate(title : String,message : String,buttonTitle : String,window: UIWindow){
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)

@@ -30,16 +30,16 @@ class article {
     
     var time: String?
     
-    var division : String?
+    var division: String?
     
-    
+    var imageIsDefault: Bool?
     
     // MARK:- init() place
     
     /**
      init() 定義 article class 的基本元素
      */
-    init (id: String?, title: String?, photoUIImage: UIImage?, photo: String?, author : String?, body : String?, time: String?, division: String?){
+    init (id: String?, title: String?, photoUIImage: UIImage?, photo: String?, author : String?, body : String?, time: String?, division: String?, imageIsDefault: Bool?){
         
         self.id = id
         self.title = title
@@ -49,6 +49,7 @@ class article {
         self.body = body
         self.time = time
         self.division = division
+        self.imageIsDefault = imageIsDefault
         
     }
     

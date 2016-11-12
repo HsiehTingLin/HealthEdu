@@ -2,7 +2,7 @@
 //  HistoryEntities.swift
 //  HealthEdu
 //
-//  Created by Yu-Ju Lin on 2016/10/31.
+//  Created by Yu-Ju Lin on 2016/11/12.
 //  Copyright © 2016年 NCKU_hospital. All rights reserved.
 //
 

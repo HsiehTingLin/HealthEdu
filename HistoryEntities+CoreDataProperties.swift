@@ -2,7 +2,7 @@
 //  HistoryEntities+CoreDataProperties.swift
 //  HealthEdu
 //
-//  Created by Yu-Ju Lin on 2016/10/31.
+//  Created by Yu-Ju Lin on 2016/11/12.
 //  Copyright © 2016年 NCKU_hospital. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -22,5 +22,6 @@ extension HistoryEntities {
     @NSManaged var photoUIImage: NSData?
     @NSManaged var time: String?
     @NSManaged var title: String?
+    @NSManaged var imageIsDefault: NSNumber?
 
 }

@@ -89,7 +89,7 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
             
             for result in results {
                 
-                articleArrayHistory.append(article(id: result.id! ,title: result.title!, photoUIImage: UIImage(data: result.photoUIImage!)! ,  photo: String(), author: result.author!, body: result.body!, time: result.time! , division: result.division!))
+                articleArrayHistory.append(article(id: result.id! ,title: result.title!, photoUIImage: UIImage(data: result.photoUIImage!)! ,  photo: String(), author: result.author!, body: result.body!, time: result.time! , division: result.division!, imageIsDefault: result.imageIsDefault!.boolValue))
             }
             
         }catch{
@@ -123,7 +123,7 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
             
             for result in results {
                 
-                articleArrayBookmark.append(article(id: result.id! ,title: result.title!, photoUIImage: UIImage(data: result.photoUIImage!)! ,  photo: String(), author: result.author!, body: result.body!, time: result.time! , division: result.division!))
+                articleArrayBookmark.append(article(id: result.id! ,title: result.title!, photoUIImage: UIImage(data: result.photoUIImage!)! ,  photo: String(), author: result.author!, body: result.body!, time: result.time! , division: result.division!, imageIsDefault: result.imageIsDefault!.boolValue))
             }
             
         }catch{
@@ -451,11 +451,14 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
                     let whiteUIImage = UIImage.imageWithColor(UIColor.whiteColor())
                     articleDetail.currentPhotoUIImage = whiteUIImage
                     
+                }else if(articleSelected.imageIsDefault == true){
+                    // indicate this article doesn't has image, so we use local DefaultPhotoForArticle as its image
+                    // set imageIsDefault to true (for not displaying image and store true to core data)
+                    articleDetail.imageIsDefault = true
+                    articleDetail.currentPhotoUIImage = articleSelected.photoUIImage
                 }else{
-                    // indicate 2 situation
-                    // 1) this article has image, and image has been successfully downloaded
-                    // 2) this article doesn't has image, so we use a local one as its image
-                    // In both above situationm articleSelected.photoUIImage IS NOT nil
+                    // indicate this article has image, and image has been successfully downloaded
+                    articleDetail.imageIsDefault = false
                     articleDetail.currentPhotoUIImage = articleSelected.photoUIImage
                 }
                 articleDetail.currentTimeString = articleSelected.time
@@ -470,19 +473,24 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
                 articleDetail.currentBodyString = articleSelected.body
                 articleDetail.currentAuthorString = articleSelected.author
                 articleDetail.currentDivisionString = articleSelected.division
+                
                 if(articleSelected.photoUIImage == nil){
                     // indicate that this article does have image
                     // but its size is so large that it has not been completely downloaded yet.
                     let whiteUIImage = UIImage.imageWithColor(UIColor.whiteColor())
                     articleDetail.currentPhotoUIImage = whiteUIImage
                     
+                }else if(articleSelected.imageIsDefault == true){
+                    // indicate this article doesn't has image, so we use local DefaultPhotoForArticle as its image
+                    // set imageIsDefault to true (for not displaying image and store true to core data)
+                    articleDetail.imageIsDefault = true
+                    articleDetail.currentPhotoUIImage = articleSelected.photoUIImage
                 }else{
-                    // indicate 2 situation
-                    // 1) this article has image, and image has been successfully downloaded
-                    // 2) this article doesn't has image, so we use a local one as its image
-                    // In both above situationm articleSelected.photoUIImage IS NOT nil
+                    // indicate this article has image, and image has been successfully downloaded
+                    articleDetail.imageIsDefault = false
                     articleDetail.currentPhotoUIImage = articleSelected.photoUIImage
                 }
+                
                 articleDetail.currentTimeString = articleSelected.time
                 
             default:

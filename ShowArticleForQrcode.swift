@@ -18,7 +18,7 @@ class ShowArticleForQrcode {
      - returns: no resturn
      - completionHandler(Array<article> -> Void) return article array here
      */
-    static func byArticleId(articleId: String, completionHandler: article -> Void){
+    static func byArticleId(articleId: String, completionHandler: (Bool,article?) -> Void){
         
         
         // generate string to post
@@ -31,6 +31,9 @@ class ShowArticleForQrcode {
             
             if let jsonArray = Parse.parseJSONdataDict(data) {
 
+                if jsonArray["error"] != nil{
+                    completionHandler(false, nil)
+                }
                 
                 // insert all data to singleArticleData
                 let singleArticleData = article(
@@ -41,10 +44,11 @@ class ShowArticleForQrcode {
                     author: jsonArray["author"] as? String,
                     body: jsonArray["content"] as? String,
                     time: jsonArray["update_time"] as? String,
-                    division: jsonArray["division"] as? String)
+                    division: jsonArray["division"] as? String,
+                    imageIsDefault: false)
                 
                 // call completionHandler
-                completionHandler(singleArticleData)
+                completionHandler(true ,singleArticleData)
 
                 
             }

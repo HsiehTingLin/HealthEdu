@@ -33,7 +33,7 @@ class Reachability {
         if(!Reachability.checkInternet()){
             
             // can not build Domains Division json hierarchy
-            let alertMessage = UIAlertController(title: "無法連接伺服器！", message: "請開啟手機 Wifi 或行動上網！", preferredStyle: .Alert)
+            let alertMessage = UIAlertController(title: "無法連接伺服器", message: "請開啟手機 Wifi 或行動上網！", preferredStyle: .Alert)
             
             let okAction = UIAlertAction(title: "知道了", style: .Default, handler: nil)
             

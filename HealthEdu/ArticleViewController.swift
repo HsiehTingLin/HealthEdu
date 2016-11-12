@@ -16,9 +16,6 @@ class ArticleViewController: UIViewController {
     // MARK:- Variable Declaration
     var currentIdString: String?
     
-    // TODO: 這個應該要刪掉
-    var currentPhotoString: String?
-    
     var currentDivisionString: String?
     
     var currentTitleString: String?
@@ -31,6 +28,9 @@ class ArticleViewController: UIViewController {
     
     var currentPhotoUIImage: UIImage?
 
+    // for image storing into core data and recording whether the image is Default
+    var imageIsDefault: Bool? = false
+    
     // WebView for article Full text
     @IBOutlet var articleFullWebView: UIWebView!
     
@@ -45,7 +45,8 @@ class ArticleViewController: UIViewController {
 
     // for core data
     let core_data = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-    
+
+
 
     // MARK:- Basic Func
     override func viewDidLoad() {
@@ -173,21 +174,9 @@ class ArticleViewController: UIViewController {
         // don't show image
         if(UIImageJPEGRepresentation(self.currentPhotoUIImage!,1.0) != UIImageJPEGRepresentation(UIImage.imageWithColor(UIColor.whiteColor()),1.0)!){
             
-            // if currentPhotoUIImage not equal to default color image for not download complete image
-            print(currentPhotoUIImage)
-            print(UIImage(named: "DefaultPhotoForArticle"))
-            print(self.currentPhotoUIImage?.isEqual(UIImage(named: "DefaultPhotoForArticle")))
 
-            
-            // change UIImage to Raw NSData
-            let currentPhotoUIImageRaw = UIImageJPEGRepresentation(self.currentPhotoUIImage!, 1.0)
-            
-            let defaultImageRaw = UIImageJPEGRepresentation(UIImage(named: "DefaultPhotoForArticle")!, 1.0)
-            print("#####")
-            print(currentPhotoUIImageRaw)
-            print("-----")
-            print(defaultImageRaw)
-            if(currentPhotoUIImageRaw != defaultImageRaw){
+            // if image is not default, then show image
+            if(self.imageIsDefault != true){
             
                 // if currentPhotoUIImage not equal to default photo for article (article has no image)
                 
@@ -239,7 +228,7 @@ class ArticleViewController: UIViewController {
     func GenerateQRCode(imgview: UIImageView) -> UIImage
     {
         // generate the url array for this article id
-        self.URLArrayforQRCode.append("http://medcode.in/for_ncku_app_test/index.php?articleID=")
+        self.URLArrayforQRCode.append("http://ncku.medcode.in/index/redirectArticle/")
         self.URLArrayforQRCode.append(self.currentIdString!)
 
         // combine all url array to a string
@@ -513,6 +502,7 @@ class ArticleViewController: UIViewController {
                 bookmark.title = currentTitleString
                 bookmark.photoUIImage = NSData(data: UIImageJPEGRepresentation(self.currentPhotoUIImage!,1.0)!)
                 bookmark.division = currentDivisionString
+                bookmark.imageIsDefault = self.imageIsDefault
                 
                 do {
                     
@@ -748,6 +738,7 @@ class ArticleViewController: UIViewController {
             history.title = currentTitleString
             history.photoUIImage = NSData(data: UIImageJPEGRepresentation(self.currentPhotoUIImage!,1.0)!)
             history.division = currentDivisionString
+            history.imageIsDefault = self.imageIsDefault
             
             do {
                 

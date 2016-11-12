@@ -58,18 +58,43 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
         if(SearchTableViewController.idFromQrcode != nil){
             
             ShowArticleForQrcode.byArticleId(SearchTableViewController.idFromQrcode!, completionHandler:{
-                (singleArticle) in
+                (idValid,singleArticle) in
                 
-                self.articleData = singleArticle
-                
-                SearchTableViewController.idFromQrcode = nil
-                
-                
-                // change UI inside main queue
-                dispatch_async(dispatch_get_main_queue(), {
-                // perform segue change vc
-                    self.performSegueWithIdentifier("qrcodeArticleShowSegue", sender: self)
-                })
+                // everything good, id is valid, article is downloaded successfully
+                if(idValid == true){
+                    
+                    self.articleData = singleArticle
+                    
+                    SearchTableViewController.idFromQrcode = nil
+                    
+                    
+                    // change UI inside main queue
+                    dispatch_async(dispatch_get_main_queue(), {
+                        // perform segue change vc
+                        self.performSegueWithIdentifier("qrcodeArticleShowSegue", sender: self)
+                    })
+                    
+                }else{
+                    // id is invalid, and server show error
+                    
+                    
+                    // show error here
+                    let alertMessage = UIAlertController(title: "Qrcode條碼失效", message: "請再掃描一次，或改用文字搜尋功能！", preferredStyle: .Alert)
+                    
+                    let okAction = UIAlertAction(title: "知道了", style: .Default, handler: nil)
+                    
+                    
+                    alertMessage.addAction(okAction)
+                    
+                    // need add dispatch
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.presentViewController(alertMessage, animated: true, completion:nil)
+                    })
+                    
+
+                    
+                }
+
                 
                 
                 
@@ -340,7 +365,11 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
             articleVC.currentDivisionString = self.articleData!.division
             
             // qrcode launch article do not show image
-            articleVC.currentPhotoUIImage = UIImage.imageWithColor(UIColor.whiteColor())
+            articleVC.imageIsDefault = true
+            
+            // but store by default, its image is DefaultPhotoForArticle
+            articleVC.currentPhotoUIImage = UIImage(named: "DefaultPhotoForArticle")
+
             articleVC.currentTimeString = self.articleData!.time
 
             

@@ -61,7 +61,8 @@ class ListArticle{
                         author: a_article["author"] as? String,
                         body: a_article["content"] as? String,
                         time: a_article["update_time"] as? String,
-                        division: a_article["division"] as? String)
+                        division: a_article["division"] as? String,
+                        imageIsDefault: false)
 
                     articleArray.append(new_article)
 
@@ -115,7 +116,8 @@ class ListArticle{
                         author: a_article["author"] as? String,
                         body: a_article["content"] as? String,
                         time: a_article["update_time"] as? String,
-                        division: a_article["division"] as? String)
+                        division: a_article["division"] as? String,
+                        imageIsDefault: false)
                     
                     articleArray.append(new_article)
                     
@@ -165,7 +167,8 @@ class ListArticle{
                         author: a_article["author"] as? String,
                         body: a_article["content"] as? String,
                         time: a_article["update_time"] as? String,
-                        division: a_article["division"] as? String)
+                        division: a_article["division"] as? String,
+                        imageIsDefault: false)
                     
                     articleArray.append(new_article)
                     
