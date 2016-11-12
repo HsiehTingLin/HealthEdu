@@ -30,61 +30,22 @@ class ShowArticleForQrcode {
             
             
             if let jsonArray = Parse.parseJSONdataDict(data) {
-                print(jsonArray)
-                
-                var imageForQrcodeArticle: UIImage?
-                
-                if(jsonArray["photo"] != nil){
-                    // download image
-                    
-                    
-                    Connection.GetImage(jsonArray["photo"] as! String,  completionHandler: {
-                        (data) in
-                        
-                        imageForQrcodeArticle = UIImage(data: data)
-                        
-                        // insert all data to singleArticleData
-                        let singleArticleData = article(
-                            id: jsonArray["id"] as? String,
-                            title: jsonArray["title"] as? String,
-                            photoUIImage: imageForQrcodeArticle,
-                            photo: jsonArray["photo"] as? String,
-                            author: jsonArray["author"] as? String,
-                            body: jsonArray["content"] as? String,
-                            time: jsonArray["update_time"] as? String,
-                            division: jsonArray["division"] as? String)
-                        
-                        // call completionHandler
-                        completionHandler(singleArticleData)
-                        
-                    })
-
-                    
-                }else{
-                    
-                    imageForQrcodeArticle = UIImage(named: "DefaultPhotoForArticle")
-                    
-                    // insert all data to singleArticleData
-                    let singleArticleData = article(
-                        id: jsonArray["id"] as? String,
-                        title: jsonArray["title"] as? String,
-                        photoUIImage: imageForQrcodeArticle,
-                        photo: jsonArray["photo"] as? String,
-                        author: jsonArray["author"] as? String,
-                        body: jsonArray["content"] as? String,
-                        time: jsonArray["update_time"] as? String,
-                        division: jsonArray["division"] as? String)
-                    
-                    // call completionHandler
-                    completionHandler(singleArticleData)
-                    
-                }
-                
 
                 
+                // insert all data to singleArticleData
+                let singleArticleData = article(
+                    id: jsonArray["id"] as? String,
+                    title: jsonArray["title"] as? String,
+                    photoUIImage: nil,
+                    photo: nil,
+                    author: jsonArray["author"] as? String,
+                    body: jsonArray["content"] as? String,
+                    time: jsonArray["update_time"] as? String,
+                    division: jsonArray["division"] as? String)
+                
+                // call completionHandler
+                completionHandler(singleArticleData)
 
-                
-                
                 
             }
             

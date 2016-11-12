@@ -54,12 +54,7 @@ class StarMany: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        
 
-        
-        
-        
         // build activityIndicator as WhiteLarge(change to blue later)
         self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
         
@@ -124,13 +119,6 @@ class StarMany: UIViewController {
         
     }
     
-    // TODO: 新增 push local notification 功能
-    /*func setupNotificationSettings() {
-        // Specify the notification types.
-        var notificationTypes: UIUserNotificationType(forTypes: [.Alert])
-    }*/
-    
-
     
 }
 
@@ -141,10 +129,8 @@ extension StarMany: UITableViewDataSource, UITableViewDelegate {
     
 
     /**
-     
      Define how many section in table view
      - returns: 1:Int
-     
      */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
@@ -187,7 +173,10 @@ extension StarMany: UITableViewDataSource, UITableViewDelegate {
 
         // creat the variable cell, the detail of the cell is define in file myTopicCell.swift
         let cell = tableView.dequeueReusableCellWithIdentifier("starCellFirst", forIndexPath: indexPath) as! myTopicsCell
-
+        
+        // set cell selection not visible show
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        
         // set each row's image to nil
         // prevent repeat image because of dequeueReusableCellWithIdentifire()
         cell.topicPhotoIBO.image = nil

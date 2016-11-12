@@ -172,25 +172,36 @@ class ArticleViewController: UIViewController {
         // 2) if article image is too large too downloaded completely at this point
         // don't show image
         if(UIImageJPEGRepresentation(self.currentPhotoUIImage!,1.0) != UIImageJPEGRepresentation(UIImage.imageWithColor(UIColor.whiteColor()),1.0)!){
+            
             // if currentPhotoUIImage not equal to default color image for not download complete image
             print(currentPhotoUIImage)
             print(UIImage(named: "DefaultPhotoForArticle"))
             print(self.currentPhotoUIImage?.isEqual(UIImage(named: "DefaultPhotoForArticle")))
+
             
-            // TODO: 儲存到 bookmark 後，image 雖然看起來一樣但是圖片會改變
-            // 所以不能用 isEqual
-            if(!(self.currentPhotoUIImage?.isEqual(UIImage(named: "DefaultPhotoForArticle")))!){
+            // change UIImage to Raw NSData
+            let currentPhotoUIImageRaw = UIImageJPEGRepresentation(self.currentPhotoUIImage!, 1.0)
+            
+            let defaultImageRaw = UIImageJPEGRepresentation(UIImage(named: "DefaultPhotoForArticle")!, 1.0)
+            print("#####")
+            print(currentPhotoUIImageRaw)
+            print("-----")
+            print(defaultImageRaw)
+            if(currentPhotoUIImageRaw != defaultImageRaw){
+            
                 // if currentPhotoUIImage not equal to default photo for article (article has no image)
                 
                 // amazing: UIImageJPEGRepresentation can convert jpeg png gif
                 let imageData = NSData(data: UIImageJPEGRepresentation(self.currentPhotoUIImage!,1.0)!)
                 
+                // change imageData to base64
                 let base64Data = imageData.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
                 
                 articleFullHTMLarray.append("<img src=\"data:image/jpg;base64,\(base64Data)\" width=\"\(imgWidth)\">")
-
         
             }
+            
+            
         }
         
         
@@ -432,9 +443,8 @@ class ArticleViewController: UIViewController {
 
     // MARK:- Add To Core Data
     /**
-     
-        add article to bookmark
-     
+    add article to bookmark
+    - returns: nothing
      */
     func addToBookmark(sender: AnyObject) {
         

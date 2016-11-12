@@ -325,7 +325,7 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
             searchResultVC.searchText = self.searchTextTemp
             
             
-        }else{
+        }else if(segue.identifier == "qrcodeArticleShowSegue"){
             
             // segue is from qrcode launch
             
@@ -333,13 +333,14 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
             let articleVC = segue.destinationViewController as! ArticleViewController
             
             // pass data to articleVC
-            // TODO: 重要！取消 photoUIImage 然後這裡再下載文章時，顯示loading~
             articleVC.currentIdString = self.articleData!.id
             articleVC.currentTitleString = self.articleData!.title
             articleVC.currentBodyString = self.articleData!.body
             articleVC.currentAuthorString = self.articleData!.author
             articleVC.currentDivisionString = self.articleData!.division
-            articleVC.currentPhotoUIImage = self.articleData!.photoUIImage
+            
+            // qrcode launch article do not show image
+            articleVC.currentPhotoUIImage = UIImage.imageWithColor(UIColor.whiteColor())
             articleVC.currentTimeString = self.articleData!.time
 
             
