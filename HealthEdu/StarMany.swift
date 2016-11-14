@@ -32,6 +32,9 @@ class StarMany: UIViewController {
     // afterDownload
     var afterDownload: Bool = false
     
+    // pull to refresh control
+    var refreshControl: UIRefreshControl!
+    
     override func viewWillAppear(animated: Bool) {
         // check if user is connected to interent
         // show alert if not
@@ -40,17 +43,13 @@ class StarMany: UIViewController {
         // custom extension of UITableView to deselect selected row
         self.StarTableViewIBO.deselectSelectedRow(animated: true)
         
-        // TODO: 現階段可以實現存在 navigation bar 而轉向文章顯示頁面
-        // TODO: 但問題是 從網址端轉過來之後，沒有code會被執行
-        print("starMany 輸出：\(StarMany.abc)")
-        if(StarMany.abc == true){
-            self.performSegueWithIdentifier("QrcodeDirectShowArticleSegue", sender: nil)
-        }
-        // 測試用以上
-        
-        // TODO: 若沒連上網，重新再開時，要怎麼直接下載
         
     }
+    
+    
+
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -139,7 +138,6 @@ extension StarMany: UITableViewDataSource, UITableViewDelegate {
             return 1
             
         }else if self.topicArray.count == 0 && self.afterDownload {
-            // TODO: 把這裡的提示 「目前沒有衛教文章」 套用到各個不同頁面
             
             self.StarTableViewIBO.showNoRowInfo("目前沒有精選衛教主題，敬請期待發布。")
             

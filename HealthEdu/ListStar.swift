@@ -45,10 +45,6 @@ class ListStar {
                     )
 
                     topicArray.append(new_topic)
-                    
-                    
-
-
 
                     
                 }
