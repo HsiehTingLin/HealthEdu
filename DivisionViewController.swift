@@ -18,6 +18,9 @@ class DivisionViewController: UIViewController{
     
     @IBOutlet var tableView: UITableView!
     
+    // initiate refreshControl
+    var refreshControl: UIRefreshControl!
+    
     override func viewWillAppear(animated: Bool) {
         
         // check if user is connected to interent

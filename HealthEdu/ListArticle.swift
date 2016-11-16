@@ -44,7 +44,7 @@ class ListArticle{
         
         // pass rowSelected to Connection Post
         Connection.postRequest("https://ncku.medcode.in/json/listByDivisionId", postString: strToPost, completionHandler: {
-            (data) in
+            (data, error) in
             
             
             if let jsonArray = Parse.parseJSONdata(data) {
@@ -99,7 +99,7 @@ class ListArticle{
         
         // pass rowSelected to Connection Post
         Connection.postRequest("https://ncku.medcode.in/json/listByStarTopic", postString: strToPost, completionHandler: {
-            (data) in
+            (data, error) in
             
             
             if let jsonArray = Parse.parseJSONdata(data) {
@@ -150,7 +150,7 @@ class ListArticle{
 
         // pass rowSelected to Connection Post
         Connection.postRequest("https://ncku.medcode.in/json/listBySearchText", postString: strToPost, completionHandler: {
-            (data) in
+            (data, error) in
             
             
             if let jsonArray = Parse.parseJSONdata(data) {

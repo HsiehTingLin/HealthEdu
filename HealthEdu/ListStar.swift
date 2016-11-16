@@ -13,22 +13,32 @@ import UIKit
 class ListStar {
     
     /**
-        this func is used by showing all star topics
-     
-        - returns: no returns
-        - completionHandler(Array<topic> -> Void) return topic array here
+     this func is used by showing all star topics
+     - returns: no returns
+     - completionHandler(Array<topic>,error) -> Void return topic array here
+        error: nil for no error, a String for error
      */
-    static func byDefault(completionHandler: [topic] -> Void){
-        
-        // TODO: excludeIds 在此轉成字串
+    static func byDefault(completionHandler: ([topic], String?) -> Void){
         
         
         // pass rowSelected to Connection Post
         Connection.postRequest("https://ncku.medcode.in/json/star", postString: "", completionHandler: {
-            (data) in
+            (data, error) in
             
-            
-            if let jsonArray = Parse.parseJSONdata(data) {
+            if error != nil {
+                
+                switch error! {
+                    
+                case "code-1009":
+                    completionHandler([], "code-1009")
+                default:
+                    completionHandler([], "other error")
+
+                }
+                
+                
+                
+            }else if let jsonArray = Parse.parseJSONdata(data) {
                 
                 var topicArray: [topic] = []
                 
@@ -49,7 +59,7 @@ class ListStar {
                     
                 }
                 
-                completionHandler(topicArray)
+                completionHandler(topicArray, nil)
                 
             }
             

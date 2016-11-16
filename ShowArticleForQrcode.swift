@@ -26,7 +26,7 @@ class ShowArticleForQrcode {
         
         // pass rowSelected to Connection Post
         Connection.postRequest("https://ncku.medcode.in/json/showArticleForQrcode", postString: strToPost, completionHandler: {
-            (data) in
+            (data, error) in
             
             
             if let jsonArray = Parse.parseJSONdataDict(data) {

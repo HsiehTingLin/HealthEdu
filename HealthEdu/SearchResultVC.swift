@@ -43,8 +43,7 @@ class SearchResultVC: UITableViewController {
         super.viewDidLoad()
         
         self.title = "「\(searchText!)」"
-        
-        
+                
         // build activityIndicator as WhiteLarge(change to blue later)
         self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
         

@@ -41,6 +41,9 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
     // contain article download from ShowArticleForQrcode
     var articleData: article?
     
+    // initiate refreshControl
+    var refreshController: UIRefreshControl!
+    
     @IBOutlet var searchHotTrendTextActivityIndicator: UIActivityIndicatorView!
 
     

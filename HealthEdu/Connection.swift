@@ -13,7 +13,10 @@ class Connection: NSObject, NSURLSessionDelegate{
     
     
     // postRequest - for all http request
-    static func postRequest(requestUrl: String, postString: String, completionHandler: NSData -> Void){
+    static func postRequest(requestUrl: String, postString: String, completionHandler: (NSData, String?) -> Void){
+        // completionHandler parameters
+        //      NSData -> for data
+        //      String? -> for error, if no error, it's nil
         
         // variable for store temporary json data
         var jsonData: NSData?
@@ -32,7 +35,9 @@ class Connection: NSObject, NSURLSessionDelegate{
             guard error == nil && data != nil else {
                 // check for fundamental networking error
                 // when disconnected, show error here
-                print("class Connection error=\(error)")
+                print("錯誤代碼：\(error?.code)")
+                print("錯誤訊息：\(error?.localizedDescription)")
+                completionHandler(NSData(), "code-1009")
                 return
                 
             }
@@ -48,7 +53,7 @@ class Connection: NSObject, NSURLSessionDelegate{
                 
                 jsonData = data
                 
-                completionHandler(jsonData!)
+                completionHandler(jsonData!, nil)
                 // 不能用 return 的方式回傳，因為 這是 Async 方式讀取資料
             }
             

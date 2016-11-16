@@ -38,6 +38,8 @@ class StarSingleTopic: UIViewController {
     // contain whole article belong to specific topic
     var articleArray: [article] = []
     
+    // initiate refreshControl
+    var refreshControl: UIRefreshControl!
     
     override func viewWillAppear(animated: Bool) {
         // check if user is connected to interent
@@ -81,15 +83,30 @@ class StarSingleTopic: UIViewController {
         self.ArticleInTopicTableView.backgroundView = self.activityIndicator
         
         
+        // define refreshControl
+        self.refreshControl = UIRefreshControl()
+        
+        // set refreshControl color
+        self.refreshControl.tintColor = UIColor.init(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 0.7)
+        
+        // addTarget when pull, which func to exe
+        self.refreshControl.addTarget(self, action: #selector(StarMany.download), forControlEvents: UIControlEvents.ValueChanged)
         
         
         
+        // execute download, start!!!
+        self.download()
         
+        
+    }
+    
+    func download()
+    {
+        
+    
         ListArticle.byStarTopic(TopicMainIdString!, completionHandler: {
             (topicArticleArray) in
-            
-            
-            
+        
             
             // change UI inside main queue
             dispatch_async(dispatch_get_main_queue(), {
@@ -138,7 +155,16 @@ extension StarSingleTopic: UITableViewDataSource, UITableViewDelegate {
         - returns: 1:Int
      */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        
+        if self.articleArray.count > 0 {
+            
+            return 1
+            
+        }else{
+            
+            return 0
+            
+        }
     }
     
     

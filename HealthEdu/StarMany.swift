@@ -12,11 +12,6 @@ import UIKit
 
 class StarMany: UIViewController {
     
-
-    // 測試用 abc 跟 Qrcode啟動轉址有關
-    static var abc: Bool? = false
-    var imm = UIImage()
-    // 測試用以上
     
 
     // MARK:- Variable Declaration
@@ -34,6 +29,9 @@ class StarMany: UIViewController {
     
     // pull to refresh control
     var refreshControl: UIRefreshControl!
+    
+
+    
     
     override func viewWillAppear(animated: Bool) {
         // check if user is connected to interent
@@ -72,50 +70,152 @@ class StarMany: UIViewController {
         // set activityIndicator as StarTableViewIDB's backgrousView
         self.StarTableViewIBO.backgroundView = self.activityIndicator
         
+        // define refreshControl
+        self.refreshControl = UIRefreshControl()
+        
+        // set refreshControl color
+        self.refreshControl.tintColor = UIColor.init(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 0.7)
+        
+        // addTarget when pull, which func to exe
+        self.refreshControl.addTarget(self, action: #selector(StarMany.download), forControlEvents: UIControlEvents.ValueChanged)
+
         
         
-        // call ListStar byDefault() method to download star topic data from Server
-        ListStar.byDefault({
-            (starTopicArray) in
+        // execute download, start!!!
+        self.download()
 
-            
-            // change UI inside main queue
-            dispatch_async(dispatch_get_main_queue(), {
-                
-                // no matter how long it takes to download data from Server
-                // the activityIndicator will animating from 3 seconds
-                let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
-                    dispatch_after(time, dispatch_get_main_queue()) {
-                        
-                        // stop activity indicator animating
-                        self.activityIndicator.stopAnimating()
-                        self.activityIndicator.hidden = true
-                        
-                        // refer self.topicArray to starTopicArray (Array from Server)
-                        self.topicArray = starTopicArray
-                        
-                        // set self.afterDownload for show info if there is no result
-                        self.afterDownload = true
-                        
-                        // show the line separator again
-                        self.StarTableViewIBO.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
-                        
-                        // reload StarTableViewIBO in animating style
-                        UIView.transitionWithView(self.StarTableViewIBO, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.StarTableViewIBO.reloadData()}, completion: nil)
-                        
-                        
-                }
-                
-
-                
-                
-            })
-            
-
-        })
     
 
         
+    }
+    
+    
+    func download()
+    {
+
+        
+        // call ListStar byDefault() method to download star topic data from Server
+        ListStar.byDefault({
+            (starTopicArray, error) in
+            
+            
+            if error != nil {
+                // there is error
+                // change UI inside main queue
+                
+                switch error! {
+                    
+                case "code-1009":
+    
+                    // define 3 seconde for dispathc after
+                    let threeSeconds = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+                    
+                    dispatch_after(threeSeconds, dispatch_get_main_queue()) {
+
+                        self.afterDownload = false
+                        print("請連上網路後，下拉重新整理。")
+                        
+                        self.topicArray = []
+                        
+                        self.refreshControl.endRefreshing()
+                        
+                        
+                        UIView.transitionWithView(self.StarTableViewIBO, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.StarTableViewIBO.reloadData()}, completion: nil)
+                        
+                        self.StarTableViewIBO.showNoRowInfo("請連上網路後，下拉重新整理。")
+                        
+                        if(!self.refreshControl.isDescendantOfView(self.StarTableViewIBO)){
+                            self.StarTableViewIBO.addSubview(self.refreshControl)
+                        }
+                        
+                        
+                    }
+                default:
+
+                    // define 3 seconde for dispathc after
+                    let threeSeconds = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+                    
+                    dispatch_after(threeSeconds, dispatch_get_main_queue()) {
+                        self.afterDownload = false
+                        print("網速過慢或連線問題。")
+                        
+                        // set topicArray to nothing
+                        self.topicArray = []
+                        
+                        self.refreshControl.endRefreshing()
+                        
+                        UIView.transitionWithView(self.StarTableViewIBO, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.StarTableViewIBO.reloadData()}, completion: nil)
+                        
+                        self.StarTableViewIBO.showNoRowInfo("網速過慢、或連線出現問題。")
+                        
+                        if(!self.refreshControl.isDescendantOfView(self.StarTableViewIBO)){
+                            self.StarTableViewIBO.addSubview(self.refreshControl)
+                        }
+                        
+                        
+                    }
+                    
+                }
+                
+            
+                
+                
+            }else{
+                
+                
+                // no matter how long it takes to download data from Server
+                // the activityIndicator will animating from 3 seconds
+                // define 3 seconde for dispathc after
+                let threeSeconds = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+                
+                dispatch_after(threeSeconds, dispatch_get_main_queue()) {
+                    
+                    self.StarTableViewIBO.backgroundView = nil
+
+                    
+                    // stop activity indicator animating
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.hidden = true
+                    
+                    // refer self.topicArray to starTopicArray (Array from Server)
+                    self.topicArray = starTopicArray
+
+                    
+                    // show the line separator again
+                    self.StarTableViewIBO.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+                    
+                    self.refreshControl.endRefreshing()
+                    
+                    
+                    if self.topicArray.count == 0 {
+                        
+                        // no need to do below line in dispathc main
+                        // because table reloadData() method is already in dispatch main
+                        self.StarTableViewIBO.showNoRowInfo("目前尚未有精選主題，敬請期待。")
+                        UIView.transitionWithView(self.StarTableViewIBO, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.StarTableViewIBO.reloadData()}, completion: nil)
+                    }else{
+                        
+                        UIView.transitionWithView(self.StarTableViewIBO, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.StarTableViewIBO.reloadData()}, completion: nil)
+                        
+                    }
+                    
+                    if(!self.refreshControl.isDescendantOfView(self.StarTableViewIBO)){
+                        self.StarTableViewIBO.addSubview(self.refreshControl)
+                    }
+ 
+                    
+                    
+                    
+                    
+                }
+                
+                
+            }
+            
+
+            
+        })
+
     }
     
     
@@ -137,15 +237,11 @@ extension StarMany: UITableViewDataSource, UITableViewDelegate {
             
             return 1
             
-        }else if self.topicArray.count == 0 && self.afterDownload {
+        }else{
             
-            self.StarTableViewIBO.showNoRowInfo("目前沒有精選衛教主題，敬請期待發布。")
+            return 0
             
         }
-        
-        
-        return 0
-        
 
         
     }
@@ -184,6 +280,26 @@ extension StarMany: UITableViewDataSource, UITableViewDelegate {
         let topicItem = topicArray[indexPath.row]
 
         
+        // prevent download same image again
+        if topicItem.topicPhotoUIImage == nil {
+            
+            // prove that photoUIImage has not been downloaded t
+            // add photo from imageFromSeverURL (which is a custom extension)
+            // will load photo later on
+            cell.topicPhotoIBO.imageFromServerURL(cell.topicPhotoIBO, urlString: topicItem.topicPhoto!, completionHandler: {
+                (imageFromNet) in
+                
+                // here insert image From Net to topicArray.topicPhotoUIImage
+                self.topicArray[indexPath.row].topicPhotoUIImage = imageFromNet
+                
+            })
+            
+        }else{
+            
+            cell.topicPhotoIBO.image = self.topicArray[indexPath.row].topicPhotoUIImage
+            
+        }
+        
         // add photo from imageFromSeverURL (which is a custom extension)
         // will load photo later on
         cell.topicPhotoIBO.imageFromServerURL(cell.topicPhotoIBO, urlString: topicItem.topicPhoto!, completionHandler: {
@@ -210,10 +326,10 @@ extension StarMany: UITableViewDataSource, UITableViewDelegate {
     
     /**
      
-        Prepare for segue. When users tap one topic in this viewController, we must prepare the selected data and pass them to next viewcontroller
-        The cell Identifier in Storyboard is called starcellFirst
+     Prepare for segue. When users tap one topic in this viewController, we must prepare the selected data and pass them to next viewcontroller
+     The cell Identifier in Storyboard is called starcellFirst
      
-        - returns: cell
+     - returns: cell
      
      */
     

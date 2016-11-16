@@ -29,8 +29,9 @@ class ListSearchDefaultText {
         var trendTextArray: [String] = []
         
         // pass rowSelected to Connection Post
-        Connection.postRequest(apiUrl, postString: strToPost, completionHandler: {
-            (data) in
+        Connection.postRequest(apiUrl, postString: strToPost,
+            completionHandler: {
+            (data, error) in
             
             
             if let jsonArray = Parse.parseJSONdata(data) {

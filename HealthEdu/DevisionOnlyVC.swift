@@ -45,6 +45,9 @@ class DevisionOnlyVC: UITableViewController {
     // afterDownload
     var afterDownload: Bool = false
     
+    // initiate refreshControl
+    var refreshController: UIRefreshControl!
+    
     override func viewWillAppear(animated: Bool) {
         // check if user is connected to interent
         // show alert if not

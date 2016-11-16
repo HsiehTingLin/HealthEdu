@@ -109,7 +109,7 @@ extension UIImageView {
 extension UITableView {
     
     public func showNoRowInfo(infoText: String){
-
+        // need to use this inside dispathc
         
         let bgView: UIView = UIView()
         bgView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
@@ -128,10 +128,9 @@ extension UITableView {
         
         bgView.addSubview(noDataLabel)
         
-        // dispathc to main to animating show no result background view
-        dispatch_async(dispatch_get_main_queue(), {
-            self.backgroundView = bgView
-        })
+        
+        self.backgroundView = bgView
+
     }
     
     
