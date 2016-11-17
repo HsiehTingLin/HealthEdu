@@ -194,7 +194,7 @@ class ArticleViewController: UIViewController {
         }
         
         
-        articleFullHTMLarray.append("<div style='font-size: \(fontsize)px; padding-left: 3%; padding-right: 3%; text-indent: 5%;' id=\"body\"><p> \(self.currentBodyString!)</p>")
+        articleFullHTMLarray.append("<div style='font-size: \(fontsize)px; padding-left: 3%; padding-right: 3%;' id=\"body\"><p> \(self.currentBodyString!)</p>")
         
         articleFullHTMLarray.append("<p>最後更新：\(self.currentTimeString!)<br></p></div>")
         
@@ -277,7 +277,7 @@ class ArticleViewController: UIViewController {
     func qrcodeBtn(sender: AnyObject) {
         
         // define what to show in alert controller
-        let alertMessage = UIAlertController(title: "請使用QR Code掃描器掃描！", message: "點擊背景以返回", preferredStyle: .Alert)
+        let alertMessage = UIAlertController(title: "請用QRcode掃描！", message: "點擊背景以返回", preferredStyle: .Alert)
         
         let height:NSLayoutConstraint = NSLayoutConstraint(item: alertMessage.view, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 320)
         

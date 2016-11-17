@@ -193,6 +193,7 @@ class StarMany: UIViewController {
                         // because table reloadData() method is already in dispatch main
                         self.StarTableViewIBO.showNoRowInfo("目前尚未有精選主題，敬請期待。")
                         UIView.transitionWithView(self.StarTableViewIBO, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.StarTableViewIBO.reloadData()}, completion: nil)
+                        
                     }else{
                         
                         UIView.transitionWithView(self.StarTableViewIBO, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.StarTableViewIBO.reloadData()}, completion: nil)

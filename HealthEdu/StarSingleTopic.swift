@@ -90,7 +90,7 @@ class StarSingleTopic: UIViewController {
         self.refreshControl.tintColor = UIColor.init(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 0.7)
         
         // addTarget when pull, which func to exe
-        self.refreshControl.addTarget(self, action: #selector(StarMany.download), forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl.addTarget(self, action: #selector(StarSingleTopic.download), forControlEvents: UIControlEvents.ValueChanged)
         
         
         
@@ -105,16 +105,79 @@ class StarSingleTopic: UIViewController {
         
     
         ListArticle.byStarTopic(TopicMainIdString!, completionHandler: {
-            (topicArticleArray) in
+            (topicArticleArray, error) in
         
+     
             
-            // change UI inside main queue
-            dispatch_async(dispatch_get_main_queue(), {
+            if error != nil {
+                // there is error
+                // change UI inside main queue
+                
+                switch error! {
+                    
+                case "code-1009":
+                    
+                    // define 3 seconde for dispathc after
+                    let threeSeconds = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+                    
+                    dispatch_after(threeSeconds, dispatch_get_main_queue()) {
+                        
+ 
+                        print("請連上網路後，下拉重新整理。")
+                        
+                        self.articleArray = []
+                        
+                        self.refreshControl.endRefreshing()
+                        
+                        
+                        UIView.transitionWithView(self.ArticleInTopicTableView, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.ArticleInTopicTableView.reloadData()}, completion: nil)
+                        
+                        self.ArticleInTopicTableView.showNoRowInfo("請連上網路後，下拉重新整理。")
+                        
+                        if(!self.refreshControl.isDescendantOfView(self.ArticleInTopicTableView)){
+                            self.ArticleInTopicTableView.addSubview(self.refreshControl)
+                        }
+                        
+                        
+                    }
+                default:
+                    
+                    // define 3 seconde for dispathc after
+                    let threeSeconds = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+                    
+                    dispatch_after(threeSeconds, dispatch_get_main_queue()) {
+
+                        print("網速過慢或連線問題。")
+                        
+                        // set topicArray to nothing
+                        self.articleArray = []
+                        
+                        self.refreshControl.endRefreshing()
+                        
+                        UIView.transitionWithView(self.ArticleInTopicTableView, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.ArticleInTopicTableView.reloadData()}, completion: nil)
+                        
+                        self.ArticleInTopicTableView.showNoRowInfo("網速過慢、或連線出現問題。")
+                        
+                        if(!self.refreshControl.isDescendantOfView(self.ArticleInTopicTableView)){
+                            self.ArticleInTopicTableView.addSubview(self.refreshControl)
+                        }
+                        
+                        
+                    }
+                    
+                }
+                
+                
+                
+                
+            }else{
                 
                 // no matter how long it takes to download data from Server
                 // the activityIndicator will animating from 3 seconds
                 let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
                 dispatch_after(time, dispatch_get_main_queue()) {
+                    
+                    self.ArticleInTopicTableView.backgroundView = nil
                     
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.hidden = true
@@ -125,17 +188,30 @@ class StarSingleTopic: UIViewController {
                     // show the line separator again
                     self.ArticleInTopicTableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
                     
-                    // reload StarTableViewIBO in animating style
-                    UIView.transitionWithView(self.ArticleInTopicTableView, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.ArticleInTopicTableView.reloadData()}, completion: nil)
+                     self.refreshControl.endRefreshing()
+                    
+                    if self.articleArray.count == 0 {
+                        
+                        // no need to do below line in dispathc main
+                        // because table reloadData() method is already in dispatch main
+                        self.ArticleInTopicTableView.showNoRowInfo("本主題沒有衛教文章。")
+                        UIView.transitionWithView(self.ArticleInTopicTableView, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.ArticleInTopicTableView.reloadData()}, completion: nil)
+                        
+                    }else{
+                        
+                        UIView.transitionWithView(self.ArticleInTopicTableView, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.ArticleInTopicTableView.reloadData()}, completion: nil)
+                        
+                    }
+                    
+                    if(!self.refreshControl.isDescendantOfView(self.ArticleInTopicTableView)){
+                        self.ArticleInTopicTableView.addSubview(self.refreshControl)
+                    }
                     
                 }
-                
 
                 
                 
-            })
-        
-        
+            }
         })
         
 
@@ -151,8 +227,8 @@ extension StarSingleTopic: UITableViewDataSource, UITableViewDelegate {
     
     
     /**
-        Define how many section in table view
-        - returns: 1:Int
+     Define how many section in table view
+     - returns: 1:Int
      */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         

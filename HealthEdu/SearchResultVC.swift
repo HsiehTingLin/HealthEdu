@@ -23,9 +23,9 @@ class SearchResultVC: UITableViewController {
     
     // activity indicator for loading search result from server
     var activityIndicator = UIActivityIndicatorView()
-    
-    // afterDownload
-    var afterDownload: Bool = false
+
+    // refreshControll for pull to refresh
+    var refreshController: UIRefreshControl!
     
     // MARK:- Basic Func
     override func viewWillAppear(animated: Bool) {
@@ -42,7 +42,7 @@ class SearchResultVC: UITableViewController {
         
         super.viewDidLoad()
         
-        self.title = "「\(searchText!)」"
+        self.title = "「\(searchText!.trunc(10))」"
                 
         // build activityIndicator as WhiteLarge(change to blue later)
         self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
@@ -64,19 +64,99 @@ class SearchResultVC: UITableViewController {
         // set activityIndicator as StarTableViewIDB's backgrousView
         self.tableView.backgroundView = self.activityIndicator
         
+        // define refreshControl
+        self.refreshController = UIRefreshControl()
+        
+        // set refreshControl color
+        self.refreshController.tintColor = UIColor.init(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 0.7)
+        
+        // addTarget when pull, which func to exe
+        self.refreshController.addTarget(self, action: #selector(SearchResultVC.download), forControlEvents: UIControlEvents.ValueChanged)
+        
+        // start the whole search
+        self.download()
+        
+    }
     
+    
+    func download(){
         // searchBar.text is the text user type in
         ListArticle.bySearchText(searchText!, completionHandler: {
-            (articleArray) in
+            (articleArray, error) in
 
-            
-            // change UI inside main queue
-            dispatch_async(dispatch_get_main_queue(), {
+            if error != nil {
+                // there is error
+                // change UI inside main queue
+                
+                switch error! {
+                    
+                case "code-1009":
+                    
+                    // define 3 seconde for dispathc after
+                    let threeSeconds = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+                    
+                    dispatch_after(threeSeconds, dispatch_get_main_queue()) {
+                        
+                        
+                        print("請連上網路後，下拉重新整理。")
+                        
+                        // set articleArray to nothing
+                        self.articleArray = []
+                        
+                        self.refreshController.endRefreshing()
+                        
+                        
+                        UIView.transitionWithView(self.tableView, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
+                        
+                        self.tableView.showNoRowInfo("請連上網路後，下拉重新整理。")
+                        
+                        if(!self.refreshController.isDescendantOfView(self.tableView)){
+                            self.tableView.addSubview(self.refreshController)
+                        }
+                        
+                        
+                    }
+                default:
+                    
+                    // define 3 seconde for dispathc after
+                    let threeSeconds = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+                    
+                    dispatch_after(threeSeconds, dispatch_get_main_queue()) {
+                        
+                        
+                        print("網速過慢或連線問題。")
+                        
+                        // set articleArray to nothing
+                        self.articleArray = []
+                        
+                        self.refreshController.endRefreshing()
+                        
+                        UIView.transitionWithView(self.tableView, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
+                        
+                        self.tableView.showNoRowInfo("網速過慢、或連線出現問題。")
+                        
+                        if(!self.refreshController.isDescendantOfView(self.tableView)){
+                            self.tableView.addSubview(self.refreshController)
+                        }
+                        
+                        
+                    }
+                    
+                }
+                
+                
+                
+                
+            }else{
+
                 
                 // no matter how long it takes to download data from Server
                 // the activityIndicator will animating from 3 seconds
                 let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+            
                 dispatch_after(time, dispatch_get_main_queue()) {
+                    
+                    self.tableView.backgroundView = nil
                     
                     // stop activity indicator animating
                     self.activityIndicator.stopAnimating()
@@ -84,23 +164,39 @@ class SearchResultVC: UITableViewController {
                     
                     // refer self.topicArray to starTopicArray (Array from Server)
                     self.articleArray = articleArray
-                    
-                    // set self.afterDownload for show info if there is no result
-                    self.afterDownload = true
-                    
+                  
                     // show the line separator again
                     self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
                     
-                    // reload StarTableViewIBO in animating style
-                    UIView.transitionWithView(self.tableView, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
+                    if self.articleArray.count == 0 {
+                        
+                        // no need to do below line in dispathc main
+                        // because table reloadData() method is already in dispatch main
+                        self.tableView.showNoRowInfo("找不到您所搜尋的項目。")
+                        UIView.transitionWithView(self.tableView, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
+                        
+                    }else{
+                    
+                        // reload tableView in animating style
+                        UIView.transitionWithView(self.tableView, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
+                        
+                    }
+                    
+                    
+                    self.refreshController.endRefreshing()
+                    
+                    
+                    if(!self.refreshController.isDescendantOfView(self.tableView)){
+                        self.tableView.addSubview(self.refreshController)
+                    }
                     
                     
                 }
                 
                 
+            }
                 
-                
-            })
+           
             
             
             
@@ -121,14 +217,14 @@ class SearchResultVC: UITableViewController {
      - return: Int for number of section
      */
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        
         if self.articleArray.count > 0 {
             
             return 1
             
-        }else if self.articleArray.count == 0 && self.afterDownload {
-            // TODO: 把這裡的提示 「目前沒有衛教文章」 套用到各個不同頁面
+        }else if self.articleArray.count == 0 {
             
-            self.tableView.showNoRowInfo("找不到你所搜尋的結果。")
+            return 0
             
         }
         

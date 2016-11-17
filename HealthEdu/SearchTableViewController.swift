@@ -131,28 +131,147 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
         // remove separate line for empty cell
         self.tableView.tableFooterView = UIView()
         
-        ListSearchDefaultText.hotANDtrend({
-            (hotArray, trendArray) in
-            
-            self.hotSearchItem = hotArray
-            self.trendSearchItem = trendArray
-            
-            // change UI inside main queue
-            dispatch_async(dispatch_get_main_queue(), {
-                
-                // stop activity indicator animating
-                self.searchHotTrendTextActivityIndicator.stopAnimating()
-                self.searchHotTrendTextActivityIndicator.hidden = true
-                
-                self.sectionTitleForHot = "📈 最新趨勢"
-                self.sectionTitleForTrend = "♨ 熱門關鍵字"
+        // define refreshControl
+        self.refreshController = UIRefreshControl()
+        
+        // set refreshControl color
+        self.refreshController.tintColor = UIColor.init(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 0.7)
+        
+        // addTarget when pull, which func to exe
+        self.refreshController.addTarget(self, action: #selector(SearchTableViewController.download), forControlEvents: UIControlEvents.ValueChanged)
 
+
+        // start the whole thing
+        self.download()
+        
+        
+        
+    }
+    
+    
+    func download(){
+        
+        ListSearchDefaultText.hotANDtrend({
+            (hotArray, trendArray, error) in
+            
+            if error != nil {
+                // there is error
+                // change UI inside main queue
                 
-                // show the line separator again
-                self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+                switch error! {
+                    
+                case "code-1009":
+                    
+                    // define 3 seconde for dispathc after
+                    let threeSeconds = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+                    
+                    dispatch_after(threeSeconds, dispatch_get_main_queue()) {
+                        
+                        
+                        print("請連上網路後，下拉重新整理。")
+                        
+                        // set hot and trend both to nothing
+                        self.hotSearchItem = []
+                        self.trendSearchItem = []
+                        
+                        self.refreshController.endRefreshing()
+                        
+                        
+                        UIView.transitionWithView(self.tableView, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
+                        
+                        self.tableView.showNoRowInfo("請連上網路後，下拉重新整理。")
+                        
+                        if(!self.refreshController.isDescendantOfView(self.tableView)){
+                            self.tableView.addSubview(self.refreshController)
+                        }
+                        
+                        
+                    }
+                default:
+                    
+                    // define 3 seconde for dispathc after
+                    let threeSeconds = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+                    
+                    dispatch_after(threeSeconds, dispatch_get_main_queue()) {
+                    
+                        
+                        print("網速過慢或連線問題。")
+                        
+                        // set hot and trend both to nothing
+                        self.hotSearchItem = []
+                        self.trendSearchItem = []
+                        
+                        self.refreshController.endRefreshing()
+                        
+                        UIView.transitionWithView(self.tableView, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
+                        
+                        self.tableView.showNoRowInfo("網速過慢、或連線出現問題。")
+                        
+                        if(!self.refreshController.isDescendantOfView(self.tableView)){
+                            self.tableView.addSubview(self.refreshController)
+                        }
+                        
+                        
+                    }
+                    
+                }
                 
-                UIView.transitionWithView(self.tableView, duration: 1.0, options: .TransitionCrossDissolve , animations: {self.tableView.reloadData()}, completion: nil)
-            })
+                
+                
+                
+            }else{
+                
+                
+                self.hotSearchItem = hotArray
+                self.trendSearchItem = trendArray
+                
+                // define 3 seconde for dispathc after
+                let oneSeconds = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 1 * Int64(NSEC_PER_SEC))
+                
+                dispatch_after(oneSeconds, dispatch_get_main_queue()) {
+                    
+                    self.tableView.backgroundView = nil
+                    
+                    // stop activity indicator animating
+                    self.searchHotTrendTextActivityIndicator.stopAnimating()
+                    self.searchHotTrendTextActivityIndicator.hidden = true
+                    
+                    self.sectionTitleForHot = "📈 最新趨勢"
+                    self.sectionTitleForTrend = "♨ 熱門關鍵字"
+                    
+                    
+                    
+                    // show the line separator again
+                    self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+                    
+                    if self.hotSearchItem.count == 0 || self.trendSearchItem.count == 0 {
+                        
+                        // no need to do below line in dispathc main
+                        // because table reloadData() method is already in dispatch main
+                        self.tableView.showNoRowInfo("目前沒有趨勢、或熱門搜尋關鍵字。")
+                        UIView.transitionWithView(self.tableView, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
+                        
+                    }else{
+                    
+                        UIView.transitionWithView(self.tableView, duration: 1.0, options: .TransitionCrossDissolve , animations: {self.tableView.reloadData()}, completion: nil)
+                        
+                        
+                    }
+                    
+                    self.refreshController.endRefreshing()
+                    
+                    
+                    if(!self.refreshController.isDescendantOfView(self.tableView)){
+                        self.tableView.addSubview(self.refreshController)
+                    }
+                    
+                    
+                }
+            
+            
+            
+            }
+        
             
         })
         
@@ -248,8 +367,15 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
         - returns: Int , section number, in this case just one
     */
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 2
+        
+        
+        // return the number of sections
+        if self.hotSearchItem.count == 0 || self.trendSearchItem.count == 0 {
+            return 0
+        }else{
+            return 2
+        }
+        
     }
 
     

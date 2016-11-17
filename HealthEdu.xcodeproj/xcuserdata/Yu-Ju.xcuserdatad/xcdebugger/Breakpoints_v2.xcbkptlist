@@ -152,11 +152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HealthEdu/BookmarkVCViewController.swift"
-            timestampString = "500435619.301725"
+            timestampString = "501005932.779319"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "showHistory()"
             landmarkType = "5">
          </BreakpointContent>
@@ -323,11 +323,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HealthEdu/StarMany.swift"
-            timestampString = "500977175.13661"
+            timestampString = "501002993.442173"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "335"
-            endingLineNumber = "335"
+            startingLineNumber = "336"
+            endingLineNumber = "336"
             landmarkName = "StarMany"
             landmarkType = "3">
          </BreakpointContent>
@@ -339,11 +339,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HealthEdu/StarMany.swift"
-            timestampString = "500977175.13661"
+            timestampString = "501002993.442173"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "358"
-            endingLineNumber = "358"
+            startingLineNumber = "359"
+            endingLineNumber = "359"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -355,11 +355,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HealthEdu/StarSingleTopic.swift"
-            timestampString = "500887308.442182"
+            timestampString = "501003847.39928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
             landmarkName = "tableView(_:numberOfRowsInSection:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -371,28 +371,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HealthEdu/ListArticle.swift"
-            timestampString = "499431476.632391"
+            timestampString = "501046052.93619"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "byDivisionId(_:limitCount:excludeIds:completionHandler:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HealthEdu/ListArticle.swift"
-            timestampString = "500659908.650645"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "byStarTopic(_:completionHandler:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -529,11 +513,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HealthEdu/SearchResultVC.swift"
-            timestampString = "500827121.631099"
+            timestampString = "501043754.350202"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
+            startingLineNumber = "322"
+            endingLineNumber = "322"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -545,12 +529,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HealthEdu/SearchTableViewController.swift"
-            timestampString = "500887308.442182"
+            timestampString = "501043754.350202"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "download()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

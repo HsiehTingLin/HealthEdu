@@ -19,7 +19,7 @@ class ListArticle{
      - returns: no resturn
      - completionHandler(Array<article> -> Void) return article array here
      */
-    static func byDivisionId(divisionId: String, limitCount: Int, excludeIds: [String], completionHandler: [article] -> Void){
+    static func byDivisionId(divisionId: String, limitCount: Int, excludeIds: [String], completionHandler: ([article],String?) -> Void){
         
         var excludeArray: [String]
         
@@ -46,8 +46,21 @@ class ListArticle{
         Connection.postRequest("https://ncku.medcode.in/json/listByDivisionId", postString: strToPost, completionHandler: {
             (data, error) in
             
-            
-            if let jsonArray = Parse.parseJSONdata(data) {
+            if error != nil {
+                
+                switch error! {
+                    
+                case "code-1009":
+                    completionHandler([], "code-1009")
+                default:
+                    completionHandler([], "other error")
+                    
+                }
+                
+                
+                
+            }else if let jsonArray = Parse.parseJSONdata(data) {
+
                 
                 var articleArray: [article] = []
                 
@@ -69,7 +82,7 @@ class ListArticle{
                     
                 }
                 
-                completionHandler(articleArray)
+                completionHandler(articleArray, nil)
                 
             }
             
@@ -90,19 +103,29 @@ class ListArticle{
      - returns: no resturn
      - completionHandler(Array<article> -> Void) return article array here
      */
-    static func byStarTopic(starTopicId: String, completionHandler: Array<article> -> Void){
+    static func byStarTopic(starTopicId: String, completionHandler: (Array<article>,String?) -> Void){
         
         let strToPost = "starTopicId=\(starTopicId)"
-        
-        
         
         
         // pass rowSelected to Connection Post
         Connection.postRequest("https://ncku.medcode.in/json/listByStarTopic", postString: strToPost, completionHandler: {
             (data, error) in
             
-            
-            if let jsonArray = Parse.parseJSONdata(data) {
+            if error != nil {
+                
+                switch error! {
+                    
+                case "code-1009":
+                    completionHandler([], "code-1009")
+                default:
+                    completionHandler([], "other error")
+                    
+                }
+                
+                
+                
+            }else if let jsonArray = Parse.parseJSONdata(data) {
                 
                 var articleArray: [article] = []
                 
@@ -124,7 +147,7 @@ class ListArticle{
                     
                 }
                 
-                completionHandler(articleArray)
+                completionHandler(articleArray,nil)
                 
             }
             
@@ -143,7 +166,7 @@ class ListArticle{
      - returns: no resturn
      - completionHandler(Array<article> -> Void) return article array here
      */
-    static func bySearchText(searchText: String, completionHandler: [article] -> Void){
+    static func bySearchText(searchText: String, completionHandler: ([article],String?) -> Void){
         
         let strToPost = "searchText=\(searchText)"
         
@@ -153,7 +176,20 @@ class ListArticle{
             (data, error) in
             
             
-            if let jsonArray = Parse.parseJSONdata(data) {
+            if error != nil {
+                
+                switch error! {
+                    
+                case "code-1009":
+                    completionHandler([], "code-1009")
+                default:
+                    completionHandler([], "other error")
+                    
+                }
+                
+                
+                
+            }else if let jsonArray = Parse.parseJSONdata(data) {
                 
                 var articleArray: [article] = []
                 
@@ -175,7 +211,7 @@ class ListArticle{
                     
                 }
                 
-                completionHandler(articleArray)
+                completionHandler(articleArray, nil)
                 
             }
             

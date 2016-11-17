@@ -42,8 +42,6 @@ class DevisionOnlyVC: UITableViewController {
     // Bool for record status whether division articles have all been download
     var nothingToDownload: Bool?
     
-    // afterDownload
-    var afterDownload: Bool = false
     
     // initiate refreshControl
     var refreshController: UIRefreshControl!
@@ -94,36 +92,126 @@ class DevisionOnlyVC: UITableViewController {
         // set activityIndicator as StarTableViewIDB's backgrousView
         self.DivisionOnlyVCTableView.backgroundView = self.activityIndicator
         
+        // define refreshControl
+        self.refreshController = UIRefreshControl()
         
-        // TODO: 未來新增不要一次下載全部文章的 excludeIdsArray 功能
+        // set refreshControl color
+        self.refreshController.tintColor = UIColor.init(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 0.7)
+        
+        // addTarget when pull, which func to exe (restart the division load -limit 15 articles)
+        self.refreshController.addTarget(self, action: #selector(DevisionOnlyVC.download), forControlEvents: UIControlEvents.ValueChanged)
+
+
+        // start the whole story
+        self.download()
+        
+    }
+    
+    func download() {
+
+
+        
         self.excludeIdsArray = []
         
         self.limitCount = 15
         
         ListArticle.byDivisionId(divisionIdSelected!, limitCount: limitCount!, excludeIds: self.excludeIdsArray, completionHandler: {
-            (articleArray) in
-            
-            // if there is less than 15 articles downloaded at first time,
-            // there is no need to loadMoreRow... anymore
-            // so, set nothingToDownload to true
-            if articleArray.count < 15 {
-                self.nothingToDownload = true
-            }
+            (articleArray, error) in
             
             
-            for a_article in articleArray {
-                // extract all id from article array to excludeIdsArray
-                self.excludeIdsArray.append(a_article.id!)
-            }
             
-            
-            // change UI inside main queue
-            dispatch_async(dispatch_get_main_queue(), {
+            if error != nil {
+                // there is error
+                // change UI inside main queue
                 
+                switch error! {
+                    
+                case "code-1009":
+                    
+                    // define 3 seconde for dispathc after
+                    let threeSeconds = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+                    
+                    dispatch_after(threeSeconds, dispatch_get_main_queue()) {
+                        
+                        
+                        print("請連上網路後，下拉重新整理。")
+                        
+                        // set articleArray to nothing
+                        self.articleArray = []
+                        
+                        self.refreshController.endRefreshing()
+                        
+                        
+                        UIView.transitionWithView(self.tableView, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
+                        
+                        self.tableView.showNoRowInfo("請連上網路後，下拉重新整理。")
+                        
+                        if(!self.refreshController.isDescendantOfView(self.tableView)){
+                            self.tableView.addSubview(self.refreshController)
+                        }
+                        
+                        
+                    }
+                default:
+                    
+                    // define 3 seconde for dispathc after
+                    let threeSeconds = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+                    
+                    dispatch_after(threeSeconds, dispatch_get_main_queue()) {
+                        
+                        
+                        print("網速過慢或連線問題。")
+                        
+                        
+                        // set articleArray to nothing
+                        self.articleArray = []
+                        
+                        self.refreshController.endRefreshing()
+                        
+                        UIView.transitionWithView(self.tableView, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
+                        
+                        self.tableView.showNoRowInfo("網速過慢、或連線出現問題。")
+                        
+                        if(!self.refreshController.isDescendantOfView(self.tableView)){
+                            self.tableView.addSubview(self.refreshController)
+                        }
+                        
+
+                        
+                        
+                    }
+                    
+                }
+                
+                
+                
+                
+            }else{
+
+                // no network basic error
+                
+                
+                // if there is less than 15 articles downloaded at first time,
+                // there is no need to loadMoreRow... anymore
+                // so, set nothingToDownload to true
+                if articleArray.count < 15 {
+                    self.nothingToDownload = true
+                }
+                
+                
+                for a_article in articleArray {
+                    // extract all id from article array to excludeIdsArray
+                    self.excludeIdsArray.append(a_article.id!)
+                }
+            
+
                 // no matter how long it takes to download data from Server
                 // the activityIndicator will animating from 3 seconds
                 let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
                 dispatch_after(time, dispatch_get_main_queue()) {
+                    
+     
+                    self.tableView.backgroundView = nil
                     
                     // stop activity indicator animating
                     self.activityIndicator.stopAnimating()
@@ -131,24 +219,43 @@ class DevisionOnlyVC: UITableViewController {
                     
                     // refer self.topicArray to starTopicArray (Array from Server)
                     self.articleArray = articleArray
-                    
-                    // set self.afterDownload for show info if there is no result
-                    self.afterDownload = true
+
                     
                     // show the line separator again
                     self.DivisionOnlyVCTableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
                     
-
-                    // reload StarTableViewIBO in animating style
-                    UIView.transitionWithView(self.DivisionOnlyVCTableView, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.DivisionOnlyVCTableView.reloadData()}, completion: nil)
                     
+                    if self.articleArray.count == 0 {
+                        
+                        // no need to do below line in dispathc main
+                        // because table reloadData() method is already in dispatch main
+                        self.DivisionOnlyVCTableView.showNoRowInfo("「\(self.divisionTitleSelectedForNavigationShow!)」沒有衛教文章，敬請期待。")
+                        
+                        UIView.transitionWithView(self.tableView, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.tableView.reloadData()}, completion: nil)
+                        
+                        
+                    }else{
+                        
+                        // reload StarTableViewIBO in animating style
+                        UIView.transitionWithView(self.DivisionOnlyVCTableView, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.DivisionOnlyVCTableView.reloadData()}, completion: nil)
+                        
+                    }
+                    
+                    self.refreshController.endRefreshing()
+                    
+                    if(!self.refreshController.isDescendantOfView(self.tableView)){
+                        self.tableView.addSubview(self.refreshController)
+                    }
+                    
+                    // reset nothingToDonwload
+                    self.nothingToDownload = false
                     
                 }
                 
                 
                 
                 
-            })
+            }
 
             
             
@@ -166,10 +273,9 @@ class DevisionOnlyVC: UITableViewController {
             
             return 1
             
-        }else if self.articleArray.count == 0 && self.afterDownload {
-            // TODO: 把這裡的提示 「目前沒有衛教文章」 套用到各個不同頁面
-            
-            self.DivisionOnlyVCTableView.showNoRowInfo("\(divisionTitleSelectedForNavigationShow!)沒有衛教文章，敬請期待發布。")
+        }else if self.articleArray.count == 0 {
+
+            return 0
             
         }
         
@@ -197,19 +303,31 @@ class DevisionOnlyVC: UITableViewController {
         
         let articleItem = articleArray[indexPath.row]
         
-        print(articleItem.photoUIImage)
+        
         if articleItem.photoUIImage == nil {
             // prove that photoUIImage has not been downloaded t
             cell.myPhoto.imageFromServerURL(cell.myPhoto, urlString: articleItem.photo!, completionHandler: {
                     (imageFromNet) in
-            
+                
+                // TODO: 以下這行似乎可以防止 out of index articleArray 的情況
+                // 有時候圖片下載比較慢，但是使用者又上拉重新整理 導致 Array 變成新的 
+                // 等圖片下載完成，Array 的某個元素卻是空的，就會 out of index....
                 // here insert image From Net to topicArray.topicPhotoUIImage
-                self.articleArray[indexPath.row].photoUIImage = imageFromNet
+                if let targetUIImage: article = self.articleArray[indexPath.row] {
+                        targetUIImage.photoUIImage = imageFromNet
+                }else{
+                    
+                    print("image net download finish but no photoUIImage to put in")
+                    
+                }
+
             
             })
 
         }else{
+            
             cell.myPhoto.image = self.articleArray[indexPath.row].photoUIImage
+            
         }
 
         cell.title.text = articleItem.title!.noHTMLtag
@@ -220,9 +338,9 @@ class DevisionOnlyVC: UITableViewController {
     }
     
     /**
-        Load More Row When Scroll to Bottom
-        - returns: no
-    */
+     Load More Row When Scroll to Bottom
+     - returns: no
+     */
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         
         let lastElement = articleArray.count - 1
@@ -232,66 +350,146 @@ class DevisionOnlyVC: UITableViewController {
             // set true, prevent repeat reach bottom
             self.alreadyReachBottomAndLoad = true
             print("bottom")
+            
+            // dispatch show loadMoreRowAcitivityIndicator
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                // build loadMoreRowAcitivityIndicator as WhiteLarge(change to blue later)
+                self.loadMoreRowAcitivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+                
+                // change loadMoreRowAcitivityIndicator color to blue (default iOS blue)
+                self.loadMoreRowAcitivityIndicator.color = UIColor.init(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
+                
+                // set loadMoreRowAcitivityIndicator startAnimating and not hidden
+                self.loadMoreRowAcitivityIndicator.startAnimating()
+                self.loadMoreRowAcitivityIndicator.hidden = false
+                
+                // programmatically add loadMoreRowAcitivityIndicator to tableFooterView
+                self.tableView.tableFooterView = self.loadMoreRowAcitivityIndicator
+                
+            })
+            
+            
             ListArticle.byDivisionId(divisionIdSelected!, limitCount: limitCount!, excludeIds: self.excludeIdsArray, completionHandler: {
-                (articleArray) in
-                
-                if articleArray.count == 0 {
-                    print("there is nothing to download")
-                    self.nothingToDownload = true
-                }
-                
-                for a_article in articleArray {
-                    // extract all id from article array to excludeIdsArray
-                    self.excludeIdsArray.append(a_article.id!)
-                }
+                (articleArray, error) in
                 
                 
-                // dispatch show loadMoreRowAcitivityIndicator
-                dispatch_async(dispatch_get_main_queue(), {
+                if error != nil {
                     
-                    // build loadMoreRowAcitivityIndicator as WhiteLarge(change to blue later)
-                    self.loadMoreRowAcitivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
-                    
-                    // change loadMoreRowAcitivityIndicator color to blue (default iOS blue)
-                    self.loadMoreRowAcitivityIndicator.color = UIColor.init(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
-                    
-                    // set loadMoreRowAcitivityIndicator startAnimating and not hidden
-                    self.loadMoreRowAcitivityIndicator.startAnimating()
-                    self.loadMoreRowAcitivityIndicator.hidden = false
-                    
-                    // programmatically add loadMoreRowAcitivityIndicator to tableFooterView
-                    self.tableView.tableFooterView = self.loadMoreRowAcitivityIndicator
-                    
-                })
-                
-                
-                
-                // change UI inside main queue
-                dispatch_async(dispatch_get_main_queue(), {
-                    
-                    // no matter how long it takes to download data from Server
-                    // the activityIndicator will animating from 3 seconds
-                    let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
-                    dispatch_after(time, dispatch_get_main_queue()) {
+                    switch error! {
                         
-                        // refer self.topicArray to starTopicArray (Array from Server)
-                        self.articleArray += articleArray
-                    
-                        // set loadMoreRowAcitivityIndicator startAnimating and not hidden
-                        self.loadMoreRowAcitivityIndicator.stopAnimating()
-                        self.loadMoreRowAcitivityIndicator.hidden = true
-                    
+                    case "code-1009":
                         
-                        // reload StarTableViewIBO in animating style
-                        UIView.transitionWithView(self.DivisionOnlyVCTableView, duration: 1.0, options: .TransitionCrossDissolve, animations: {self.DivisionOnlyVCTableView.reloadData()}, completion: nil)
+                        // define 3 seconde for dispathc after
+                        let threeSeconds = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
                         
+                        dispatch_after(threeSeconds, dispatch_get_main_queue()) {
+                            
+                            
+                            print("請連上網路後，再下滑重新整理。")
+                            
+                            // set loadMoreRowAcitivityIndicator startAnimating and not hidden
+                            self.loadMoreRowAcitivityIndicator.stopAnimating()
+                            self.loadMoreRowAcitivityIndicator.hidden = true
+                            
+                            self.tableView.tableFooterView = nil
+                            
+                            // can not build Domains Division json hierarchy
+                            let alertMessage = UIAlertController(title: "無法下載文章", message: "網路連線中斷，請檢查 Wifi 或行動上網是否正常！", preferredStyle: .Alert)
+                            
+                            let okAction = UIAlertAction(title: "知道了", style: .Default, handler: nil)
+                            
+                            
+                            alertMessage.addAction(okAction)
+
+                            self.presentViewController(alertMessage, animated: true, completion:nil)
+
+                            
+                        }
+                    default:
+                        
+                        // define 3 seconde for dispathc after
+                        let threeSeconds = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+                        
+                        dispatch_after(threeSeconds, dispatch_get_main_queue()) {
+                            
+                            
+                            print("網速過慢或連線問題。")
+                            
+                            
+                            
+                            // set loadMoreRowAcitivityIndicator startAnimating and not hidden
+                            self.loadMoreRowAcitivityIndicator.stopAnimating()
+                            self.loadMoreRowAcitivityIndicator.hidden = true
+                            
+                            self.tableView.tableFooterView = nil
+                            
+                            // can not build Domains Division json hierarchy
+                            let alertMessage = UIAlertController(title: "無法下載文章", message: "網速過慢或連線問題，請檢查 Wifi 或行動上網是否正常！", preferredStyle: .Alert)
+                            
+                            let okAction = UIAlertAction(title: "知道了", style: .Default, handler: nil)
+                            
+                            
+                            alertMessage.addAction(okAction)
+                            
+
+                            self.presentViewController(alertMessage, animated: true, completion:nil)
+
+                            
+                            
+                            
+                        }
                         
                     }
-                        
+                    
+                    
+                }else{
+                    
+                    
+                    if articleArray.count == 0 {
+                        print("there is nothing to download")
+                        self.nothingToDownload = true
+                    }
+                    
+                    for a_article in articleArray {
+                        // extract all id from article array to excludeIdsArray
+                        self.excludeIdsArray.append(a_article.id!)
+                    }
+                    
+                    
 
                     
                     
-                })
+                    // no matter how long it takes to download data from Server
+                    // the activityIndicator will animating from 3 seconds
+                    let threeSeconds = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+                    
+                    dispatch_after(threeSeconds, dispatch_get_main_queue()) {
+                        
+                        // refer self.topicArray to starTopicArray (Array from Server)
+                        self.articleArray += articleArray
+                        
+                        // set loadMoreRowAcitivityIndicator startAnimating and not hidden
+                        self.loadMoreRowAcitivityIndicator.stopAnimating()
+                        self.loadMoreRowAcitivityIndicator.hidden = true
+                        
+                        if self.nothingToDownload == true {
+                            self.tableView.tableFooterView = nil
+                        }
+                        
+                        
+                        // reload StarTableViewIBO in animating style
+                        UIView.transitionWithView(self.DivisionOnlyVCTableView, duration: 1.0, options: .TransitionNone, animations: {self.DivisionOnlyVCTableView.reloadData()}, completion: nil)
+                        
+                        
+                    }
+                    
+
+                
+                }
+                
+                
+
                 
                 // set to false, for trigger reach bottom next time
                 self.alreadyReachBottomAndLoad = false
@@ -347,10 +545,7 @@ class DevisionOnlyVC: UITableViewController {
 
             
             articleDetail.currentTimeString = articleSelected.time
-            
-            
-        // 這個func的作用:先把 articleArray中，被選中的資料，指定為 articleSelected這個變數(class是article )，然後將來自"ArticleViewController"的變數指定為articleDetail這個var(class 是ArticleViewController)，接著把articleSelected的每個變數都指定為articleDetail的各個對應的變數，類型都是String
-            
+
             
         }
     }

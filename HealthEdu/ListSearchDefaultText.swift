@@ -17,7 +17,7 @@ class ListSearchDefaultText {
      - returns: no return
      - completionHandler(Array<article> -> Void) return article array here
      */
-    static func hotANDtrend(completionHandler: (Array<String>,Array<String>) -> ()){
+    static func hotANDtrend(completionHandler: (Array<String>,Array<String>,String?) -> ()){
         
         // define Api Url
         let apiUrl: String = "https://ncku.medcode.in/json/listSearchDefaultText"
@@ -28,35 +28,50 @@ class ListSearchDefaultText {
         
         var trendTextArray: [String] = []
         
+        
+        
         // pass rowSelected to Connection Post
         Connection.postRequest(apiUrl, postString: strToPost,
             completionHandler: {
             (data, error) in
             
-            
-            if let jsonArray = Parse.parseJSONdata(data) {
-                
-                for a_text in jsonArray {
+                if error != nil {
                     
-                    if(a_text["category"] as? String == "hot"){
+                    switch error! {
                         
-                        hotTextArray.append(a_text["text"] as! String)
-                        
-                    }else if(a_text["category"] as? String == "trend"){
-                        
-                        trendTextArray.append(a_text["text"] as! String)
+                    case "code-1009":
+                        completionHandler([],[], "code-1009")
+                    default:
+                        completionHandler([],[], "other error")
                         
                     }
                     
                     
                     
-                }
-                
-                
-                
-            }
+                }else if let jsonArray = Parse.parseJSONdata(data) {
             
-            completionHandler(hotTextArray, trendTextArray)
+                
+                    for a_text in jsonArray {
+                        
+                        if(a_text["category"] as? String == "hot"){
+                            
+                            hotTextArray.append(a_text["text"] as! String)
+                            
+                        }else if(a_text["category"] as? String == "trend"){
+                            
+                            trendTextArray.append(a_text["text"] as! String)
+                            
+                        }
+                        
+                        
+                        
+                    }
+                
+                    completionHandler(hotTextArray, trendTextArray, nil)
+                
+                }
+            
+            
             
         })
         

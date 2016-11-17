@@ -11,7 +11,17 @@ import UIKit
 
 extension String{
     
-    var noHTMLtag: String { print("dd"); return  self.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil) }
+    var noHTMLtag: String {
+        return  self.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+    }
+    
+    func trunc(length: Int, trailing: String? = "...") -> String {
+        if self.characters.count > length {
+            return self.substringToIndex(self.startIndex.advancedBy(length)) + (trailing ?? "")
+        } else {
+            return self
+        }
+    }
     
     
 }

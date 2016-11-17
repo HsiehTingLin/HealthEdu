@@ -38,7 +38,8 @@ class BookmarkVCViewController: UIViewController,UITableViewDataSource,UITableVi
         
         super.viewDidLoad()
         
-
+        // avoid black shadow show on background when trasition
+        self.navigationController!.view.backgroundColor = UIColor.whiteColor()
     }
 
     /**
